@@ -61,12 +61,12 @@ sudo flatpak -y install com.microsoft.Edge
 sudo flatpak -y install com.rtosta.zapzap
 sudo flatpak -y install com.vscodium.codium && export VSCODIUM="1"
 sudo flatpak -y install io.dbeaver.DBeaverCommunity
-sudo flatpak -y install me.dusansimic.DynamicWallpaper
+# sudo flatpak -y install me.dusansimic.DynamicWallpaper
 sudo flatpak -y install org.kde.kate
 
 ## Pacotes Flatpak comentados (para ativação posterior)
 # sudo flatpak install -y flathub com.anydesk.Anydesk
-# sudo flatpak install -y flathub com.github.maoschanz.DynamicWallpaperEditor
+sudo flatpak install -y flathub com.github.maoschanz.DynamicWallpaperEditor
 # sudo flatpak install -y flathub com.google.Chrome
 # sudo flatpak install -y flathub com.rustdesk.RustDesk
 # sudo flatpak install -y com.opera.Opera
