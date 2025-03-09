@@ -1,20 +1,21 @@
 #!/bin/bash
+# shellcheck disable=SC2155,SC2162
 
 # Variáveis para o HOME e Backup na data atual
-export HM="$(basename $HOME)"
+export HM="$(basename "$HOME")"
 export HMN="$HM.BKP_$(date +%d%m%H%M)"
 
 echo -e 'Renomear diretório "HOME" para backup e criar novo diretório de usuário.'
 sleep 5
-cd /home
-sudo mv -v /home/$HM  /home/$HMN
-sudo mkdir -p $HOME
-sudo cp -av /etc/skel/.bash* $HOME
-sudo chown -R $USER:$USER $HOME
+cd /home || exit
+sudo mv -v /home/"$HM"  /home/"$HMN"
+sudo mkdir -p "$HOME"
+sudo cp -av /etc/skel/.bash* "$HOME"
+sudo chown -R "$USER":"$USER" "$HOME"
 
 echo -e 'Redefinindo o Shell do usuário'
 sleep 3
-sudo chsh -s /bin/bash $USER
+sudo chsh -s /bin/bash "$USER"
 
 # Pause para verificar se as respostas estão corretas.
 # Se OK, apertar ENTER para continuar, senão, CTRL+C para cancelar
@@ -22,7 +23,7 @@ read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo de instalação de TODOS os pacotes instalados "como Explicitamente" para "como dependência"'
 sleep 5
-sudo pacman -D --asdeps $(pacman -Qqe)
+sudo pacman -D --asdeps "$(pacman -Qqe)"
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
@@ -34,7 +35,7 @@ read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Remover os pacotes, menos os configurados como "Instalados Explicitamente"'
 sleep 5
-sudo pacman -Rsunc $(pacman -Qtdq)
+sudo pacman -Rsunc "$(pacman -Qtdq)"
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
