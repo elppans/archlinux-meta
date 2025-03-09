@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd /tmp
-git clone https://aur.archlinux.org/yay.git
-cd yay
+git clone https://aur.archlinux.org/yay.git /tmp/yay
+cd /tmp/yay
 makepkg -Cris -L --needed --noconfirm
 

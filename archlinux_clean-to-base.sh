@@ -28,7 +28,7 @@ read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo da instalação para "como explicitamente" apenas os PACOTES ESSENCIAIS. Aqueles que você NÃO deseja remover'
 sleep 5
-sudo pacman -D --asexplicit base base-devel linux linux-headers linux-firmware amd-ucode intel-ucode btrfs-progs git fakeroot reflector nano ntp man-db man-pages texinfo grub-efi-x86_64 efibootmgr dosfstools os-prober mtools networkmanager wpa_supplicant wireless_tools dialog sudo yay mlocate pkgconf wget
+sudo pacman -D --asexplicit base base-devel linux linux-headers linux-firmware amd-ucode intel-ucode btrfs-progs git fakeroot reflector nano ntp man-db man-pages texinfo grub-efi-x86_64 efibootmgr dosfstools os-prober mtools networkmanager wpa_supplicant wireless_tools dialog sudo pkgconf wget
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
