@@ -10,9 +10,9 @@ Este repositório contém uma coleção de scripts criados para automatizar e fa
 
 O repositório contém diversos scripts para facilitar a configuração e manutenção do Arch Linux. Aqui estão os principais:
 
-- **`arch_gnome-shell-meta.sh`**: Instala e configura o GNOME Shell com seus componentes principais.
-- **`arch_gnome-shell-meta_pos-install.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
-- **`arch_formatar-limpar.sh`**: Um script especial que limpa completamente o Arch Linux, removendo pacotes extras e deixando apenas a instalação base, como se tivesse sido recém-instalada. **Use com extrema cautela, pois ele pode apagar dados importantes.**
+- **`archlinux_gui-gnome-shell-meta.sh`**: Instala e configura o GNOME Shell com seus componentes principais.
+- **`archlinux_gui-gnome-shell-meta_pos-install.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
+- **`archlinux_clean-to-base.sh`**: Um script especial que limpa completamente o Arch Linux, removendo pacotes extras e deixando apenas a instalação base, como se tivesse sido recém-instalada. **Use com extrema cautela, pois ele pode apagar dados importantes.**
 - **Scripts para gerenciadores de login** (como GDM, LightDM e SDDM): Automatizam a configuração de diferentes *display managers*.
 - **Instalação e configuração do GRUB**: Scripts para configurar o carregador de inicialização GRUB.
 - Outros scripts para tarefas específicas, ajustes no sistema e otimizações.
@@ -67,7 +67,7 @@ O repositório contém scripts para diferentes tarefas de pós-instalação, inc
 - Configuração do GNOME Shell e extensões.
 - Gerenciamento de gerenciadores de login (GDM, LightDM, SDDM).
 - Instalação e configuração do GRUB.
-- **Limpeza completa do sistema**: O script `arch_formatar-limpar.sh` é especialmente projetado para deixar o Arch Linux com sua base mínima instalada, similar a uma instalação recém-concluída.
+- **Limpeza completa do sistema**: O script `archlinux_clean-to-base.sh` é especialmente projetado para deixar o Arch Linux com sua base mínima instalada, similar a uma instalação recém-concluída.
 
 **A lista completa e a descrição dos scripts podem ser visualizadas no próprio repositório.**
 
