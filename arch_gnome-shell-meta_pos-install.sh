@@ -56,7 +56,7 @@ paru --needed --noconfirm -S --batchinstall --skipreview --removemake --mflags -
 
 ## Aplicativos
 sudo flatpak -y install com.github.marktext.marktext
-sudo flatpak -y install com.github.realmazharhussain.GdmSettings
+sudo flatpak -y install io.github.realmazharhussain.GdmSettings
 sudo flatpak -y install com.microsoft.Edge
 sudo flatpak -y install com.rtosta.zapzap
 sudo flatpak -y install com.vscodium.codium && export VSCODIUM="1"
