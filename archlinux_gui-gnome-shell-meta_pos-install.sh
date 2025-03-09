@@ -99,6 +99,7 @@ sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Ya
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
 sudo systemctl restart gdm
 
 ## Outras configurações
