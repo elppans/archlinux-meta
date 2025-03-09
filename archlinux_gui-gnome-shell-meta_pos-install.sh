@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2027,SC2046,SC2002,SC2016
 
 # Atualização do sistema
 sudo pacman --needed --noconfirm -Syyu
@@ -12,7 +13,7 @@ sudo pkgfile -u
 
 # Wrappers do pacman (AUR Helper)
 git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin
-cd /tmp/paru-bin
+cd /tmp/paru-bin || exit
 makepkg --needed --noconfirm -Cris
 
 # Remoção de aplicativos
@@ -25,6 +26,7 @@ sudo pacman --noconfirm -R gnome-music loupe
 
 ## Complementos do GNOME
 sudo pacman --needed --noconfirm -S cheese file-roller fragments gnome-firmware gthumb power-profiles-daemon rhythmbox
+
 sudo pacman --needed --noconfirm -S ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""
 
 ## Extensões do GNOME
@@ -50,7 +52,10 @@ sed -i 's/gedit/gnome-text-editor/g' "$HOME/.local/share/actions-for-nautilus/co
 nautilus -q
 
 ## Temas do GNOME Shell
-paru --needed --noconfirm -S --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb yaru-gnome-shell-theme
+paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
+yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme
+# || \
+echo "Reinicie o sistema e rode o Script novamente!" && exit 1
 
 # Instalação de pacotes via Flatpak
 
@@ -80,10 +85,21 @@ dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 
 # Ajustes de configurações via gsettings
 
-## Temas
+## Temas 
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+gsettings set org.gnome.shell.extensions.user-theme name "Yaru-prussiangreen-dark"
 gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
-gsettings set org.gnome.desktop.interface gtk-theme "Yaru-olive-dark"
-gsettings set org.gnome.desktop.interface icon-theme "Yaru-olive-dark"
+gsettings set org.gnome.desktop.interface gtk-theme "Yaru-prussiangreen-dark"
+gsettings set org.gnome.desktop.interface icon-theme "Yaru-prussiangreen-dark"
+gsettings set org.gnome.desktop.sound theme-name "Yaru"
+
+## Temas e Configurações GDM
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-prussiangreen-dark"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Yaru-prussiangreen-dark"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
+sudo systemctl restart gdm
 
 ## Outras configurações
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
@@ -101,7 +117,7 @@ sudo sed -i -E 's/(workgroup =).*/\1 WORKGROUP/' /etc/samba/smb.conf
 sudo mkdir -m 1770 -p /var/lib/samba/usershares
 sudo groupadd -r sambashare
 sudo chown root:sambashare /var/lib/samba/usershares
-sudo usermod -aG sambashare $USER
+sudo usermod -aG sambashare "$USER"
 sudo sed -i -E '/Share Definitions/i \
 usershare path = /var/lib/samba/usershares\n\
 usershare max shares = 100\n\
@@ -117,7 +133,7 @@ echo 'arch' | sudo -S smbpasswd -a "$USER"
 ## Configuração do VSCodium
 if [ "$VSCODIUM" -eq 1 ]; then
     echo "VSCodium selecionado! Executando configuração..."
-    cd
+    cd || exit
     echo -e 'alias codium="flatpak run com.vscodium.codium "' | tee -a "$HOME"/.bashrc
     alias codium="flatpak run com.vscodium.codium "
     mkdir -p "$HOME/.config/VSCodium/User"
@@ -129,27 +145,37 @@ fi
 
 ## Action Script, conversão de imagens
 git clone https://github.com/elppans/el-images.git /tmp/el-images
-cd /tmp/el-images
+cd /tmp/el-images || exit
 ./install.sh
-cd
+cd || exit
 
 ## Modelos de arquivos
 git clone https://github.com/elppans/ubuntu_file_templates.git /tmp/file_templates
 cp -a /tmp/file_templates/* "$(xdg-user-dir TEMPLATES)"
 
 ## Gnome Shell Extensions Manager
-echo -e 'PATH="$PATH:$HOME/.local/bin"' | tee -a $HOME/.bashrc
+echo -e 'PATH="$PATH:$HOME/.local/bin"' | tee -a "$HOME"/.bashrc
 mkdir -p "$HOME"/.local/bin
 mkdir -p "$HOME"/.config/autostart
 mkdir -p "$HOME"/.local/share/gnome-shell
 wget -c "https://raw.githubusercontent.com/elppans/gnome-shell-extensions_manager/refs/heads/main/gnome-shell-extensions_manager.sh" -P "$HOME"/.local/bin
 chmod +x "$HOME"/.local/bin/gnome-shell-extensions_manager.sh
-echo -e '\n"$HOME"/.local/bin/gnome-shell-extensions_manager.sh\n' | tee -a $HOME/.bash_profile
+echo -e '\n"$HOME"/.local/bin/gnome-shell-extensions_manager.sh &>>/dev/null\n' | tee -a "$HOME"/.bash_profile
 touch "$HOME"/.local/share/gnome-shell/extensions.list
 echo -e 'caffeine@patapon.info
-appindicatorsupport@rgcjonas.gmail.com' | tee "$HOME"/.local/share/gnome-shell/extensions.list
+appindicatorsupport@rgcjonas.gmail.com
+user-theme@gnome-shell-extensions.gcampax.github.com' | tee "$HOME"/.local/share/gnome-shell/extensions.list
 cat "$HOME"/.local/share/gnome-shell/extensions.list
 
+## GDM Settings (Em edição)
+# /etc/dconf/db/gdm.d/95-gdm-settings
+# Exportar as customizações do GDM via dconf
+# sudo -u gdm dbus-launch dconf dump / > gdm-settings.ini
+# Importar as customizações no GDM
+# sudo -u gdm dbus-launch dconf load / < gdm-settings.ini
+
+## Plano de fundo Gnome (Em edição)
+# /usr/share/backgrounds/gnome/
 
 # Mensagem final
 echo -e '\n\nReinicie o computador para aplicar as configurações!\n\n'

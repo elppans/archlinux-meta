@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Instalação do Gnome Shell e Ferramentas
 # Atualização do sistema e instalação dos pacotes
 sudo pacman --needed --noconfirm -Syyu gnome \
@@ -24,7 +26,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 # Display manager, gerenciador de login
 # ./display-manager-gdm_instalar.sh
 sudo pacman --needed --noconfirm -Syyu gdm
-sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
+sudo systemctl disable "$(systemctl status display-manager.service | head -n1 | awk '{print $2}')" &>>/dev/null
 sudo systemctl enable gdm.service
 
 # Pós install
