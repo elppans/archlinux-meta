@@ -1,4 +1,4 @@
-# Arch Linux Meta Pós-Instalação
+# Arch Linux Meta (Pós-Instalação)
 
 Este repositório contém uma coleção de scripts criados para automatizar e facilitar o pós-instalação do **Arch Linux**. Ele foi desenvolvido para uso pessoal, mas está disponível para quem desejar utilizá-lo. **Use-o por sua própria conta e risco.**
 
@@ -26,8 +26,8 @@ O repositório contém diversos scripts para facilitar a configuração e manute
 ### 1. Clone este repositório
 Baixe os arquivos para o seu sistema:
 ```bash
-git clone https://github.com/elppans/archlinux-meta-posinstall.git
-cd archlinux-meta-posinstall
+git clone https://github.com/elppans/archlinux-meta.git
+cd archlinux-meta
 ```
 
 ### 2. Revise e personalize os scripts
