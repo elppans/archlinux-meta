@@ -118,10 +118,13 @@ echo 'arch' | sudo -S smbpasswd -a "$USER"
 if [ "$VSCODIUM" -eq 1 ]; then
     echo "VSCodium selecionado! Executando configuração..."
     cd
+    echo -e 'alias codium="flatpak run com.vscodium.codium "' | tee -a "$HOME"/.bashrc
+    alias codium="flatpak run com.vscodium.codium "
     mkdir -p "$HOME/.config/VSCodium/User"
     curl -JLk -o /tmp/vscodium_backup.tar.gz "https://github.com/elppans/vscodeum/raw/refs/heads/main/vscodium_backup/vscodium_backup_20250226_170128.tar.gz"
     tar -xzf /tmp/vscodium_backup.tar.gz -C "$HOME"/.config/VSCodium/User/
-    cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 codium --install-extension
+    # cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 codium --install-extension
+    cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 flatpak run com.vscodium.codium --install-extension
 fi
 
 ## Action Script, conversão de imagens
