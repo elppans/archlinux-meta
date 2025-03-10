@@ -16,6 +16,10 @@ git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin
 cd /tmp/paru-bin || exit
 makepkg --needed --noconfirm -Cris
 
+# Gerenciador de pacotes Flatpak
+sudo pacman --needed --noconfirm -S flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Remoção de aplicativos
 sudo pacman --noconfirm -R epiphany gnome-music loupe
 
