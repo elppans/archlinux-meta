@@ -57,8 +57,7 @@ nautilus -q
 
 ## Temas do GNOME Shell
 paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
-yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme || \
-echo -e "\n\n\nReinicie o sistema e rode o Script novamente!\n\n\n" && exit 1
+yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme
 
 # Instalação de pacotes via Flatpak
 
