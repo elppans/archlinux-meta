@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2155,SC2162
+# shellcheck disable=SC2155,SC2162,SC2046
 
 # Variáveis para o HOME e Backup na data atual
 export HM="$(basename "$HOME")"
@@ -23,19 +23,19 @@ read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo de instalação de TODOS os pacotes instalados "como Explicitamente" para "como dependência"'
 sleep 5
-sudo pacman -D --asdeps "$(pacman -Qqe)"
+sudo pacman -D --asdeps $(pacman -Qqn)
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo da instalação para "como explicitamente" apenas os PACOTES ESSENCIAIS. Aqueles que você NÃO deseja remover'
 sleep 5
-sudo pacman -D --asexplicit base base-devel linux linux-headers linux-firmware amd-ucode intel-ucode btrfs-progs git fakeroot reflector nano ntp man-db man-pages texinfo grub-efi-x86_64 efibootmgr dosfstools os-prober mtools networkmanager wpa_supplicant wireless_tools dialog sudo pkgconf wget
+sudo pacman -D --asexplicit $(pacman -Qqs ucode) base linux linux-firmware btrfs-progs git nano networkmanager pipewire wpa_supplicant wireless_tools sudo wget
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Remover os pacotes, menos os configurados como "Instalados Explicitamente"'
 sleep 5
-sudo pacman -Rsunc "$(pacman -Qtdq)"
+sudo pacman -Rsunc $(pacman -Qttdq)
 
 read -p "Apertae ENTER para continuar, ou CTRL+C para cancelar" ;
 

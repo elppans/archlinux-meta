@@ -17,7 +17,7 @@ cd /tmp/paru-bin || exit
 makepkg --needed --noconfirm -Cris
 
 # Remoção de aplicativos
-sudo pacman --noconfirm -R gnome-music loupe
+sudo pacman --noconfirm -R epiphany gnome-music loupe
 
 # Instalação de pacotes via pacman
 
