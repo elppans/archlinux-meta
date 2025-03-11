@@ -59,6 +59,11 @@ nautilus -q
 paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
 yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme
 
+# Adicionar
+# teamviewer_amd64
+# openfortigui
+# cisco-secure-client-vpn_5.1.6.103_amd64
+
 # Instalação de pacotes via Flatpak
 
 ## Aplicativos
@@ -184,8 +189,6 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 
 ## Plano de fundo Gnome (Em edição)
 # /usr/share/backgrounds/gnome/
-
-
 
 # gnome-shell-extension-unite > AUR (Teste)
 # Importar as configurações (salvo no github)
