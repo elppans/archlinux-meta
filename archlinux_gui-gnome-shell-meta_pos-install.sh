@@ -146,6 +146,11 @@ if [ "$VSCODIUM" -eq 1 ]; then
     cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 flatpak run com.vscodium.codium --install-extension
 fi
 
+# Nautilus-Status-Bar-Replacement
+sudo mkdir -p /usr/share/nautilus-python/extensions
+sudo curl -JLk -o /usr/share/nautilus-python/extensions/DiskUsageLocationWidget.py \
+"https://raw.githubusercontent.com/elppans/Nautilus-Status-Bar-Replacement/refs/heads/master/DiskUsageLocationWidget.py"
+
 ## Action Script, conversão de imagens
 git clone https://github.com/elppans/el-images.git /tmp/el-images
 cd /tmp/el-images || exit
@@ -179,6 +184,16 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 
 ## Plano de fundo Gnome (Em edição)
 # /usr/share/backgrounds/gnome/
+
+
+
+# gnome-shell-extension-unite > AUR (Teste)
+# Importar as configurações (salvo no github)
+# curl -JLk -o /tmp/unite-settings.conf "https://raw.githubusercontent.com/elppans/ubuntu2204-package-list/refs/heads/main/unite-extensions-settings.conf"
+# dconf load /org/gnome/shell/extensions/unite/ < /tmp/unite-settings.conf
+
+# Ativar a extenção
+# gnome-extensions enable "unite@hardpixel.eu"
 
 # Mensagem final
 echo -e '\n\nReinicie o computador para aplicar as configurações!\n\n'
