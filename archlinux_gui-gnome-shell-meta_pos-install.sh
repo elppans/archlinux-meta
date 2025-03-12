@@ -25,11 +25,22 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe
 
 # Instalação de pacotes via pacman
 
-## Pacote para vídeo em QEMU/KVM/Virt Manager
-# sudo pacman --needed --noconfirm -S xf86-video-qxl
+## Pacotes para Virtual Machines
+
+# QEMU/KVM com SPICE
+sudo pacman --needed --noconfirm -S qemu-guest-agent spice-vdagent xf86-input-vmmouse xf86-video-qxl gdk-pixbuf-xlib
+sudo systemctl enable qemu-guest-agent spice-vdagentd
+
+# VMWare
+sudo pacman --needed --noconfirm -S open-vm-tools
+sudo systemctl enable vmtoolsd
+
+# Virtual Box
+sudo pacman --needed --noconfirm -S virtualbox-guest-utils
+sudo systemctl enable vboxservice
 
 ## Complementos do GNOME
-sudo pacman --needed --noconfirm -S cheese file-roller fragments gnome-firmware gthumb power-profiles-daemon rhythmbox
+sudo pacman --needed --noconfirm -S cheese dconf-editor file-roller fragments gnome-firmware gthumb power-profiles-daemon rhythmbox
 
 sudo pacman --needed --noconfirm -S ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""
 
@@ -112,7 +123,7 @@ sudo systemctl restart gdm
 ## Outras configurações
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
-
+gsettings set org.gnome.Console transparency true
 # Configuração do SAMBA
 
 ## Configuração do arquivo smb.conf
