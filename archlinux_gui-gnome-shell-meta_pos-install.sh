@@ -17,8 +17,8 @@ cd /tmp/paru-bin || exit
 makepkg --needed --noconfirm -Cris
 
 # Gerenciador de pacotes Flatpak
+# Pacote Flatpak versão ArchLinux já adiciona o repositório flathub, então não é necessário o comando "remote-add"
 sudo pacman --needed --noconfirm -S flatpak
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Remoção de aplicativos
 sudo pacman --noconfirm -R epiphany gnome-music loupe
@@ -124,6 +124,7 @@ sudo systemctl restart gdm
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 gsettings set org.gnome.Console transparency true
+
 # Configuração do SAMBA
 
 ## Configuração do arquivo smb.conf
