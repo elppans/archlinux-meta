@@ -208,6 +208,13 @@ echo 'arch' | sudo -S smbpasswd -a "$USER"
 
 # Customizações do sistema com Scripts
 
+# Trocar o ícone do Gnome Text Editor e padronizando em "skel"
+sudo sed -i 's/^Icon=.*/Icon=gedit/' "/usr/share/applications/org.gnome.TextEditor.desktop"
+sudo mkdir -p "/etc/skel/.local/share/applications"
+mkdir -p "$HOME/.local/share/applications"
+sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local/share/applications"
+cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
+
 # Nautilus-Status-Bar-Replacement
 sudo mkdir -p /usr/share/nautilus-python/extensions
 sudo curl -JLk -o /usr/share/nautilus-python/extensions/DiskUsageLocationWidget.py \
@@ -280,6 +287,7 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 "$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
 # "$install"/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
 # "$install"/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
+# "$install"/pacote-helper-yay_instalar.sh       # Executa o script para instalar o AUR helper Yay  
 
 
 # Mensagem final
