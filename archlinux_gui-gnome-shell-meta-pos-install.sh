@@ -1,6 +1,8 @@
 #!/bin/bash
 # shellcheck disable=SC2027,SC2046,SC2002,SC2016
 
+locdir="$(pwd)"
+
 # Atualização do sistema
 sudo pacman --needed --noconfirm -Syyu
 
@@ -226,6 +228,8 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 # gnome-extensions enable "unite@hardpixel.eu"
 
 # Instalação de pacotes via Scripts externos
+
+cd "$locdir" || exit 1
 
 # ./pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
 # ./pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
