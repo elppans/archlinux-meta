@@ -8,6 +8,8 @@ sudo pacman --needed --noconfirm -Syyu
 sudo pacman --needed --noconfirm -S base-devel git
 
 # Complementos para o pacman
+# expac    -> Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
+# pkgfile  -> Utilitário para buscar arquivos pertencentes a pacotes no repositório  
 sudo pacman --needed --noconfirm -S expac pkgfile
 sudo pkgfile -u
 
@@ -21,8 +23,12 @@ makepkg --needed --noconfirm -Cris
 sudo pacman --needed --noconfirm -S flatpak
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Remoção de aplicativos
+# Remove os seguintes pacotes do sistema:  
+# epiphany     -> Navegador web GNOME Web  
+# gnome-music  -> Aplicativo de reprodução de música do GNOME  
+# loupe        -> Visualizador de imagens moderno do GNOME  
 sudo pacman --noconfirm -R epiphany gnome-music loupe
+
 
 # Instalação de pacotes via pacman
 
@@ -43,30 +49,23 @@ sudo systemctl enable vboxservice
 ## Aplicatibos Gnome
 
 # Pacotes Gnome do repositório oficial
-sudo pacman --needed --noconfirm -Syyu archlinux-wallpaper    # Papéis de parede oficiais do Arch Linux
-sudo pacman --needed --noconfirm -Syyu fwupd                  # Ferramenta para atualização de firmware de dispositivos
-sudo pacman --needed --noconfirm -Syyu fwupd-efi              # Módulo EFI para atualizar firmware via fwupd
-sudo pacman --needed --noconfirm -Syyu gnome-disk-utility     # Gerenciador de discos e partições do GNOME
-sudo pacman --needed --noconfirm -Syyu gnome-menus            # Biblioteca para manipulação de menus no GNOME
-# sudo pacman --needed --noconfirm -Syyu gnome-remote-desktop   # Suporte a compartilhamento de área de trabalho via RDP e VNC
-sudo pacman --needed --noconfirm -Syyu gnome-shell-extensions # Extensões para personalizar o GNOME Shell
-# sudo pacman --needed --noconfirm -Syyu gnome-software         # Loja de aplicativos do GNOME para gerenciar pacotes e Flatpaks
-sudo pacman --needed --noconfirm -Syyu gnome-tweaks           # Ferramenta para ajustar configurações avançadas do GNOME
-sudo pacman --needed --noconfirm -Syyu gnome-user-share       # Compartilhamento de arquivos via WebDAV no GNOME
-sudo pacman --needed --noconfirm -Syyu rhythmbox              # Player de música padrão do GNOME
-sudo pacman --needed --noconfirm -Syyu sushi                  # Visualizador rápido de arquivos para o Nautilus
-# sudo pacman --needed --noconfirm -Syyu yelp                   # Visualizador de ajuda e documentação do GNOME
+sudo pacman --needed --noconfirm -S archlinux-wallpaper    # Papéis de parede oficiais do Arch Linux
+sudo pacman --needed --noconfirm -S gnome-tweaks           # Ferramenta para ajustar configurações avançadas do GNOME
+sudo pacman --needed --noconfirm -S rhythmbox              # Player de música padrão do GNOME
+sudo pacman --needed --noconfirm -S fragments              # Cliente BitTorrent simples para o GNOME  
+sudo pacman --needed --noconfirm -S gthumb                 # Visualizador e organizador de imagens  
+sudo pacman --needed --noconfirm -S remmina                # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
 
 ## Complementos para o GNOME
 
 # Daemon para gerenciar perfis de energia no Linux, permitindo otimizar o consumo de energia em laptops e dispositivos móveis.
 sudo pacman --needed --noconfirm -S power-profiles-daemon
 
-# File Roller: Gerenciador de arquivos compactados do GNOME (Usando a versão Flatpak)
-# sudo pacman --needed --noconfirm -Syyu file-roller  
+# File Roller: Gerenciador de arquivos compactados do GNOME
+sudo pacman --needed --noconfirm -Syyu file-roller  
 
-# Instala dependências do File Roller listadas pelo expac (gerenciador de arquivos compactados)
-# sudo pacman --needed --noconfirm -Syyu ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""  
+# Instala dependências opcionais do File Roller listadas pelo expac
+sudo pacman --needed --noconfirm -Syyu ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""  
 
 ## Extensões do GNOME
 sudo pacman --needed --noconfirm -S gnome-shell-extension-appindicator gnome-shell-extension-caffeine
@@ -75,13 +74,12 @@ sudo pacman --needed --noconfirm -S gnome-shell-extension-appindicator gnome-she
 sudo pacman --needed --noconfirm -S nautilus-image-converter nautilus-share
 
 ## Demais aplicações
-sudo pacman --needed --noconfirm -S jq prettier shellcheck shfmt stylelint wine-staging winetricks
+sudo pacman --needed --noconfirm -S wine-staging winetricks
+
 
 # Instalação de pacotes via AUR
 
-## Aplicativos
-
-# Mystiq: Ferramenta de gerenciamento de senhas e autenticação para Linux
+# mystiq -> Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples  
 paru --needed --noconfirm -S mystiq
 
 # actions-for-nautilus-git: Ações adicionais para o Nautilus (explorador de arquivos); 
@@ -89,7 +87,6 @@ paru --needed --noconfirm -S mystiq
 # meld: Ferramenta para comparação de arquivos e diretórios; 
 # xclip: Utilitário para manipulação da área de transferência no Linux
 paru --needed --noconfirm -S actions-for-nautilus-git gtkhash meld xclip
-
 
 ## Configuração do Actions for Nautilus
 mkdir -p "$HOME/.local/share/actions-for-nautilus"
@@ -107,55 +104,19 @@ yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-s
 # openfortigui
 # cisco-secure-client-vpn_5.1.6.103_amd64
 
+
 # Instalação de pacotes via Flatpak
 
 # Pacotes Gnome do repositório Flatpak (Para que tenha menos dependências no ArchLinux)
-sudo flatpak install -y flathub org.gnome.Platform//47                      # Plataforma base do GNOME versão 47
-sudo flatpak install -y flathub org.gnome.SDK//47                           # SDK do GNOME versão 47
-sudo flatpak install -y flathub ca.desrt.dconf-editor                       # Editor de configurações avançado do GNOME
 sudo flatpak install -y flathub com.github.maoschanz.DynamicWallpaperEditor # Editor de papel de parede dinâmico
-sudo flatpak install -y flathub de.haeckerfelix.Fragments                   # Aplicativo de fragmentação de arquivos (Torrent)
-sudo flatpak install -y flathub io.github.celluloid_player.Celluloid        # Player de vídeo (anteriormente MPV)
-sudo flatpak install -y flathub io.github.realmazharhussain.GdmSettings     # Configurações do GDM
-sudo flatpak install -y flathub org.gnome.baobab        # Analisador de espaço em disco do GNOME
-sudo flatpak install -y flathub org.gnome.Calendar      # Aplicativo de calendário do GNOME
-sudo flatpak install -y flathub org.gnome.Calculator    # Calculadora do GNOME
-sudo flatpak install -y flathub org.gnome.Characters    # Visualizador de caracteres especiais do GNOME
-sudo flatpak install -y flathub org.gnome.Cheese        # Aplicativo de câmera do GNOME
-# sudo flatpak install -y flathub org.gnome.clocks        # Relógio e alarme do GNOME
-# sudo flatpak install -y flathub org.gnome.Contacts      # Gerenciador de contatos do GNOME
-sudo flatpak install -y flathub org.gnome.FileRoller    # Compactador e descompactador de arquivos do GNOME
-# sudo flatpak install -y flathub org.gnome.Firmware      # Aplicativo para atualização de firmware do GNOME
-sudo flatpak install -y flathub org.gnome.font-viewer   # Visualizador de fontes do GNOME
-sudo flatpak install -y flathub org.gnome.gThumb        # Visualizador de imagens e gerenciador de galerias
-sudo flatpak install -y flathub org.gnome.Logs          # Aplicativo de logs do GNOME
-# sudo flatpak install -y flathub org.gnome.Maps          # Mapas e navegação do GNOME
-sudo flatpak install -y flathub org.gnome.meld          # Ferramenta de comparação de arquivos
-sudo flatpak install -y flathub org.gnome.SimpleScan    # Scanner de documentos do GNOME
-sudo flatpak install -y flathub org.gnome.Snapshot      # Ferramenta de captura de tela do GNOME
-sudo flatpak install -y flathub org.gnome.TextEditor    # Editor de texto do GNOME
-sudo flatpak install -y flathub org.gnome.Weather       # Aplicativo de previsão do tempo do GNOME
-sudo flatpak install -y flathub org.kde.kate            # Editor de texto avançado do KDE (Kate)
-sudo flatpak install -y flathub org.remmina.Remmina     # Cliente de desktop remoto (RDP, VNC, SSH)
+sudo flatpak install -y flathub io.github.realmazharhussain.GdmSettings     # GDM Settings: Ferramenta para configurar o GDM (GNOME Display Manager)
+sudo flatpak install -y flathub org.kde.kate                                # Kate: Editor de texto avançado da comunidade KDE
 
 ## Pacotes Opcionais para uso no sistema
 sudo flatpak -y install com.github.marktext.marktext             # MarkText: Editor de texto Markdown simples e poderoso
-sudo flatpak -y install io.github.realmazharhussain.GdmSettings  # GDM Settings: Ferramenta para configurar o GDM (GNOME Display Manager)
 sudo flatpak -y install com.microsoft.Edge                       # Microsoft Edge: Navegador web da Microsoft
 sudo flatpak -y install com.rtosta.zapzap                        # ZapZap: Cliente de mensagens instantâneas (WhatsApp) para Linux
-sudo flatpak -y install com.vscodium.codium && export VSCODIUM="1"  # VSCodium: Versão de código aberto do Visual Studio Code (sem o rastreamento de dados)
-sudo flatpak -y install io.dbeaver.DBeaverCommunity              # DBeaver: Ferramenta de gerenciamento de banco de dados multi-plataforma
 # sudo flatpak -y install me.dusansimic.DynamicWallpaper           # Dynamic Wallpaper: Ferramenta para criar papéis de parede dinâmicos (comentado)
-sudo flatpak -y install org.kde.kate                             # Kate: Editor de texto avançado da comunidade KDE
-
-
-## Pacotes Flatpak comentados (para ativação posterior)
-# sudo flatpak install -y flathub com.anydesk.Anydesk                          # AnyDesk: Software de acesso remoto para controle e suporte remoto
-sudo flatpak install -y flathub com.github.maoschanz.DynamicWallpaperEditor  # Dynamic Wallpaper Editor: Editor para criar e personalizar papéis de parede dinâmicos
-# sudo flatpak install -y flathub com.google.Chrome                            # Google Chrome: Navegador web da Google
-# sudo flatpak install -y flathub com.rustdesk.RustDesk                        # RustDesk: Software de acesso remoto de código aberto
-# sudo flatpak install -y com.opera.Opera                                      # Opera: Navegador web com foco em privacidade e recursos avançados
-# sudo flatpak install -y com.vivaldi.Vivaldi                                  # Vivaldi: Navegador web altamente personalizável
 
 
 # Ajustes de configurações via dconf
@@ -207,24 +168,17 @@ usershare max shares = 100\n\
 usershare allow guests = yes\n\
 usershare owner only = yes\n' /etc/samba/smb.conf
 
-## Habilitar e configurar serviços
-sudo systemctl enable --now nmb smb
+# Habilita e inicia os serviços do Samba:  
+# nmb -> Serviço NetBIOS para descoberta de dispositivos na rede  
+# smb -> Serviço principal do Samba para compartilhamento de arquivos  
+sudo systemctl enable --now nmb smb  
+
+# Define a senha do usuário atual no Samba  
+# 'arch' -> Senha sendo definida para o usuário no Samba  
 echo 'arch' | sudo -S smbpasswd -a "$USER"
 
-# Finalizando com Scripts
 
-## Configuração do VSCodium
-if [ "$VSCODIUM" -eq 1 ]; then
-    echo "VSCodium selecionado! Executando configuração..."
-    cd || exit
-    echo -e 'alias codium="flatpak run com.vscodium.codium "' | tee -a "$HOME"/.bashrc
-    alias codium="flatpak run com.vscodium.codium "
-    mkdir -p "$HOME/.config/VSCodium/User"
-    curl -JLk -o /tmp/vscodium_backup.tar.gz "https://github.com/elppans/vscodeum/raw/refs/heads/main/vscodium_backup/vscodium_backup_20250226_170128.tar.gz"
-    tar -xzf /tmp/vscodium_backup.tar.gz -C "$HOME"/.config/VSCodium/User/
-    # cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 codium --install-extension
-    cat "$HOME"/.config/VSCodium/User/extensions_list.txt | xargs -L 1 flatpak run com.vscodium.codium --install-extension
-fi
+# Finalizando com Scripts
 
 # Nautilus-Status-Bar-Replacement
 sudo mkdir -p /usr/share/nautilus-python/extensions
