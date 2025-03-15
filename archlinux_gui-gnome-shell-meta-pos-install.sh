@@ -275,7 +275,7 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 "$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
 # "$install"/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
 # "$install"/pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-"$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak
+"$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
 "$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
 # "$install"/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
 "$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
