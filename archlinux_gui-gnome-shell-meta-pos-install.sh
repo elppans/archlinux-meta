@@ -118,7 +118,6 @@ sudo flatpak install -y flathub io.github.realmazharhussain.GdmSettings     # GD
 sudo flatpak install -y flathub org.kde.kate                                # Kate: Editor de texto avançado da comunidade KDE
 
 ## Pacotes Opcionais para uso no sistema
-sudo flatpak -y install com.rtosta.zapzap                        # ZapZap: Cliente de mensagens instantâneas (WhatsApp) para Linux
 # sudo flatpak -y install me.dusansimic.DynamicWallpaper           # Dynamic Wallpaper: Ferramenta para criar papéis de parede dinâmicos (comentado)
 
 
