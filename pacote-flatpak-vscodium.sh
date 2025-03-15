@@ -12,7 +12,7 @@ sudo pacman --needed --noconfirm -S jq prettier shellcheck shfmt stylelint
 sudo pacman --needed --noconfirm -S jq prettier shellcheck shfmt stylelint 
 
 # VSCodium: Versão de código aberto do Visual Studio Code (sem o rastreamento de dados)
-sudo flatpak -y install com.vscodium.codium && export VSCODIUM="1" || export VSCODIUM="0" 
+sudo flatpak install -y flathub com.vscodium.codium && export VSCODIUM="1" || export VSCODIUM="0" 
 
 ## Configuração do VSCodium
 if [ "$VSCODIUM" -eq 1 ]; then

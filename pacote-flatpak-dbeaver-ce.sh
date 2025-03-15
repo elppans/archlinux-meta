@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # DBeaver: Ferramenta de gerenciamento de banco de dados multi-plataforma
-sudo flatpak -y install io.dbeaver.DBeaverCommunity
+sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
