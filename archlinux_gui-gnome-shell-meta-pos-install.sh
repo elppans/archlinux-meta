@@ -101,6 +101,8 @@ nautilus -q
 paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
 yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme
 
+# Em teste:
+paru --needed --noconfirm -S gnome-themes-extra materia-gtk-theme orchis-theme tela-circle-icon-theme-all vimix-cursors
 # Adicionar
 # teamviewer_amd64
 # openfortigui
