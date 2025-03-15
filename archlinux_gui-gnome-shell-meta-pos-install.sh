@@ -229,25 +229,25 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 
 # Instalação de pacotes via Scripts externos
 
-cd "$locdir" || exit 1
+# cd "$locdir" || exit 1
 
 # ./pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
 # ./pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
 # ./pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
-./pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
+bash "$locdir"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
 # ./pacote-flatpak-browser-firefox.sh   # Script para instalar o navegador Firefox via Flatpak
 # ./pacote-flatpak-browser-opera.sh     # Script para instalar o navegador Opera via Flatpak
 # ./pacote-flatpak-browser-vivaldi.sh   # Script para instalar o navegador Vivaldi via Flatpak
 # ./pacote-flatpak-dbeaver-ce.sh        # Script para instalar o DBeaver Community Edition via Flatpak
-./pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
-./pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
-./pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
+bash "$locdir"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
+bash "$locdir"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
+bash "$locdir"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
 # ./pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
 # ./pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-./pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak
-./pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
+bash "$locdir"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak
+bash "$locdir"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
 # ./pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
-./pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+bash "$locdir"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
 
 
 # Mensagem final
