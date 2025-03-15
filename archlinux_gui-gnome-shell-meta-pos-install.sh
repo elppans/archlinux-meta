@@ -117,10 +117,6 @@ nautilus -q
 
 ## Temas e ícones para personalização do GNOME:  
 
-# Tema Yaru
-paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
-yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme
-
 # Tema Orchis
 # orchis-theme                    -> Tema moderno para GTK e GNOME Shell  
 # tela-circle-icon-theme-black    -> Variante preta do conjunto de ícones Tela Circle  
@@ -155,28 +151,31 @@ dconf write /org/gnome/nautilus/preferences/show-create-link true
 
 ## Temas e Configurações Gnome
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gsettings set org.gnome.shell.extensions.user-theme name "Yaru-blue-dark"
+gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
-gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
-gsettings set org.gnome.desktop.sound theme-name "Yaru"
-
-## Temas e Configurações GDM
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
-sudo systemctl restart gdm
+gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
+gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
+# gsettings set org.gnome.desktop.sound theme-name "Yaru"
 
 ## Configurações gerais do Gnome
-gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
-gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
-gsettings set org.gnome.Console transparency true
 gsettings set org.gnome.desktop.background picture-options 'spanned'
 gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/archlinux/conference.png'
 gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/archlinux/conference.png'
+gsettings set org.gnome.Console transparency true
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+
+## Temas e Configurações GDM
+# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
+sudo systemctl restart gdm
+
 
 # Configuração do SAMBA
 
