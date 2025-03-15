@@ -129,7 +129,7 @@ sudo pacman --needed --noconfirm -S vimix-cursors
 # obsidian-icon-theme -> Tema de ícones Obsidian baseado no Papirus  
 # cutefish-icons      -> Conjunto de ícones do ambiente Cutefish  
 sudo pacman --needed --noconfirm -S obsidian-icon-theme
-sudo pacman --needed --noconfirm -S cutefish-icons
+# sudo pacman --needed --noconfirm -S cutefish-icons
 
 # Adicionar
 # teamviewer_amd64
