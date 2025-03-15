@@ -102,7 +102,8 @@ paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflag
 yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme yaru-unity-theme yaru-xfwm4-theme
 
 # Em teste:
-paru --needed --noconfirm -S gnome-themes-extra materia-gtk-theme orchis-theme tela-circle-icon-theme-all vimix-cursors
+# paru --needed --noconfirm -S gnome-themes-extra materia-gtk-theme orchis-theme tela-circle-icon-theme-all vimix-cursors
+
 # Adicionar
 # teamviewer_amd64
 # openfortigui
