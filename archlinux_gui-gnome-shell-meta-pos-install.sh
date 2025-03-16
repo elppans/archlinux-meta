@@ -65,17 +65,14 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe
 
 ## Pacotes para Virtual Machines
 
-# QEMU/KVM com SPICE
-sudo pacman --needed --noconfirm -S qemu-guest-agent spice-vdagent xf86-input-vmmouse xf86-video-qxl gdk-pixbuf-xlib
-sudo systemctl enable qemu-guest-agent spice-vdagentd
-
-# VMWare
-sudo pacman --needed --noconfirm -S open-vm-tools
-sudo systemctl enable vmtoolsd
-
-# Virtual Box
-sudo pacman --needed --noconfirm -S virtualbox-guest-utils
-sudo systemctl enable vboxservice
+# Detecta se o sistema está rodando em uma máquina virtual (VM) e instala os pacotes necessários
+# para melhorar a integração com o hypervisor. O script usa três métodos para detecção:
+# 1. systemd-detect-virt (se disponível)
+# 2. lscpu | grep -i hypervisor
+# 3. grep -i hypervisor /proc/cpuinfo
+# Se uma VM for detectada, os pacotes apropriados para QEMU/KVM, VMWare ou VirtualBox serão
+# instalados automaticamente. Caso contrário, nada será feito.
+"$install"/detect-and-install-vm-packages.sh
 
 ## Aplicatibos Gnome
 
