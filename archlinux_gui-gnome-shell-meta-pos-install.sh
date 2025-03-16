@@ -251,6 +251,12 @@ appindicatorsupport@rgcjonas.gmail.com
 user-theme@gnome-shell-extensions.gcampax.github.com' | tee "$HOME"/.local/share/gnome-shell/extensions.list
 cat "$HOME"/.local/share/gnome-shell/extensions.list
 
+## Executar aplicativos com  xWayland
+sudo curl -JLk -o /usr/local/bin/run-x11.sh https://raw.githubusercontent.com/elppans/customshell/refs/heads/master/run-x11.sh
+sudo chmod +x /usr/local/bin/run-x11.sh
+echo -e '/usr/local/bin/run-x11.sh flameshot' | sudo tee /usr/local/bin/flameshot >>/dev/null
+sudo chmod +x /usr/local/bin/flameshot
+
 ## GDM Settings (Em edição)
 # /etc/dconf/db/gdm.d/95-gdm-settings
 # Exportar as customizações do GDM via dconf
@@ -292,6 +298,7 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 "$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
 # "$install"/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
 "$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+# "$install"/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
 # "$install"/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
 # "$install"/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
 # "$install"/pacote-helper-yay_instalar.sh       # Executa o script para instalar o AUR helper Yay  
