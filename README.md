@@ -11,6 +11,7 @@ Este repositório contém uma coleção de scripts criados para automatizar e fa
 O repositório contém diversos scripts para facilitar a configuração e manutenção do Arch Linux. Aqui estão os principais:
 
 - **`archlinux_gui-gnome-shell-meta.sh`**: Instala e configura o GNOME Shell com seus componentes principais.
+>Ps.: Script totalmente baseado na sessão Gnome Shell do Archinstall
 - **`archlinux_gui-gnome-shell-meta-pos-install.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
 - **`archlinux_clean-to-base.sh`**: Um script especial que limpa completamente o Arch Linux, removendo pacotes extras e deixando apenas a instalação base, como se tivesse sido recém-instalada. **Use com extrema cautela, pois ele pode apagar dados importantes.**
 - **Scripts para gerenciadores de login** (como GDM, LightDM e SDDM): Automatizam a configuração de diferentes *display managers*.
