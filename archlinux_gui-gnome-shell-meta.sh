@@ -28,6 +28,11 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+# Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland
+sudo pacman --needed --noconfirm -Syyu xorg-xwayland xorg-xlsclients glfw-wayland
+sudo pacman --needed --noconfirm -Syyu libinput wayland wayland-protocols
+
+# Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
 # Criação/Atualização dos Diretórios Padrões de Usuário

@@ -11,15 +11,33 @@ fi
 locdir="$(pwd)"
 install="$locdir"
 
-# Atualização do sistema
-sudo pacman --needed --noconfirm -Syyu
+# Atualização do sistema:
+
+# Sincroniza os repositórios e atualiza todos os pacotes do sistema  
+sudo pacman --needed --noconfirm -Syyu  
+
+
+# Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
+
+# Instala o XWayland, que permite rodar aplicativos X11 dentro do Wayland  
+# xorg-xlsclients: ferramenta para listar clientes conectados ao servidor X  
+# glfw-wayland: biblioteca para desenvolvimento de aplicações gráficas com suporte a Wayland  
+sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland  
+
+# Instala a biblioteca libinput para gerenciar dispositivos de entrada (mouse, teclado, etc.)  
+# wayland: protocolo de servidor gráfico que substitui o X11  
+# wayland-protocols: coleção de protocolos usados para comunicação entre clientes e servidores Wayland  
+sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols  
+
 
 # Instalação de pacotes essenciais para desenvolvimento e gerenciamento de código:  
+
 # base-devel -> Conjunto de ferramentas básicas para compilação de software no Arch Linux  
 # git        -> Sistema de controle de versão distribuído  
 sudo pacman --needed --noconfirm -S base-devel git
 
-# Complementos para o pacman
+# Complementos para o pacman:
+
 # expac    -> Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
 # pkgfile  -> Utilitário para buscar arquivos pertencentes a pacotes no repositório  
 sudo pacman --needed --noconfirm -S expac pkgfile
@@ -34,7 +52,7 @@ makepkg --needed --noconfirm -Cris
 sudo pacman --needed --noconfirm -S flatpak
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Remoção de pacotes
+# Remoção de pacotes:
 
 # Remove os seguintes pacotes do sistema:  
 # epiphany     -> Navegador web GNOME Web  
@@ -43,7 +61,7 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 sudo pacman --noconfirm -R epiphany gnome-music loupe
 
 
-# Instalação de pacotes via pacman
+# Instalação de pacotes via pacman:
 
 ## Pacotes para Virtual Machines
 
