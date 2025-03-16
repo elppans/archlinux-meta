@@ -21,6 +21,13 @@
 
 # Para completar o Gnome, deve usar o Script versão "META Pós Install"
 
+# Verifica se o script está sendo executado como root
+if [ "$EUID" -eq 0 ]; then
+    echo "Erro: Este script não deve ser executado como superusuário (root)."
+    echo "Por favor, execute como um usuário normal."
+    exit 1
+fi
+
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
 # Criação/Atualização dos Diretórios Padrões de Usuário

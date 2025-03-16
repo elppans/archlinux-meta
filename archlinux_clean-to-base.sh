@@ -1,6 +1,13 @@
 #!/bin/bash
 # shellcheck disable=SC2155,SC2162,SC2046
 
+# Verifica se o script está sendo executado como root
+if [ "$EUID" -eq 0 ]; then
+    echo "Erro: Este script não deve ser executado como superusuário (root)."
+    echo "Por favor, execute como um usuário normal."
+    exit 1
+fi
+
 # Variáveis para o HOME e Backup na data atual
 export HM="$(basename "$HOME")"
 export HMN="$HM.BKP_$(date +%d%m%H%M)"
