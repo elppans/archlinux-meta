@@ -200,8 +200,8 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize
 
 ## Temas e Configurações GDM
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
+# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
+# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true
