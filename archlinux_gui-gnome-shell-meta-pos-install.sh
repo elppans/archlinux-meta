@@ -37,7 +37,7 @@ sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome
 # Instala o IBus  
 # IBus (Intelligent Input Bus) é um framework para gerenciamento de métodos de entrada,  
 # útil para digitação em diferentes idiomas e caracteres especiais  
-sudo pacman --needed --noconfirm -Syyu ibus  
+# sudo pacman --needed --noconfirm -Syyu ibus  
 
 
 # Instalação de pacotes essenciais para desenvolvimento e gerenciamento de código:  
