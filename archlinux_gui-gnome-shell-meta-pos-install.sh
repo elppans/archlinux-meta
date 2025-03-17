@@ -29,6 +29,11 @@ sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland
 # wayland-protocols: coleção de protocolos usados para comunicação entre clientes e servidores Wayland  
 sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols  
 
+# Instala o IBus  
+# IBus (Intelligent Input Bus) é um framework para gerenciamento de métodos de entrada,  
+# útil para digitação em diferentes idiomas e caracteres especiais  
+sudo pacman --needed --noconfirm -Syyu ibus  
+
 
 # Instalação de pacotes essenciais para desenvolvimento e gerenciamento de código:  
 
