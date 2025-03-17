@@ -48,6 +48,11 @@ sudo pacman --needed --noconfirm -Syyu ibus
 # Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
+# Instala os portais do XDG para garantir a compatibilidade com aplicações Wayland e GNOME
+# - xdg-desktop-portal: Fornece uma interface entre aplicativos sandboxed e o ambiente de desktop
+# - xdg-desktop-portal-gnome: Implementação específica para o GNOME, garantindo melhor integração com o Hyprland no GNOME
+sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome
+
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
 

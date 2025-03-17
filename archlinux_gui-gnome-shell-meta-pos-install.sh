@@ -29,6 +29,11 @@ sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland
 # wayland-protocols: coleção de protocolos usados para comunicação entre clientes e servidores Wayland  
 sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols  
 
+# Instala os portais do XDG para garantir a compatibilidade com aplicações Wayland e GNOME
+# - xdg-desktop-portal: Fornece uma interface entre aplicativos sandboxed e o ambiente de desktop
+# - xdg-desktop-portal-gnome: Implementação específica para o GNOME, garantindo melhor integração com o Hyprland no GNOME
+sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome
+
 # Instala o IBus  
 # IBus (Intelligent Input Bus) é um framework para gerenciamento de métodos de entrada,  
 # útil para digitação em diferentes idiomas e caracteres especiais  
