@@ -28,38 +28,11 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-# Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
-
-# Instala o XWayland, que permite rodar aplicativos X11 dentro do Wayland  
-# xorg-xlsclients: ferramenta para listar clientes conectados ao servidor X  
-# glfw-wayland: biblioteca para desenvolvimento de aplicações gráficas com suporte a Wayland  
-sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland  
-
-# Instala a biblioteca libinput para gerenciar dispositivos de entrada (mouse, teclado, etc.)  
-# wayland: protocolo de servidor gráfico que substitui o X11  
-# wayland-protocols: coleção de protocolos usados para comunicação entre clientes e servidores Wayland  
-sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols  
-
-# Instala o IBus  
-# IBus (Intelligent Input Bus) é um framework para gerenciamento de métodos de entrada,  
-# útil para digitação em diferentes idiomas e caracteres especiais  
-sudo pacman --needed --noconfirm -Syyu ibus  
-
 # Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
-# Instala os portais do XDG para garantir a compatibilidade com aplicações Wayland e GNOME
-# - xdg-desktop-portal: Fornece uma interface entre aplicativos sandboxed e o ambiente de desktop
-# - xdg-desktop-portal-gnome: Implementação específica para o GNOME, garantindo melhor integração com o Hyprland no GNOME
-sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome
-
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
-
-# Configurações da Barra Superior
-# Para mostrar a data e os segundos na barra superior
-gsettings set org.gnome.desktop.interface clock-show-date true
-gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 # Ativação do Display manager (Gerenciador de Login)
 sudo systemctl disable "$(systemctl status display-manager.service | head -n1 | awk '{print $2}')" &>>/dev/null
