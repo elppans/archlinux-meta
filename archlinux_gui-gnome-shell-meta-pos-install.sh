@@ -11,6 +11,9 @@ fi
 locdir="$(pwd)"
 install="$locdir"
 
+# Adiciona a linha "ILoveCandy" em /etc/pacman.conf
+grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
+
 # Atualização do sistema:
 
 # Sincroniza os repositórios e atualiza todos os pacotes do sistema  

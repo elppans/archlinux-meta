@@ -28,6 +28,9 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+# Adiciona a linha "ILoveCandy" em /etc/pacman.conf
+grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
+
 # Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
