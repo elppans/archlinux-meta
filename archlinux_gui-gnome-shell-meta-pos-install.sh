@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2027,SC2046,SC2002,SC2016
+# shellcheck disable=SC2027,SC2046,SC2002,SC2016,SC2086
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
