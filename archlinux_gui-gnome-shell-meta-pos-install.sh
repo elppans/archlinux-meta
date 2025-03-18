@@ -279,6 +279,8 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 ## Executar aplicativos com  xWayland
 sudo curl -JLk -o /usr/local/bin/run-x11.sh https://raw.githubusercontent.com/elppans/customshell/refs/heads/master/run-x11.sh
 sudo chmod +x /usr/local/bin/run-x11.sh
+
+# https://flameshot.org/docs/guide/wayland-help/
 echo -e '/usr/local/bin/run-x11.sh flameshot gui' | sudo tee /usr/local/bin/flameshot >>/dev/null
 sudo chmod +x /usr/local/bin/flameshot
 
