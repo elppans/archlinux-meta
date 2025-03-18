@@ -137,7 +137,7 @@ sudo pacman --needed --noconfirm -S wine-staging winetricks
 # https://wiki.archlinux.org/title/Snap
 paru --needed --noconfirm -S snapd
 sudo ln -s /var/lib/snapd/snap /snap
-sudo systemctl enable --now snapd snapd.socket
+sudo systemctl enable --now snapd snapd.socket snapd.apparmor
 # ocultar a pasta. snap
 echo "$HOME/Snap" | tee -a "$HOME"/.hidden >>/dev/null
 echo "$HOME/Snapd" | tee -a "$HOME"/.hidden >>/dev/null
