@@ -31,6 +31,15 @@ fi
 # Adiciona a linha "ILoveCandy" em /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
 
+# Instala o pacote 'kernel-modules-hook' para garantir que os módulos do kernel
+# sejam gerenciados corretamente após a atualização ou mudança do kernel.
+sudo pacman --needed --noconfirm -S kernel-modules-hook
+
+# Ativa e inicia o serviço 'linux-modules-cleanup' para limpar os módulos antigos
+# do kernel, liberando espaço e evitando possíveis conflitos com módulos desnecessários.
+sudo systemctl enable --now linux-modules-cleanup.service
+
+
 # Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
 
