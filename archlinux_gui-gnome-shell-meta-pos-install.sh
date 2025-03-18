@@ -126,7 +126,7 @@ sudo pacman --needed --noconfirm -S nautilus-share
 # Wine e ferramentas relacionadas para executar aplicativos Windows no Linux:  
 # wine-staging  -> Versão do Wine com patches experimentais e melhorias não incluídas na versão estável  
 # winetricks    -> Script para facilitar a instalação de bibliotecas e aplicativos no Wine  
-sudo pacman --needed --noconfirm -S wine-staging winetricks
+# sudo pacman --needed --noconfirm -S wine-staging winetricks
 
 # https://wiki.archlinux.org/title/AppArmor
 # Movido para Sessão de Scripts
@@ -145,8 +145,8 @@ echo "$HOME/Snapd" | tee -a "$HOME"/.hidden >>/dev/null
 # mystiq -> Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples  
 paru --needed --noconfirm -S mystiq
 
-# GDM Settings, uma ferramenta gráfica para configurar o GDM (GNOME Display Manager)  
-paru --needed --noconfirm -S gdm-settings
+# GDM Settings, uma ferramenta gráfica para configurar o GDM (GNOME Display Manager)  (Ativado na versão Flatpak)
+# paru --needed --noconfirm -S gdm-settings
 
 # actions-for-nautilus-git: Ações adicionais para o Nautilus (explorador de arquivos); 
 # gtkhash: Ferramenta para calcular e verificar somas de verificação de arquivos; 
@@ -298,6 +298,10 @@ sudo chmod +x /usr/local/bin/run-x11.sh
 echo -e '/usr/local/bin/run-x11.sh flameshot gui' | sudo tee /usr/local/bin/flameshot >>/dev/null
 sudo chmod +x /usr/local/bin/flameshot
 
+# Usar aplicações baseadas no electron nativamente no Wayland
+echo -e '--enable-features=UseOzonePlatform
+--ozone-platform=wayland' | tee ${XDG_CONFIG_HOME}/electron-flags.conf
+
 ## GDM Settings (Em edição)
 # /etc/dconf/db/gdm.d/95-gdm-settings
 # Exportar as customizações do GDM via dconf
@@ -317,29 +321,29 @@ sudo chmod +x /usr/local/bin/flameshot
 
 # Instalação de pacotes via Scripts externos
 
-# "$install"/pacote-pacman-apparmor-instalar.sh  # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
+"$install"/pacote-pacman-apparmor-instalar.sh  # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
 # "$install"/pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
 # "$install"/pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
 # "$install"/pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
-# "$install"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
+"$install"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
 # "$install"/pacote-flatpak-browser-firefox.sh   # Script para instalar o navegador Firefox via Flatpak
 # "$install"/pacote-flatpak-browser-opera.sh     # Script para instalar o navegador Opera via Flatpak
 # "$install"/pacote-flatpak-browser-vivaldi.sh   # Script para instalar o navegador Vivaldi via Flatpak
 # "$install"/pacote-flatpak-dbeaver-ce.sh        # Script para instalar o DBeaver Community Edition via Flatpak
-# "$install"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
+"$install"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
 # "$install"/pacote-flatpak-dynamic-wallpaper.sh        # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
-# "$install"/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
-# "$install"/pacote-flatpak-gdm-settings.sh    # Script para instalar o GDM Settings via Flatpak  (Já tem na sessão AUR)
-# "$install"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
-# "$install"/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
-# "$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
-# "$install"/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
+"$install"/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
+"$install"/pacote-flatpak-gdm-settings.sh    # Script para instalar o GDM Settings via Flatpak  (Contém na sessão AUR)
+"$install"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
+"$install"/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
+"$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
+"$install"/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
 # "$install"/pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-# "$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
-# "$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
+"$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
+"$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
 # "$install"/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
-# "$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
-# "$install"/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
+"$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+"$install"/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
 # "$install"/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
 # "$install"/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
 # "$install"/pacote-helper-yay_instalar.sh       # Executa o script para instalar o AUR helper Yay  
