@@ -39,4 +39,3 @@ sudo systemctl disable "$(systemctl status display-manager.service | head -n1 | 
 sudo systemctl enable gdm.service
 
 # Seguir para "META Pós Install"
-

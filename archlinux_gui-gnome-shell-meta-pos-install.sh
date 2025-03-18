@@ -201,7 +201,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize
 ## Temas e Configurações GDM
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
-# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true
@@ -247,10 +247,10 @@ mkdir -p "$HOME/.local/share/applications"
 sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local/share/applications"
 cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
 
-# Nautilus-Status-Bar-Replacement
-sudo mkdir -p /usr/share/nautilus-python/extensions
-sudo curl -JLk -o /usr/share/nautilus-python/extensions/DiskUsageLocationWidget.py \
-"https://raw.githubusercontent.com/elppans/Nautilus-Status-Bar-Replacement/refs/heads/master/DiskUsageLocationWidget.py"
+# Nautilus-Status-Bar-Replacement (Não funciona mais (Nautilus 47)
+# sudo mkdir -p /usr/share/nautilus-python/extensions
+# sudo curl -JLk -o /usr/share/nautilus-python/extensions/DiskUsageLocationWidget.py \
+# "https://raw.githubusercontent.com/elppans/Nautilus-Status-Bar-Replacement/refs/heads/master/DiskUsageLocationWidget.py"
 
 ## Action Script, conversão de imagens
 git clone https://github.com/elppans/el-images.git /tmp/el-images
@@ -279,7 +279,7 @@ cat "$HOME"/.local/share/gnome-shell/extensions.list
 ## Executar aplicativos com  xWayland
 sudo curl -JLk -o /usr/local/bin/run-x11.sh https://raw.githubusercontent.com/elppans/customshell/refs/heads/master/run-x11.sh
 sudo chmod +x /usr/local/bin/run-x11.sh
-echo -e '/usr/local/bin/run-x11.sh flameshot' | sudo tee /usr/local/bin/flameshot >>/dev/null
+echo -e '/usr/local/bin/run-x11.sh flameshot gui' | sudo tee /usr/local/bin/flameshot >>/dev/null
 sudo chmod +x /usr/local/bin/flameshot
 
 ## GDM Settings (Em edição)
@@ -293,11 +293,10 @@ sudo chmod +x /usr/local/bin/flameshot
 # /usr/share/backgrounds/gnome/
 
 # gnome-shell-extension-unite > AUR (Teste)
+
 # Importar as configurações (salvo no github)
 # curl -JLk -o /tmp/unite-settings.conf "https://raw.githubusercontent.com/elppans/ubuntu2204-package-list/refs/heads/main/unite-extensions-settings.conf"
 # dconf load /org/gnome/shell/extensions/unite/ < /tmp/unite-settings.conf
-
-# Ativar a extenção
 # gnome-extensions enable "unite@hardpixel.eu"
 
 # Instalação de pacotes via Scripts externos
@@ -305,24 +304,24 @@ sudo chmod +x /usr/local/bin/flameshot
 # "$install"/pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
 # "$install"/pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
 # "$install"/pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
-"$install"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
+# "$install"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
 # "$install"/pacote-flatpak-browser-firefox.sh   # Script para instalar o navegador Firefox via Flatpak
 # "$install"/pacote-flatpak-browser-opera.sh     # Script para instalar o navegador Opera via Flatpak
 # "$install"/pacote-flatpak-browser-vivaldi.sh   # Script para instalar o navegador Vivaldi via Flatpak
 # "$install"/pacote-flatpak-dbeaver-ce.sh        # Script para instalar o DBeaver Community Edition via Flatpak
-"$install"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
+# "$install"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
 # "$install"/pacote-flatpak-dynamic-wallpaper.sh        # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
-"$install"/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
+# "$install"/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
 # "$install"/pacote-flatpak-gdm-settings.sh    # Script para instalar o GDM Settings via Flatpak  (Já tem na sessão AUR)
-"$install"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
-"$install"/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
-"$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
+# "$install"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
+# "$install"/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
+# "$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
 # "$install"/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
 # "$install"/pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-"$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
-"$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
+# "$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
+# "$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
 # "$install"/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
-"$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+# "$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
 # "$install"/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
 # "$install"/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
 # "$install"/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
