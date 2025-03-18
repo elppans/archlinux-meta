@@ -129,18 +129,18 @@ sudo pacman --needed --noconfirm -S nautilus-share
 sudo pacman --needed --noconfirm -S wine-staging winetricks
 
 # https://wiki.archlinux.org/title/AppArmor
-# sudo pacman --needed --noconfirm -S apparmor
-# sudo systemctl enable --now apparmor.service snapd.apparmor.service
+# Movido para Sessão de Scripts
 
 # Instalação de pacotes via AUR
 
 # Gerenciador de pacotes Snapd
 # https://wiki.archlinux.org/title/Snap
-# paru --needed --noconfirm -S snapd
-# ln -s /var/lib/snapd/snap /snap
-# sudo systemctl enable --now snapd snapd.socket
+paru --needed --noconfirm -S snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo systemctl enable --now snapd snapd.socket
 # ocultar a pasta. snap
-# echo "$HOME/Snap" | tee -a "$HOME"/.hidden >>/dev/null
+echo "$HOME/Snap" | tee -a "$HOME"/.hidden >>/dev/null
+echo "$HOME/Snapd" | tee -a "$HOME"/.hidden >>/dev/null
 
 # mystiq -> Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples  
 paru --needed --noconfirm -S mystiq
@@ -317,6 +317,7 @@ sudo chmod +x /usr/local/bin/flameshot
 
 # Instalação de pacotes via Scripts externos
 
+# "$install"/pacote-pacman-apparmor-instalar.sh  # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
 # "$install"/pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
 # "$install"/pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
 # "$install"/pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
