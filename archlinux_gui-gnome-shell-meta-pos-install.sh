@@ -211,6 +211,13 @@ sudo pacman --needed --noconfirm -S obsidian-icon-theme
 
 # Ajustes de configurações via dconf
 
+## Import/Export
+# Exportar as configurações do Gnome Shell:
+# dconf dump /org/gnome/ > backup-configuracao.txt
+# Importar as configurações do Gnome Shell:
+# dconf load /org/gnome/ < backup-configuracao.txt
+
+
 ## Nautilus
 dconf write /org/gnome/nautilus/preferences/show-create-link true
 # dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
