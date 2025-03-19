@@ -28,6 +28,23 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+# Obtém a versão do kernel em execução
+kernel_version=$(uname -r)
+
+# Obtém a versão do diretório em /lib/modules
+# shellcheck disable=SC2010
+module_version=$(ls /lib/modules | grep "^$kernel_version$")
+
+if [ "$kernel_version" == "$module_version" ]; then
+    echo
+    # echo "OK: A versão do kernel ($kernel_version) e o diretório em /lib/modules correspondem."
+    # exit 0
+else
+    echo "ERRO: A versão do kernel ($kernel_version) e o diretório em /lib/modules não correspondem."
+    echo "Por favor, reinicie o sistema para aplicar as configurações corretamente."
+    exit 1
+fi
+
 # Adiciona a linha "ILoveCandy" em /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
 

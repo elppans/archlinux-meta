@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2027,SC2046,SC2002,SC2016,SC2086
+# shellcheck disable=SC2010,SC2027,SC2046,SC2002,SC2016,SC2086,SC2317
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
@@ -10,6 +10,20 @@ fi
 
 locdir="$(pwd)"
 install="$locdir"
+
+# Obtém a versão do kernel em execução
+kernel_version=$(uname -r)
+
+# Verifica se a versão do kernel em execução existe em /lib/modules
+if ls /lib/modules | grep -q "^$kernel_version$"; then
+    echo
+    # echo "OK: A versão do kernel ($kernel_version) está presente em /lib/modules."
+    # exit 0
+else
+    echo "ERRO: A versão do kernel ($kernel_version) não está presente em /lib/modules."
+    echo "Por favor, reinicie o sistema para aplicar as configurações corretamente."
+    exit 1
+fi
 
 # Adiciona a linha "ILoveCandy" em /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
