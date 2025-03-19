@@ -219,7 +219,7 @@ dconf write /org/gnome/nautilus/preferences/show-create-link true
 
 ## Temas e Configurações Gnome
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
+# gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
 gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
