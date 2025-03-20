@@ -108,7 +108,7 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe
 # 3. grep -i hypervisor /proc/cpuinfo
 # Se uma VM for detectada, os pacotes apropriados para QEMU/KVM, VMWare ou VirtualBox serão
 # instalados automaticamente. Caso contrário, nada será feito.
-"$install"/detect-and-install-vm-packages.sh
+"$install"/pacman/detect-and-install-vm-packages.sh
 
 ## Aplicatibos Gnome
 
@@ -161,8 +161,9 @@ paru --needed --noconfirm -S snapd
 sudo ln -s /var/lib/snapd/snap /snap
 sudo systemctl enable --now snapd snapd.socket snapd.apparmor
 # ocultar a pasta. snap
-echo "$HOME/Snap" | tee -a "$HOME"/.hidden >>/dev/null
-echo "$HOME/Snapd" | tee -a "$HOME"/.hidden >>/dev/null
+echo "snap" | tee -a "$HOME"/.hidden >>/dev/null
+echo "Snap" | tee -a "$HOME"/.hidden >>/dev/null
+echo "Snapd" | tee -a "$HOME"/.hidden >>/dev/null
 
 # mystiq -> Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples  
 paru --needed --noconfirm -S mystiq
@@ -376,32 +377,32 @@ echo -e '--enable-features=UseOzonePlatform
 
 # Instalação de pacotes via Scripts externos
 
-"$install"/pacote-pacman-apparmor-instalar.sh  # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
-# "$install"/pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
-# "$install"/pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
-# "$install"/pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
-"$install"/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
-# "$install"/pacote-flatpak-browser-firefox.sh   # Script para instalar o navegador Firefox via Flatpak
-# "$install"/pacote-flatpak-browser-opera.sh     # Script para instalar o navegador Opera via Flatpak
-# "$install"/pacote-flatpak-browser-vivaldi.sh   # Script para instalar o navegador Vivaldi via Flatpak
-# "$install"/pacote-flatpak-dbeaver-ce.sh        # Script para instalar o DBeaver Community Edition via Flatpak
-"$install"/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
-# "$install"/pacote-flatpak-dynamic-wallpaper.sh        # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
-"$install"/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
-"$install"/pacote-flatpak-gdm-settings.sh    # Script para instalar o GDM Settings via Flatpak  (Contém na sessão AUR)
-"$install"/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
-"$install"/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
-"$install"/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
-"$install"/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
-# "$install"/pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-"$install"/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
-"$install"/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
-# "$install"/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
-"$install"/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
-"$install"/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
-# "$install"/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
-# "$install"/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
-# "$install"/pacote-helper-yay_instalar.sh       # Executa o script para instalar o AUR helper Yay  
+"$install"/pacman/pacote-pacman-apparmor-instalar.sh  # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
+# "$install"/flatpak/pacote-flatpak-anydesk.sh           # Script para instalar o AnyDesk via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-brave.sh     # Script para instalar o navegador Brave via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-chrome.sh    # Script para instalar o navegador Google Chrome via Flatpak
+"$install"/flatpak/pacote-flatpak-browser-edge.sh      # Script para instalar o navegador Microsoft Edge via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-firefox.sh   # Script para instalar o navegador Firefox via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-opera.sh     # Script para instalar o navegador Opera via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-vivaldi.sh   # Script para instalar o navegador Vivaldi via Flatpak
+# "$install"/flatpak/pacote-flatpak-dbeaver-ce.sh        # Script para instalar o DBeaver Community Edition via Flatpak
+"$install"/flatpak/pacote-flatpak-discord.sh           # Script para instalar o Discord via Flatpak
+# "$install"/flatpak/pacote-flatpak-dynamic-wallpaper.sh        # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
+"$install"/flatpak/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
+"$install"/flatpak/pacote-flatpak-gdm-settings.sh    # Script para instalar o GDM Settings via Flatpak  (Contém na sessão AUR)
+"$install"/flatpak/pacote-flatpak-heroic.sh            # Script para instalar o Heroic Games Launcher via Flatpak
+"$install"/flatpak/pacote-flatpak-kate.sh            # Script para instalar o Editor de texto avançado da comunidade KDE
+"$install"/flatpak/pacote-flatpak-lutris.sh            # Script para instalar o Lutris via Flatpak
+"$install"/flatpak/pacote-flatpak-marktext.sh          # Script para instalar o Mark Text (editor de markdown) via Flatpak
+# "$install"/flatpak/pacote-flatpak-rustdesk.sh          # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
+"$install"/flatpak/pacote-flatpak-steam.sh               # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
+"$install"/flatpak/pacote-flatpak-telegram.sh          # Script para instalar o Telegram Desktop via Flatpak
+# "$install"/flatpak/pacote-flatpak-vscodium.sh          # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
+"$install"/flatpak/pacote-flatpak-zapzap.sh            # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+"$install"/pacman/pacote-pacman-flameshot.sh          # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
+# "$install"/aur/pacote-aur-yaru-theme-full.sh       # Script para instalar o Tema Yaru completo via AUR  
+# "$install"/pacman/pacote-pacman-orchis-theme-full.sh  # Script para instalar o Tema Orchis completo via Pacman  
+# "$install"/helper/pacote-helper-yay_instalar.sh       # Executa o script para instalar o AUR helper Yay  
 
 
 # Mensagem final
