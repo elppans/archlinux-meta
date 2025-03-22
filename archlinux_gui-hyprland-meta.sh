@@ -12,6 +12,8 @@
 # polkit-kde-agent: Gerenciador de autenticação do KDE, necessário para operações que requerem privilégios administrativos.
 # grim: Ferramenta para capturar screenshots no Wayland.
 # slurp: Usado em conjunto com o grim para selecionar regiões específicas da tela para capturar.
+# hyprutils: Ferramentas adicionais para configuração e uso do Hyprland
+# nwg-displays: Interface gráfica para gerenciar monitores no Wayland, facilitando ajustes em setups com múltiplas telas.
 
 # Ferramentas essenciais e utilitários variados:
 # btop: Uma ferramenta visual e interativa para monitoramento de recursos do sistema.
@@ -69,7 +71,7 @@ sudo pacman --needed --noconfirm -S kernel-modules-hook
 sudo systemctl enable --now linux-modules-cleanup.service
 
 # Instalando Hyprland (Meta)
-sudo pacman --needed --noconfirm -Syyu hyprland dunst kitty wofi xdg-desktop-portal-hyprland qt5-wayland qt6-wayland polkit-kde-agent grim slurp
+sudo pacman --needed --noconfirm -Syyu hyprland dunst kitty wofi xdg-desktop-portal-hyprland qt5-wayland qt6-wayland polkit-kde-agent grim slurp hyprutils nwg-displays
 sudo pacman --needed --noconfirm -S btop htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-user-dirs xdg-utils
 sudo pacman --needed --noconfirm -S sddm
 
