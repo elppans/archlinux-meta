@@ -39,6 +39,7 @@ main() {
 # Pacotes essenciais para desenvolvimento
 sudo pacman --needed --noconfirm -S git base-devel
 
+# The HyDE Dotfiles for Hyprland
 git clone --depth 1 https://github.com/HyDE-Project/HyDE ~/HyDE
 echo 'HyDE' >> ~/.hidden
 cd ~/HyDE/Scripts || exit 1
