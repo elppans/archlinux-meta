@@ -11,7 +11,7 @@ main() {
     echo "Escolha uma opção:"
     echo "1 - Apenas instalar o tema HyprDE"
     echo "2 - Instalar o tema HyprDE com aplicativos preferenciais"
-    read -p "Digite o número da opção desejada: " choice
+    read -r -p "Digite o número da opção desejada: " choice
 
     case $choice in
         1)
@@ -41,7 +41,7 @@ sudo pacman --needed --noconfirm -S git base-devel
 
 git clone --depth 1 https://github.com/HyDE-Project/HyDE ~/HyDE
 echo 'HyDE' >> ~/.hidden
-cd ~/HyDE/Scripts
+cd ~/HyDE/Scripts || exit 1
 cp "$HOME"/HyDE/Scripts/pkg_extra.lst "$HOME"/HyDE/Scripts/pkg_user.lst
 
 # Ativar instalação do VSCodium. Se usa, DEScomente a linha
