@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export QT_QPA_PLATFORM=wayland
+export QT_SCREEN_SCALE_FACTORS="1;1"
+
+flameshot gui "$@"
