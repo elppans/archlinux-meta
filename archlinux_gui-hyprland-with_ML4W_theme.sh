@@ -57,7 +57,7 @@ if pacman -Qqs hyprland ; then
     # Verificando Helper e instalando, caso necessário
     verificar_helper
     # Utilitários Recomendados (Garantindo que estejam instalados)
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays
+    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dir swappy satty
     # The ML4W Dotfiles for Hyprland
     git clone https://aur.archlinux.org/ml4w-hyprland.git /tmp/ml4w-hyprland
     cd /tmp/ml4w-hyprland || exit 1
