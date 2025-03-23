@@ -1,0 +1,17 @@
+# flameshot           # Ferramenta poderosa de captura de tela com várias opções de edição.
+gamemode            # Otimizador de desempenho para jogos no Linux.
+lib32-gamemode      # Versão de 32 bits do GameMode, necessária para alguns jogos.
+# lutris              # Plataforma de gerenciamento para rodar e instalar jogos de várias fontes.
+wine-staging        # Versão de desenvolvimento do Wine, usada para rodar aplicativos e jogos do Windows no Linux.
+winetricks          # Utilitário que ajuda na configuração de bibliotecas no Wine.
+lib32-libpulse      # Biblioteca de áudio de 32 bits para integração com PulseAudio. (Para o Wine/Lutris)
+lib32-libsndfile    # Biblioteca de leitura e escrita de arquivos de áudio de 32 bits. (Para o Wine/Lutris)
+lib32-libasyncns    # Biblioteca de DNS assíncrona de 32 bits, usada por outras dependências. (Para o Wine/Lutris)
+game-devices-udev   # Regras udev para dispositivos de jogos, como controles e joysticks (dependência para o Steam versão Flatpak).
+# steam               # Plataforma popular para jogos, disponível via Flatpak.
+# telegram-desktop    # Cliente de desktop do Telegram.
+jq                	# Processador de JSON no terminal. (Complemento para VSCodium)
+prettier          	# Formatador de código para várias linguagens. (Complemento para VSCodium)
+shellcheck        	# Analisador estático para scripts shell. (Complemento para VSCodium)
+shfmt             	# Formatador para scripts shell. (Complemento para VSCodium)
+stylelint         	# Linter para arquivos CSS e preprocessadores como SCSS. (Complemento para VSCodium)

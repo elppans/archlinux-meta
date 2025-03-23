@@ -1,0 +1,15 @@
+#!/bin/bash
+
+executar_comando() {
+    if command -v codium &> /dev/null; then
+        codium "$@"
+    elif command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
+        flatpak run com.vscodium.codium "$@"
+    else
+        echo "Nenhum dos comandos 'codium' ou 'flatpak run com.vscodium.codium' foi encontrado."
+        return 1
+    fi
+}
+
+# Exemplo de uso
+executar_comando "$@"

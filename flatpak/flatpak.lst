@@ -1,0 +1,21 @@
+# flathub com.anydesk.Anydesk 							# AnyDesk: Software de acesso remoto para controle e suporte remoto
+flathub com.brave.Browser 								# Instala o navegador Brave via Flatpak a partir do repositório Flathub
+# flathub com.google.Chrome 							# Google Chrome: Navegador web da Google
+# flathub com.microsoft.Edge 							# Microsoft Edge: Navegador web da Microsoft
+# flathub org.mozilla.firefox 							# Instala o navegador Firefox via Flatpak a partir do repositório Flathub
+# flathub flathub com.opera.Opera 						# Opera: Navegador web com foco em privacidade e recursos avançados
+# flathub com.vivaldi.Vivaldi 							# Vivaldi: Navegador web altamente personalizável
+flathub io.dbeaver.DBeaverCommunity 					# DBeaver: Ferramenta de gerenciamento de banco de dados multi-plataforma
+flathub com.discordapp.Discord							# Instala o Discord (aplicativo de comunicação para texto, voz e vídeo) via Flatpak a partir do repositório Flathub
+# flathub com.github.maoschanz.DynamicWallpaperEditor 	# Editor de papel de parede dinâmico
+# flathub io.github.realmazharhussain.GdmSettings 		# GDM Settings: Ferramenta para configurar o GDM (GNOME Display Manager)
+flathub com.heroicgameslauncher.hgl 					# Instala o Heroic Games Launcher (cliente para jogos da Epic Games e GOG) via Flatpak a partir do repositório Flathub
+flathub org.kde.kate									# Kate: Editor de texto avançado da comunidade KDE
+flathub net.lutris.Lutris 								# Instala o Lutris, plataforma de jogos, via Flatpak a partir do repositório Flathub
+flathub com.github.marktext.marktext 					# MarkText: Editor de texto Markdown simples e poderoso
+# flathub com.rustdesk.RustDesk							# RustDesk: Software de acesso remoto de código aberto
+flathub com.valvesoftware.Steam 						# Instala o Steam (plataforma de jogos) via Flatpak a partir do repositório Flathub
+flathub com.github.Matoking.protontricks 				# Instala o Protontricks (ferramenta para configurar jogos Steam com Proton) via Flatpak a partir do repositório Flathub
+flathub org.telegram.desktop 							# Instala o Telegram Desktop (aplicativo de mensagens) via Flatpak a partir do repositório Flathub
+flathub com.vscodium.codium 							# VSCodium: Versão de código aberto do Visual Studio Code (sem o rastreamento de dados)
+flathub com.rtosta.zapzap 								# ZapZap: Cliente de mensagens instantâneas (WhatsApp) para Linux
