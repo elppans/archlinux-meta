@@ -112,3 +112,28 @@ fi
 
 #Como atualizar:
 # cd "$HOME"/HyDE/Scripts && git pull origin master && ./install.sh -r
+
+# Teclado BR ABNT2
+# Hyprland
+
+# grep -i brazil /usr/share/X11/xkb/rules/base.lst
+#   abnt2           Brazilian ABNT2
+#   br              Portuguese (Brazil)
+#   nodeadkeys      br: Portuguese (Brazil, no dead keys)
+#   dvorak          br: Portuguese (Brazil, Dvorak)
+#   nativo          br: Portuguese (Brazil, Nativo)
+#   nativo-us       br: Portuguese (Brazil, Nativo for US keyboards)
+#   thinkpad        br: Portuguese (Brazil, IBM/Lenovo ThinkPad)
+#   nativo-epo      br: Esperanto (Brazil, Nativo)
+#   rus             br: Russian (Brazil, phonetic)
+
+
+# cat "$HOME"/dotfiles/.config/hypr/conf/keyboard.conf
+#     ...
+#     kb_layout = br
+#     kb_variant = abnt2
+#     kb_model = pc104
+#     kb_options =
+#     numlock_by_default = true
+#     mouse_refocus = false
+#     ...
