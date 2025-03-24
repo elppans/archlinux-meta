@@ -13,6 +13,9 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+loc="$(pwd)"
+export loc
+ 
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
@@ -57,7 +60,8 @@ if pacman -Qqs hyprland ; then
     # Verificando Helper e instalando, caso necessário
     verificar_helper
     # Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
-    sudo chmod -x /usr/bin/systemctl
+    sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
     # The ML4W Dotfiles for Hyprland
     git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
     touch "$HOME"/.hidden
@@ -66,14 +70,14 @@ if pacman -Qqs hyprland ; then
     makepkg --needed --noconfirm -Cris && \
     ml4w-hyprland-setup
     # Adicionando configurações customzadas
-    tar -zxf config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-    cp -a config/ML4W/.config/hypr "$HOME/.config"
-    chmod +x bin/*
-    sudo cp -a bin/* /usr/local/bin
-    # Reativando as permissoes do serviço systemctl
-    sudo chmod +x /usr/bin/systemctl
-    echo "Reinicie o computador para que as configurações surtam efeito!"
-    systemctl reboot
+    tar -zxf "$loc"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
+    cp -a "$loc"/config/ML4W/.config/hypr "$HOME/.config"
+    chmod +x "$loc"/bin/*
+    sudo cp -a "$loc"/bin/* /usr/local/bin
+    # Reativando as permissoes do script do ML4W
+    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    echo -e "\nReinicie o computador para que as configurações surtam efeito!\n\n"
 else
 	echo "Deve instalar a base Hyprland primeiro!"
 	exit 1
