@@ -59,19 +59,19 @@ if pacman -Qqs hyprland ; then
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
     # Verificando Helper e instalando, caso necessário
     verificar_helper
-    # Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
-    sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
     # The ML4W Dotfiles for Hyprland
     git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
     touch "$HOME"/.hidden
 	grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
     cd "$HOME"/ml4w-hyprland || exit 1
-    makepkg --needed --noconfirm -Cris && \
+    makepkg --needed --noconfirm -Cris
+    # Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
+    sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
     ml4w-hyprland-setup
     # Adicionando configurações customzadas
     tar -zxf "$loc"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-    cp -a "$loc"/config/ML4W/.config/hypr "$HOME/.config"
+    cp -a "$loc"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
     chmod +x "$loc"/bin/*
     sudo cp -a "$loc"/bin/* /usr/local/bin
     # Reativando as permissoes do script do ML4W
