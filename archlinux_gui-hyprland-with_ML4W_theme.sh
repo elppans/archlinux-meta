@@ -34,15 +34,13 @@ escolher_helper() {
     case $escolha in
         1)
             echo "Instalando yay..."
-            git clone https://aur.archlinux.org/yay.git /tmp/yay
-            cd  /tmp/yay || exit 1
-            makepkg -Cris
+            cd helper || exit 1
+            bash pacote-helper-yay_instalar.sh
             ;;
         2)
             echo "Instalando paru..."
-            git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin
-            cd /tmp/paru-bin || exit 1
-            makepkg -Cris
+            cd helper || exit 1
+            bash pacote-helper-paru_instalar.sh
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
@@ -55,12 +53,16 @@ if pacman -Qqs hyprland ; then
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
     # Verificando Helper e instalando, caso necessário
-    verificar_helper
     # Utilitários Recomendados (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dir swappy satty
+    tar -zxf config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
+    cp -a config/ML4W/.config/hypr "$HOME/.config"
+    chmod +x bin/*
+    sudo cp -a bin/* /usr/local/bin
+    verificar_helper
     # The ML4W Dotfiles for Hyprland
-    git clone https://aur.archlinux.org/ml4w-hyprland.git /tmp/ml4w-hyprland
-    cd /tmp/ml4w-hyprland || exit 1
+    git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
+    cd "$HOME"/ml4w-hyprland || exit 1
     makepkg --needed --noconfirm -Cris && \
     ml4w-hyprland-setup
 else

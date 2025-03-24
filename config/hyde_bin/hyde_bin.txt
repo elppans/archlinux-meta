@@ -1,0 +1,24 @@
+Como configurar o pacote hyde_bin para executar seus Scripts, no ambiente com tema ML4W
+
+Ps.: O foco é conseguir usar o Script para Screenshot, porém, dentro do diretório há outros Scripts interessantes.
+
+1) Extraia o pacote "hyde_bin.tar.gz" no diretório "$HOME/.config"
+Pode fazer com o seguinte comando:
+
+tar -zxvf "hyde_bin.tar.gz" -C "$HOME/.config"
+
+2) Adicione a seguinte configuração customizada no arquivo "$HOME/.config/hypr/conf/custom.conf":
+
+# Configuração do arquivo keybindings
+$d=[$ut|Screen Capture]
+bindd = $mainMod Shift, P, $d color picker, exec, hyprpicker -an # Pick color (Hex) >> clipboard#
+bindd = $mainMod SHIFT, PRINT, $d freeze and snip screen, exec, $HOME/.config/hyde/.local/lib/hyde/screenshot2.sh s # partial screenshot capture
+bindd = $mainMod CTRL, PRINT, $d freeze and snip screen, exec, $HOME/.config/hyde/.local/lib/hyde/screenshot2.sh sf # partial screenshot capture (frozen screen)
+binddl = $mainMod ALT, PRINT, $d print monitor , exec, $HOME/.config/hyde/.local/lib/hyde/screenshot2.sh m # monitor screenshot capture
+binddl = , PRINT, $d print all monitors , exec, $HOME/.config/hyde/.local/lib/hyde/screenshot2.sh p # all monitors screenshot capture
+
+3) Pronto, o Print Screen vai funcionar MUITO melhor que o original do ML4W, com suporte a marcar as imagens com setinhas, blocos, circulos, linha, etc.
+
+Se quiser configurar via source, basta executar o Script "hyde_bin-source-install.sh"
+Ps.: Ainda assim, deve fazer o passo "2"
+
