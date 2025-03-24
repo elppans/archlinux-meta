@@ -324,9 +324,14 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 
 ## Action Script, conversão de imagens
 git clone https://github.com/elppans/el-images.git /tmp/el-images
-cd /tmp/el-images || exit
+cd /tmp/el-images || exit 1
 ./install.sh
-cd || exit
+cd || exit 1
+
+git clone https://github.com/elppans/factions-shell.git /tmp/factions-shell
+cd /tmp/factions-shell || exit 1
+./install.sh
+cd || exit 1
 
 ## Modelos de arquivos
 git clone https://github.com/elppans/ubuntu_file_templates.git /tmp/file_templates
