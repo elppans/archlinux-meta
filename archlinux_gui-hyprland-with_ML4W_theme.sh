@@ -54,7 +54,7 @@ if pacman -Qqs hyprland ; then
     sudo pacman --needed --noconfirm -S git base-devel
     # Verificando Helper e instalando, caso necessário
     # Utilitários Recomendados (Garantindo que estejam instalados)
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dir swappy satty
+    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
     tar -zxf config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
     cp -a config/ML4W/.config/hypr "$HOME/.config"
     chmod +x bin/*
