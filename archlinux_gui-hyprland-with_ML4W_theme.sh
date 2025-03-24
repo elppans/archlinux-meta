@@ -52,16 +52,18 @@ escolher_helper() {
 if pacman -Qqs hyprland ; then
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
-    # Verificando Helper e instalando, caso necessário
     # Utilitários Recomendados (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
     tar -zxf config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
     cp -a config/ML4W/.config/hypr "$HOME/.config"
     chmod +x bin/*
     sudo cp -a bin/* /usr/local/bin
+    # Verificando Helper e instalando, caso necessário
     verificar_helper
     # The ML4W Dotfiles for Hyprland
     git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
+    touch "$HOME"/.hidden
+	grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
     cd "$HOME"/ml4w-hyprland || exit 1
     makepkg --needed --noconfirm -Cris && \
     ml4w-hyprland-setup

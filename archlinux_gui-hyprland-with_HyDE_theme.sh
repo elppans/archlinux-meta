@@ -58,15 +58,13 @@ escolher_helper() {
     case $escolha in
         1)
             echo "Instalando yay..."
-            git clone https://aur.archlinux.org/yay.git /tmp/yay
-            cd  /tmp/yay || exit 1
-            makepkg --needed --noconfirm -Cris
+            cd helper || exit 1
+            bash pacote-helper-yay_instalar.sh
             ;;
         2)
             echo "Instalando paru..."
-            git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin
-            cd /tmp/paru-bin || exit 1
-            makepkg --needed --noconfirm -Cris
+            cd helper || exit 1
+            bash pacote-helper-paru_instalar.sh
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
@@ -78,10 +76,12 @@ escolher_helper() {
 if pacman -Qqs hyprland ; then
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
+    # Utilitários Recomendados (Garantindo que estejam instalados)
+    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
+    chmod +x bin/*
+    sudo cp -a bin/* /usr/local/bin
     # Verificando Helper e instalando, caso necessário
     verificar_helper
-    # Utilitários Recomendados (Garantindo que estejam instalados)
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays
 	# The HyDE Dotfiles for Hyprland
 	git clone --depth 1 https://github.com/HyDE-Project/HyDE "$HOME"/HyDE
 	touch "$HOME"/.hidden
