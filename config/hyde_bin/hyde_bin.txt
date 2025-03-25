@@ -2,6 +2,10 @@ Como configurar o pacote hyde_bin para executar seus Scripts, no ambiente com te
 
 Ps.: O foco é conseguir usar o Script para Screenshot, porém, dentro do diretório há outros Scripts interessantes.
 
+- Dependências:
+
+xdg-user-dirs swappy satty
+
 1) Extraia o pacote "hyde_bin.tar.gz" no diretório "$HOME/.config"
 Pode fazer com o seguinte comando:
 
