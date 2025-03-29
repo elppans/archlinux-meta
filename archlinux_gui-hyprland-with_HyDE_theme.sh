@@ -115,6 +115,13 @@ if pacman -Qqs hyprland ; then
     # Habilitar Boost do volume
     sed -i '/VOLUME_BOOST:/ s/false/true/' "$HOME"/HyDE/Configs/.local/lib/hyde/volumecontrol.sh
 
+    # Variável para Screenshot
+    # shellcheck disable=SC2016
+    sed -i 's|XDG_PICTURES_DIR="$HOME/Pictures"|XDG_PICTURES_DIR="$(xdg-user-dir PICTURES)"|' "$HOME"/HyDE/Configs/.local/lib/hyde/screenshot.sh
+
+    # Preferências de usuário
+    # echo -e 'parametros' | tee -a "$HOME"/HyDE/Configs/.config/hypr/userprefs.conf >>/dev/null
+
 	# Escolher uma opçao, Instalar o tema HyprDE apenas ou com aplicativos preferenciais
 	main
 else
