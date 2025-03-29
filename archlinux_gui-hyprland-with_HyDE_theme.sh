@@ -112,6 +112,9 @@ if pacman -Qqs hyprland ; then
 	# Desativar Pokémon no ZSH
 	sed -i '/pokego/ s/^/# /' "$HOME"/HyDE/Configs/.hyde.zshrc
 
+    # Habilitar Boost do volume
+    sed -i '/VOLUME_BOOST:/ s/false/true/' "$HOME"/HyDE/Configs/.local/lib/hyde/volumecontrol.sh
+
 	# Escolher uma opçao, Instalar o tema HyprDE apenas ou com aplicativos preferenciais
 	main
 else
