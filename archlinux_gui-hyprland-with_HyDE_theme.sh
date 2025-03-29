@@ -77,7 +77,7 @@ if pacman -Qqs hyprland ; then
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
     # Utilitários Recomendados (Garantindo que estejam instalados)
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
+    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty uwsm
     chmod +x bin/*
     sudo cp -a bin/* /usr/local/bin
     # Verificando Helper e instalando, caso necessário
@@ -89,17 +89,29 @@ if pacman -Qqs hyprland ; then
 	cd "$HOME"/HyDE/Scripts || exit 1
 	cp -f "$HOME"/HyDE/Scripts/pkg_extra.lst "$HOME"/HyDE/Scripts/pkg_user.lst
 
+    # Ativar instalação do Lutris
+    sed -i '/^# lutris$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
+
 	# Ativar instalação do VSCodium. Se usa, DEScomente a linha
-	# sed -i '/^# vscodium$/s/^# //' "$HOME"/HyDE/Scripts/pkg_user.lst
+	sed -i '/^# vscodium$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
 
 	# Desativar instalação do VSCode. Se usa, comente a linha
 	# VSCode ativado, baixa 93,55 MB de pacotes e após instalado ocupa 348,95 MB a mais de espaço
 	sed -i '/code/ s/^/# /' "$HOME"/HyDE/Scripts/pkg_core.lst
 
-	# Ferramenta de linha de comando que permite exibir sprites de Pokémon em cores diretamente no seu terminal
+    # Desativar instalação de aplicativos específicos em Flatpak
+    sed -i '/org.gnome.Boxes/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
+    sed -i '/io.github.spacingbat3.webcord/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
+    sed -i '/io.gitlab.theevilskeleton.Upscaler/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
+    sed -i '/org.gnome.eog/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
+
+    # Ativar instalação de aplicativos específicos em Flatpak
+    sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
+
+    # Ferramenta de linha de comando que permite exibir sprites de Pokémon em cores diretamente no seu terminal
 	# Desativar Pokémon no ZSH
 	sed -i '/pokego/ s/^/# /' "$HOME"/HyDE/Configs/.hyde.zshrc
-	
+
 	# Escolher uma opçao, Instalar o tema HyprDE apenas ou com aplicativos preferenciais
 	main
 else
