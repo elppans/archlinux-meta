@@ -15,7 +15,7 @@ resposta=${resposta:-n}
 
 if [[ $resposta == "y" || $resposta == "Y" ]]; then
     echo -e "${VERDE}Ativando o repositório chaotic-aur...${PADRAO}"
-    curl -JLk -o /usr/local/bin/chaotic-aur https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Scripts/chaotic_aur.sh
+    sudo curl -JLk -o /usr/local/bin/chaotic-aur https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Scripts/chaotic_aur.sh
     sudo chmod +x /usr/local/bin/chaotic-aur
     sudo /usr/local/bin/chaotic-aur --install
     echo -e "${VERDE}Repositório instalado com sucesso!${PADRAO}"

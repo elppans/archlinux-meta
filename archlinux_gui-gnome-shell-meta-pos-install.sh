@@ -42,7 +42,7 @@ sudo pkgfile -u
 "$install"/helper/pacote-helper-paru_instalar.sh              # Wrappers do pacman (AUR Helper) - paru
 # "$install"/helper/pacote-helper-yay_instalar.sh             # Wrappers do pacman (AUR Helper) - yay
 "$install"/pacman_aur/repositorio-chaotic-aur.sh              # Adicionar repositório Chaotic-AUR
-"$install"/pacman_aur/pacote-pacman-kernel-hook.sh            # Kernel: Pacote para gerenciar os módulos do kernel após atualizações
+"$install"/pacman/pacote-pacman-kernel-hook.sh            # Kernel: Pacote para gerenciar os módulos do kernel após atualizações
 "$install"/pacman/pacote-gnome-wayland-session.sh             # Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
 
 # Remoção de pacotes:
