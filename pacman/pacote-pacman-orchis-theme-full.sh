@@ -7,3 +7,7 @@
 # vimix-cursors               -> Tema de cursores Vimix  
 sudo pacman --needed --noconfirm -S gnome-themes-extra orchis-theme tela-circle-icon-theme-all vimix-cursors
 
+## Temas e Configurações GDM
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"

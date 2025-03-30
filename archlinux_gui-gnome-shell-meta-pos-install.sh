@@ -29,28 +29,19 @@ fi
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
 
 sudo pacman --needed --noconfirm -Syyu base-devel git  # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
-
 sudo pacman --needed --noconfirm -S expac # Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
 sudo pacman --needed --noconfirm -S pkgfile # Utilitário para buscar arquivos pertencentes a pacotes no repositório  
 sudo pkgfile -u
 
-sudo pacman --needed --noconfirm -S flatpak # Gerenciador de pacotes Flatpak
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# Gerenciamento de pacotes e manutenção do sistema
 
+"$install"/pacman/gerenciador-de-pacotes-flatpak.sh # Gerenciador de pacotes Flatpak
+# "$install"/pacman/gerenciador-de-pacotes-snapd.sh # Gerenciador de pacotes Snapd (Recomendado ativar instalação de AppArmor)
 "$install"/helper/pacote-helper-paru_instalar.sh # Wrappers do pacman (AUR Helper) - paru
-"$install"/helper/pacote-helper-yay_instalar.sh  # Wrappers do pacman (AUR Helper) - yay
-
-"$install"pacman_aur/repositorio-chaotic-aur.sh # Adicionar repositório Chaotic-AUR
-
-# Kernel
-sudo pacman --needed --noconfirm -S kernel-modules-hook    # Instala o pacote para gerenciar corretamente os módulos do kernel após atualizações.
-sudo systemctl enable --now linux-modules-cleanup.service  # Ativa e inicia o serviço para limpar módulos antigos do kernel.
-
-# Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
-
-sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland   # Instala o XWayland, ferramenta xlsclients e biblioteca glfw com suporte ao Wayland.
-sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols           # Instala a biblioteca libinput, o protocolo Wayland e os protocolos adicionais para comunicação no Wayland.
-sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome  # Instala os portais do XDG para compatibilidade com Wayland e GNOME, incluindo suporte específico para o GNOME.
+# "$install"/helper/pacote-helper-yay_instalar.sh  # Wrappers do pacman (AUR Helper) - yay
+"$install"/pacman_aur/repositorio-chaotic-aur.sh # Adicionar repositório Chaotic-AUR
+"$install"/pacman_aur/pacote-pacman-kernel-hook.sh # Kernel: Pacote para gerenciar os módulos do kernel após atualizações
+"$install"/pacman/pacote-gnome-wayland-session.sh # Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
 
 # Remoção de pacotes:
 
@@ -59,139 +50,47 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe  # Remove o navegador GNOM
 # Instalação de pacotes
 
 "$install"/pacman/detect-and-install-vm-packages.sh # Detecta se o sistema está rodando em uma máquina virtual (VM) e instala os pacotes necessários
+"$install"/pacman/pacote-gnome-applications.sh      # Aplicações Gnome
+"$install"/pacman/pacote-gnome-complements.sh       # Complementos para o GNOME
+"$install"/pacman/pacote-other-applications.sh # Demais aplicações
+"$install"/pacman_aur/pacote-aur-actions-for-nautilus.sh # Ações adicionais para o Nautilus (explorador de arquivos)
 
-# Pacotes Gnome do repositório oficial (Adicionar nos arquivos do diretório pacman)
-sudo pacman --needed --noconfirm -S archlinux-wallpaper    # Papéis de parede oficiais do Arch Linux
-sudo pacman --needed --noconfirm -S dconf-editor           # Editor gráfico para modificar configurações avançadas do GNOME  
-sudo pacman --needed --noconfirm -S gnome-tweaks           # Ferramenta para ajustar configurações avançadas do GNOME
-sudo pacman --needed --noconfirm -S rhythmbox              # Player de música padrão do GNOME
-sudo pacman --needed --noconfirm -S fragments              # Cliente BitTorrent simples para o GNOME  
-sudo pacman --needed --noconfirm -S gthumb                 # Visualizador e organizador de imagens  
-sudo pacman --needed --noconfirm -S remmina                # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
+# Temas e ícones para personalização do GNOME:  
 
-## Complementos para o GNOME
+# "$install"/pacman_aur/pacote-aur-yaru-theme-full.sh         # Tema Yaru completo via AUR  
+# "$install"/pacman/pacote-pacman-orchis-theme-black.sh       # Tema Orchis COMPLETO
+"$install"/pacman/pacote-pacman-orchis-theme-black.sh         # Tema Orchis Black
+"$install"/pacman/pacote-pacman-icon-theme.sh                 # Tema de ícones
+"$install"/pacman_aur/pacote-pacman-sound-theme.sh            # Tema de som (Via AUR)
 
-sudo pacman --needed --noconfirm -S power-profiles-daemon                                       # Instala o daemon para gerenciar perfis de energia.
-sudo pacman --needed --noconfirm -Syyu file-roller                                              # Instala o File Roller, gerenciador de arquivos compactados.
-sudo pacman --needed --noconfirm -Syyu ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""  # Instala as dependências opcionais do File Roller.
-sudo pacman --needed --noconfirm -S gnome-shell-extension-appindicator                          # Suporte a indicadores de aplicativos no GNOME Shell.
-sudo pacman --needed --noconfirm -S gnome-shell-extension-caffeine                              # Impede que a tela desligue ou entre em suspensão.
-sudo pacman --needed --noconfirm -S nautilus-image-converter                                    # Redimensionar e girar imagens pelo Nautilus.
-sudo pacman --needed --noconfirm -S nautilus-share                                              # Compartilha pastas via Samba pelo Nautilus.
+# Instalação de pacotes DIVERSOS
 
-
-# Demais aplicações
-sudo pacman --needed --noconfirm -S wine-staging  # Instala o Wine Staging, versão de teste do Wine com patches extras.
-sudo pacman --needed --noconfirm -S winetricks   # Instala o Winetricks, ferramenta para gerenciar bibliotecas e configurações no Wine.
-
-
-# https://wiki.archlinux.org/title/AppArmor
-# Movido para Sessão de Scripts
-
-# Instalação de pacotes via AUR
-
-# Gerenciador de pacotes Snapd
-# https://wiki.archlinux.org/title/Snap
-# paru --needed --noconfirm -S snapd
-# sudo ln -s /var/lib/snapd/snap /snap
-# sudo systemctl enable --now snapd snapd.socket snapd.apparmor
-# ocultar a pasta. snap
-# shellcheck disable=SC2129
-# echo "snap" | tee -a "$HOME"/.hidden >>/dev/null
-# echo "Snap" | tee -a "$HOME"/.hidden >>/dev/null
-# echo "Snapd" | tee -a "$HOME"/.hidden >>/dev/null
-
-# actions-for-nautilus-git: Ações adicionais para o Nautilus (explorador de arquivos); 
-# gtkhash: Ferramenta para calcular e verificar somas de verificação de arquivos; 
-# meld: Ferramenta para comparação de arquivos e diretórios; 
-# xclip: Utilitário para manipulação da área de transferência no Linux
-paru --needed --noconfirm -S actions-for-nautilus-git gtkhash meld xclip
-
-## Configuração CUSTOMIZADA do Actions for Nautilus
-mkdir -p "$HOME/.local/share/actions-for-nautilus"
-curl -JLk -o "$HOME/.local/share/actions-for-nautilus/config.json" "https://raw.githubusercontent.com/elppans/actions-for-nautilus/refs/heads/main/configurator/sample-config.json"
-sed -i 's/gnome-terminal/gnome-console/g' "$HOME/.local/share/actions-for-nautilus/config.json"
-sed -i 's/gedit/gnome-text-editor/g' "$HOME/.local/share/actions-for-nautilus/config.json"
-nautilus -q
-
-## Temas e ícones para personalização do GNOME:  
-
-# Tema Orchis
-# orchis-theme                    -> Tema moderno para GTK e GNOME Shell  
-# tela-circle-icon-theme-black    -> Variante preta do conjunto de ícones Tela Circle  
-# vimix-cursors                   -> Tema de cursores Vimix  
-sudo pacman --needed --noconfirm -S orchis-theme
-sudo pacman --needed --noconfirm -S tela-circle-icon-theme-black
-sudo pacman --needed --noconfirm -S vimix-cursors
-
-# Tema de ícones
-# obsidian-icon-theme -> Tema de ícones Obsidian baseado no Papirus  
-# cutefish-icons      -> Conjunto de ícones do ambiente Cutefish  
-sudo pacman --needed --noconfirm -S obsidian-icon-theme
-# sudo pacman --needed --noconfirm -S cutefish-icons
+"$install"/pacman_aur/pacote-aur-mystiq_instalar.sh           # Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
+# "$install"/pacman/pacote-pacman-apparmor-instalar.sh        # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
+# "$install"/flatpak/pacote-flatpak-anydesk.sh                # Script para instalar o AnyDesk via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-brave.sh          # Script para instalar o navegador Brave via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-chrome.sh         # Script para instalar o navegador Google Chrome via Flatpak
+"$install"/flatpak/pacote-flatpak-browser-edge.sh             # Script para instalar o navegador Microsoft Edge via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-firefox.sh        # Script para instalar o navegador Firefox via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-opera.sh          # Script para instalar o navegador Opera via Flatpak
+# "$install"/flatpak/pacote-flatpak-browser-vivaldi.sh        # Script para instalar o navegador Vivaldi via Flatpak
+# "$install"/flatpak/pacote-flatpak-dbeaver-ce.sh             # Script para instalar o DBeaver Community Edition via Flatpak
+"$install"/flatpak/pacote-flatpak-discord.sh                  # Script para instalar o Discord via Flatpak
+# "$install"/flatpak/pacote-flatpak-dynamic-wallpaper.sh      # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
+"$install"/flatpak/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
+"$install"/flatpak/pacote-flatpak-gdm-settings.sh             # Script para instalar o GDM Settings via Flatpak  (Contém na sessão AUR)
+"$install"/flatpak/pacote-flatpak-heroic.sh                   # Script para instalar o Heroic Games Launcher via Flatpak
+"$install"/flatpak/pacote-flatpak-kate.sh                     # Script para instalar o Editor de texto avançado da comunidade KDE
+"$install"/flatpak/pacote-flatpak-lutris.sh                   # Script para instalar o Lutris via Flatpak
+"$install"/flatpak/pacote-flatpak-marktext.sh                 # Script para instalar o Mark Text (editor de markdown) via Flatpak
+# "$install"/flatpak/pacote-flatpak-rustdesk.sh               # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
+"$install"/flatpak/pacote-flatpak-steam.sh                    # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
+"$install"/flatpak/pacote-flatpak-telegram.sh                 # Script para instalar o Telegram Desktop via Flatpak
+# "$install"/flatpak/pacote-flatpak-vscodium.sh               # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
+"$install"/flatpak/pacote-flatpak-zapzap.sh                   # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
+"$install"/pacman/pacote-pacman-flameshot.sh                  # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
 
 
-
-
-## Nautilus
-dconf write /org/gnome/nautilus/preferences/show-create-link true
-# dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
-
-# Ajustes de configurações via gsettings
-
-## Temas e Configurações Gnome
-gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-# gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
-gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
-gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
-# gsettings set org.gnome.desktop.sound theme-name "Yaru"
-
-## Configurações gerais do Gnome
-gsettings set org.gnome.Console transparency true
-gsettings set org.gnome.desktop.background picture-options 'spanned'
-gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/archlinux/conference.png'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/archlinux/conference.png'
-gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
-gsettings set org.gnome.shell.weather automatic-location true
-gsettings set org.gnome.shell.extensions.window-list grouping-mode 'auto'
-
-## Temas e Configurações GDM
-# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
-# sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
-sudo systemctl restart gdm
-
-## Configurações do Menú Gnome
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Console.desktop']"
-gsettings set org.gnome.desktop.app-folders folder-children "['Accessories', 'Games', 'Graphics', 'Multimedia', 'Network', 'Pardus', 'Settings', 'System', 'Utilities', 'YaST']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ name 'Accessories'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ apps "['com.github.marktext.marktext.desktop', 'yelp.desktop', 'org.gnome.Tour.desktop', 'vim.desktop', 'org.kde.kate.desktop', 'org.gnome.Calculator.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ translate true
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Games'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['net.lutris.Lutris.desktop', 'com.valvesoftware.Steam.desktop', 'com.heroicgameslauncher.hgl.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ translate true
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ name 'Graphics'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ apps "['org.gnome.gThumb.desktop', 'org.flameshot.Flameshot.desktop', 'simple-scan.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ translate true
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ name 'Multimedia'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ apps "['mystiq.desktop', 'org.gnome.Rhythmbox3.desktop', 'qvidcap.desktop', 'qv4l2.desktop', 'org.gnome.Totem.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ translate true
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ name 'Network'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ apps "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'org.remmina.Remmina.desktop', 'com.rtosta.zapzap.desktop', 'org.telegram.desktop.desktop', 'com.microsoft.Edge.desktop', 'com.discordapp.Discord.desktop', 'de.haeckerfelix.Fragments.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ translate true
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Settings/ name 'Settings'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Settings/ translate true
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ name 'System'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ translate true
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilitie/ name 'Utilitie'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilitie/ translate true
 
 # Configuração do SAMBA
 
@@ -281,35 +180,7 @@ sudo cp -a "$install"/bin/* /usr/local/bin
 echo -e '--enable-features=UseOzonePlatform
 --ozone-platform=wayland' | tee ${XDG_CONFIG_HOME}/electron-flags.conf
 
-# Instalação de pacotes via Scripts externos
 
-"$install"/pacote-aur-mystiq_instalar.sh                      # Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
-# "$install"/pacman/pacote-pacman-apparmor-instalar.sh        # Instala o AppArmor usando pacman (Recomendado para uso com Snapd)
-# "$install"/flatpak/pacote-flatpak-anydesk.sh                # Script para instalar o AnyDesk via Flatpak
-# "$install"/flatpak/pacote-flatpak-browser-brave.sh          # Script para instalar o navegador Brave via Flatpak
-# "$install"/flatpak/pacote-flatpak-browser-chrome.sh         # Script para instalar o navegador Google Chrome via Flatpak
-"$install"/flatpak/pacote-flatpak-browser-edge.sh             # Script para instalar o navegador Microsoft Edge via Flatpak
-# "$install"/flatpak/pacote-flatpak-browser-firefox.sh        # Script para instalar o navegador Firefox via Flatpak
-# "$install"/flatpak/pacote-flatpak-browser-opera.sh          # Script para instalar o navegador Opera via Flatpak
-# "$install"/flatpak/pacote-flatpak-browser-vivaldi.sh        # Script para instalar o navegador Vivaldi via Flatpak
-# "$install"/flatpak/pacote-flatpak-dbeaver-ce.sh             # Script para instalar o DBeaver Community Edition via Flatpak
-"$install"/flatpak/pacote-flatpak-discord.sh                  # Script para instalar o Discord via Flatpak
-# "$install"/flatpak/pacote-flatpak-dynamic-wallpaper.sh      # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
-"$install"/flatpak/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
-"$install"/flatpak/pacote-flatpak-gdm-settings.sh             # Script para instalar o GDM Settings via Flatpak  (Contém na sessão AUR)
-"$install"/flatpak/pacote-flatpak-heroic.sh                   # Script para instalar o Heroic Games Launcher via Flatpak
-"$install"/flatpak/pacote-flatpak-kate.sh                     # Script para instalar o Editor de texto avançado da comunidade KDE
-"$install"/flatpak/pacote-flatpak-lutris.sh                   # Script para instalar o Lutris via Flatpak
-"$install"/flatpak/pacote-flatpak-marktext.sh                 # Script para instalar o Mark Text (editor de markdown) via Flatpak
-# "$install"/flatpak/pacote-flatpak-rustdesk.sh               # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
-"$install"/flatpak/pacote-flatpak-steam.sh                    # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
-"$install"/flatpak/pacote-flatpak-telegram.sh                 # Script para instalar o Telegram Desktop via Flatpak
-# "$install"/flatpak/pacote-flatpak-vscodium.sh               # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
-"$install"/flatpak/pacote-flatpak-zapzap.sh                   # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
-"$install"/pacman/pacote-pacman-flameshot.sh                  # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
-# "$install"/aur/pacote-aur-yaru-theme-full.sh                # Script para instalar o Tema Yaru completo via AUR  
-# "$install"/pacman/pacote-pacman-orchis-theme-full.sh        # Script para instalar o Tema Orchis completo via Pacman  
-# "$install"/helper/pacote-helper-yay_instalar.sh             # Executa o script para instalar o AUR helper Yay  
 
 
 # Mensagem final

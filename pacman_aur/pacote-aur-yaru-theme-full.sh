@@ -15,3 +15,13 @@
 # yaru-xfwm4-theme         -> Tema Yaru para o XFWM4 (gerenciador de janelas do Xfce)  # REMOVIDO
 paru --needed --noconfirm -Syyu --batchinstall --skipreview --removemake --mflags -Cris inkscape xorg-server-xvfb \
 yaru-gnome-shell-theme yaru-gtk-theme yaru-icon-theme yaru-metacity-theme yaru-session yaru-sound-theme
+
+gsettings set org.gnome.shell.extensions.user-theme name "Yaru-dark"
+gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
+gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
+gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
+gsettings set org.gnome.desktop.sound theme-name "Yaru"
+
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Yaru"
