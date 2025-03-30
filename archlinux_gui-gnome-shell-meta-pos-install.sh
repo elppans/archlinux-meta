@@ -77,7 +77,7 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe         # Remove o navegad
 # "$install"/flatpak/pacote-flatpak-browser-firefox.sh        # Script para instalar o navegador Firefox via Flatpak
 # "$install"/flatpak/pacote-flatpak-browser-opera.sh          # Script para instalar o navegador Opera via Flatpak
 # "$install"/flatpak/pacote-flatpak-browser-vivaldi.sh        # Script para instalar o navegador Vivaldi via Flatpak
-# "$install"/flatpak/pacote-flatpak-dbeaver-ce.sh             # Script para instalar o DBeaver Community Edition via Flatpak
+"$install"/flatpak/pacote-flatpak-dbeaver-ce.sh             # Script para instalar o DBeaver Community Edition via Flatpak
 "$install"/flatpak/pacote-flatpak-discord.sh                  # Script para instalar o Discord via Flatpak
 # "$install"/flatpak/pacote-flatpak-dynamic-wallpaper.sh      # Script para instalar a Ferramenta para criar papéis de parede dinâmicos
 "$install"/flatpak/pacote-flatpak-dynamic-wallpaper-editor.sh # Script para instalar o Editor de papel de parede dinâmico
@@ -89,7 +89,7 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe         # Remove o navegad
 # "$install"/flatpak/pacote-flatpak-rustdesk.sh               # Script para instalar o RustDesk (software de acesso remoto) via Flatpak
 "$install"/flatpak/pacote-flatpak-steam.sh                    # Script para instalar o Steam (plataforma de jogos) via Flatpak (e dependência "game-devices-udev" via pacman)
 "$install"/flatpak/pacote-flatpak-telegram.sh                 # Script para instalar o Telegram Desktop via Flatpak
-# "$install"/flatpak/pacote-flatpak-vscodium.sh               # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
+"$install"/flatpak/pacote-flatpak-vscodium.sh               # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
 "$install"/flatpak/pacote-flatpak-zapzap.sh                   # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
 "$install"/pacman/pacote-pacman-flameshot.sh                  # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
 
