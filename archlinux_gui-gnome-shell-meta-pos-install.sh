@@ -40,6 +40,8 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 "$install"/helper/pacote-helper-paru_instalar.sh # Wrappers do pacman (AUR Helper) - paru
 "$install"/helper/pacote-helper-yay_instalar.sh  # Wrappers do pacman (AUR Helper) - yay
 
+"$install"pacman_aur/repositorio-chaotic-aur.sh # Adicionar repositório Chaotic-AUR
+
 # Kernel
 sudo pacman --needed --noconfirm -S kernel-modules-hook    # Instala o pacote para gerenciar corretamente os módulos do kernel após atualizações.
 sudo systemctl enable --now linux-modules-cleanup.service  # Ativa e inicia o serviço para limpar módulos antigos do kernel.
