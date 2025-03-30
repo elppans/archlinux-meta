@@ -28,89 +28,35 @@ fi
 # Adiciona a linha "ILoveCandy" em /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCandy' /etc/pacman.conf
 
-# Instala o pacote 'kernel-modules-hook' para garantir que os módulos do kernel
-# sejam gerenciados corretamente após a atualização ou mudança do kernel.
-sudo pacman --needed --noconfirm -S kernel-modules-hook
+sudo pacman --needed --noconfirm -Syyu base-devel git  # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
 
-# Ativa e inicia o serviço 'linux-modules-cleanup' para limpar os módulos antigos
-# do kernel, liberando espaço e evitando possíveis conflitos com módulos desnecessários.
-sudo systemctl enable --now linux-modules-cleanup.service
+sudo pacman --needed --noconfirm -S expac # Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
+sudo pacman --needed --noconfirm -S pkgfile # Utilitário para buscar arquivos pertencentes a pacotes no repositório  
+sudo pkgfile -u
 
-# Atualização do sistema:
+sudo pacman --needed --noconfirm -S flatpak # Gerenciador de pacotes Flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Sincroniza os repositórios e atualiza todos os pacotes do sistema  
-sudo pacman --needed --noconfirm -Syyu  
+"$install"/helper/pacote-helper-paru_instalar.sh # Wrappers do pacman (AUR Helper) - paru
+"$install"/helper/pacote-helper-yay_instalar.sh  # Wrappers do pacman (AUR Helper) - yay
 
+# Kernel
+sudo pacman --needed --noconfirm -S kernel-modules-hook    # Instala o pacote para gerenciar corretamente os módulos do kernel após atualizações.
+sudo systemctl enable --now linux-modules-cleanup.service  # Ativa e inicia o serviço para limpar módulos antigos do kernel.
 
 # Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland:
 
-# Instala o XWayland, que permite rodar aplicativos X11 dentro do Wayland  
-# xorg-xlsclients: ferramenta para listar clientes conectados ao servidor X  
-# glfw-wayland: biblioteca para desenvolvimento de aplicações gráficas com suporte a Wayland  
-sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland  
-
-# Instala a biblioteca libinput para gerenciar dispositivos de entrada (mouse, teclado, etc.)  
-# wayland: protocolo de servidor gráfico que substitui o X11  
-# wayland-protocols: coleção de protocolos usados para comunicação entre clientes e servidores Wayland  
-sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols  
-
-# Instala os portais do XDG para garantir a compatibilidade com aplicações Wayland e GNOME
-# - xdg-desktop-portal: Fornece uma interface entre aplicativos sandboxed e o ambiente de desktop
-# - xdg-desktop-portal-gnome: Implementação específica para o GNOME, garantindo melhor integração com o Hyprland no GNOME
-sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome
-
-# Instala o IBus  
-# IBus (Intelligent Input Bus) é um framework para gerenciamento de métodos de entrada,  
-# útil para digitação em diferentes idiomas e caracteres especiais  
-# sudo pacman --needed --noconfirm -Syyu ibus  
-
-
-# Instalação de pacotes essenciais para desenvolvimento e gerenciamento de código:  
-
-# base-devel -> Conjunto de ferramentas básicas para compilação de software no Arch Linux  
-# git        -> Sistema de controle de versão distribuído  
-sudo pacman --needed --noconfirm -S base-devel git
-
-# Complementos para o pacman:
-
-# expac    -> Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
-# pkgfile  -> Utilitário para buscar arquivos pertencentes a pacotes no repositório  
-sudo pacman --needed --noconfirm -S expac pkgfile
-sudo pkgfile -u
-
-# Wrappers do pacman (AUR Helper) - paru
-git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin
-cd /tmp/paru-bin || exit
-makepkg --needed --noconfirm -Cris
-
-
-# Gerenciador de pacotes Flatpak
-sudo pacman --needed --noconfirm -S flatpak
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo pacman --needed --noconfirm -S xorg-xwayland xorg-xlsclients glfw-wayland   # Instala o XWayland, ferramenta xlsclients e biblioteca glfw com suporte ao Wayland.
+sudo pacman --needed --noconfirm -S libinput wayland wayland-protocols           # Instala a biblioteca libinput, o protocolo Wayland e os protocolos adicionais para comunicação no Wayland.
+sudo pacman --needed --noconfirm -S xdg-desktop-portal xdg-desktop-portal-gnome  # Instala os portais do XDG para compatibilidade com Wayland e GNOME, incluindo suporte específico para o GNOME.
 
 # Remoção de pacotes:
 
-# Remove os seguintes pacotes do sistema:  
-# epiphany     -> Navegador web GNOME Web  
-# gnome-music  -> Aplicativo de reprodução de música do GNOME  
-# loupe        -> Visualizador de imagens moderno do GNOME  
-sudo pacman --noconfirm -R epiphany gnome-music loupe
+sudo pacman --noconfirm -R epiphany gnome-music loupe  # Remove o navegador GNOME Web, o aplicativo de música e o visualizador de imagens modernos do GNOME.
 
+# Instalação de pacotes
 
-# Instalação de pacotes via pacman:
-
-## Pacotes para Virtual Machines
-
-# Detecta se o sistema está rodando em uma máquina virtual (VM) e instala os pacotes necessários
-# para melhorar a integração com o hypervisor. O script usa três métodos para detecção:
-# 1. systemd-detect-virt (se disponível)
-# 2. lscpu | grep -i hypervisor
-# 3. grep -i hypervisor /proc/cpuinfo
-# Se uma VM for detectada, os pacotes apropriados para QEMU/KVM, VMWare ou VirtualBox serão
-# instalados automaticamente. Caso contrário, nada será feito.
-"$install"/pacman/detect-and-install-vm-packages.sh
-
-## Aplicatibos Gnome
+"$install"/pacman/detect-and-install-vm-packages.sh # Detecta se o sistema está rodando em uma máquina virtual (VM) e instala os pacotes necessários
 
 # Pacotes Gnome do repositório oficial (Adicionar nos arquivos do diretório pacman)
 sudo pacman --needed --noconfirm -S archlinux-wallpaper    # Papéis de parede oficiais do Arch Linux
@@ -123,32 +69,19 @@ sudo pacman --needed --noconfirm -S remmina                # Cliente de acesso r
 
 ## Complementos para o GNOME
 
-# Daemon para gerenciar perfis de energia no Linux, permitindo otimizar o consumo de energia em laptops e dispositivos móveis.
-sudo pacman --needed --noconfirm -S power-profiles-daemon
+sudo pacman --needed --noconfirm -S power-profiles-daemon                                       # Instala o daemon para gerenciar perfis de energia.
+sudo pacman --needed --noconfirm -Syyu file-roller                                              # Instala o File Roller, gerenciador de arquivos compactados.
+sudo pacman --needed --noconfirm -Syyu ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""  # Instala as dependências opcionais do File Roller.
+sudo pacman --needed --noconfirm -S gnome-shell-extension-appindicator                          # Suporte a indicadores de aplicativos no GNOME Shell.
+sudo pacman --needed --noconfirm -S gnome-shell-extension-caffeine                              # Impede que a tela desligue ou entre em suspensão.
+sudo pacman --needed --noconfirm -S nautilus-image-converter                                    # Redimensionar e girar imagens pelo Nautilus.
+sudo pacman --needed --noconfirm -S nautilus-share                                              # Compartilha pastas via Samba pelo Nautilus.
 
-# File Roller: Gerenciador de arquivos compactados do GNOME
-sudo pacman --needed --noconfirm -Syyu file-roller  
-
-# Dependências opcionais do File Roller listadas pelo expac
-sudo pacman --needed --noconfirm -Syyu ""$(/usr/bin/expac -S "%o" file-roller | tr ' ' '\n')""  
-
-# Extensões do GNOME Shell:  
-# gnome-shell-extension-appindicator -> Suporte a indicadores de aplicativos na barra de sistema  
-# gnome-shell-extension-caffeine     -> Impede que a tela desligue ou entre em suspensão  
-sudo pacman --needed --noconfirm -S gnome-shell-extension-appindicator
-sudo pacman --needed --noconfirm -S gnome-shell-extension-caffeine
-
-# Extensões para o gerenciador de arquivos Nautilus:  
-# nautilus-image-converter -> Adiciona opções para redimensionar e girar imagens no menu de contexto  
-# nautilus-share           -> Permite compartilhar pastas via Samba diretamente pelo Nautilus  
-sudo pacman --needed --noconfirm -S nautilus-image-converter
-sudo pacman --needed --noconfirm -S nautilus-share
 
 # Demais aplicações
-# Wine e ferramentas relacionadas para executar aplicativos Windows no Linux:  
-# wine-staging  -> Versão do Wine com patches experimentais e melhorias não incluídas na versão estável  
-# winetricks    -> Script para facilitar a instalação de bibliotecas e aplicativos no Wine  
-# sudo pacman --needed --noconfirm -S wine-staging winetricks
+sudo pacman --needed --noconfirm -S wine-staging  # Instala o Wine Staging, versão de teste do Wine com patches extras.
+sudo pacman --needed --noconfirm -S winetricks   # Instala o Winetricks, ferramenta para gerenciar bibliotecas e configurações no Wine.
+
 
 # https://wiki.archlinux.org/title/AppArmor
 # Movido para Sessão de Scripts
@@ -165,12 +98,6 @@ sudo pacman --needed --noconfirm -S nautilus-share
 # echo "snap" | tee -a "$HOME"/.hidden >>/dev/null
 # echo "Snap" | tee -a "$HOME"/.hidden >>/dev/null
 # echo "Snapd" | tee -a "$HOME"/.hidden >>/dev/null
-
-# mystiq -> Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples  
-# paru --needed --noconfirm -S mystiq
-
-# GDM Settings, uma ferramenta gráfica para configurar o GDM (GNOME Display Manager)  (Ativado na versão Flatpak)
-# paru --needed --noconfirm -S gdm-settings
 
 # actions-for-nautilus-git: Ações adicionais para o Nautilus (explorador de arquivos); 
 # gtkhash: Ferramenta para calcular e verificar somas de verificação de arquivos; 
@@ -201,23 +128,7 @@ sudo pacman --needed --noconfirm -S vimix-cursors
 sudo pacman --needed --noconfirm -S obsidian-icon-theme
 # sudo pacman --needed --noconfirm -S cutefish-icons
 
-# Adicionar
-# teamviewer_amd64
-# openfortigui
-# cisco-secure-client-vpn_5.1.6.103_amd64
 
-
-# Instalação de pacotes via Flatpak
-# Movido para a sessão final, "Instalação de pacotes via Scripts externos"
-
-
-# Ajustes de configurações via dconf
-
-## Import/Export
-# Exportar as configurações do Gnome Shell:
-# dconf dump /org/gnome/ > backup-configuracao.txt
-# Importar as configurações do Gnome Shell:
-# dconf load /org/gnome/ < backup-configuracao.txt
 
 
 ## Nautilus
@@ -367,23 +278,6 @@ sudo cp -a "$install"/bin/* /usr/local/bin
 # Usar aplicações baseadas no electron nativamente no Wayland
 echo -e '--enable-features=UseOzonePlatform
 --ozone-platform=wayland' | tee ${XDG_CONFIG_HOME}/electron-flags.conf
-
-## GDM Settings (Em edição)
-# /etc/dconf/db/gdm.d/95-gdm-settings
-# Exportar as customizações do GDM via dconf
-# sudo -u gdm dbus-launch dconf dump / > gdm-settings.ini
-# Importar as customizações no GDM
-# sudo -u gdm dbus-launch dconf load / < gdm-settings.ini
-
-## Plano de fundo Gnome (Em edição)
-# /usr/share/backgrounds/gnome/
-
-# gnome-shell-extension-unite > AUR (Teste)
-
-# Importar as configurações (salvo no github)
-# curl -JLk -o /tmp/unite-settings.conf "https://raw.githubusercontent.com/elppans/ubuntu2204-package-list/refs/heads/main/unite-extensions-settings.conf"
-# dconf load /org/gnome/shell/extensions/unite/ < /tmp/unite-settings.conf
-# gnome-extensions enable "unite@hardpixel.eu"
 
 # Instalação de pacotes via Scripts externos
 

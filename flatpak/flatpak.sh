@@ -23,6 +23,7 @@ if [[ ${#pacotes[@]} -eq 0 ]]; then
 fi
 
 # Instala todos os pacotes em um único comando
+# shellcheck disable=SC2145
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
 sudo flatpak install "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
