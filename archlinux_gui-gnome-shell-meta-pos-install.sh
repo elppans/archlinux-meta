@@ -10,6 +10,7 @@ fi
 
 locdir="$(pwd)"
 install="$locdir"
+export install
 
 # Obtém a versão do kernel em execução
 kernel_version=$(uname -r)
@@ -98,7 +99,7 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe         # Remove o navegad
 "$install"/config/System/samba-share-set.sh                   # Configuração do SAMBA
 
 # Customizações do sistema com Scripts
-
+cd "$install" || exit 1
 find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Mensagem final
