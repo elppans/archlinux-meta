@@ -61,3 +61,12 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 # gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ translate true
 # gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilitie/ name 'Utilitie'
 # gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilitie/ translate true
+
+# Configurações diretas
+
+# Trocar o ícone do Gnome Text Editor e padronizando em "skel"
+sudo sed -i 's/^Icon=.*/Icon=gedit/' "/usr/share/applications/org.gnome.TextEditor.desktop"
+sudo mkdir -p "/etc/skel/.local/share/applications"
+mkdir -p "$HOME/.local/share/applications"
+sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local/share/applications"
+cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
