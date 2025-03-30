@@ -38,52 +38,43 @@ sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard num
 sudo systemctl restart gdm
 
 # Configurações do Menú Gnome
+
+# Para verificar qual o nome da categoria, verificar os arquivos .directory em "/usr/share/desktop-directories/"
+
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Console.desktop']"
-gsettings set org.gnome.desktop.app-folders folder-children "['Accessories', 'Games', 'Graphics', 'Multimedia', 'Network', 'Pardus', 'Settings', 'System', 'Utilities', 'YaST']"
+gsettings set org.gnome.desktop.app-folders folder-children "['Games', 'Graphics', 'Multimedia', 'Network', 'Office', 'System', 'Utilities']"
 
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ name 'X-GNOME-Shell-Accessories.directory'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ apps "['com.github.marktext.marktext.desktop', 'yelp.desktop', 'org.gnome.Tour.desktop', 'vim.desktop', 'org.kde.kate.desktop', 'org.gnome.Calculator.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Accessories/ translate true
-
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'X-GNOME-Shell-Games.directory'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['net.lutris.Lutris.desktop', 'com.valvesoftware.Steam.desktop', 'com.heroicgameslauncher.hgl.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Game.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ categories "['Game']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ translate true
 
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ name 'X-GNOME-Shell-Graphics.directory'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ apps "['org.gnome.gThumb.desktop', 'org.flameshot.Flameshot.desktop', 'simple-scan.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ name 'Graphics.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ categories "['Viewer','Graphics','RasterGraphics','2DGraphics','Photography','VectorGraphics','Scanning']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ translate true
 
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ name 'X-GNOME-Shell-Multimedia.directory'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ apps "['mystiq.desktop', 'org.gnome.Rhythmbox3.desktop', 'qvidcap.desktop', 'qv4l2.desktop', 'org.gnome.Totem.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ name 'AudioVideo.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ categories "['Music','Audio','AudioVideo','AudioVideoEditing','Player','Video']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Multimedia/ translate true
 
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ name 'X-GNOME-Shell-Network.directory'
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ apps "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'org.remmina.Remmina.desktop', 'com.rtosta.zapzap.desktop', 'org.telegram.desktop.desktop', 'com.microsoft.Edge.desktop', 'com.discordapp.Discord.desktop', 'de.haeckerfelix.Fragments.desktop']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ name 'Network.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ categories "['Network', 'FileTransfer', 'X-GNOME-NetworkSettings']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Network/ translate true
 
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Pardus/ name 'X-Pardus-Apps.directory'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Pardus/ categories "['X-Pardus-Apps']"
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Pardus/ translate true
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ name 'Office.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ categories "['Office']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ translate true
 
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Settings/ name 'X-GNOME-Shell-Settings.directory'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Settings/ categories "[]"
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Settings/ translate true
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ name 'X-GNOME-Shell-System.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ categories "['System', 'X-GNOME-System', 'Settings']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ translate true
 
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ name 'X-GNOME-Shell-System.directory'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ categories "[]"
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ translate true
-
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ name 'X-GNOME-Shell-Utilities.directory'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ categories "[]"
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ translate true
-
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/YaST/ name 'suse-yast.directory'
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/yaST/ categories "['X-SuSE-YaST']"
-# gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/YaST/ translate true
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ name 'X-GNOME-Shell-Utilities.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ categories "['Utility', 'X-GNOME-Utilities']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ translate true
 
 # Configurações diretas
 
-# Trocar o ícone do Gnome Text Editor e padronizando em "skel"
+# Trocar o ícone do Gnome Text Editor e padronizando em "skel" (O ícone do TextEditor é MUITO FEIO)
 sudo sed -i 's/^Icon=.*/Icon=gedit/' "/usr/share/applications/org.gnome.TextEditor.desktop"
 sudo mkdir -p "/etc/skel/.local/share/applications"
 mkdir -p "$HOME/.local/share/applications"

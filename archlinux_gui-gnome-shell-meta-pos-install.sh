@@ -92,6 +92,7 @@ sudo pacman --noconfirm -R epiphany gnome-music loupe         # Remove o navegad
 "$install"/flatpak/pacote-flatpak-vscodium.sh               # Script para instalar o VSCodium (editor de código baseado no VSCode) via Flatpak
 "$install"/flatpak/pacote-flatpak-zapzap.sh                   # Script para instalar o ZapZap (cliente de WhatsApp via Flatpak)
 "$install"/pacman/pacote-pacman-flameshot.sh                  # Script para insalar Flameshot, aplicativo para Screenshots com mais opções que o padrão do Gnome
+# Adicionar libreoffice (still)
 
 # Configurações do sistema
 
