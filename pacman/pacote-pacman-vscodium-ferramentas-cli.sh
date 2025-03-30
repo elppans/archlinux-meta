@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Instala os seguintes pacotes para análise e formatação de código:
 # jq          Processador de JSON no terminal
 # prettier    Formatador de código para várias linguagens

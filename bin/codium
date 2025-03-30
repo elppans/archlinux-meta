@@ -1,15 +1,18 @@
 #!/bin/bash
 
-executar_comando() {
-    if command -v codium &> /dev/null; then
-        codium "$@"
-    elif command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
-        flatpak run com.vscodium.codium "$@"
-    else
-        echo "Nenhum dos comandos 'codium' ou 'flatpak run com.vscodium.codium' foi encontrado."
-        return 1
-    fi
-}
+# Verifica se o codium está instalado via pacman
+if pacman -Q codium &> /dev/null; then
+    /usr/bin/codium "$@"
+    exit 0
+fi
 
-# Exemplo de uso
-executar_comando "$@"
+# Verifica se o codium está instalado via Flatpak
+if command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
+    flatpak run com.vscodium.codium "$@"
+    exit 0
+fi
+
+# Caso nenhum seja encontrado, exibe uma mensagem de erro
+echo "Nenhuma instalação do 'codium' foi encontrada. Certifique-se de que o codium está instalado!"
+exit 1
+
