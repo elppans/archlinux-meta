@@ -1,6 +1,8 @@
 #!/bin/bash
 # Script para exibir as dependências opcionais dos pacotes no Arch Linux
 
+command -v expac &>/dev/null || { echo "Erro: O comando 'expac' não está disponível." >&2; exit 1; }
+
 # Função para exibir dependências opcionais em lista (uma por linha)
 exibir_lista() {
     /usr/bin/expac -S "%o" "${pacote[@]}" | tr ' ' '\n' | awk 'NF'
