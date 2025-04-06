@@ -14,6 +14,3 @@ sed -i 's|Exec=/usr/bin/steam-native %U|Exec=/usr/bin/steam-native %U -silent|' 
 sudo sed -i '/en_US.UTF-8 UTF-8/s///' /etc/locale.gen
 grep 'STEAM_FRAME_FORCE_CLOSE DEFAULT=1' "$HOME/.pam_environment" && echo "Steam pam_environment OK!" || echo 'STEAM_FRAME_FORCE_CLOSE DEFAULT=1' >> "$HOME/.pam_environment"
 grep 'STEAM_FRAME_FORCE_CLOSE' "/etc/environment" && echo "Steam force close OK!" || echo 'STEAM_FRAME_FORCE_CLOSE=1' | sudo tee -a "/etc/environment"
-
-
-
