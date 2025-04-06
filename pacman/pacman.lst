@@ -17,7 +17,10 @@ lib32-gamemode                         # Versão 32-bit do Gamemode para compati
 lutris                                 # Plataforma de gerenciamento de jogos
 wine-staging                           # Versão avançada do Wine para rodar jogos Windows
 winetricks                             # Ferramenta auxiliar para configurações no Wine
-game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.)
+lib32-libpulse
+lib32-libsndfile
+lib32-libasyncns
+game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
 steam-native-runtime                   # Steam em modo nativo
 
 ### **Personalização e Temas**
@@ -33,6 +36,7 @@ tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
 ### **Captura de Tela**
 
 flameshot                              # Ferramenta de captura de tela avançada
+""$(/usr/bin/expac -S "%o" flameshot | tr ' ' '\n')""
 
 ### **Comunicação**
 
