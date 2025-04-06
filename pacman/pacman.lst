@@ -1,24 +1,59 @@
-flameshot            # Ferramenta poderosa de captura de tela com várias opções de edição.
-gamemode             # Otimizador de desempenho para jogos no Linux.
-lib32-gamemode       # Versão de 32 bits do GameMode, necessária para alguns jogos.
-lutris               # Plataforma de gerenciamento para rodar e instalar jogos de várias fontes.
-wine-staging         # Versão de desenvolvimento do Wine, usada para rodar aplicativos e jogos do Windows no Linux.
-winetricks           # Utilitário que ajuda na configuração de bibliotecas no Wine.
-lib32-libpulse       # Biblioteca de áudio de 32 bits para integração com PulseAudio. (Para o Wine/Lutris)
-lib32-libsndfile     # Biblioteca de leitura e escrita de arquivos de áudio de 32 bits. (Para o Wine/Lutris)
-lib32-libasyncns     # Biblioteca de DNS assíncrona de 32 bits, usada por outras dependências. (Para o Wine/Lutris)
-game-devices-udev    # Regras udev para dispositivos de jogos, como controles e joysticks (dependência para o Steam versão Flatpak).
-steam                # Plataforma popular para jogos
-telegram-desktop     # Cliente de desktop do Telegram.
-jq                	 # Processador de JSON no terminal. (Complemento para VSCodium)
-prettier          	 # Formatador de código para várias linguagens. (Complemento para VSCodium)
-shellcheck        	 # Analisador estático para scripts shell. (Complemento para VSCodium)
-shfmt             	 # Formatador para scripts shell. (Complemento para VSCodium)
-stylelint         	 # Linter para arquivos CSS e preprocessadores como SCSS. (Complemento para VSCodium)
-dbeaver 			 # DBeaver: Ferramenta de gerenciamento de banco de dados multi-plataforma
-discord				 # Instala o Discord (aplicativo de comunicação para texto, voz e vídeo)
-kate				 # Kate: Editor de texto avançado da comunidade KDE
-lutris 				 # Instala o Lutris, plataforma de jogos
-steam-native-runtime # Substituição nativa para o tempo de execução do Steam usando bibliotecas do sistema
-# firefox-i18n-pt-br # navegador Firefox
-# vivaldi            # Vivaldi: Navegador web altamente personalizável
+# Lista para automatizar a instalação e configuração de diversos pacotes no Arch Linux,
+# organizados por categoria para facilitar a manutenção do sistema.
+#
+# As categorias incluem segurança, jogos, personalização, comunicação, análise de código
+# e drivers, garantindo uma configuração otimizada para diferentes usos.
+
+### **Segurança**
+
+apparmor                               # Segurança no kernel (Recomendável para usar com Snap)
+apparmor-utils                         # Ferramentas utilitárias para AppArmor
+apparmor-profiles                      # Perfis predefinidos para AppArmor
+
+### **Jogos e Otimizações para Gaming**
+
+gamemode                               # Otimização de desempenho para jogos
+lib32-gamemode                         # Versão 32-bit do Gamemode para compatibilidade
+lutris                                 # Plataforma de gerenciamento de jogos
+wine-staging                           # Versão avançada do Wine para rodar jogos Windows
+winetricks                             # Ferramenta auxiliar para configurações no Wine
+game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.)
+steam-native-runtime                   # Steam em modo nativo
+
+### **Personalização e Temas**
+
+obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
+cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
+orchis-theme                           # Tema moderno para GTK e GNOME Shell
+tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
+vimix-cursors                          # Tema de cursores Vimix
+gnome-themes-extra                     # Conjunto de temas adicionais para GTK
+tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
+
+### **Captura de Tela**
+
+flameshot                              # Ferramenta de captura de tela avançada
+
+### **Comunicação**
+
+telegram-desktop                       # Aplicativo de mensagens Telegram
+
+### **Análise e Formatação de Código**
+
+jq                                     # Processador de JSON no terminal
+prettier                               # Formatador de código para várias linguagens
+shellcheck                             # Analisador estático para scripts shell
+shfmt                                  # Formatador para scripts shell
+stylelint                              # Linter para arquivos CSS e preprocessadores como SCSS
+
+### **Kernel e Drivers**
+
+kernel-modules-hook                    # Gerenciamento de módulos do kernel após atualizações
+xf86-video-amdgpu                      # Driver gráfico para placas AMD
+xf86-video-ati                         # Driver gráfico para placas ATI
+xf86-video-intel                       # Driver gráfico para chips Intel
+lib32-fontconfig                       # Biblioteca para configuração de fontes (32-bit)
+ttf-liberation                         # Conjunto de fontes Liberation
+wqy-zenhei                             # Fonte chinesa de alta qualidade
+lib32-systemd                          # Compatibilidade do systemd para arquitetura 32-bit
+

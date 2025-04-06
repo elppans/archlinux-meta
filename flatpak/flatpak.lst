@@ -1,9 +1,49 @@
-# flathub com.anydesk.Anydesk 							# AnyDesk: Software de acesso remoto para controle e suporte remoto
-# flathub com.brave.Browser 							# Instala o navegador Brave via Flatpak a partir do repositório Flathub
-# flathub com.google.Chrome   							# Google Chrome: Navegador web da Google
-flathub com.microsoft.Edge 			   				    # Microsoft Edge: Navegador web da Microsoft
-# flathub flathub com.opera.Opera 						# Opera: Navegador web com foco em privacidade e recursos avançados
-flathub com.github.marktext.marktext 					# MarkText: Editor de texto Markdown simples e poderoso
-# flathub com.rustdesk.RustDesk							# RustDesk: Software de acesso remoto de código aberto
-flathub com.vscodium.codium 							# VSCodium: Versão de código aberto do Visual Studio Code (sem o rastreamento de dados)
-flathub com.rtosta.zapzap 								# ZapZap: Cliente de mensagens instantâneas (WhatsApp) para Linux
+# Lista para automatizar a instalação de diversos aplicativos via Flatpak a partir do repositório Flathub.
+# Ele inclui navegadores, ferramentas de acesso remoto, plataformas de jogos, editores de texto e imagem,
+# aplicativos de comunicação e personalização do sistema, garantindo uma configuração eficiente e otimizada.
+
+### **Navegadores Web**
+
+flathub com.brave.Browser                            # Brave: Navegador rápido e focado em privacidade
+flathub com.microsoft.Edge                           # Edge: Navegador da Microsoft
+flathub org.mozilla.firefox                          # Firefox: Navegador confiável e de código aberto
+flathub com.opera.Opera                              # Opera: Navegador com recursos avançados
+flathub com.vivaldi.Vivaldi                          # Vivaldi: Navegador altamente personalizável
+
+### **Acesso Remoto**
+
+flathub com.anydesk.Anydesk                          # AnyDesk: Software de acesso remoto
+flathub com.rustdesk.RustDesk                        # RustDesk: Acesso remoto de código aberto
+
+### **Jogos e Ferramentas para Games**
+
+flathub com.heroicgameslauncher.hgl                  # Heroic Games Launcher: Cliente para Epic Games e GOG
+flathub net.lutris.Lutris                            # Lutris: Plataforma de jogos
+flathub com.valvesoftware.Steam                      # Steam: Plataforma de jogos
+flathub com.github.Matoking.protontricks             # Protontricks: Configuração de jogos Steam com Proton
+
+### **Edição de Texto e Markdown**
+
+flathub org.kde.kate                                 # Kate: Editor de texto avançado
+flathub com.github.marktext.marktext                 # MarkText: Editor de texto Markdown simples e poderoso
+flathub com.vscodium.codium                          # VSCodium: Versão open-source do VS Code (sem rastreamento)
+
+### **Imagens e Personalização**
+
+flathub org.kde.gwenview                             # Gwenview: Visualizador de imagens do KDE
+flathub com.github.maoschanz.DynamicWallpaperEditor  # Editor de papel de parede dinâmico
+
+### **Banco de Dados e Ferramentas de Desenvolvimento**
+
+flathub io.dbeaver.DBeaverCommunity                  # DBeaver: Gerenciamento de banco de dados multi-plataforma
+
+### **Comunicação e Mensagens**
+
+flathub com.discordapp.Discord                       # Discord: Comunicação para texto, voz e vídeo
+flathub org.telegram.desktop                         # Telegram Desktop: Mensagens rápidas e seguras
+flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsApp para Linux
+
+### **Personalização do Sistema**
+
+flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager
+
