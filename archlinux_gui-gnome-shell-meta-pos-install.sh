@@ -48,7 +48,7 @@ sudo pkgfile -u
 
 # Remoção de pacotes:
 
-sudo pacman --noconfirm -R epiphany gnome-music loupe         # Remove o navegador GNOME Web, o aplicativo de música e o visualizador de imagens modernos do GNOME.
+sudo pacman --noconfirm -R epiphany gnome-music         # Remove o navegador GNOME Web, o aplicativo de música do GNOME.
 
 # Instalação de pacotes
 
