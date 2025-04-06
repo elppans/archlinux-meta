@@ -36,6 +36,9 @@ sudo pacman --needed --noconfirm -S expac                     # Ferramenta para 
 sudo pacman --needed --noconfirm -S pkgfile                   # Utilitário para buscar arquivos pertencentes a pacotes no repositório  
 sudo pkgfile -u
 
+# Exemplo de uso para a instalação de dependências opcionais:
+# sudo pacman --needed -S pacote $(pacman-optdepends -c pacote)
+
 # Gerenciamento de pacotes e manutenção do sistema
 
 "$install"/pacman/gerenciador-de-pacotes-flatpak.sh           # Gerenciador de pacotes Flatpak
