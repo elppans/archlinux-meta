@@ -45,6 +45,7 @@ echo "Status atual do serviço AppArmor:"
 sudo systemctl status apparmor.service --no-pager
 
 echo "Instalação e configuração do AppArmor concluída."
+########################################################################################################
 pacote-pacman-flameshot.sh
 #!/bin/bash
 # shellcheck disable=SC2016,SC2027,SC2046
@@ -67,6 +68,8 @@ sudo cp -a /usr/share/applications/org.flameshot.Flameshot.desktop /etc/skel/.lo
 sudo sed -i 's|/usr/bin/flameshot|/usr/local/bin/flameshot|g' /etc/skel/.local/share/applications/org.flameshot.Flameshot.desktop
 sudo sed -i 's|Exec=flameshot|Exec=/usr/local/bin/flameshot|g' /etc/skel/.local/share/applications/org.flameshot.Flameshot.desktop
 cp -a /etc/skel/.local/share/applications/org.flameshot.Flameshot.desktop "$HOME/.local/share/applications"
+
+########################################################################################################
 pacote-pacman-icon-theme.sh
 #!/bin/bash
 
@@ -78,18 +81,23 @@ sudo pacman --needed --noconfirm -S obsidian-icon-theme
 
 gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
+
+########################################################################################################
 pacote-pacman-kernel-hook.sh
 #!/bin/bash
 
 # Kernel
 sudo pacman --needed --noconfirm -S kernel-modules-hook    # Instala o pacote para gerenciar corretamente os módulos do kernel após atualizações.
-sudo systemctl enable --now linux-modules-cleanup.service  # Ativa e inicia o serviço para limpar módulos antigos do kernel.pacote-pacman-lutris_instalar.sh
+sudo systemctl enable --now linux-modules-cleanup.service  # Ativa e inicia o serviço para limpar módulos antigos do kernel.
+
+########################################################################################################
+pacote-pacman-lutris_instalar.sh
 #!/bin/bash
 
 sudo pacman -S --needed gamemode lib32-gamemode lutris wine-staging winetricks \
 apparmor lib32-libpulse lib32-libsndfile lib32-libasyncns
 
-
+########################################################################################################
 pacote-pacman-orchis-theme-black.sh
 #!/bin/bash
 
@@ -109,7 +117,10 @@ gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
 ## Temas e Configurações GDM
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
-sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"pacote-pacman-orchis-theme-full.sh
+sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
+
+########################################################################################################
+pacote-pacman-orchis-theme-full.sh
 #!/bin/bash
 
 # Instala temas e ícones para personalização do GNOME:  
@@ -123,12 +134,16 @@ sudo pacman --needed --noconfirm -S gnome-themes-extra orchis-theme tela-circle-
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
+
+########################################################################################################
 pacote-pacman-steam_game-devices-udev.sh
 #!/bin/bash
 
 # Instala o pacote game-devices-udev, que fornece regras udev para dispositivos de jogo (como controle, joystick, etc.)
 # Dependẽncia para Steam versão Flatpak
 paru --needed --noconfirm -S game-devices-udev
+
+########################################################################################################
 pacote-pacman-steam_instalar.sh
 #!/bin/bash
 # shellcheck disable=SC2015
@@ -146,6 +161,8 @@ sed -i 's|Exec=/usr/bin/steam-native %U|Exec=/usr/bin/steam-native %U -silent|' 
 sudo sed -i '/en_US.UTF-8 UTF-8/s///' /etc/locale.gen
 grep 'STEAM_FRAME_FORCE_CLOSE DEFAULT=1' "$HOME/.pam_environment" && echo "Steam pam_environment OK!" || echo 'STEAM_FRAME_FORCE_CLOSE DEFAULT=1' >> "$HOME/.pam_environment"
 grep 'STEAM_FRAME_FORCE_CLOSE' "/etc/environment" && echo "Steam force close OK!" || echo 'STEAM_FRAME_FORCE_CLOSE=1' | sudo tee -a "/etc/environment"
+
+########################################################################################################
 pacote-pacman-telegram_instalar.sh
 #!/bin/bash
 
@@ -157,6 +174,7 @@ sed -i '/Exec/s/\%u/\%u --hideStart/' ~/.local/share/applications/org.telegram.d
 cp -rf ~/.local/share/applications/org.telegram.desktop.desktop ~/.config/autostart/org.telegram.desktop.desktop
 chmod +x ~/.config/autostart/org.telegram.desktop.desktop
 
+########################################################################################################
 pacote-pacman-vscodium-ferramentas-cli.sh
 #!/bin/bash
 
