@@ -4,9 +4,44 @@
 # As categorias incluem segurança, jogos, personalização, comunicação, análise de código
 # e drivers, garantindo uma configuração otimizada para diferentes usos.
 
+### **Pacotes Gnome do repositório oficial**
+
+archlinux-wallpaper                    # Papéis de parede oficiais do Arch Linux
+dconf-editor                           # Editor gráfico para modificar configurações avançadas do GNOME  
+gnome-tweaks                           # Ferramenta para ajustar configurações avançadas do GNOME
+rhythmbox                              # Player de música padrão do GNOME
+fragments                              # Cliente BitTorrent simples para o GNOME  
+gthumb                                 # Visualizador e organizador de imagens  
+remmina                                # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
+
+### **Complementos para o GNOME**
+
+power-profiles-daemon                  # Instala o daemon para gerenciar perfis de energia.
+file-roller                            # Instala o File Roller, gerenciador de arquivos compactados.
+gnome-shell-extension-appindicator     # Suporte a indicadores de aplicativos no GNOME Shell.
+gnome-shell-extension-caffeine         # Impede que a tela desligue ou entre em suspensão.
+nautilus-image-converter               # Redimensionar e girar imagens pelo Nautilus.
+nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
+
+### **Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland**
+
+xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
+xorg-xlsclients                        # Instala a ferramenta xlsclients para listar clientes X em execução.
+glfw-wayland                           # Instala a biblioteca GLFW com suporte ao Wayland para aplicações gráficas.
+libinput                               # Instala a biblioteca libinput para gerenciamento de dispositivos de entrada.
+wayland                                # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente.
+wayland-protocols                      # Instala protocolos adicionais para comunicação dentro do ambiente Wayland.
+xdg-desktop-portal                     # Instala os portais XDG para integração e compatibilidade entre aplicações.
+xdg-desktop-portal-gnome               # Instala suporte específico dos portais XDG para o ambiente GNOME.
+
+### **Gerenciadores de pacotes adicionais**
+
+flatpak                                # Gerenciador de pacotes Flatpak
+snapd                                  # AUR. Gerenciador de pacotes Snapd
+
 ### **Segurança**
 
-apparmor                               # Segurança no kernel (Recomendável para usar com Snap)
+apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
 apparmor-utils                         # Ferramentas utilitárias para AppArmor
 apparmor-profiles                      # Perfis predefinidos para AppArmor
 
@@ -36,7 +71,6 @@ tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
 ### **Captura de Tela**
 
 flameshot                              # Ferramenta de captura de tela avançada
-""$(/usr/bin/expac -S "%o" flameshot | tr ' ' '\n')""
 
 ### **Comunicação**
 

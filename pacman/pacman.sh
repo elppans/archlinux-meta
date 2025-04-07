@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2145
 
 # Verifica se o arquivo pacman.lst existe
 if [[ ! -f "pacman.lst" ]]; then
@@ -23,6 +24,7 @@ if [[ ${#pacotes[@]} -eq 0 ]]; then
 fi
 
 # Instala todos os pacotes em um único comando usando pacman
+
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
 sudo pacman -S --noconfirm "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
