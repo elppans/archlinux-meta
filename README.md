@@ -1,5 +1,8 @@
 # Arch Linux Meta (Pós-Instalação)
 
+```ini
+**⚠️ Aviso Importante:** Instalação de pacotes temporáriamente quebrado, não usar os Scripts de instalação
+```
 Este repositório contém uma coleção de scripts criados para automatizar e facilitar o pós-instalação do **Arch Linux**. Ele foi desenvolvido para uso pessoal, mas está disponível para quem desejar utilizá-lo. **Use-o por sua própria conta e risco.**
 
 **⚠️ Aviso Importante:** Este repositório foi projetado exclusivamente para o Arch Linux **puro**. Não foi testado ou garantido que funcione em distribuições derivadas (como Manjaro ou EndeavourOS). O autor **não se responsabiliza** por quaisquer danos causados ao sistema ou perda de dados resultante do uso destes scripts.
