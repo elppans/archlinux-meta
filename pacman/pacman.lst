@@ -22,6 +22,7 @@ gnome-shell-extension-appindicator     # Suporte a indicadores de aplicativos no
 gnome-shell-extension-caffeine         # Impede que a tela desligue ou entre em suspensão.
 nautilus-image-converter               # Redimensionar e girar imagens pelo Nautilus.
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
+actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
 ### **Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland**
 
@@ -67,6 +68,13 @@ tela-circle-icon-theme-black           # Variante preta do conjunto de ícones T
 vimix-cursors                          # Tema de cursores Vimix
 gnome-themes-extra                     # Conjunto de temas adicionais para GTK
 tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
+# yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
+# yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
+# yaru-icon-theme                      # Tema de ícones Yaru  
+# yaru-metacity-theme                  # Tema Yaru para Metacity (gerenciador de janelas)  
+# yaru-session                         # Sessão do GNOME com o tema Yaru  
+# yaru-sound-theme                     # Tema de sons Yaru  
+# yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
 
 ### **Captura de Tela**
 
@@ -95,3 +103,12 @@ ttf-liberation                         # Conjunto de fontes Liberation
 wqy-zenhei                             # Fonte chinesa de alta qualidade
 lib32-systemd                          # Compatibilidade do systemd para arquitetura 32-bit
 
+### **Demais ferramentas e complementos**
+
+gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
+meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
+xclip                                  # Utilitário para manipulação da área de transferência no Linux
+mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
+xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
+inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
+xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
