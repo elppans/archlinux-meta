@@ -83,6 +83,7 @@ flameshot                              # Ferramenta de captura de tela avançada
 ### **Comunicação**
 
 telegram-desktop                       # Aplicativo de mensagens Telegram
+zapzap                                 # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
 
 ### **Análise e Formatação de Código**
 

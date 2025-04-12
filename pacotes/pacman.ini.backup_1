@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2128
 
 # Função para verificar se o pacote está instalado
 verificar_pacote() {
@@ -298,15 +299,8 @@ fi
 #########################################################################################################
 # pacote-aur-yaru-theme-full.sh
 
-
 PACOTES=("yaru-gnome-shell-theme yaru-gtk-theme  yaru-metacity-theme yaru-session")
-# Verifica se o pacote está instalado
-# if verificar_pacote "$PACOTES"; then
-#	comandos
-# fi
 
-yaru-icon-theme
-yaru-sound-theme
 # Variável para verificar se algum pacote está instalado
 PACOTE_INSTALADO=false
 
@@ -324,3 +318,54 @@ if $PACOTE_INSTALADO; then
 	sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
 fi
 
+PACOTES=("yaru-icon-theme")
+
+# Loop para verificar cada pacote
+for pacote in "${PACOTES[@]}"; do
+	if verificar_pacote "$pacote"; then
+		PACOTE_INSTALADO=true
+		break
+	fi
+done
+# Se pelo menos um dos pacotes estiver instalado, aplica a configuração
+if $PACOTE_INSTALADO; then
+	gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
+	sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue-dark"
+fi
+
+PACOTES=("yaru-sound-theme")
+
+# Loop para verificar cada pacote
+for pacote in "${PACOTES[@]}"; do
+	if verificar_pacote "$pacote"; then
+		PACOTE_INSTALADO=true
+		break
+	fi
+done
+# Se pelo menos um dos pacotes estiver instalado, aplica a configuração
+if $PACOTE_INSTALADO; then
+	gsettings set org.gnome.desktop.sound theme-name "Yaru"
+fi
+##################################################################################################
+# pacote-aur-zapzap_instalar.sh
+
+PACOTES=("zapzap")
+
+# Variável para verificar se algum pacote está instalado
+PACOTE_INSTALADO=false
+
+# Loop para verificar cada pacote
+for pacote in "${PACOTES[@]}"; do
+	if verificar_pacote "$pacote"; then
+		PACOTE_INSTALADO=true
+		break
+	fi
+done
+
+# Se pelo menos um dos pacotes estiver instalado, aplica a configuração
+if $PACOTE_INSTALADO; then
+	cp -rf /usr/share/applications/com.rtosta.zapzap.desktop ~/.local/share/applications/com.rtosta.zapzap.desktop
+	sed -i '/Exec/s/\%u/\%u --hideStart/' ~/.local/share/applications/com.rtosta.zapzap.desktop
+	cp -rf ~/.local/share/applications/com.rtosta.zapzap.desktop ~/.config/autostart/com.rtosta.zapzap.desktop
+	chmod +x ~/.config/autostart/com.rtosta.zapzap.desktop
+fi
