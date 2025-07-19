@@ -31,7 +31,7 @@ if [[ ${#pacotes[@]} -eq 0 ]]; then
 fi
 
 # Instala todos os pacotes em um único comando usando pacman
-echo "Instalando os seguintes pacotes: ${pacotes[@]}"
+echo -e "Instalando os seguintes pacotes:\n${pacotes[@]}"
 sleep 5
 yay -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
