@@ -43,8 +43,6 @@ snapd                                  # AUR. Gerenciador de pacotes Snapd
 ### **Segurança**
 
 apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
-apparmor-utils                         # Ferramentas utilitárias para AppArmor
-apparmor-profiles                      # Perfis predefinidos para AppArmor
 
 ### **Jogos e Otimizações para Gaming**
 
