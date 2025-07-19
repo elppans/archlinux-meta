@@ -7,6 +7,13 @@ if [[ ! -f "pacman.list" ]]; then
     exit 1
 fi
 
+#-----------------------------#
+# remove blacklisted packages #
+#-----------------------------#
+if [ -f "pacman_black.list" ]; then
+    grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//' "pacman.list") > "/tmp/install_pkg_filtered.lst"
+fi
+
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
 pacotes=()
 while IFS= read -r linha; do
@@ -15,7 +22,7 @@ while IFS= read -r linha; do
         continue
     fi
     pacotes+=("$linha")
-done < "pacman.list"
+done < "/tmp/install_pkg_filtered.lst"
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
