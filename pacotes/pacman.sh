@@ -11,7 +11,7 @@ fi
 # remove blacklisted packages #
 #-----------------------------#
 if [ -f "pacman_black.list" ]; then
-    grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <('s/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
+    grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
 fi
 
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
