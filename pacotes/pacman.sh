@@ -32,7 +32,7 @@ fi
 
 # Instala todos os pacotes em um único comando usando pacman
 echo -e "Instalando os seguintes pacotes:\n${pacotes[@]}"
-sleep 5
+sleep 3
 yay -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Efetuando configuração baseado em pacotes instalados"

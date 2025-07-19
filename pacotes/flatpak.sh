@@ -6,6 +6,13 @@ if [[ ! -f "flatpak.list" ]]; then
     exit 1
 fi
 
+#-----------------------------#
+# remove blacklisted packages #
+#-----------------------------#
+if [ -f "flatpak_black.list" ]; then
+    grep -v -f <(grep -v '^#' "flatpak_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "flatpak.list") > "/tmp/install_flatpak_filtered.lst"
+fi
+
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
 pacotes=()
 while IFS= read -r linha; do
@@ -14,7 +21,7 @@ while IFS= read -r linha; do
         continue
     fi
     pacotes+=("$linha")
-done < "flatpak.list"
+done < "/tmp/install_flatpak_filtered.list"
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
@@ -24,7 +31,8 @@ fi
 
 # Instala todos os pacotes em um único comando
 # shellcheck disable=SC2145
-echo "Instalando os seguintes pacotes: ${pacotes[@]}"
+echo -e "Instalando os seguintes pacotes:\n${pacotes[@]}"
+sleep 3
 sudo flatpak install "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Efetuando configuração baseado em pacotes Flatpak"
