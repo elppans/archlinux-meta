@@ -14,7 +14,7 @@ export install
 
 # Gnome Shell Meta Packages
 cd "$install"/ || exit 1
-./archlinux_gui-gnome-shell-meta.sh
+./gnome-shell-meta.sh
 
 # Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
 sudo pacman --needed --noconfirm -Syyu base-devel git         # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
