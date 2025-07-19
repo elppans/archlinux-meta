@@ -27,4 +27,6 @@ fi
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
 sudo flatpak install "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
+echo "Efetuando configuração baseado em pacotes Flatpak"
+./flatpak.ini
 echo "Processo concluído!"
