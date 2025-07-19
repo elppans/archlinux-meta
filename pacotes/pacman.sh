@@ -26,7 +26,7 @@ fi
 # Instala todos os pacotes em um único comando usando pacman
 clear
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
-yay -S "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+# yay -S "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 # echo "Efetuando configuração baseado em pacotes instalados"
 # ./pacman.ini
