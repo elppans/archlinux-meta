@@ -54,7 +54,7 @@ sudo pacman --needed --noconfirm -S kernel-modules-hook
 
 # Ativa e inicia o serviço 'linux-modules-cleanup' para limpar os módulos antigos
 # do kernel, liberando espaço e evitando possíveis conflitos com módulos desnecessários.
-sudo systemctl enable --now linux-modules-cleanup.service
+systemctl is-enabled linux-modules-cleanup.service || sudo systemctl enable --now linux-modules-cleanup.service
 
 
 # Instalando Gnome Shell (Meta)
@@ -64,7 +64,7 @@ sudo pacman --needed --noconfirm -Syyu gnome gnome-tweaks htop iwd nano openssh 
 xdg-user-dirs-update
 
 # Ativação do Display manager (Gerenciador de Login)
-sudo systemctl disable "$(systemctl status display-manager.service | head -n1 | awk '{print $2}')" &>>/dev/null
-sudo systemctl enable gdm.service
+systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
+systemctl is-enabled gdm.service || sudo systemctl enable gdm.service
 
 # Seguir para "META Pós Install"
