@@ -1,9 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC2145
 
-# Verifica se o arquivo pacman.lst existe
-if [[ ! -f "pacman.lst" ]]; then
-    echo "Arquivo 'pacman.lst' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
+# Verifica se o arquivo pacman.list existe
+if [[ ! -f "pacman.list" ]]; then
+    echo "Arquivo 'pacman.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
     exit 1
 fi
 
@@ -15,7 +15,7 @@ while IFS= read -r linha; do
         continue
     fi
     pacotes+=("$linha")
-done < "pacman.lst"
+done < "pacman.list"
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
@@ -26,6 +26,6 @@ fi
 # Instala todos os pacotes em um único comando usando pacman
 
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
-sudo pacman -S --noconfirm "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+yay -S --noconfirm "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Processo concluído!"

@@ -3,7 +3,7 @@
 Você pode instalar todos os pacotes listados usando `pacman` diretamente, ignorando os comentários. Uma maneira simples de fazer isso é extrair apenas os nomes dos pacotes e passar para o comando `pacman -S`. Aqui está como você pode fazer isso:
 
 ```bash
-awk '{print $1}' pacman.lst | grep -v '^#' | grep -v '^$' | xargs sudo pacman -S --needed
+awk '{print $1}' pacman.list | grep -v '^#' | grep -v '^$' | xargs sudo pacman -S --needed
 ```
 
 Explicação:
@@ -19,7 +19,7 @@ Os comentários não atrapalham porque o comando `grep -v '^#'` remove todas as 
 Se quiser testar antes de executar o comando, você pode rodar apenas esta parte:
 
 ```bash
-awk '{print $1}' pacman.lst | grep -v '^#' | grep -v '^$'
+awk '{print $1}' pacman.list | grep -v '^#' | grep -v '^$'
 ```
 
 Isso vai mostrar apenas os nomes dos pacotes, sem os comentários, para garantir que a lista esteja correta antes de instalar.

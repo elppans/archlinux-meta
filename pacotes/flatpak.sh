@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Verifica se o arquivo flatpak.lst existe
-if [[ ! -f "flatpak.lst" ]]; then
-    echo "Arquivo 'flatpak.lst' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
+# Verifica se o arquivo flatpak.list existe
+if [[ ! -f "flatpak.list" ]]; then
+    echo "Arquivo 'flatpak.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
     exit 1
 fi
 
@@ -14,7 +14,7 @@ while IFS= read -r linha; do
         continue
     fi
     pacotes+=("$linha")
-done < "flatpak.lst"
+done < "flatpak.list"
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
