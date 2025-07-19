@@ -31,10 +31,10 @@ if [[ ${#pacotes[@]} -eq 0 ]]; then
 fi
 
 # Instala todos os pacotes em um único comando usando pacman
-clear
 echo "Instalando os seguintes pacotes: ${pacotes[@]}"
-# yay -S "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+sleep 5
+yay -S "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
-# echo "Efetuando configuração baseado em pacotes instalados"
-# ./pacman.ini
+echo "Efetuando configuração baseado em pacotes instalados"
+./pacman.ini
 echo "Processo concluído!"
