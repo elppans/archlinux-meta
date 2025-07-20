@@ -7,6 +7,7 @@ cd - || exit 1
 
 if [[ -z "$HELPER" ]]; then
     echo "Erro: A variável HELPER não está definida!"
+    echo "$HELPER"
     exit 1
 elif ! command -v "$HELPER" &> /dev/null; then
     echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
