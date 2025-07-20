@@ -92,9 +92,16 @@ sleeping 6
 ./flatpak.ini
 
 # Mensagem final
-echo -e "\nInstalação concluída com sucesso!
+echo -e "\nInstalação concluída com sucesso!"
 
-O sistema será reiniciado agora para aplicar as mudanças.
-"
-sleeping 15
-sudo systemctl reboot
+# Verifica se há inibidores ativos
+if systemd-inhibit | grep -q 'UID'; then
+	echo -e "\nExistem inibidores ativos que podem bloquear o reboot normal.\n\
+Executando reinicialização forçada para garantir aplicação das mudanças..."
+	sleeping 15
+	sudo systemctl reboot -i
+else
+	echo -e "\nReiniciando o sistema para aplicar as mudanças..."
+	sleeping 15
+	sudo systemctl reboot
+fi
