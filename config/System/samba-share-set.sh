@@ -3,6 +3,9 @@
 # No final, é criado uma senha de compartilhamento para o usuário atual como "arch"
 # Modifique a senha para sua preferência com o comando sudo smbpasswd SEU_USUÁRIO
 
+# Instalação do pacote samba
+sudo pacman --needed --noconfirm -Syu samba
+
 # Configuração do SAMBA
 
 ## Configuração do arquivo smb.conf
@@ -25,7 +28,9 @@ usershare owner only = yes\n' /etc/samba/smb.conf
 # Habilita e inicia os serviços do Samba:
 # nmb -> Serviço NetBIOS para descoberta de dispositivos na rede
 # smb -> Serviço principal do Samba para compartilhamento de arquivos
-sudo systemctl enable --now nmb smb
+systemctl is-enabled nmb.service || sudo systemctl enable --now nmb
+systemctl is-enabled smb.service || sudo systemctl enable --now smb
+sudo systemctl restart nmb smb
 
 # Define a senha do usuário atual no Samba
 # 'arch' -> Senha sendo definida para o usuário no Samba
