@@ -28,6 +28,13 @@ if [ "$EUID" -eq 0 ]; then
 	exit 1
 fi
 
+echo -e "\nIniciando a configuração do ambiente GNOME...
+
+Este processo irá preparar os componentes necessários do sistema.
+Ao final da instalação, o sistema será reiniciado automaticamente para aplicar as mudanças.
+
+Por favor, aguarde enquanto tudo é configurado..."
+
 # Função para definir um Loop/Tempo
 sleeping() {
 	local time
@@ -37,6 +44,7 @@ sleeping() {
 		sleep 1
 	done
 }
+sleeping 5
 
 # Obtém a versão do kernel em execução
 kernel_version=$(uname -r)
