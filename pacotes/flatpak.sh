@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2145,SC2068
 
 # Verifica se o arquivo flatpak.list existe
 if [[ ! -f "flatpak.list" ]]; then
@@ -30,7 +31,7 @@ if [[ ${#pacotes[@]} -eq 0 ]]; then
 fi
 
 # Instala todos os pacotes em um único comando
-# shellcheck disable=SC2145
+
 echo -e "Instalando os seguintes pacotes Flatpak:"
 for pacote in "${pacotes[@]}"; do
     echo "- $pacote"
