@@ -30,6 +30,10 @@ cd "$install"/helper/ || exit 1
 source chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
 source helper_install.sh                                   # Wrappers do pacman (AUR Helper)
 
+# Customizações do sistema com Scripts
+cd "$install" || exit 1
+find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
+
 # Remoção de pacotes:
 # sudo pacman --noconfirm -R epiphany gnome-music         # Remove o navegador GNOME Web, o aplicativo de música do GNOME.
 
@@ -42,10 +46,6 @@ cd "$install"/pacotes/ || exit 1
 cd "$install"/config/ || exit 1
 ./Gnome-Shell/gnome-shell-set.sh              # Configurações do Gnome Shell+
 ./System/samba-share-set.sh                   # Configuração do SAMBA
-
-# Customizações do sistema com Scripts
-cd "$install" || exit 1
-find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Mensagem final
 echo -e '\n\nReinicie o computador para aplicar as configurações!\n\n'
