@@ -39,6 +39,4 @@ done
 sleep 5
 sudo flatpak -y install ${pacotes[@]} || echo "Erro ao instalar alguns pacotes."
 
-echo "Efetuando configuração baseado em pacotes Flatpak"
-./flatpak.ini
 echo "Processo concluído!"

@@ -54,6 +54,4 @@ done
 sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
-echo "Efetuando configuração baseado em pacotes instalados"
-./pacman.ini
 echo "Processo concluído!"
