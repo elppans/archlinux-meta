@@ -28,8 +28,7 @@ sudo pkgfile -u
 # Gerenciamento de pacotes e manutenção do sistema
 cd "$install"/helper/ || exit 1
 ./chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
-./helper/pacote-helper-paru_instalar.sh              # Wrappers do pacman (AUR Helper) - paru
-./pacote-helper-yay_instalar.sh                      # Wrappers do pacman (AUR Helper) - yay
+./helper_install.sh                                  # Wrappers do pacman (AUR Helper)
 
 # Remoção de pacotes:
 # sudo pacman --noconfirm -R epiphany gnome-music         # Remove o navegador GNOME Web, o aplicativo de música do GNOME.

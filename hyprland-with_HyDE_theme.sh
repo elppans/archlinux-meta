@@ -7,12 +7,9 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-# Verifica se o script está sendo executado como root
-if [ "$EUID" -eq 0 ]; then
-    echo "Erro: Este script não deve ser executado como superusuário (root)."
-    echo "Por favor, execute como um usuário normal."
-    exit 1
-fi
+locdir="$(pwd)"
+install="$locdir"
+export install
 
 main() {
     echo "Escolha uma opção:"
@@ -58,13 +55,13 @@ escolher_helper() {
     case $escolha in
         1)
             echo "Instalando yay..."
-            cd helper || exit 1
-            bash pacote-helper-yay_instalar.sh
+            cd "$install"/helper/ || exit 1
+            bash pacote-helper-yay.sh
             ;;
         2)
             echo "Instalando paru..."
-            cd helper || exit 1
-            bash pacote-helper-paru_instalar.sh
+            cd "$install"/helper/ || exit 1
+            bash pacote-helper-paru.sh
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."

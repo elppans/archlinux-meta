@@ -1,6 +1,18 @@
 #!/bin/bash
 # shellcheck disable=SC2145
 
+cd ../helper/ || exit 1
+./helper_install.sh
+cd - || exit 1
+
+if [[ -z "$HELPER" ]]; then
+    echo "Erro: A variável HELPER não está definida!"
+    exit 1
+elif ! command -v "$HELPER" &> /dev/null; then
+    echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
+    exit 1
+fi
+
 # Verifica se o arquivo pacman.list existe
 if [[ ! -f "pacman.list" ]]; then
     echo "Arquivo 'pacman.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
@@ -36,7 +48,7 @@ for pacote in "${pacotes[@]}"; do
     echo "- $pacote"
 done
 sleep 5
-yay -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+"${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Efetuando configuração baseado em pacotes instalados"
 ./pacman.ini

@@ -13,9 +13,10 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-loc="$(pwd)"
-export loc
- 
+locdir="$(pwd)"
+install="$locdir"
+export install
+
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
@@ -37,13 +38,13 @@ escolher_helper() {
     case $escolha in
         1)
             echo "Instalando yay..."
-            cd helper || exit 1
-            bash pacote-helper-yay_instalar.sh
+            cd "$install"/helper/ || exit 1
+            bash pacote-helper-yay.sh
             ;;
         2)
             echo "Instalando paru..."
-            cd helper || exit 1
-            bash pacote-helper-paru_instalar.sh
+            cd "$install"/helper/ || exit 1
+            bash pacote-helper-paru.sh
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
@@ -70,10 +71,10 @@ if pacman -Qqs hyprland ; then
     sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
     ml4w-hyprland-setup
     # Adicionando configurações customzadas
-    tar -zxf "$loc"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-    cp -a "$loc"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
-    chmod +x "$loc"/bin/*
-    sudo cp -a "$loc"/bin/* /usr/local/bin
+    tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
+    cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
+    chmod +x "$install"/bin/*
+    sudo cp -a "$install"/bin/* /usr/local/bin
     # Reativando as permissoes do script do ML4W
     sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
     sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
