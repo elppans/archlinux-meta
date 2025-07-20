@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# Instalação do Display manager (Gerenciador de Login)
 sudo pacman -S gdm
-sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
-sudo systemctl enable gdm.service
 
+# Ativação do Display manager (Gerenciador de Login)
+systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
+systemctl is-enabled gdm.service || sudo systemctl enable gdm.service
