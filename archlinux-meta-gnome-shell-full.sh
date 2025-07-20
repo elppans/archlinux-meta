@@ -17,7 +17,7 @@ cd "$install"/ || exit 1
 ./gnome-shell-meta.sh
 
 # Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
-sudo pacman --needed --noconfirm -Syyu base-devel git         # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
+sudo pacman --needed --noconfirm -Syyu base-devel git curl    # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
 sudo pacman --needed --noconfirm -S expac                     # Ferramenta para exibir informações detalhadas sobre pacotes do pacman  
 sudo pacman --needed --noconfirm -S pkgfile                   # Utilitário para buscar arquivos pertencentes a pacotes no repositório  
 sudo pkgfile -u
