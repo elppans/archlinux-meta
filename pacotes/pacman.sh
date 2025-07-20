@@ -1,13 +1,11 @@
 #!/bin/bash
-# shellcheck disable=SC2145
+# shellcheck disable=SC2145,SC1091
 
 pacman_lo="$(pwd)"
 export pacman_lo
 
 cd ../helper/ || exit 1
-pwd
-ls -l helper_install.sh
-./helper_install.sh
+source helper_install.sh
 cd "$pacman_lo" || exit 1
 
 if [[ -z "$HELPER" ]]; then

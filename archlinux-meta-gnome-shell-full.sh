@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2010,SC2027,SC2046,SC2002,SC2016,SC2086,SC2317
+# shellcheck disable=SC2010,SC2027,SC2046,SC2002,SC2016,SC2086,SC2317,SC1091
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
@@ -27,8 +27,8 @@ sudo pkgfile -u
 
 # Gerenciamento de pacotes e manutenção do sistema
 cd "$install"/helper/ || exit 1
-./chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
-./helper_install.sh                                  # Wrappers do pacman (AUR Helper)
+source /chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
+source helper_install.sh                                   # Wrappers do pacman (AUR Helper)
 
 # Remoção de pacotes:
 # sudo pacman --noconfirm -R epiphany gnome-music         # Remove o navegador GNOME Web, o aplicativo de música do GNOME.
