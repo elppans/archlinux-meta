@@ -10,7 +10,12 @@ exibir_lista() {
 
 # Função para exibir dependências opcionais em coluna (separadas por vírgula)
 exibir_coluna() {
-    /usr/bin/expac -S "%o" "${pacote[@]}" | tr ' ' ',' | sed 's/,/, /g'
+    /usr/bin/expac -S "%o" "${pacote[@]}"
+}
+
+# Função para exibir dependências opcionais em coluna (separadas por vírgula)
+exibir_coluna_virgula() {
+    /usr/bin/expac -S "%o" "${pacote[@]}" | tr ' ' ',' | sed 's/,/, /g' | sed 's/, ,/,/g'
 }
 
 # Verifica qual opção foi passada e executa a função correspondente
@@ -25,8 +30,13 @@ case "$1" in
         pacote=("$@")
         exibir_coluna
         ;;
+    -cv)
+        shift
+        pacote=("$@")
+        exibir_coluna_virgula
+        ;;
     *)
-        echo "Uso: $0 -l <pacote> (lista) | -c <pacote> (coluna)"
+        echo "Uso: $0 -l <pacote> (lista) | -c <pacote> (coluna) | -cv <pacote> (separadas por vírgula)"
         exit 1
         ;;
 esac
