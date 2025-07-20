@@ -1,0 +1,16 @@
+#!/bin/bash
+
+STIME="$1"
+export STIME
+
+# Função para definir um Loop/Tempo
+sleeping() {
+	local time
+	time="$1"
+	for i in $(seq "$time" -1 1); do
+		echo -ne "$i Seg.\r"
+		sleep 1
+	done
+}
+
+sleeping "$STIME"
