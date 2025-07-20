@@ -1,9 +1,14 @@
 #!/bin/bash
 # shellcheck disable=SC2145
 
+pacman_lo="$(pwd)"
+export pacman_lo
+
 cd ../helper/ || exit 1
+pwd
+ls -l helper_install.sh
 ./helper_install.sh
-cd - || exit 1
+cd "$pacman_lo" || exit 1
 
 if [[ -z "$HELPER" ]]; then
     echo "Erro: A variável HELPER não está definida!"
