@@ -41,6 +41,7 @@ find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa to
 cd "$install"/pacotes/ || exit 1
 ./detect-vm.sh                      # Detecta se o sistema está rodando em uma máquina virtual (VM) e instala os pacotes necessários
 ./pacman.sh
+./flatpak.sh
 
 # Configurações do sistema
 cd "$install"/config/ || exit 1
