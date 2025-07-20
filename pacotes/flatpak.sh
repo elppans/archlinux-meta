@@ -31,7 +31,7 @@ fi
 
 # Instala todos os pacotes em um único comando
 # shellcheck disable=SC2145
-echo -e "Instalando os seguintes pacotes:"
+echo -e "Instalando os seguintes pacotes Flatpak:"
 for pacote in "${pacotes[@]}"; do
     echo "- $pacote"
 done
