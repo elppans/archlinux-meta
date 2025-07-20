@@ -37,7 +37,7 @@ sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-wee
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true
 sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true
-sudo systemctl restart gdm
+# sudo systemctl restart gdm
 
 # Configurações do Menú Gnome
 
