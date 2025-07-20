@@ -27,7 +27,7 @@ sudo pkgfile -u
 
 # Gerenciamento de pacotes e manutenção do sistema
 cd "$install"/helper/ || exit 1
-source /chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
+source chaotic-aur.sh                                     # Adicionar repositório Chaotic-AUR
 source helper_install.sh                                   # Wrappers do pacman (AUR Helper)
 
 # Remoção de pacotes:
