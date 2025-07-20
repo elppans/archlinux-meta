@@ -31,8 +31,8 @@ fi
 
 # Instala todos os pacotes em um único comando
 # shellcheck disable=SC2145
-echo -e "Instalando os seguintes pacotes:\n${pacotes[@]}"
-sleep 3
+echo -e "Instalando os pacotes:\n"
+sleep 2
 sudo flatpak install "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Efetuando configuração baseado em pacotes Flatpak"
