@@ -27,7 +27,7 @@ if [ "$EUID" -eq 0 ]; then
 	echo "Por favor, execute como um usuário normal."
 	exit 1
 fi
-
+clear
 echo -e "\nIniciando a configuração do ambiente GNOME...
 
 Este processo irá preparar os componentes necessários do sistema.
