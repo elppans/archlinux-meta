@@ -45,5 +45,5 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 
 ### **Personalização do Sistema**
 
-flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager
+# flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager (Não funciona para o Gnome nativo)
 

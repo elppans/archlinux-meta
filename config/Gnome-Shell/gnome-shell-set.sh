@@ -4,7 +4,7 @@
 
 # Configurações do Nautilus
 dconf write /org/gnome/nautilus/preferences/show-create-link true
-# dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
+dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 
 # Ajustes de configurações via gsettings
 
