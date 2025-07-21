@@ -4,17 +4,18 @@
 # As categorias incluem segurança, jogos, personalização, comunicação, análise de código
 # e drivers, garantindo uma configuração otimizada para diferentes usos.
 
-### **Pacotes Gnome do repositório oficial**
+### GNOME - Pacotes principais do repositório oficial
 
 archlinux-wallpaper                    # Papéis de parede oficiais do Arch Linux
 dconf-editor                           # Editor gráfico para modificar configurações avançadas do GNOME  
 gnome-tweaks                           # Ferramenta para ajustar configurações avançadas do GNOME
+gnome-shell-extensions                 # Extensões para o shell GNOME, incluindo o modo clássico
 rhythmbox                              # Player de música padrão do GNOME
 fragments                              # Cliente BitTorrent simples para o GNOME  
 gthumb                                 # Visualizador e organizador de imagens  
 remmina                                # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
 
-### **Complementos para o GNOME**
+### GNOME - Complementos e utilitários
 
 power-profiles-daemon                  # Instala o daemon para gerenciar perfis de energia.
 file-roller                            # Instala o File Roller, gerenciador de arquivos compactados.
@@ -24,7 +25,7 @@ nautilus-image-converter               # Redimensionar e girar imagens pelo Naut
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
 actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
-### **Garantindo que o Gnome Shell funcione corretamente em uma Sessão Wayland**
+### Wayland - Compatibilidade com GNOME Shell
 
 xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
 xorg-xlsclients                        # Instala a ferramenta xlsclients para listar clientes X em execução.
@@ -35,16 +36,16 @@ wayland-protocols                      # Instala protocolos adicionais para comu
 xdg-desktop-portal                     # Instala os portais XDG para integração e compatibilidade entre aplicações.
 xdg-desktop-portal-gnome               # Instala suporte específico dos portais XDG para o ambiente GNOME.
 
-### **Gerenciadores de pacotes adicionais**
+### Pacotes - Gerenciadores alternativos
 
 flatpak                                # Gerenciador de pacotes Flatpak
 snapd                                  # AUR. Gerenciador de pacotes Snapd
 
-### **Segurança**
+### Sistema - Segurança e controle de acesso
 
 apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
 
-### **Jogos e Otimizações para Gaming**
+### Gaming - Jogos, suporte e performance
 
 gamemode                               # Otimização de desempenho para jogos
 lib32-gamemode                         # Versão 32-bit do Gamemode para compatibilidade
@@ -57,7 +58,7 @@ lib32-libasyncns
 game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
 steam-native-runtime                   # Steam em modo nativo
 
-### **Personalização e Temas**
+### Aparência - Ícones, temas e cursores
 
 obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
 cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
@@ -74,16 +75,16 @@ tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
 # yaru-sound-theme                     # Tema de sons Yaru  
 # yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
 
-### **Captura de Tela**
+### Utilitários - Ferramentas de captura e imagem
 
 flameshot                              # Ferramenta de captura de tela avançada
 
-### **Comunicação**
+### Aplicativos - Mensageiros e comunicação
 
 telegram-desktop                       # Aplicativo de mensagens Telegram
 zapzap                                 # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
 
-### **Análise e Formatação de Código**
+### Dev - Ferramentas de análise e formatação
 
 jq                                     # Processador de JSON no terminal
 prettier                               # Formatador de código para várias linguagens
@@ -91,7 +92,7 @@ shellcheck                             # Analisador estático para scripts shell
 shfmt                                  # Formatador para scripts shell
 stylelint                              # Linter para arquivos CSS e preprocessadores como SCSS
 
-### **Kernel e Drivers**
+### Sistema - Kernel, drivers e compatibilidade
 
 kernel-modules-hook                    # Gerenciamento de módulos do kernel após atualizações
 xf86-video-amdgpu                      # Driver gráfico para placas AMD
@@ -102,7 +103,7 @@ ttf-liberation                         # Conjunto de fontes Liberation
 wqy-zenhei                             # Fonte chinesa de alta qualidade
 lib32-systemd                          # Compatibilidade do systemd para arquitetura 32-bit
 
-### **Demais ferramentas e complementos**
+### Utilitários - Ferramentas auxiliares e complementares
 
 gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
 meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
