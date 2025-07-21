@@ -113,3 +113,4 @@ mystiq                                 # AUR. Conversor de vídeo e áudio basea
 xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
 inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
 xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
+fastfetch                              # Ferramenta de informação de sistema rica em recursos e orientada ao desempenho, semelhante ao neofetch
