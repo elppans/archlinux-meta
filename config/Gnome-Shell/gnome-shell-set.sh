@@ -74,6 +74,12 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ categories "['Utility', 'X-GNOME-Utilities']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ translate true
 
+# Restaura o layout padrão da menu de aplicativos (app-picker) do GNOME.
+# Remove alterações personalizadas e reorganiza os ícones em categorias padrão.
+gsettings reset org.gnome.shell app-picker-layout
+xdg-desktop-menu forceupdate
+update-desktop-database ~/.local/share/applications
+
 # Configurações diretas
 
 # Trocar o ícone do Gnome Text Editor e padronizando em "skel" (O ícone do TextEditor é MUITO FEIO)
