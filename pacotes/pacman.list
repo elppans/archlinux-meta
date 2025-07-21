@@ -26,6 +26,23 @@ nautilus-image-converter               # Redimensionar e girar imagens pelo Naut
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
 actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
+### Aparência - Ícones, temas e cursores
+
+obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
+cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
+orchis-theme                           # Tema moderno para GTK e GNOME Shell
+tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
+vimix-cursors                          # Tema de cursores Vimix
+gnome-themes-extra                     # Conjunto de temas adicionais para GTK
+tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
+# yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
+# yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
+# yaru-icon-theme                      # Tema de ícones Yaru  
+# yaru-metacity-theme                  # Tema Yaru para Metacity (gerenciador de janelas)  
+# yaru-session                         # Sessão do GNOME com o tema Yaru  
+# yaru-sound-theme                     # Tema de sons Yaru  
+# yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
+
 ### Wayland - Compatibilidade com GNOME Shell
 
 xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
@@ -53,28 +70,11 @@ lib32-gamemode                         # Versão 32-bit do Gamemode para compati
 lutris                                 # Plataforma de gerenciamento de jogos
 wine-staging                           # Versão avançada do Wine para rodar jogos Windows
 winetricks                             # Ferramenta auxiliar para configurações no Wine
-lib32-libpulse
-lib32-libsndfile
-lib32-libasyncns
+lib32-libpulse                         # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
+lib32-libsndfile                       # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
+lib32-libasyncns                       # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
 game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
 steam-native-runtime                   # Steam em modo nativo
-
-### Aparência - Ícones, temas e cursores
-
-obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
-cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
-orchis-theme                           # Tema moderno para GTK e GNOME Shell
-tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
-vimix-cursors                          # Tema de cursores Vimix
-gnome-themes-extra                     # Conjunto de temas adicionais para GTK
-tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
-# yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
-# yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
-# yaru-icon-theme                      # Tema de ícones Yaru  
-# yaru-metacity-theme                  # Tema Yaru para Metacity (gerenciador de janelas)  
-# yaru-session                         # Sessão do GNOME com o tema Yaru  
-# yaru-sound-theme                     # Tema de sons Yaru  
-# yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
 
 ### Utilitários - Ferramentas de captura e imagem
 
