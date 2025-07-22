@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Restaura o layout padrão da menu de aplicativos (app-picker) do GNOME.
+# Remove alterações personalizadas e reorganiza os ícones em categorias padrão.
+xdg-desktop-menu forceupdate
+update-desktop-database ~/.local/share/applications
+gsettings reset org.gnome.shell app-picker-layout
+dconf reset -f /org/gnome/shell/app-picker-layout/

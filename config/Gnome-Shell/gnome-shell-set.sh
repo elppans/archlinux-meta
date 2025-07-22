@@ -29,6 +29,10 @@ gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize
 gsettings set org.gnome.shell.weather automatic-location true
 gsettings set org.gnome.shell.extensions.window-list grouping-mode 'auto'
 
+# Configurações gerais do Mutter
+gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas novas
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" # Ativar escala fracionada no Wayland
+
 # Temas e Configurações GDM
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact"
@@ -76,9 +80,11 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 
 # Restaura o layout padrão da menu de aplicativos (app-picker) do GNOME.
 # Remove alterações personalizadas e reorganiza os ícones em categorias padrão.
-gsettings reset org.gnome.shell app-picker-layout
 xdg-desktop-menu forceupdate
 update-desktop-database ~/.local/share/applications
+gsettings reset org.gnome.shell app-picker-layout
+dconf reset -f /org/gnome/shell/app-picker-layout/
+
 
 # Configurações diretas
 
