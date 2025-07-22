@@ -31,7 +31,7 @@ gsettings set org.gnome.shell.extensions.window-list grouping-mode 'auto'
 
 # Configurações gerais do Mutter
 gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas novas
-gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" # Ativar escala fracionada no Wayland
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer', 'variable-refresh-rate']" # Ativar escala fracionada e VRR no Wayland
 
 # Temas e Configurações GDM
 # sudo -u gdm dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark"
