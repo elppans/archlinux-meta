@@ -96,7 +96,7 @@ sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local
 cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
 
 # Trocar o ícone do actions-for-nautilus-configurator e padronizando em "skel" (O ícone padrão TAMBÉM é MUITO FEIO)
-sudo sed -i 's/^Icon=.*/Icon=redhat-system_tools/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
+sudo sed -i 's/^Icon=.*/Icon=applications-interfacedesign/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
 sudo mkdir -p "/etc/skel/.local/share/applications"
 mkdir -p "$HOME/.local/share/applications"
 sudo cp "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
