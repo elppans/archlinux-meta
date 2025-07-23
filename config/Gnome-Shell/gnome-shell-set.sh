@@ -48,7 +48,7 @@ sudo -u gdm dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard num
 # Para verificar qual o nome da categoria, verificar os arquivos .directory em "/usr/share/desktop-directories/"
 
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Console.desktop']"
-gsettings set org.gnome.desktop.app-folders folder-children "['Games', 'Graphics', 'Multimedia', 'Network', 'Office', 'System', 'Utilities']"
+gsettings set org.gnome.desktop.app-folders folder-children "['Games', 'Graphics', 'Multimedia', 'Network', 'Office', 'System', 'Utilities', 'Development']"
 
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Game.directory'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ categories "['Game']"
@@ -78,6 +78,10 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ categories "['Utility', 'X-GNOME-Utilities']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Utilities/ translate true
 
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Development.directory'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ categories "['Development']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ translate true
+
 # Restaura o layout padrão da menu de aplicativos (app-picker) do GNOME.
 # Remove alterações personalizadas e reorganiza os ícones em categorias padrão.
 xdg-desktop-menu forceupdate
@@ -97,6 +101,8 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 
 # Trocar o ícone do actions-for-nautilus-configurator e padronizando em "skel" (O ícone padrão TAMBÉM é MUITO FEIO)
 sudo sed -i 's/^Icon=.*/Icon=applications-interfacedesign/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
+grep -q 'Categories' "/usr/share/applications/actions-for-nautilus-configurator.desktop" || \
+echo -e 'Categories=GNOME;GTK;System;Settings;DesktopSettings;' | tee -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" &>>/dev/null
 sudo mkdir -p "/etc/skel/.local/share/applications"
 mkdir -p "$HOME/.local/share/applications"
 sudo cp "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
