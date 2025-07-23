@@ -1,8 +1,5 @@
 # Arch Linux Meta (Pós-Instalação)
 
-```ini
-**⚠️ Aviso Importante:** Instalação de pacotes temporáriamente quebrado, não usar os Scripts de instalação
-```
 Este repositório contém uma coleção de scripts criados para automatizar e facilitar o pós-instalação do **Arch Linux**. Ele foi desenvolvido para uso pessoal, mas está disponível para quem desejar utilizá-lo. **Use-o por sua própria conta e risco.**
 
 **⚠️ Aviso Importante:** Este repositório foi projetado exclusivamente para o Arch Linux **puro**. Não foi testado ou garantido que funcione em distribuições derivadas (como Manjaro ou EndeavourOS). O autor **não se responsabiliza** por quaisquer danos causados ao sistema ou perda de dados resultante do uso destes scripts.
@@ -13,9 +10,11 @@ Este repositório contém uma coleção de scripts criados para automatizar e fa
 
 O repositório contém diversos scripts para facilitar a configuração e manutenção do Arch Linux. Aqui estão os principais:
 
-- **`archlinux_gui-gnome-shell-meta.sh`**: Instala e configura o GNOME Shell com seus componentes principais.
+- **`gnome-shell-meta.sh`**: Instala e configura o GNOME Shell com seus componentes principais.
 >Ps.: Script totalmente baseado na sessão Gnome Shell do Archinstall
-- **`archlinux_gui-gnome-shell-meta-pos-install.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
+- **`gnome-shell-custom.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
+>Ps.: Deve utilizar este Script apenas após a instalação do Gnome Shell (Meta).  
+>O Meta pode ser instalado tanto via `Archinstall` quanto via `gnome-shell-meta.sh`.  
 - **`archlinux_clean-to-base.sh`**: Um script especial que limpa completamente o Arch Linux, removendo pacotes extras e deixando apenas a instalação base, como se tivesse sido recém-instalada. **Use com extrema cautela, pois ele pode apagar dados importantes.**
 - **Scripts para gerenciadores de login** (como GDM, LightDM e SDDM): Automatizam a configuração de diferentes *display managers*.
 - **Instalação e configuração do GRUB**: Scripts para configurar o carregador de inicialização GRUB.
@@ -42,13 +41,14 @@ Certifique-se de que os scripts têm permissão de execução:
 ```bash
 chmod +x script1.sh
 chmod +x script2.sh
-# Adicione outros scripts que precisar
+...
 ```
 
 Execute os scripts conforme necessário:
 ```bash
 ./script1.sh
 ./script2.sh
+...
 ```
 
 **Importante:** Sempre revise os scripts antes de executá-los para entender os comandos e verificar se são apropriados para o seu sistema.
@@ -79,8 +79,9 @@ O repositório contém scripts para diferentes tarefas de pós-instalação, inc
 
 ## 🛠️ Requisitos
 
-- Arch Linux (somente a versão oficial).
-- Permissões de superusuário (root) para executar alguns scripts.
+- Arch Linux (somente a versão oficial);
+- Permissões de superusuário (root) para executar alguns scripts;
+- O `sudo` **deve** estar ativado;
 - Compreensão básica de comandos do Linux e do shell.
 
 ---
