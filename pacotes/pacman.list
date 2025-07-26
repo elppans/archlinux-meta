@@ -114,3 +114,5 @@ xboxdrv                                # AUR. Driver do gamepad do Xbox Userspac
 inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
 xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
 fastfetch                              # Ferramenta de informação de sistema rica em recursos e orientada ao desempenho, semelhante ao neofetch
+axel                                   # Acelerador de download de linha de comando leve
+mediainfo                              # Fornece informações técnicas e de tags sobre arquivos de mídia (interface CLI)
