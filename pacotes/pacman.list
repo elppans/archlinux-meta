@@ -67,14 +67,14 @@ apparmor                               # Segurança no kernel (Recomendável par
 
 gamemode                               # Otimização de desempenho para jogos
 lib32-gamemode                         # Versão 32-bit do Gamemode para compatibilidade
-lutris                                 # Plataforma de gerenciamento de jogos
-wine-staging                           # Versão avançada do Wine para rodar jogos Windows
-winetricks                             # Ferramenta auxiliar para configurações no Wine
-lib32-libpulse                         # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
-lib32-libsndfile                       # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
-lib32-libasyncns                       # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
-game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
-steam-native-runtime                   # Steam em modo nativo
+# lutris                                 # Plataforma de gerenciamento de jogos
+# wine-staging                           # Versão avançada do Wine para rodar jogos Windows
+# winetricks                             # Ferramenta auxiliar para configurações no Wine
+# lib32-libpulse                         # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
+# lib32-libsndfile                       # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
+# lib32-libasyncns                       # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
+# game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
+# steam-native-runtime                   # Steam em modo nativo
 
 ### Utilitários - Ferramentas de captura e imagem
 
@@ -82,8 +82,8 @@ flameshot                              # Ferramenta de captura de tela avançada
 
 ### Aplicativos - Mensageiros e comunicação
 
-telegram-desktop                       # Aplicativo de mensagens Telegram
-zapzap                                 # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
+# telegram-desktop                       # Aplicativo de mensagens Telegram
+# zapzap                                 # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
 
 ### Dev - Ferramentas de análise e formatação
 
@@ -106,8 +106,8 @@ lib32-systemd                          # Compatibilidade do systemd para arquite
 
 ### Utilitários - Ferramentas auxiliares e complementares
 
-gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
-meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
+# gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
+# meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
 xclip                                  # Utilitário para manipulação da área de transferência no Linux
 mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
 xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada

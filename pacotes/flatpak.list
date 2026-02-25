@@ -4,11 +4,12 @@
 
 ### **Navegadores Web**
 
-flathub com.brave.Browser                            # Brave: Navegador rápido e focado em privacidade
+# flathub com.brave.Browser                            # Brave: Navegador rápido e focado em privacidade
 flathub com.microsoft.Edge                           # Edge: Navegador da Microsoft
-flathub org.mozilla.firefox                          # Firefox: Navegador confiável e de código aberto
-flathub com.opera.Opera                              # Opera: Navegador com recursos avançados
-flathub com.vivaldi.Vivaldi                          # Vivaldi: Navegador altamente personalizável
+# flathub org.mozilla.firefox                          # Firefox: Navegador confiável e de código aberto
+# flathub com.opera.Opera                              # Opera: Navegador com recursos avançados
+# flathub com.vivaldi.Vivaldi                          # Vivaldi: Navegador altamente personalizável
+# flathub com.google.Chrome                            # Chrome: Navegador do Google
 
 ### **Acesso Remoto**
 
@@ -21,6 +22,8 @@ flathub com.heroicgameslauncher.hgl                  # Heroic Games Launcher: Cl
 flathub net.lutris.Lutris                            # Lutris: Plataforma de jogos
 flathub com.valvesoftware.Steam                      # Steam: Plataforma de jogos
 flathub com.github.Matoking.protontricks             # Protontricks: Configuração de jogos Steam com Proton
+flathub com.vysp3r.ProtonPlus                        # ProtonPlus: Gerenciador de ferramentas de compatibilidade moderno
+flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08 # MangoHud: # Overlay para monitoramento de desempenho (FPS, CPU, GPU)
 
 ### **Edição de Texto e Markdown**
 
@@ -47,3 +50,8 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 
 # flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager (Não funciona para o Gnome nativo)
 
+### **Outros aplicativos**
+
+flathub org.gtkhash.gtkhash                           # Calcular resumos de mensagens ou somas de verificação (checksums)
+flathub app/org.winehq.Wine/x86_64/wow64-24.08        # Run Windows applications on Linux (32 in 64 Bits)
+flathub org.gnome.meld                                # Compare e una os seus ficheiros
