@@ -8,17 +8,30 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-# Variáveis para o HOME e Backup na data atual
-export HM="$(basename "$HOME")"
-export HMN="$HM.BKP_$(date +%d%m%H%M)"
+# Define variáveis
+USER_REAL="$USER"
+HOME_REAL="$HOME"
+BKP_NAME="$HOME_REAL.BKP_$(date +%Y%m%d_%H%M)"
 
-echo -e 'Renomear diretório "HOME" para backup e criar novo diretório de usuário.'
-sleep 5
-cd /home || exit
-sudo mv -v /home/"$HM"  /home/"$HMN"
-sudo mkdir -p "$HOME"
-sudo cp -av /etc/skel/.bash* "$HOME"
-sudo chown -R "$USER":"$USER" "$HOME"
+echo "Iniciando reset do ambiente de usuário para: $USER_REAL"
+sleep 3
+
+# 1. Move o diretório atual (Backup)
+# Usamos sudo mas garantimos que o caminho seja absoluto
+sudo mv "$HOME_REAL" "$BKP_NAME"
+
+# 2. Cria o novo HOME
+sudo mkdir -p "$HOME_REAL"
+
+# 3. Copia TUDO do skel (não apenas .bash*)
+# O ponto '.' ao final de /etc/skel/. garante que arquivos ocultos sejam copiados
+sudo cp -ra /etc/skel/. "$HOME_REAL/"
+
+# 4. Ajusta permissões de forma recursiva
+# Garante que o usuário e o grupo principal do usuário sejam donos
+sudo chown -R "$USER_REAL":"$(id -gn "$USER_REAL")" "$HOME_REAL"
+
+echo "Processo concluído. O backup está em: $BKP_NAME"
 
 echo -e 'Redefinindo o Shell do usuário'
 sleep 3
