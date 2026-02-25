@@ -41,5 +41,5 @@ for pacote in "${pacotes[@]}"; do
 done
 sleep 5
 rm -f /var/log/instalacao_flatpak.log &>>/dev/null
-sudo flatpak install -y --non-interactive "${pacotes[@]}" | sudo tee -a /var/log/instalacao_flatpak.log || echo "Erro ao instalar alguns pacotes."
+sudo flatpak install -y --noninteractive "${pacotes[@]}" | sudo tee -a /var/log/instalacao_flatpak.log || echo "Erro ao instalar alguns pacotes."
 echo "Processo concluído!"
