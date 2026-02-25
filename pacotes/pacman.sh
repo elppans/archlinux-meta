@@ -8,6 +8,7 @@ CONFIG_FILE="/etc/pacman.conf"
 export CONFIG_FILE
 
 cd ../helper/ || exit 1
+source multilib-check.sh
 source helper_install.sh
 cd "$pacman_lo" || exit 1
 
@@ -24,14 +25,6 @@ fi
 if [[ ! -f "pacman.list" ]]; then
     echo "Arquivo 'pacman.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
     exit 1
-fi
-
-# Verifica se o repositório multilib já está habilitado (sem comentário)
-if ! grep -q "^\[multilib\]" "$CONFIG_FILE"; then
-    echo "Habilitando o repositório [multilib]..."
-    # Usa o sed para descomentar a seção [multilib] e a linha Include imediatamente abaixo
-    # A lógica procura pela linha #[multilib] e remove o # dela e da linha seguinte
-    sudo sed -i '/#\[multilib\]/,+1 s/^#//' "$CONFIG_FILE"
 fi
 
 #-----------------------------#

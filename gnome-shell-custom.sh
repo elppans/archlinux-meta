@@ -41,6 +41,11 @@ sleeping() {
 }
 sleeping 5
 
+# Verificação do repositório MULTILIB
+cd "$install"/helper/ || exit 1
+source multilib-check.sh
+cd "$install" || exit 1
+
 # Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
 sudo pacman --needed --noconfirm -Syu base-devel git curl # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
 sudo pacman --needed --noconfirm -Syu expac               # Ferramenta para exibir informações detalhadas sobre pacotes do pacman
