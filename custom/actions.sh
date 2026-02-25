@@ -44,6 +44,7 @@ cd /tmp/el-images || exit 1
 bash ./install.sh
 
 ## Action Script, Ferramentas de Diversas
+# Este Script cria o diretório "Acoes", no Action Script do Nautilus
 git clone https://github.com/elppans/factions-shell.git /tmp/factions-shell
 cd /tmp/factions-shell || exit 1
 bash ./install.sh

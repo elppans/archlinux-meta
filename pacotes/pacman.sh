@@ -31,18 +31,21 @@ if [ -f "pacman_black.list" ]; then
 fi
 
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
-pacotes=()
-while IFS= read -r linha; do
-    # Ignora linhas comentadas ou vazias
-    if [[ "$linha" =~ ^#.*$ || -z "$linha" ]]; then
-        continue
-    fi
-    pacotes+=("$linha")
-done < "/tmp/install_pkg_filtered.lst"
+# pacotes=()
+# while IFS= read -r linha; do
+#     # Ignora linhas comentadas ou vazias
+#     if [[ "$linha" =~ ^#.*$ || -z "$linha" ]]; then
+#         continue
+#     fi
+#     pacotes+=("$linha")
+# done < "/tmp/install_pkg_filtered.lst"
 
-# Verifica se há pacotes a serem instalados
+# Forma robusta de carregar o array ignorando comentários e espaços extras
+mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_pkg_filtered.lst")
+
+# Verifica se há pacotes
 if [[ ${#pacotes[@]} -eq 0 ]]; then
-    echo "Nenhum pacote válido foi encontrado no arquivo."
+    echo "Nenhum pacote válido foi encontrado."
     exit 1
 fi
 
@@ -55,3 +58,12 @@ sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Processo concluído!"
+
+# Comando para verificação posterior, caso ocorra erros
+# for i in $(grep -vE '^#|$^' pacman.list | awk '{print $1}'); do pacman -Qs $i || echo "$i nao instalado!" | tee -a ~/nao_instalado ; done
+# cat ~/nao_instalado
+
+# Testar instalação
+# rm -rf ~/nao_instalado
+# for i in $(grep -vE '^#|$^' pacman.list | awk '{print $1}'); do pacman -Qs $i || echo "$i" | tee -a ~/nao_instalado ; done
+# sudo pacman -S "$(cat ~/nao_instalado)"
