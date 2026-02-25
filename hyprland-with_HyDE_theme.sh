@@ -97,10 +97,10 @@ if pacman -Qqs hyprland ; then
 	sed -i '/code/ s/^/# /' "$HOME"/HyDE/Scripts/pkg_core.lst
 
     # Desativar instalação de aplicativos específicos em Flatpak
-    sed -i '/org.gnome.Boxes/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
-    sed -i '/io.github.spacingbat3.webcord/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
-    sed -i '/io.gitlab.theevilskeleton.Upscaler/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
-    sed -i '/org.gnome.eog/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
+    sed -i '/org.gnome.Boxes/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst						# Boxes - Virtualização simplificada
+    sed -i '/io.github.spacingbat3.webcord/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst			# WebCord - Web-based Discord client
+    # sed -i '/io.gitlab.theevilskeleton.Upscaler/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst	# Ampliar - Melhore e aprimore imagens
+    # sed -i '/org.gnome.eog/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst							# Olho do GNOME - Navegue e gire imagens
 
     # Ativar instalação de aplicativos específicos em Flatpak
     sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst

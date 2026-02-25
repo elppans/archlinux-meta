@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$HOME"
+cd "$HOME" || exit
 sudo pacman --needed --noconfirm -S xdg-user-dir swappy satty
 mkdir -p "$HOME"/.config/hyde/themes
 cp -a ./HyDE/Configs/.local "$HOME"/.config/hyde
