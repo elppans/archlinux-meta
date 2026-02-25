@@ -25,7 +25,7 @@ fi
 # done < "/tmp/install_flatpak_filtered.list"
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
-mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_flatpak_filtered.lst")
+mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_flatpak_filtered.list")
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
