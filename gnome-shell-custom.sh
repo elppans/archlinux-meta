@@ -11,6 +11,8 @@ fi
 locdir="$(pwd)"
 install="$locdir"
 export install
+base_install="$(basename $install)"
+export base_install
 
 # Gnome Shell Meta Packages
 for pkg in gnome gdm; do
@@ -110,3 +112,5 @@ else
 	sleeping 15
 	sudo systemctl reboot
 fi
+
+echo "${base_install}" >> "$HOME/.hidden"
