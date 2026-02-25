@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo pacman --needed -Sy base-devel debugedit fakeroot
+
 # Wrappers do pacman (AUR Helper)
 git clone https://aur.archlinux.org/yay.git /tmp/yay
 cd /tmp/yay || exit 1
