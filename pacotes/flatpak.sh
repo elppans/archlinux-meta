@@ -40,6 +40,6 @@ for pacote in "${pacotes[@]}"; do
     echo "- $pacote"
 done
 sleep 5
-sudo flatpak -y install ${pacotes[@]} || echo "Erro ao instalar alguns pacotes."
+sudo flatpak -y install "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 echo "Processo concluído!"
