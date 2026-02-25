@@ -15,14 +15,17 @@ if [ -f "flatpak_black.list" ]; then
 fi
 
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
-pacotes=()
-while IFS= read -r linha; do
-    # Ignora linhas comentadas ou vazias
-    if [[ "$linha" =~ ^#.*$ || -z "$linha" ]]; then
-        continue
-    fi
-    pacotes+=("$linha")
-done < "/tmp/install_flatpak_filtered.list"
+# pacotes=()
+# while IFS= read -r linha; do
+#     # Ignora linhas comentadas ou vazias
+#     if [[ "$linha" =~ ^#.*$ || -z "$linha" ]]; then
+#         continue
+#     fi
+#     pacotes+=("$linha")
+# done < "/tmp/install_flatpak_filtered.list"
+
+# Forma robusta de carregar o array ignorando comentários e espaços extras
+mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_flatpak_filtered.lst")
 
 # Verifica se há pacotes a serem instalados
 if [[ ${#pacotes[@]} -eq 0 ]]; then
