@@ -31,7 +31,7 @@ if ! grep -q "^\[multilib\]" "$CONFIG_FILE"; then
     echo "Habilitando o repositório [multilib]..."
     # Usa o sed para descomentar a seção [multilib] e a linha Include imediatamente abaixo
     # A lógica procura pela linha #[multilib] e remove o # dela e da linha seguinte
-    sed -i '/#\[multilib\]/,+1 s/^#//' "$CONFIG_FILE"
+    sudo sed -i '/#\[multilib\]/,+1 s/^#//' "$CONFIG_FILE"
 fi
 
 #-----------------------------#
