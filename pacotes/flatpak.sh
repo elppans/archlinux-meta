@@ -11,7 +11,7 @@ fi
 # remove blacklisted packages #
 #-----------------------------#
 if [ -f "flatpak_black.list" ]; then
-    grep -v -f <(grep -v '^#' "flatpak_black.list" | sed 's/#.*//;s/\n //g;/^$/d') <(sed 's/#.*//;s/\n //g;/^$/d' "flatpak.list") > "/tmp/install_flatpak_filtered.list"
+    grep -v -f <(grep -v '^#' "flatpak_black.list" | sed 's/#.*//;s/\n //g;/^$/d') <(sed 's/#.*//;s/\n //g;/^$/d' "flatpak.list") | awk '{print $2}' > "/tmp/install_flatpak_filtered.list"
 fi
 
 # Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
