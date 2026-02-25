@@ -1,40 +1,64 @@
 #!/bin/bash
 
-# Hyprland Meta Install
+# **Hyprland Meta Install**
 
-# Instalação do Hyprland e Ferramentas:
-# hyprland: Um compositor dinâmico e altamente personalizável para o Wayland.
-# dunst: Um leve e altamente configurável daemon de notificações.
-# kitty: Um emulador de terminal gráfico rápido e rico em recursos.
-# wofi: Um iniciador de aplicativos leve projetado para Wayland.
-# xdg-desktop-portal-hyprland: Integração de portal para Hyprland, essencial para compatibilidade com aplicativos sandbox.
-# qt5-wayland e qt6-wayland: Suporte para rodar aplicativos baseados em Qt no ambiente Wayland.
-# polkit-kde-agent: Gerenciador de autenticação do KDE, necessário para operações que requerem privilégios administrativos.
-# grim: Ferramenta para capturar screenshots no Wayland.
-# slurp: Usado em conjunto com o grim para selecionar regiões específicas da tela para capturar.
-# hyprutils: Ferramentas adicionais para configuração e uso do Hyprland
-# nwg-displays: Interface gráfica para gerenciar monitores no Wayland, facilitando ajustes em setups com múltiplas telas.
+### **Configurações de Ambiente**
 
-# Ferramentas essenciais e utilitários variados:
-# btop: Uma ferramenta visual e interativa para monitoramento de recursos do sistema.
-# htop: Um visualizador interativo de processos para o terminal, mais avançado que o top.
-# iwd: Um daemon de gerenciamento de Wi-Fi criado pela Intel.
-# nano: Um editor de texto simples e amigável para o terminal.
-# openssh: Implementação do protocolo SSH para conexões seguras e transferência de arquivos.
-# smartmontools: Conjunto de ferramentas para monitoramento e análise de discos rígidos e SSDs.
-# vim: Um editor de texto poderoso e altamente configurável, amplamente utilizado por desenvolvedores.
-# wget: Ferramenta de linha de comando para baixar arquivos da internet.
-# wireless_tools: Conjunto de ferramentas para gerenciar conexões de rede sem fio.
-# wpa_supplicant: Um cliente para gerenciamento de conexões Wi-Fi seguras.
-# xdg-user-dirs: Gerenciador de diretórios padrão do usuário (como Documentos, Downloads, etc.).
-# xdg-utils: Conjunto de utilitários para operações comuns, como abrir URLs ou arquivos, integrado ao ambiente de desktop.
+# Tipo de ambiente: Desktop Environment / Perfil Hyprland
+# Áudio: pipewire
+# Acesso ao seat: polkit
+
+# **Categoria, Pacotes**
+
+# Interface (Core):				"hyprland, uwsm, wofi, dunst"
+# Utilitários de Sistema:		"dolphin (arquivos), kitty (terminal), xdg-utils"
+# Gráficos/Wayland:				"grim, slurp, qt5-wayland, qt6-wayland, xdg-desktop-portal-hyprland"
+# Áudio (Pipewire):				"pipewire, pipewire-pulse, wireplumber"
+# Rede e Ferramentas:			"iwd, wireless_tools, openssh, wget, htop, smartmontools"
+# Editores & Permissão:			"vim, nano, polkit-kde-agent"
+
+### **Pacotes por categoria e suas descrições**
+
+# --- Interface e Compositor (Core) ---
+# hyprland:						Compositor dinâmico e altamente personalizável para Wayland.
+# hyprutils:					Ferramentas adicionais para configuração do Hyprland.
+# uwsm:							(Novo) Universal Wayland Session Manager para gerenciar a sessão corretamente.
+# wofi:							Iniciador de aplicativos leve projetado para Wayland.
+# dunst:						Daemon de notificações leve e configurável.
+# nwg-displays:					Interface gráfica para gerenciar múltiplos monitores.
+
+# --- Terminal e Gráficos ---
+# kitty:						Emulador de terminal rápido e rico em recursos.
+# grim:							Ferramenta para capturar screenshots no Wayland.
+# slurp:						Selecionador de regiões da tela para o grim.
+
+# --- Compatibilidade e Portais ---
+# xdg-desktop-portal-hyprland:  Integração essencial para apps sandbox e screen sharing.
+# xdg-utils:					Utilitários para operações comuns (abrir URLs, arquivos, etc).
+# xdg-user-dirs:				Cria as pastas padrão (Downloads, Documentos, etc).
+# qt5-wayland / qt6-wayland: 	Suporte para apps Qt rodarem nativamente no Wayland.
+# polkit-kde-agent:				Agente de autenticação para permissões administrativas (sudo gráfico).
+
+# --- Áudio (Pipewire) ---
+# pipewire / pipewire-pulse / pipewire-alsa: O novo padrão de áudio do Linux.
+# wireplumber:					Gerenciador de sessões e políticas para o Pipewire.
+
+# --- Redes e Conectividade ---
+# iwd / wireless_tools / wpa_supplicant: Ferramentas e daemons para Wi-Fi.
+# openssh:						Protocolo para conexões remotas seguras.
+# wget:							Utilitário para download de arquivos via terminal.
+
+# --- Monitoramento e Editores ---
+# btop / htop:					Monitores de recursos e processos do sistema.
+# smartmontools:				Monitoramento de saúde de discos (SSD/HDD).
+# vim / nano:					Editores de texto para terminal (avançado e simples).
 
 # Ferramentas do sistema:
-# kernel-modules-hook: Um utilitário que automatiza a reconstrução de módulos do kernel após atualizações,
+# kernel-modules-hook:			Um utilitário que automatiza a reconstrução de módulos do kernel após atualizações,
 # garantindo que os módulos personalizados permaneçam compatíveis com o kernel em uso.
 
 # Gerenciador de exibição:
-# sddm: Simple Desktop Display Manager, um gerenciador de exibição moderno e leve
+# sddm:							Simple Desktop Display Manager, um gerenciador de exibição moderno e leve
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
@@ -71,9 +95,15 @@ sudo pacman --needed --noconfirm -S kernel-modules-hook
 sudo systemctl enable --now linux-modules-cleanup.service
 
 # Instalando Hyprland (Meta)
-sudo pacman --needed --noconfirm -Syyu hyprland dunst kitty wofi xdg-desktop-portal-hyprland qt5-wayland qt6-wayland polkit-kde-agent grim slurp hyprutils nwg-displays
-sudo pacman --needed --noconfirm -S btop htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-user-dirs xdg-utils
-sudo pacman --needed --noconfirm -S sddm
+sudo pacman -S --needed \
+    hyprland hyprutils uwsm wofi dunst nwg-displays \
+    kitty grim slurp \
+    xdg-desktop-portal-hyprland xdg-utils xdg-user-dirs \
+    qt5-wayland qt6-wayland polkit polkit-kde-agent \
+    pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
+    iwd wireless_tools wpa_supplicant openssh wget \
+    btop htop smartmontools vim nano \
+    sddm
 
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
