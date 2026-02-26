@@ -139,6 +139,8 @@ fi
 # Utilitários Recomendados:
 # hyprutils: Ferramentas adicionais para configuração e uso do Hyprland, um gerenciador de janelas Wayland.
 # nwg-displays: Interface gráfica para gerenciar monitores no Wayland, facilitando ajustes em setups com múltiplas telas.
+# Configurão manual do monitor: https://wiki.hypr.land/Configuring/Monitors/
+# Atalhos: https://wiki.hypr.land/Configuring/Keywords/
 
 # Teclado BR ABNT2
 # Hyprland
@@ -164,3 +166,5 @@ fi
 #     numlock_by_default = true
 #     mouse_refocus = false
 #     ...
+
+# Tem que ter o "chaotic-aur/pinta" instalado para editar o Screenshot
