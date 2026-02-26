@@ -93,8 +93,8 @@ if pacman -Qqs hyprland ; then
 	git clone --depth 1 https://github.com/HyDE-Project/HyDE "$HOME"/HyDE
 	touch "$HOME"/.hidden
 	grep 'HyDE' "$HOME"/.hidden || echo 'HyDE' >> "$HOME"/.hidden
-	cd "$HOME"/HyDE/Scripts || exit 1
-	cp -f "$HOME"/HyDE/Scripts/pkg_extra.lst "$HOME"/HyDE/Scripts/pkg_user.lst
+	cd -v "$HOME"/HyDE/Scripts || exit 1
+	cp -fv "$HOME"/HyDE/Scripts/pkg_extra.lst "$HOME"/HyDE/Scripts/pkg_user.lst
 
     # Ativar instalação do Lutris
     sed -i '/^# lutris$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
