@@ -34,7 +34,7 @@ main() {
 			cd"$HOME/HyDE/Scripts" || exit 1
 			./install.sh -r pkg_user.lst
 			else
-			cd"$HOME/HyDE/Scripts" || exit 1
+			cd "$HOME/HyDE/Scripts" || exit 1
 			./install.sh pkg_user.lst
 			fi
             ;;
