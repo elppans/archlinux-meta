@@ -105,6 +105,13 @@ if pacman -Qqs hyprland ; then
     # Ativar instalação de aplicativos específicos em Flatpak
     sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
 
+# Outros aplicativos Arch
+grep -q anyrun || echo -e '\nanyrun\n' | tee -a "$HOME"/HyDE/Scripts/pkg_user.lst
+# shellcheck disable=SC2154,SC2016
+sed -i 's/\$menu =.*/$menu = anyrun/' "$HOME/.config/hypr/hyprland.conf"
+# O Anyrun procura os plugins em /usr/lib/anyrun/ ou ~/.config/anyrun/plugins
+mkdir -p "$HOME/.config/anyrun/plugins"
+
     # Ferramenta de linha de comando que permite exibir sprites de Pokémon em cores diretamente no seu terminal
 	# Desativar Pokémon no ZSH
 	sed -i '/pokego/ s/^/# /' "$HOME"/HyDE/Configs/.hyde.zshrc
@@ -148,11 +155,34 @@ fi
 
 
 # cat "$HOME"/dotfiles/.config/hypr/conf/keyboard.conf
+# No HyDE, para configurar o teclado, deve configurar em outro o arquivo:
+# Local de configuração: "~/.config/hypr/hyprland.conf"
+# Sessão: "INPUT"
+# Linhas 206 a 216
 #     ...
 #     kb_layout = br
 #     kb_variant = abnt2
 #     kb_model = pc104
 #     kb_options =
 #     numlock_by_default = true
-#     mouse_refocus = false
+#     # mouse_refocus = false
 #     ...
+
+# **Menu**
+# O Script não está instalando o hyprlauncher
+# Ao instalar, se depara com erro de "Segmentation fault"
+# Uma alternativa e que combina MUITO com o HyDE é o "Anyrun", um Launcher moderno e bonito.
+# O nome do pacote é "anyrun"
+# Local de configuração: "~/.config/hypr/hyprland.conf", seção "MY PROGRAMS", variável "menu":
+# Sessão: "MY PROGRAMS", variável "menu" (Não remova o "$" da frente):
+# $menu = anyrun
+# configurado para instalar via "pkg_user.lst"
+
+# **Configuração do monitor**
+# Comando para verificar, equivalente ao xrandr:
+# hyprctl monitors all
+# Local de configuração: "~/.config/hypr/hyprland.conf"
+# Sessão: "MONITORS"
+# Deve configurar a variável monitor como este modelo. Exatamente como aparece na resposta do comando anterior:
+# monitor = Virtual-1, 1920x1080@60.00Hz, auto, auto
+# Mais informações: https://wiki.hypr.land/Configuring/Monitors/
