@@ -186,3 +186,7 @@ fi
 # Deve configurar a variável monitor como este modelo. Exatamente como aparece na resposta do comando anterior:
 # monitor = Virtual-1, 1920x1080@60.00Hz, auto, auto
 # Mais informações: https://wiki.hypr.land/Configuring/Monitors/
+
+# **Arquivos configurados até o momento**
+# Ficara anotado, para poder criar um "dotfiles" depois.
+# "~/.config/hypr/hyprland.conf"
