@@ -117,7 +117,7 @@ if pacman -Qqs hyprland ; then
     sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
 
 # Outros aplicativos Arch
-grep -q anyrun || echo -e '\nanyrun\n' | tee -a "$HOME"/HyDE/Scripts/pkg_user.lst
+pacman -Qqs anyrun || echo -e '\nanyrun\n' | tee -a "$HOME"/HyDE/Scripts/pkg_user.lst
 # shellcheck disable=SC2154,SC2016
 sed -i 's/\$menu =.*/$menu = anyrun/' "$HOME/.config/hypr/hyprland.conf"
 # O Anyrun procura os plugins em /usr/lib/anyrun/ ou ~/.config/anyrun/plugins
