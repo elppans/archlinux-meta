@@ -38,7 +38,7 @@ main() {
 cd "$install"/helper/ || exit 1
 ./multilib-check.sh
 ./helper_install.sh
-./chaotic-aur.sh
+pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
 cd "$install" || exit 1
 cd "$install"/pacotes/ || exit 1
 ./detect-vm.sh
@@ -136,6 +136,16 @@ mkdir -p "$HOME/.config/anyrun/plugins"
 
     # Preferências de usuário
     # echo -e 'parametros' | tee -a "$HOME"/HyDE/Configs/.config/hypr/userprefs.conf >>/dev/null
+
+	# Weather indicator for Waybar
+	# A instalação deste pacote dá erro no Script, 
+	# então foi construido instalação manual via makepkg
+	mkdir -p "$HOME/build"
+	rm -rf "$HOME/build/wttrbar" &>>/dev/null
+	git clone https://aur.archlinux.org/wttrbar.git "$HOME/build/wttrbar"
+	cd "$HOME/build/wttrbar" || exit 1
+	makepkg -Cris -L --needed --noconfirm
+	cd "$install" || exit 1
 
 	# Escolher uma opçao, Instalar o tema HyprDE apenas ou com aplicativos preferenciais
 	main
