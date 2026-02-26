@@ -21,17 +21,17 @@ main() {
         1)
             # Instalar o tema HyprDE
 			if [ "$HyDEUPD" == "1" ]; then
-			cd"$HOME/HyDE/Scripts" || exit 1
+			cd "$HOME/HyDE/Scripts" || exit 1
 			./install.sh -r
 			else
-			cd"$HOME/HyDE/Scripts" || exit 1
+			cd "$HOME/HyDE/Scripts" || exit 1
 			./install.sh
 			fi
             ;;
         2)
             # Instalar o tema HyprDE com aplicativos preferenciais
 			if [ "$HyDEUPD" == "1" ]; then
-			cd"$HOME/HyDE/Scripts" || exit 1
+			cd "$HOME/HyDE/Scripts" || exit 1
 			./install.sh -r pkg_user.lst
 			else
 			cd "$HOME/HyDE/Scripts" || exit 1
