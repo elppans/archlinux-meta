@@ -20,11 +20,23 @@ main() {
     case $choice in
         1)
             # Instalar o tema HyprDE
+			if [ "$HyDEUPD" == "1" ]; then
+			cd"$HOME/HyDE/Scripts" || exit 1
+			./install.sh -r
+			else
+			cd"$HOME/HyDE/Scripts" || exit 1
 			./install.sh
+			fi
             ;;
         2)
             # Instalar o tema HyprDE com aplicativos preferenciais
+			if [ "$HyDEUPD" == "1" ]; then
+			cd"$HOME/HyDE/Scripts" || exit 1
+			./install.sh -r pkg_user.lst
+			else
+			cd"$HOME/HyDE/Scripts" || exit 1
 			./install.sh pkg_user.lst
+			fi
             ;;
         *)
             echo "Escolha uma das opções!"
@@ -34,22 +46,32 @@ main() {
     esac
 }
 
-# Verificação do repositório MULTILIB
-cd "$install"/helper/ || exit 1
-./multilib-check.sh
-./helper_install.sh
-pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
-cd "$install" || exit 1
+detectar_vm() {
 cd "$install"/pacotes/ || exit 1
 ./detect-vm.sh
 cd "$install" || exit 1
+}
+
+verificar_repositorios() {
+# Verificação do repositório MULTILIB
+cd "$install"/helper/ || exit 1
+./multilib-check.sh
+# Verificação do repositório CHAOTIC-AUR
+pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
+cd "$install" || exit 1
+
+}
 
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
         echo "O 'yay' está instalado!"
+		HELPER="yay"
+		export HELPER
     elif command -v paru &> /dev/null; then
         echo "O 'paru' está instalado!"
+		HELPER="paru"
+		export HELPER
     else
         escolher_helper
     fi
@@ -67,11 +89,15 @@ escolher_helper() {
             echo "Instalando yay..."
             cd "$install"/helper/ || exit 1
             bash pacote-helper-yay.sh
+			HELPER="yay"
+			export HELPER
             ;;
         2)
             echo "Instalando paru..."
             cd "$install"/helper/ || exit 1
             bash pacote-helper-paru.sh
+			HELPER="paru"
+			export HELPER
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
@@ -81,21 +107,63 @@ escolher_helper() {
 }
 
 if pacman -Qqs hyprland ; then
+	# **PACOTES**
+
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
+
     # Utilitários Recomendados (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty uwsm
-    chmod +x bin/*
-    sudo cp -a bin/* /usr/local/bin
+    chmod +x "$install"/bin/*
+    sudo cp -a "$install"/bin/* /usr/local/bin
+
+	# Verificar se a máquina é virtual e instalar pacotes se necessário
+	detectar_vm
+
+	# Verificar repositórios
+	verificar_repositorios
+
     # Verificando Helper e instalando, caso necessário
     verificar_helper
-	# The HyDE Dotfiles for Hyprland
+
+	# Alguns pacotes que o HyDE deveria baixar mas não baixa
+	"$HELPER" --needed --noconfirm -Sy electron libinput-gestures mangohud swaylock-effects
+
+	# Pacote para menu Anyrun, Para usar no lugar do "hyprlauncher"
+	"$HELPER" --needed --noconfirm -Sy anyrun
+
+	# Weather indicator for Waybar
+	# A instalação deste pacote dá erro no Script, 
+	# então foi construido instalação manual via makepkg
+	if ! pacman -Qqs wttrbar ; then
+	mkdir -p "$HOME/build"
+	rm -rf "$HOME/build/wttrbar" &>>/dev/null
+	cd "$HOME/build" || exit 1
+	git clone https://aur.archlinux.org/wttrbar.git
+	cd "$HOME/build/wttrbar" || exit 1
+	makepkg -Cris -L --needed --noconfirm
+	cd "$install" || exit 1
+	fi
+
+	# **The HyDE Dotfiles for Hyprland**
+	if [ -d "$HOME/HyDE" ]; then
+		cd "$HOME"/HyDE || exit 1
+		git restore .
+		git pull
+		HyDEUPD="1"
+		export HyDEUPD
+	else
 	git clone --depth 1 https://github.com/HyDE-Project/HyDE "$HOME"/HyDE
 	touch "$HOME"/.hidden
 	grep 'HyDE' "$HOME"/.hidden || echo 'HyDE' >> "$HOME"/.hidden
 	cd "$HOME"/HyDE/Scripts || exit 1
 	pwd
 	cp -fv "$HOME"/HyDE/Scripts/pkg_extra.lst "$HOME"/HyDE/Scripts/pkg_user.lst
+		HyDEUPD="0"
+		export HyDEUPD
+	fi
+
+	# **CUSTOMIZAÇÃO**
 
     # Ativar instalação do Lutris
     sed -i '/^# lutris$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
@@ -114,14 +182,13 @@ if pacman -Qqs hyprland ; then
     # sed -i '/org.gnome.eog/ s/^/# /' "$HOME"/HyDE/Scripts/extra/custom_flat.lst							# Olho do GNOME - Navegue e gire imagens
 
     # Ativar instalação de aplicativos específicos em Flatpak
-    sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/pkg_user.lst
+    sed -i '/^# com.discordapp.Discord$/s/^ //' "$HOME"/HyDE/Scripts/extra/custom_flat.lst
 
-# Outros aplicativos Arch
-pacman -Qqs anyrun || echo -e '\nanyrun\n' >> "$HOME"/HyDE/Scripts/pkg_user.lst
-# shellcheck disable=SC2154,SC2016
-sed -i 's/\$menu =.*/$menu = anyrun/' "$HOME/.config/hypr/hyprland.conf"
-# O Anyrun procura os plugins em /usr/lib/anyrun/ ou ~/.config/anyrun/plugins
-mkdir -p "$HOME/.config/anyrun/plugins"
+	# Outros aplicativos Arch, Anyrun
+	# shellcheck disable=SC2154,SC2016
+	sed -i 's/\$menu =.*/$menu = anyrun/' "$HOME/.config/hypr/hyprland.conf"
+	# O Anyrun procura os plugins em /usr/lib/anyrun/ ou ~/.config/anyrun/plugins
+	mkdir -p "$HOME/.config/anyrun/plugins"
 
     # Ferramenta de linha de comando que permite exibir sprites de Pokémon em cores diretamente no seu terminal
 	# Desativar Pokémon no ZSH
@@ -136,16 +203,6 @@ mkdir -p "$HOME/.config/anyrun/plugins"
 
     # Preferências de usuário
     # echo -e 'parametros' | tee -a "$HOME"/HyDE/Configs/.config/hypr/userprefs.conf >>/dev/null
-
-	# Weather indicator for Waybar
-	# A instalação deste pacote dá erro no Script, 
-	# então foi construido instalação manual via makepkg
-	mkdir -p "$HOME/build"
-	rm -rf "$HOME/build/wttrbar" &>>/dev/null
-	git clone https://aur.archlinux.org/wttrbar.git "$HOME/build/wttrbar"
-	cd "$HOME/build/wttrbar" || exit 1
-	makepkg -Cris -L --needed --noconfirm
-	cd "$install" || exit 1
 
 	# Escolher uma opçao, Instalar o tema HyprDE apenas ou com aplicativos preferenciais
 	main

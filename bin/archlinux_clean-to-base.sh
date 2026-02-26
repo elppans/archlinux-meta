@@ -5,13 +5,30 @@
 if [ "$EUID" -eq 0 ]; then
     echo "Erro: Este script não deve ser executado como superusuário (root)."
     echo "Por favor, execute como um usuário normal."
+	echo "Quando necessário, será pedido a senha administrativa!"
     exit 1
 fi
+
+bindir="$(pwd)"
+export bindir
 
 # Define variáveis
 USER_REAL="$USER"
 HOME_REAL="$HOME"
 BKP_NAME="$HOME_REAL.BKP_$(date +%Y%m%d_%H%M)"
+
+# Verificação do repositório CHAOTIC-AUR
+# Se estiver ativo, o Script não reinstala o base-devel e o grub
+if [ -d "$bindir/../helper" ]; then
+	echo "Verificando se o repositório chaotic-aur está ativo..."
+	sleep 3
+	if pacman -Qqs chaotic-mirrorlist ;then
+		cd "$bindir/../helper" || exit 1
+		chmod +x chaotic-aur.sh
+		./chaotic-aur.sh
+		cd "$bindir" || exit 1
+	fi
+fi
 
 echo "Iniciando reset do ambiente de usuário para: $USER_REAL"
 sleep 3

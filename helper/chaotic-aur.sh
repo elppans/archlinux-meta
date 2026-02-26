@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Verifica se o script está sendo executado como root
+if [ "$EUID" -eq 0 ]; then
+    echo "Erro: Este script não deve ser executado como superusuário (root)."
+    echo "Por favor, execute como um usuário normal."
+	echo "Quando necessário, será pedido a senha administrativa!"
+    exit 1
+fi
+
 # Cores
 VERDE="\033[0;32m"
 VERMELHO="\033[0;31m"
