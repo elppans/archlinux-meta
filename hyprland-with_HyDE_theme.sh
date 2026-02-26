@@ -4,6 +4,7 @@
 if [ "$EUID" -eq 0 ]; then
     echo "Erro: Este script não deve ser executado como superusuário (root)."
     echo "Por favor, execute como um usuário normal."
+	echo "Quando necessário, será pedido a senha administrativa!"
     exit 1
 fi
 

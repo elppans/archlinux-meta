@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.ml4w.com/
+# https://ml4w.com/os/
 # https://github.com/mylinuxforwork/dotfiles/wiki
 # https://github.com/mylinuxforwork/dotfiles?tab=readme-ov-file
 # https://github.com/mylinuxforwork/dotfiles/wiki/Installation
@@ -10,6 +12,7 @@
 if [ "$EUID" -eq 0 ]; then
     echo "Erro: Este script não deve ser executado como superusuário (root)."
     echo "Por favor, execute como um usuário normal."
+	echo "Quando necessário, será pedido a senha administrativa!"
     exit 1
 fi
 
@@ -17,12 +20,32 @@ locdir="$(pwd)"
 install="$locdir"
 export install
 
+detectar_vm() {
+cd "$install"/pacotes/ || exit 1
+./detect-vm.sh
+cd "$install" || exit 1
+}
+
+verificar_repositorios() {
+# Verificação do repositório MULTILIB
+cd "$install"/helper/ || exit 1
+./multilib-check.sh
+# Verificação do repositório CHAOTIC-AUR
+pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
+cd "$install" || exit 1
+
+}
+
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
         echo "O 'yay' está instalado!"
+		HELPER="yay"
+		export HELPER
     elif command -v paru &> /dev/null; then
         echo "O 'paru' está instalado!"
+		HELPER="paru"
+		export HELPER
     else
         escolher_helper
     fi
@@ -40,11 +63,15 @@ escolher_helper() {
             echo "Instalando yay..."
             cd "$install"/helper/ || exit 1
             bash pacote-helper-yay.sh
+			HELPER="yay"
+			export HELPER
             ;;
         2)
             echo "Instalando paru..."
             cd "$install"/helper/ || exit 1
             bash pacote-helper-paru.sh
+			HELPER="paru"
+			export HELPER
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
@@ -54,31 +81,53 @@ escolher_helper() {
 }
 
 if pacman -Qqs hyprland ; then
+	# **PACOTES**
+
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S git base-devel
     # Utilitários Recomendados (Garantindo que estejam instalados)
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
+	# Verificar se a máquina é virtual e instalar pacotes se necessário
+	detectar_vm
+	# Verificar repositórios
+	verificar_repositorios
     # Verificando Helper e instalando, caso necessário
     verificar_helper
-    # The ML4W Dotfiles for Hyprland
-    git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
-    touch "$HOME"/.hidden
-	grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
-    cd "$HOME"/ml4w-hyprland || exit 1
-    makepkg --needed --noconfirm -Cris
-    # Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
-    sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
-    ml4w-hyprland-setup
-    # Adicionando configurações customzadas
-    tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-    cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
-    chmod +x "$install"/bin/*
-    sudo cp -a "$install"/bin/* /usr/local/bin
-    # Reativando as permissoes do script do ML4W
-    sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    echo -e "\nReinicie o computador para que as configurações surtam efeito!\n\n"
+
+    # **The ML4W Dotfiles for Hyprland**
+
+    # git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
+    # touch "$HOME"/.hidden
+	# grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
+    # cd "$HOME"/ml4w-hyprland || exit 1
+    # makepkg --needed --noconfirm -Cris
+    
+	# Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
+    # sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    # sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
+    # ml4w-hyprland-setup
+
+	# Baixa a lista de dependências oficiais e armazena em uma variável
+	mapfile -t PACKAGES < <(curl -fsSL https://raw.githubusercontent.com/mylinuxforwork/dotfiles/refs/heads/main/setup/dependencies/packages-arch | sed '/^#/d')
+
+	# Executa o instalador Helper usando o array de forma segura
+	"$HELPER" -Sy --needed "${PACKAGES[@]}"
+
+	# Instalar o ML4W versão Stable pelo link oficial
+    bash <(curl -s https://ml4w.com/os/stable)
+
+	# **CUSTOMIZAÇÃO**
+
+	# Adicionando configurações customzadas
+    # tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
+    # cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
+    # chmod +x "$install"/bin/*
+    # sudo cp -a "$install"/bin/* /usr/local/bin
+    
+	# Reativando as permissoes do script do ML4W
+    # sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    # sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+    # echo -e "\nReinicie o computador para que as configurações surtam efeito!\n\n"
 else
 	echo "Deve instalar a base Hyprland primeiro!"
 	exit 1
