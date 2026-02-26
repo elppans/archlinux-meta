@@ -24,8 +24,8 @@ if [ -d "$bindir/../helper" ]; then
 	sleep 3
 	if pacman -Qqs chaotic-mirrorlist ;then
 		cd "$bindir/../helper" || exit 1
-		chmod +x chaotic-aur.sh
-		./chaotic-aur.sh
+		chmod +x chaotic-aur-remove.sh
+		./chaotic-aur-remove.sh
 		cd "$bindir" || exit 1
 	fi
 fi
