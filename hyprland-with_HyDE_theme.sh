@@ -34,6 +34,16 @@ main() {
     esac
 }
 
+# Verificação do repositório MULTILIB
+cd "$install"/helper/ || exit 1
+./multilib-check.sh
+./helper_install.sh
+./chaotic-aur.sh
+cd "$install" || exit 1
+cd "$install"/pacotes/ || exit 1
+./detect-vm.sh
+cd "$install" || exit 1
+
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
