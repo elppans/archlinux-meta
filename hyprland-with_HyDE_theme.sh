@@ -125,7 +125,7 @@ mkdir -p "$HOME/.config/anyrun/plugins"
 
     # Ferramenta de linha de comando que permite exibir sprites de Pokémon em cores diretamente no seu terminal
 	# Desativar Pokémon no ZSH
-	sed -i '/pokego/ s/^/# /' "$HOME"/HyDE/Configs/.hyde.zshrc
+	# sed -i '/pokego/ s/^/# /' "$HOME"/HyDE/Configs/.hyde.zshrc
 
     # Habilitar Boost do volume
     sed -i '/VOLUME_BOOST:/ s/false/true/' "$HOME"/HyDE/Configs/.local/lib/hyde/volumecontrol.sh
