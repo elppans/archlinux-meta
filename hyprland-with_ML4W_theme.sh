@@ -96,6 +96,14 @@ if pacman -Qqs hyprland ; then
     # Verificando Helper e instalando, caso necessário
     verificar_helper
 
+	# Se p SDDM estiver ruim com GDM (Lembrar de mudar na engrenagem para "Hyprland UWSM")
+	# Ativação do Display manager (Gerenciador de Login)
+	# sudo pacman --needed --noconfirm -S gdm
+	# shellcheck disable=SC2046
+	# sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
+	# systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
+	# systemctl is-enabled gdm.service || sudo systemctl enable gdm.service
+
     # **The ML4W Dotfiles for Hyprland**
 
     # git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
@@ -125,11 +133,19 @@ if pacman -Qqs hyprland ; then
     # cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
     # chmod +x "$install"/bin/*
     # sudo cp -a "$install"/bin/* /usr/local/bin
-    
+	cd "$install/config" || exit 1
+	./ml4w_config_install.sh
+	./ml4w_hyde_bin_install.sh
+	cd "$install" || exit 1
+
 	# Reativando as permissoes do script do ML4W
     # sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
     # sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    # echo -e "\nReinicie o computador para que as configurações surtam efeito!\n\n"
+
+
+	echo "Finalizado a Instalação..."
+    echo "Reinicie o computador para que as configurações surtam efeito!"
+	exit 0
 else
 	echo "Deve instalar a base Hyprland primeiro!"
 	exit 1
