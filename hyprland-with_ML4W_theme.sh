@@ -7,6 +7,8 @@
 # https://github.com/mylinuxforwork/dotfiles/wiki/Installation
 # https://github.com/mylinuxforwork/dotfiles/wiki/Troubleshooting
 # https://github.com/mylinuxforwork/dotfiles/wiki/Monitor-Configuration
+# https://wiki.hypr.land/Configuring/Monitors/
+# https://wiki.hypr.land/Configuring/Keywords/
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
@@ -133,14 +135,16 @@ else
 	exit 1
 fi
 
-# Se não quiser usar o Dock, crie este arquivo:
+# **Dock INFERIOR**
+# Se não quiser usar o Dock (Da parte inferior da tela), crie este arquivo:
 # touch $HOME/.config/ml4w/settings/dock-disabled
+# Se quiser que ele fique no modo auto-ocultar, crie este arquivo:
+# touch $HOME/.config/ml4w/settings/dock-autohide
 
-# Utilitários Recomendados:
+# **Utilitários Recomendados**
 # hyprutils: Ferramentas adicionais para configuração e uso do Hyprland, um gerenciador de janelas Wayland.
 # nwg-displays: Interface gráfica para gerenciar monitores no Wayland, facilitando ajustes em setups com múltiplas telas.
-# Configurão manual do monitor: https://wiki.hypr.land/Configuring/Monitors/
-# Atalhos: https://wiki.hypr.land/Configuring/Keywords/
+# pinta: Editor de imagens simples escrito em Gtk# para desenho e pintura. Necessário para edição do ScreenShot
 
 # Teclado BR ABNT2
 # Hyprland
@@ -167,4 +171,3 @@ fi
 #     mouse_refocus = false
 #     ...
 
-# Tem que ter o "chaotic-aur/pinta" instalado para editar o Screenshot
