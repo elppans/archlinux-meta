@@ -1,9 +1,10 @@
 #!/bin/bash
+# shellcheck disable=all
 #
 # https://github.com/uiriansan/SilentSDDM
 
-Para testar temas do pacote SilentSDDM, deve ir no diretório "/usr/share/sddm/themes/silent/" e executar o Script "test.sh"
-Para mudar o tema, deve editar o arquivo "metadata.desktop", escolher a linha com "ConfigFile=", descomentar e comentar o atual.
+# Para testar temas do pacote SilentSDDM, deve ir no diretório "/usr/share/sddm/themes/silent/" e executar o Script "test.sh"
+# Para mudar o tema, deve editar o arquivo "metadata.desktop", escolher a linha com "ConfigFile=", descomentar e comentar o atual.
 
 sudo pacman -Sy --needed sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg
 mkdir -p "$HOME/build"
@@ -25,6 +26,7 @@ echo -e '# Make sure these options are correct:
 
     [Theme]
     Current=silent' | sudo tee /etc/sddm.conf
+
 
 echo -e '#!/bin/bash
 
@@ -69,6 +71,7 @@ grep "^[[:space:]]*ConfigFile=" "$FILE"
 grep sddm /etc/group || sudo groupadd sddm
 groups $USER | grep -q '\bsddm\b' || sudo usermod -aG sddm $USER
 sudo chgrp sddm /usr/share/sddm/themes/silent
+sudo chmod 0755 /usr/share/sddm/themes/silent
 sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
 sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
 sudo chmod +x /etc/profile.d/silent-sddm-switch_theme.sh
