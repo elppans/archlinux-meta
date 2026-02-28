@@ -24,8 +24,8 @@ cd "$HOME/build/vscodeum" || exit 1
 makepkg -Cris
 
 if pacman -Qqs sddm-silent-theme ; then
-	mkdir -p "$HOME/build/silent-sddm-customizer"
-	wget -O "$HOME/build/silent-sddm-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/silent-sddm-customizer/refs/heads/main/PKGBUILD"
-	cd "$HOME/build/silent-sddm-customizer" || exit 1
+	mkdir -p "$HOME/build/sddm-silent-customizer"
+	wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD"
+	cd "$HOME/build/sddm-silent-customizer" || exit 1
 	makepkg -Cris
 fi
