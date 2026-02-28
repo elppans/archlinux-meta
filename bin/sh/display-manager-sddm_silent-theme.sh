@@ -67,6 +67,7 @@ grep "^[[:space:]]*ConfigFile=" "$FILE"
 ' | sudo tee /etc/profile.d/silent-sddm-switch_theme.sh
 
 grep sddm /etc/group || sudo groupadd sddm
+groups $USER | grep -q '\bsddm\b' || sudo usermod -aG sddm $USER
 sudo chgrp sddm /usr/share/sddm/themes/silent
 sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
 sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
