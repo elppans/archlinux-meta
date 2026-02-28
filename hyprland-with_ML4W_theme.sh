@@ -188,6 +188,12 @@ if pacman -Qqs hyprland ; then
 	./ml4w_hyde_bin_install.sh
 	cd "$install" || exit 1
 
+	# Definir volume máximo para 150% via atalho FN
+	# KEYBINCONF="$HOME/.mydotfiles/com.ml4w.dotfiles.stable/.config/hypr/conf/keybindings/default.conf"
+	KEYBINCONF="$HOME/.config/hypr/conf/keybindings/default.conf"
+	cp -a "$KEYBINCONF" "$KEYBINCONF".backup_"$(date +%Y%m%d%H%M%S)" || exit 1
+	grep -q 'wpctl set-volume -l 1.5' "$KEYBINCONF" || sed -i 's/wpctl set-volume -l 1/wpctl set-volume -l 1.5/' "$KEYBINCONF"
+
 	# Reativando as permissoes do script do ML4W
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
