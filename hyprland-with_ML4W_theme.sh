@@ -97,6 +97,7 @@ if pacman -Qqs hyprland ; then
     verificar_helper
 
 	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
+	# Mais informações: https://github.com/uiriansan/SilentSDDM
 	# Ativação do Display manager (Gerenciador de Login)
 	"$HELPER" -Sy --needed --noconfirm -S sddm-silent-theme
 	# shellcheck disable=SC2046
