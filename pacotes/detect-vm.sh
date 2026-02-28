@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remover pacotes virt*
+# sudo pacman -Rsunc $(pacman -Qqs | grep ^virt) ; sudo paclean ; sudo pacman -Syyu
+
 # Função para detectar se o sistema está em uma VM
 detect_vm() {
     # Verifica se o comando systemd-detect-virt existe

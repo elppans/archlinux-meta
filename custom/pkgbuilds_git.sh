@@ -1,4 +1,6 @@
 #!/bin/bash
+# Remover pacotes virt*
+# sudo pacman -Rsunc $(pacman -Qqs | grep ^virt) ; sudo paclean ; sudo pacman -Syyu
 
 # mkdir -p "$HOME"/build/{bridge-nm,paclean,virt-qmod,virt-gmod,vscodeum}
 mkdir -p "$HOME"/build/{bridge-nm,virt-qmod,virt-gmod}
