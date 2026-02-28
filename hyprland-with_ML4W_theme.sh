@@ -237,3 +237,8 @@ fi
 #     mouse_refocus = false
 #     ...
 
+# **MONITOR*
+#
+# Após a instalação em VM QEMU, copiar o arquivo monitor.conf virtual o substituindo
+# Exemplo
+# cp -av "$HOME"/.config/hypr/monitors_qemu_Virtual-1.txt "$HOME"/.config/hypr/monitors.conf
