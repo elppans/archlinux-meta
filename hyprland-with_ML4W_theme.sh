@@ -96,13 +96,21 @@ if pacman -Qqs hyprland ; then
     # Verificando Helper e instalando, caso necessário
     verificar_helper
 
-	# Se p SDDM estiver ruim com GDM (Lembrar de mudar na engrenagem para "Hyprland UWSM")
+	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
 	# Ativação do Display manager (Gerenciador de Login)
-	# sudo pacman --needed --noconfirm -S gdm
+	"$HELPER" -Sy --needed --noconfirm -S sddm-silent-theme
 	# shellcheck disable=SC2046
-	# sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
-	# systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
-	# systemctl is-enabled gdm.service || sudo systemctl enable gdm.service
+	sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
+	systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
+	systemctl is-enabled gdm.service || sudo systemctl enable gdm.service
+
+	# Script para usar com "SDDM-Silent-Theme"
+	if pacman -Qqs sddm-silent-theme ; then
+		mkdir -p "$HOME/build/silent-sddm-customizer"
+		wget -O "$HOME/build/silent-sddm-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/silent-sddm-customizer/refs/heads/main/PKGBUILD"
+		cd "$HOME/build/silent-sddm-customizer" || exit 1
+		makepkg -Cris || exit 1
+	fi
 
     # **The ML4W Dotfiles for Hyprland**
 
