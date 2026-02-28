@@ -83,99 +83,118 @@ escolher_helper() {
 }
 
 if pacman -Qqs hyprland ; then
+	echo "Hyprland instalado, continuando operação..."
+	sleep 5
 	# **PACOTES**
 
     # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
+	echo "Garantindo que pacotes essenciais estejam instalados..."
+	sleep 5
     sudo pacman --needed --noconfirm -S git base-devel
     # Utilitários Recomendados (Garantindo que estejam instalados)
+	echo "Garantindo que pacotes recomendados estejam instalados..."
+	sleep 5
     sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
 	# Verificar se a máquina é virtual e instalar pacotes se necessário
+	echo "Verificando se o Host é real ou virtual..."
+	sleep 5
 	detectar_vm
 	# Verificar repositórios
+	echo "Verificando repositórios existentes..."
+	sleep 5
 	verificar_repositorios
-    # Verificando Helper e instalando, caso necessário
-    verificar_helper
+	# Verificando Helper e instalando, caso necessário
+	echo "Verificando Helper..."
+	sleep 5
+	verificar_helper
 
 	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
 	# Mais informações: https://github.com/uiriansan/SilentSDDM
 	# Ativação do Display manager (Gerenciador de Login)
-	"$HELPER" -Sy --needed --noconfirm -S sddm-silent-theme || exit 1
-	
+	echo "Instalando tema para SDDM..."
+	sleep 5
+	"$HELPER" -Sy --needed --noconfirm sddm-silent-theme || exit 1
 	if [ -f /etc/sddm.conf ]; then
 		cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
 		echo -e "# Make sure these options are correct:
-    [General]
-    InputMethod=qtvirtualkeyboard
-    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+	[General]
+    	InputMethod=qtvirtualkeyboard
+    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
-    [Theme]
-    Current=silent
+    	[Theme]
+    	Current=silent
 	" | sudo tee /etc/sddm.conf
 	else
 	echo -e "# Make sure these options are correct:
-    [General]
-    InputMethod=qtvirtualkeyboard
-    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+    	[General]
+    	InputMethod=qtvirtualkeyboard
+    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
-    [Theme]
-    Current=silent
-	" | sudo tee /etc/sddm.conf
+    	[Theme]
+    	Current=silent
+	" | sudo tee /etc/sddm.conf &>>/dev/null
 	fi
-
 	# shellcheck disable=SC2046
 	sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
 	systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
 	systemctl is-enabled sddm.service || sudo systemctl enable sddm.service
 
 	# Script para usar com "SDDM-Silent-Theme"
-if pacman -Qqs sddm-silent-theme ; then
-	mkdir -p "$HOME/build/sddm-silent-customizer"
-	wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
-	cd "$HOME/build/sddm-silent-customizer" || exit 1
-	makepkg -Cris || exit 1
-fi
+	if pacman -Qqs sddm-silent-theme ; then
+		mkdir -p "$HOME/build/sddm-silent-customizer"
+		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
+		cd "$HOME/build/sddm-silent-customizer" || exit 1
+		makepkg -Cris || exit 1
+	fi
 
-    # **The ML4W Dotfiles for Hyprland**
+	# **The ML4W Dotfiles for Hyprland**
+	echo "Iniciando instalação do ML4W Dotfiles para Hyperland..."
+	sleep 5
 
-    # git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
-    # touch "$HOME"/.hidden
+	# git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
+	# touch "$HOME"/.hidden
 	# grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
-    # cd "$HOME"/ml4w-hyprland || exit 1
-    # makepkg --needed --noconfirm -Cris
+	# cd "$HOME"/ml4w-hyprland || exit 1
+	# makepkg --needed --noconfirm -Cris
     
-	# Garantindo que o instalador finalize sem reiniciar, para adicionar as customizações
-    # sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    # sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
-    # ml4w-hyprland-setup
+	# Garantindo que o instalador finalize sem reiniciar, para adicionar as customiza\C3\A7\C3\B5es
+	# sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
+	# ml4w-hyprland-setup
 
-	# Baixa a lista de dependências oficiais e armazena em uma variável
+	# Baixa a lista de dependências oficiais e armazena em uma variá1vel
+	echo "Baixando lista de dependências oficial do github e instalando pacotes..."
+	sleep 5
 	mapfile -t PACKAGES < <(curl -fsSL https://raw.githubusercontent.com/mylinuxforwork/dotfiles/refs/heads/main/setup/dependencies/packages-arch | sed '/^#/d')
 
 	# Executa o instalador Helper usando o array de forma segura
 	"$HELPER" -Sy --needed "${PACKAGES[@]}"
 
 	# Instalar o ML4W versão Stable pelo link oficial
-    bash <(curl -s https://ml4w.com/os/stable)
+	echo "Instalando ML4W versão Stable pelo link oficial..."
+	sleep 5
+	bash <(curl -s https://ml4w.com/os/stable)
 
 	# **CUSTOMIZAÇÃO**
 
-	# Adicionando configurações customzadas
-    # tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-    # cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
-    # chmod +x "$install"/bin/*
-    # sudo cp -a "$install"/bin/* /usr/local/bin
+	echo "Adicionando configurações customzadas..."
+	sleep 5
+	# tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
+	# cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
+	# chmod +x "$install"/bin/*
+	# sudo cp -a "$install"/bin/* /usr/local/bin
 	cd "$install/config" || exit 1
 	./ml4w_config_install.sh
 	./ml4w_hyde_bin_install.sh
 	cd "$install" || exit 1
 
 	# Reativando as permissoes do script do ML4W
-    # sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-    # sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 
 
-	echo "Finalizado a Instalação..."
-    echo "Reinicie o computador para que as configurações surtam efeito!"
+	echo "Instalação finalizada..."
+	echo "Reinicie o computador para que as configurações surtam efeito!"
 	exit 0
 else
 	echo "Deve instalar a base Hyprland primeiro!"
