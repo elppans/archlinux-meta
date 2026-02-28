@@ -1,5 +1,7 @@
 #!/bin/bash
 # shellcheck disable=SC2010,SC2027,SC2046,SC2002,SC2016,SC2086,SC2317,SC1091
+#
+# Script "gnome-shell-extensions_manager.sh" está dando erro em tty, então foi desativado.
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
