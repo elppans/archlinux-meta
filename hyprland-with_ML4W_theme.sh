@@ -100,6 +100,28 @@ if pacman -Qqs hyprland ; then
 	# Mais informações: https://github.com/uiriansan/SilentSDDM
 	# Ativação do Display manager (Gerenciador de Login)
 	"$HELPER" -Sy --needed --noconfirm -S sddm-silent-theme || exit 1
+	
+	if [ -f /etc/sddm.conf ]; then
+		cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
+		echo -e "# Make sure these options are correct:
+    [General]
+    InputMethod=qtvirtualkeyboard
+    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+
+    [Theme]
+    Current=silent
+	" | sudo tee /etc/sddm.conf
+	else
+	echo -e "# Make sure these options are correct:
+    [General]
+    InputMethod=qtvirtualkeyboard
+    GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+
+    [Theme]
+    Current=silent
+	" | sudo tee /etc/sddm.conf
+	fi
+
 	# shellcheck disable=SC2046
 	sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
 	systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
