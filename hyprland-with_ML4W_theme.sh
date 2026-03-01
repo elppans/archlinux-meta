@@ -94,7 +94,8 @@ if pacman -Qqs hyprland ; then
     # Utilitários Recomendados (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes recomendados estejam instalados..."
 	sleep 5
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty
+    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty \
+	pinta
 	# Verificar se a máquina é virtual e instalar pacotes se necessário
 	echo "Verificando se o Host é real ou virtual..."
 	sleep 5
@@ -193,6 +194,9 @@ if pacman -Qqs hyprland ; then
 	KEYBINCONF="$HOME/.config/hypr/conf/keybindings/default.conf"
 	cp -a "$KEYBINCONF" "$KEYBINCONF".backup_"$(date +%Y%m%d%H%M%S)" || exit 1
 	grep -q 'wpctl set-volume -l 1.5' "$KEYBINCONF" || sed -i 's/wpctl set-volume -l 1/wpctl set-volume -l 1.5/' "$KEYBINCONF"
+
+	# Ativando "Auto Ocultar" Dock
+	touch "$HOME"/.config/ml4w/settings/dock-autohide
 
 	# Reativando as permissoes do script do ML4W
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
