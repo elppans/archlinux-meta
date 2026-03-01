@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p "$HOME"/.local/share/nautilus/scripts
 
 ## Action Script, Ferramentas Nautilus
 git clone https://github.com/elppans/nautilus-scripts.git /tmp/nautilus-scripts
