@@ -1,5 +1,5 @@
 # ==============================================================================
-# COMANDOS PARA VERIFICAR CONFIGURAÇÕES DE MONITOR (WAYLAND)
+# # COMANDOS PARA VERIFICAR CONFIGURAÇÕES DE MONITOR (WAYLAND)
 # ==============================================================================
 # No Wayland, não existe um comando único como o 'xrandr' do X11. 
 # A ferramenta depende do seu Compositor:
@@ -16,6 +16,38 @@
 #
 # 4. HYPRLAND:
 #    $ hyprctl monitors all           # Ferramenta nativa do Hyprland
+# ==============================================================================
+# ___
+# ==============================================================================
+# # GERENCIAMENTO AVANÇADO DE MONITORES (WAYLAND)
+# ==============================================================================
+#
+# 1. WDISPLAYS (Interface Gráfica):
+#    - É o "arandr" do Wayland. Útil para ajustes visuais rápidos.
+#    - NOTA: NÃO SALVA CONFIGURAÇÕES de forma persistente em arquivos.
+#    - As mudanças são aplicadas apenas na sessão atual (voláteis).
+#
+# 2. KANSHI (O Daemon de Perfis):
+#    - Serve para automatizar a troca de resolução ao plugar/desplugar cabos.
+#    - Compatível com Hyprland, Sway e outros baseados em wlroots.
+#    - Configuração: ~/.config/kanshi/config
+#    - Ideal para: Notebooks que alternam entre "Monitor de Casa" e "Trabalho".
+#
+# 3. HYPRLAND (O Jeito Nativo):
+#    - O Hyprland geralmente DISPENSA o Kanshi por ter detecção nativa potente.
+#    - Para tornar persistente, edite o: ~/.config/hypr/hyprland.conf
+#
+#    Exemplo de sintaxe no hyprland.conf:
+#    monitor = [NOME],[RESOLUÇÃO@HZ],[POSIÇÃO],[ESCALA]
+#
+#    # Dica: Use 'desc:' para identificar o monitor pelo ID de hardware (ID Real)
+#    # Isso evita que a config mude se você trocar a porta do cabo HDMI/DP.
+#    monitor = desc:LG Electronics LG ULTRAGEAR 0x0001, 1920x1080@144, 0x0, 1
+#
+# 4. WORKFLOW RECOMENDADO:
+#    a) Use 'wdisplays' para achar a posição/resolução ideal visualmente.
+#    b) Rode 'hyprctl monitors' para pegar o nome ou a 'desc:' do monitor.
+#    c) Copie os valores e cole permanentemente no seu 'hyprland.conf'.
 # ==============================================================================
 
 # **Configuração do monitor**
