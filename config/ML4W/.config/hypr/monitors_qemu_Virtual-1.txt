@@ -1,1 +1,30 @@
+# ==============================================================================
+# COMANDOS PARA VERIFICAR CONFIGURAÇÕES DE MONITOR (WAYLAND)
+# ==============================================================================
+# No Wayland, não existe um comando único como o 'xrandr' do X11. 
+# A ferramenta depende do seu Compositor:
+#
+# 1. COMPOSITORES WLROOTS (Sway, River, DWL, etc):
+#    $ wlr-randr                      # (Requer instalação do pacote wlr-randr)
+#    $ swaymsg -t get_outputs         # (Apenas se estiver usando Sway)
+#
+# 2. KDE PLASMA (KWin):
+#    $ kscreen-doctor -o              # Ferramenta nativa do KDE
+#
+# 3. GNOME (Mutter):
+#    $ cat ~/.config/monitors.xml     # O GNOME armazena o estado atual aqui
+#
+# 4. HYPRLAND:
+#    $ hyprctl monitors all           # Ferramenta nativa do Hyprland
+# ==============================================================================
+
+# **Configuração do monitor**
+# Comando para verificar, equivalente ao xrandr:
+# hyprctl monitors all
+# Local de configuração: "~/.config/hypr/hyprland.conf"
+# Sessão: "MONITORS"
+# Deve configurar a variável monitor como este modelo. Exatamente como aparece na resposta do comando anterior:
+# monitor = Virtual-1, 1920x1080@60.00Hz, auto, auto
+# Mais informações: https://wiki.hypr.land/Configuring/Monitors/
+
 monitor=Virtual-1,1920x1080@60.0,0x0,1.0
