@@ -104,7 +104,7 @@ install() {
     }
 
     box_me "Downloading the keyring"
-    pacman -U ---disable-download-timeout -noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' || {
+    pacman -U --disable-download-timeout --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' || {
         box_me "Failed to download the keyring"
         handle_error
     }
