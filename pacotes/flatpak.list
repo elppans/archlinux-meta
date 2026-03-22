@@ -35,6 +35,7 @@ flathub com.vscodium.codium                          # VSCodium: Versão open-so
 
 flathub org.kde.gwenview                             # Gwenview: Visualizador de imagens do KDE
 flathub com.github.maoschanz.DynamicWallpaperEditor  # Editor de papel de parede dinâmico
+flathub org.flameshot.Flameshot                      # Take and annotate screenshots
 
 ### **Banco de Dados e Ferramentas de Desenvolvimento**
 
@@ -55,3 +56,6 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 flathub org.gtkhash.gtkhash                           # Calcular resumos de mensagens ou somas de verificação (checksums)
 flathub app/org.winehq.Wine/x86_64/wow64-24.08        # Run Windows applications on Linux (32 in 64 Bits)
 flathub org.gnome.meld                                # Compare e una os seus ficheiros
+flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
+flathub de.haeckerfelix.Fragments                     # Cliente BitTorrent simples para o GNOME
+flathub org.remmina.Remmina                           # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos

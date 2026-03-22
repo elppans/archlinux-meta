@@ -10,10 +10,10 @@ archlinux-wallpaper                    # Papéis de parede oficiais do Arch Linu
 dconf-editor                           # Editor gráfico para modificar configurações avançadas do GNOME  
 gnome-tweaks                           # Ferramenta para ajustar configurações avançadas do GNOME
 gnome-shell-extensions                 # Extensões para o shell GNOME, incluindo o modo clássico
-rhythmbox                              # Player de música padrão do GNOME
-fragments                              # Cliente BitTorrent simples para o GNOME  
-gthumb                                 # Visualizador e organizador de imagens  
-remmina                                # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
+# rhythmbox                            # Player de música padrão do GNOME
+# fragments                            # Cliente BitTorrent simples para o GNOME  
+# gthumb                                 # Visualizador e organizador de imagens  
+# remmina                              # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos  
 
 ### GNOME - Complementos e utilitários
 
@@ -22,19 +22,19 @@ file-roller                            # Instala o File Roller, gerenciador de a
 gdm-settings                           # Aplicativo de configurações para o Gerenciador de Login do Gnome, GDM (Versão Flatpak NÃO FUNCIONA com GNOME instalado via pacman)
 gnome-shell-extension-appindicator     # Suporte a indicadores de aplicativos no GNOME Shell.
 gnome-shell-extension-caffeine         # Impede que a tela desligue ou entre em suspensão.
-nautilus-image-converter               # Redimensionar e girar imagens pelo Nautilus.
+# nautilus-image-converter             # Redimensionar e girar imagens pelo Nautilus.
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
 actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
 ### Aparência - Ícones, temas e cursores
 
-obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
-cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
-orchis-theme                           # Tema moderno para GTK e GNOME Shell
+# obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
+# cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
+# orchis-theme                           # Tema moderno para GTK e GNOME Shell
 tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
 vimix-cursors                          # Tema de cursores Vimix
-gnome-themes-extra                     # Conjunto de temas adicionais para GTK
-tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
+# gnome-themes-extra                     # Conjunto de temas adicionais para GTK
+# tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
 # yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
 # yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
 # yaru-icon-theme                      # Tema de ícones Yaru  
@@ -57,11 +57,11 @@ xdg-desktop-portal-gnome               # Instala suporte específico dos portais
 ### Pacotes - Gerenciadores alternativos
 
 flatpak                                # Gerenciador de pacotes Flatpak
-snapd                                  # AUR. Gerenciador de pacotes Snapd
+# snapd                                  # AUR. Gerenciador de pacotes Snapd
 
 ### Sistema - Segurança e controle de acesso
 
-apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
+# apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
 
 ### Gaming - Jogos, suporte e performance
 
@@ -78,7 +78,7 @@ lib32-gamemode                         # Versão 32-bit do Gamemode para compati
 
 ### Utilitários - Ferramentas de captura e imagem
 
-flameshot                              # Ferramenta de captura de tela avançada
+# flameshot                              # Ferramenta de captura de tela avançada
 
 ### Aplicativos - Mensageiros e comunicação
 

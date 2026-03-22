@@ -14,5 +14,5 @@ mkdir -p "$HOME"/.local/share/gnome-shell
 touch "$HOME"/.local/share/gnome-shell/extensions.list
 echo -e 'caffeine@patapon.info
 appindicatorsupport@rgcjonas.gmail.com
-user-theme@gnome-shell-extensions.gcampax.github.com' | tee "$HOME"/.local/share/gnome-shell/extensions.list
+# user-theme@gnome-shell-extensions.gcampax.github.com' | tee "$HOME"/.local/share/gnome-shell/extensions.list
 cat "$HOME"/.local/share/gnome-shell/extensions.list
