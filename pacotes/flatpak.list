@@ -13,8 +13,8 @@ flathub com.microsoft.Edge                           # Edge: Navegador da Micros
 
 ### **Acesso Remoto**
 
-flathub com.anydesk.Anydesk                          # AnyDesk: Software de acesso remoto
-flathub com.rustdesk.RustDesk                        # RustDesk: Acesso remoto de código aberto
+# flathub com.anydesk.Anydesk                          # AnyDesk: Software de acesso remoto
+# flathub com.rustdesk.RustDesk                        # RustDesk: Acesso remoto de código aberto
 
 ### **Jogos e Ferramentas para Games**
 

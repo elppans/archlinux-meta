@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Verifica se o aplicativo está instalado via pacman
+if pacman -Q wine &> /dev/null; then
+    /usr/bin/wine "$@"
+    exit 0
+fi
+
+# Verifica se o aplicativo está instalado via Flatpak
+if command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
+    /usr/bin/flatpak run org.winehq.Wine "$@"
+    exit 0
+fi
+
+# Caso nenhum seja encontrado, exibe uma mensagem de erro
+echo "Nenhuma instalação do 'wine' foi encontrada. Certifique-se de que está instalado!"
+exit 1
+
+

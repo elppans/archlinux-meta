@@ -6,9 +6,9 @@ chmod +x "$install"/bin/*
 sudo cp -a "$install"/bin/* /usr/local/bin
 
 #
-if [ ! -f /usr/local/bin/faceconv.sh ]; then
-	sudo curl -JLk -o "/usr/local/bin/faceconv.sh" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/usr/local/bin/faceconv"
-	sudo chmod +x "/usr/local/bin/faceconv.sh"
+if [ ! -f /usr/local/bin/faceconv ]; then
+	sudo curl -JLk -o "/usr/local/bin/faceconv" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/usr/local/bin/faceconv"
+	sudo chmod +x "/usr/local/bin/faceconv"
 fi
 
 # Prompt minimalista, incrivelmente rápido e infinitamente personalizável para qualquer Shell!

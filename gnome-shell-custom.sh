@@ -61,11 +61,11 @@ sudo pkgfile -u
 
 # Gerenciamento de pacotes e manutenção do sistema
 cd "$install"/helper/ || exit 1
-source chaotic-aur.sh    # Adicionar repositório Chaotic-AUR
+pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh # Adicionar repositório Chaotic-AUR
 source helper_install.sh # Wrappers do pacman (AUR Helper)
+cd "$install" || exit 1
 
 # Customizações do sistema com Scripts
-cd "$install" || exit 1
 find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Remoção de pacotes:
