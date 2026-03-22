@@ -53,7 +53,8 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 
 ### **Outros aplicativos**
 
-flathub org.gtkhash.gtkhash                           # Calcular resumos de mensagens ou somas de verificação (checksums)
+# flathub org.gtkhash.gtkhash                           # Calcular resumos de mensagens ou somas de verificação (checksums)
+flathub dev.geopjr.Collision                          # Calcular resumos de mensagens ou somas de verificação (checksums)
 flathub app/org.winehq.Wine/x86_64/wow64-24.08        # Run Windows applications on Linux (32 in 64 Bits)
 flathub org.gnome.meld                                # Compare e una os seus ficheiros
 flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
