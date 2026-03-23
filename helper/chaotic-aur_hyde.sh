@@ -104,13 +104,17 @@ install() {
     }
 
     box_me "Downloading the keyring"
-    pacman -U --disable-download-timeout --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' || {
+	curl -JLk -o /tmp/chaotic-keyring.pkg.tar.zst 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+    # pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' || {
+	pacman -U --noconfirm /tmp/chaotic-keyring.pkg.tar.zst || {
         box_me "Failed to download the keyring"
         handle_error
     }
 
     box_me "Downloading the mirrorlist"
-    pacman -U --disable-download-timeout --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' || {
+	curl -JLk -o /tmp/chaotic-mirrorlist.pkg.tar.zst 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    # pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' || {
+	pacman -U --noconfirm /tmp/chaotic-mirrorlist.pkg.tar.zst || {
         box_me "Failed to download the mirrorlist"
         handle_error
     }
