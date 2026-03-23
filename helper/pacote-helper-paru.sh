@@ -2,6 +2,9 @@
 
 sudo pacman --needed -Sy base-devel debugedit fakeroot
 
+# Dependências opcionais para o paru:
+sudo pacman --needed -Sy bat devtools
+
 # Wrappers do pacman (AUR Helper)
 if pacman -Sqs | grep ^paru$ ;then
 	sudo pacman --needed -Sy paru
