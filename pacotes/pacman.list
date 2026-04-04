@@ -24,7 +24,7 @@ gnome-shell-extension-appindicator     # Suporte a indicadores de aplicativos no
 gnome-shell-extension-caffeine         # Impede que a tela desligue ou entre em suspensão.
 # nautilus-image-converter             # Redimensionar e girar imagens pelo Nautilus.
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
-actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
+# actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
 ### Aparência - Ícones, temas e cursores
 
