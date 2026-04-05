@@ -114,7 +114,7 @@ lib32-systemd                          # Compatibilidade do systemd para arquite
 # gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
 # meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
 xclip                                  # Utilitário para manipulação da área de transferência no Linux
-# mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
+mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
 # xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
 inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
 xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
