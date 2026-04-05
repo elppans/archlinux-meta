@@ -5,7 +5,7 @@
 # exec-once = /usr/local/bin/autostart.sh
 
 # Diretório onde estão os arquivos .desktop do autostart
-AUTOSTART_DIR="$HOME/.config/autostart"
+AUTOSTART_DIR="$HOME/.config/[Aa][Uu][Tt][Oo][Ss][Tt][Aa][Rr][Tt]"
 
 # Verifica se o diretório existe
 if [ -d "$AUTOSTART_DIR" ]; then
@@ -15,7 +15,7 @@ if [ -d "$AUTOSTART_DIR" ]; then
 		[ -e "$desktop_file" ] || continue
 
 		# Lê a linha que começa com "Exec="
-		exec_line=$(grep '^Exec=' "$desktop_file")
+		exec_line=$(grep -i '^Exec=' "$desktop_file")
 
 		if [ -n "$exec_line" ]; then
 			# Remove o prefixo "Exec="
