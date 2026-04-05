@@ -12,10 +12,10 @@
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
-    echo "Erro: Este script não deve ser executado como superusuário (root)."
-    echo "Por favor, execute como um usuário normal."
+	echo "Erro: Este script não deve ser executado como superusuário (root)."
+	echo "Por favor, execute como um usuário normal."
 	echo "Quando necessário, será pedido a senha administrativa!"
-    exit 1
+	exit 1
 fi
 
 locdir="$(pwd)"
@@ -23,79 +23,79 @@ install="$locdir"
 export install
 
 detectar_vm() {
-cd "$install"/pacotes/ || exit 1
-./detect-vm.sh
-cd "$install" || exit 1
+	cd "$install"/pacotes/ || exit 1
+	./detect-vm.sh
+	cd "$install" || exit 1
 }
 
 verificar_repositorios() {
-# Verificação do repositório MULTILIB
-cd "$install"/helper/ || exit 1
-./multilib-check.sh
-# Verificação do repositório CHAOTIC-AUR
-pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
-cd "$install" || exit 1
+	# Verificação do repositório MULTILIB
+	cd "$install"/helper/ || exit 1
+	./multilib-check.sh
+	# Verificação do repositório CHAOTIC-AUR
+	pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
+	cd "$install" || exit 1
 
 }
 
 # Função para verificar se o programa está instalado
 verificar_helper() {
-    if command -v yay &> /dev/null; then
-        echo "O 'yay' está instalado!"
+	if command -v yay &>/dev/null; then
+		echo "O 'yay' está instalado!"
 		HELPER="yay"
 		export HELPER
-    elif command -v paru &> /dev/null; then
-        echo "O 'paru' está instalado!"
+	elif command -v paru &>/dev/null; then
+		echo "O 'paru' está instalado!"
 		HELPER="paru"
 		export HELPER
-    else
-        escolher_helper
-    fi
+	else
+		escolher_helper
+	fi
 }
 
 # Função para escolher e instalar o gerenciador de pacotes
 escolher_helper() {
-    echo "Qual gerenciador de pacotes você deseja instalar?"
-    echo "1) yay"
-    echo "2) paru"
-    read -r -p "Digite o número correspondente: " escolha
+	echo "Qual gerenciador de pacotes você deseja instalar?"
+	echo "1) yay"
+	echo "2) paru"
+	read -r -p "Digite o número correspondente: " escolha
 
-    case $escolha in
-        1)
-            echo "Instalando yay..."
-            cd "$install"/helper/ || exit 1
-            bash pacote-helper-yay.sh
-			HELPER="yay"
-			export HELPER
-            ;;
-        2)
-            echo "Instalando paru..."
-            cd "$install"/helper/ || exit 1
-            bash pacote-helper-paru.sh
-			HELPER="paru"
-			export HELPER
-            ;;
-        *)
-            echo "Escolha inválida. Por favor, tente novamente."
-            escolher_helper
-            ;;
-    esac
+	case $escolha in
+	1)
+		echo "Instalando yay..."
+		cd "$install"/helper/ || exit 1
+		bash pacote-helper-yay.sh
+		HELPER="yay"
+		export HELPER
+		;;
+	2)
+		echo "Instalando paru..."
+		cd "$install"/helper/ || exit 1
+		bash pacote-helper-paru.sh
+		HELPER="paru"
+		export HELPER
+		;;
+	*)
+		echo "Escolha inválida. Por favor, tente novamente."
+		escolher_helper
+		;;
+	esac
 }
 
-if pacman -Qqs hyprland ; then
+if pacman -Qqs hyprland; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
 	# **PACOTES**
 
-    # Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
+	# Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes essenciais estejam instalados..."
 	sleep 5
-    sudo pacman --needed --noconfirm -S git base-devel
-    # Utilitários Recomendados (Garantindo que estejam instalados)
+	sudo pacman --needed --noconfirm -S git base-devel
+	# Utilitários Recomendados (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes recomendados estejam instalados..."
 	sleep 5
-    sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty \
-	pinta
+	sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty \
+		pinta
 	# Verificar se a máquina é virtual e instalar pacotes se necessário
 	echo "Verificando se o Host é real ou virtual..."
 	sleep 5
@@ -126,7 +126,7 @@ if pacman -Qqs hyprland ; then
     	Current=silent
 	" | sudo tee /etc/sddm.conf
 	else
-	echo -e "# Make sure these options are correct:
+		echo -e "# Make sure these options are correct:
     	[General]
     	InputMethod=qtvirtualkeyboard
     	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
@@ -141,7 +141,10 @@ if pacman -Qqs hyprland ; then
 	systemctl is-enabled sddm.service || sudo systemctl enable sddm.service
 
 	# Script para usar com "SDDM-Silent-Theme"
-	if pacman -Qqs sddm-silent-theme ; then
+	if pacman -Qqs sddm-silent-theme; then
+		if [ ! -f /usr/local/bin/faceconv ]; then
+			sudo rm -rf "/usr/local/bin/faceconv"
+		fi
 		mkdir -p "$HOME/build/sddm-silent-customizer"
 		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
 		cd "$HOME/build/sddm-silent-customizer" || exit 1
@@ -157,7 +160,7 @@ if pacman -Qqs hyprland ; then
 	# grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
 	# cd "$HOME"/ml4w-hyprland || exit 1
 	# makepkg --needed --noconfirm -Cris
-    
+
 	# Garantindo que o instalador finalize sem reiniciar, para adicionar as customiza\C3\A7\C3\B5es
 	# sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
@@ -202,7 +205,6 @@ if pacman -Qqs hyprland ; then
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 
-
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
 	exit 0
@@ -235,7 +237,6 @@ fi
 #   thinkpad        br: Portuguese (Brazil, IBM/Lenovo ThinkPad)
 #   nativo-epo      br: Esperanto (Brazil, Nativo)
 #   rus             br: Russian (Brazil, phonetic)
-
 
 # cat "$HOME"/dotfiles/.config/hypr/conf/keyboard.conf
 #     ...
