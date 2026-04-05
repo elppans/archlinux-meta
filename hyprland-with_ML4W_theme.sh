@@ -142,7 +142,7 @@ if pacman -Qqs hyprland; then
 
 	# Script para usar com "SDDM-Silent-Theme"
 	if pacman -Qqs sddm-silent-theme; then
-		if [ ! -f /usr/local/bin/faceconv ]; then
+		if [ -f /usr/local/bin/faceconv ]; then
 			sudo rm -rf "/usr/local/bin/faceconv"
 		fi
 		mkdir -p "$HOME/build/sddm-silent-customizer"
