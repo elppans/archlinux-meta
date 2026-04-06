@@ -80,6 +80,7 @@ lib32-gamemode                         # Versão 32-bit do Gamemode para compati
 # lib32-libasyncns                       # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
 # game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
 # steam-native-runtime                   # Steam em modo nativo
+steam-devices                            # List of devices Steam and SteamVR will want read/write permissions on
 
 ### Utilitários - Ferramentas de captura e imagem
 
