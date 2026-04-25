@@ -57,7 +57,9 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 flathub dev.geopjr.Collision                          # Calcular resumos de mensagens ou somas de verificação (checksums)
 flathub app/org.winehq.Wine/x86_64/wow64-24.08        # Run Windows applications on Linux (32 in 64 Bits)
 flathub org.gnome.meld                                # Compare e una os seus ficheiros
-flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
+# flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
 flathub de.haeckerfelix.Fragments                     # Cliente BitTorrent simples para o GNOME
 flathub org.remmina.Remmina                           # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos
 flathub com.github.tchx84.Flatseal                    # Gerencie as permissões de Flatpaks
+flathub org.gnome.Showtime                            # Aplicativo de video Gnome
+flathub org.gnome.Decibels                            # Aplicativo de música Gnome
