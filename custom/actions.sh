@@ -2,6 +2,7 @@
 
 mkdir -p "$HOME"/.local/share/nautilus/scripts
 
+nautilus-scripts() {
 ## Action Script, Ferramentas Nautilus
 git clone https://github.com/elppans/nautilus-scripts.git /tmp/nautilus-scripts
 cd /tmp/nautilus-scripts || exit 1
@@ -34,19 +35,27 @@ BEGIN { in_block = 0; count = 0 }
 
 # echo "Feito! A última opção do menu_defaults foi alterada para true."
 
-
 # Fazendo instalação do Action Scripts
 bash ./install.sh
 # cd || exit 1
-
+}
+el-images(){
 ## Action Script, Ferramentas de Imagens
 git clone https://github.com/elppans/el-images.git /tmp/el-images
 cd /tmp/el-images || exit 1
 bash ./install.sh
-
+}
+factions-shell(){
 ## Action Script, Ferramentas de Diversas
 # Este Script cria o diretório "Acoes", no Action Script do Nautilus
 git clone https://github.com/elppans/factions-shell.git /tmp/factions-shell
 cd /tmp/factions-shell || exit 1
 bash ./install.sh
 # cd || exit 1
+}
+
+###
+
+# nautilus-scripts
+el-images
+factions-shell
