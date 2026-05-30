@@ -5,7 +5,7 @@
 ### **Navegadores Web**
 
 # flathub com.brave.Browser                            # Brave: Navegador rápido e focado em privacidade
-flathub com.microsoft.Edge                           # Edge: Navegador da Microsoft
+# flathub com.microsoft.Edge                           # Edge: Navegador da Microsoft
 # flathub org.mozilla.firefox                          # Firefox: Navegador confiável e de código aberto
 # flathub com.opera.Opera                              # Opera: Navegador com recursos avançados
 # flathub com.vivaldi.Vivaldi                          # Vivaldi: Navegador altamente personalizável
@@ -34,7 +34,7 @@ flathub com.vscodium.codium                          # VSCodium: Versão open-so
 ### **Imagens e Personalização**
 
 flathub org.kde.gwenview                             # Gwenview: Visualizador de imagens do KDE
-flathub com.github.maoschanz.DynamicWallpaperEditor  # Editor de papel de parede dinâmico
+# flathub com.github.maoschanz.DynamicWallpaperEditor  # Editor de papel de parede dinâmico
 flathub org.flameshot.Flameshot                      # Take and annotate screenshots
 
 ### **Banco de Dados e Ferramentas de Desenvolvimento**
