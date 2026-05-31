@@ -78,7 +78,8 @@ sudo pacman --needed --noconfirm -Syu kernel-modules-hook
 systemctl is-enabled linux-modules-cleanup.service || sudo systemctl enable --now linux-modules-cleanup.service
 
 # Instalando Gnome Shell (Meta)
-sudo pacman --needed --noconfirm -Syu gnome gnome-tweaks htop iwd nano openssh smartmontools vim wget wireless_tools wpa_supplicant xdg-utils
+sudo pacman --needed --noconfirm -Syu gnome gnome-tweaks htop nano openssh smartmontools vim wget xdg-utils \
+iwd wireless_tools wpa_supplicant 
 
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
