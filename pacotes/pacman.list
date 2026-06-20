@@ -97,7 +97,7 @@ jq                                     # Processador de JSON no terminal
 prettier                               # Formatador de código para várias linguagens
 # shellcheck                           # Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
 shfmt                                  # Formatador para scripts shell
-stylelint                              # Linter para arquivos CSS e preprocessadores como SCSS
+# stylelint                            # AUR Linter para arquivos CSS e preprocessadores como SCSS > Portado para "vscodium_extensions"
 
 ### Sistema - Kernel, drivers e compatibilidade
 
@@ -115,7 +115,7 @@ lib32-systemd                          # Compatibilidade do systemd para arquite
 # gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git")
 # meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
 xclip                                  # Utilitário para manipulação da área de transferência no Linux
-mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples
+# mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples > Removido para usar HandBrake (Flatpak)
 # xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
 inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
 xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)

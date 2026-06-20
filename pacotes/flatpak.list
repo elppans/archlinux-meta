@@ -63,3 +63,4 @@ flathub org.remmina.Remmina                           # Cliente de acesso remoto
 flathub com.github.tchx84.Flatseal                    # Gerencie as permissões de Flatpaks
 flathub org.gnome.Showtime                            # Aplicativo de video Gnome
 flathub org.gnome.Decibels                            # Aplicativo de música Gnome
+flathub fr.handbrake.ghb                              # Aplicativo para conversão de Medias

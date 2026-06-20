@@ -50,6 +50,10 @@ sudo chown -R "$USER_REAL":"$(id -gn "$USER_REAL")" "$HOME_REAL"
 
 echo "Processo concluído. O backup está em: $BKP_NAME"
 
+echo -e "Removendo aplicativos Flatpak"
+sleep 5
+pacman -Qi flatpak &>/dev/null && flatpak uninstall --all -y
+
 echo -e 'Redefinindo o Shell do usuário'
 sleep 3
 sudo chsh -s /bin/bash "$USER"
@@ -86,3 +90,4 @@ echo -e 'Garantindo o GRUB'
 sleep 5
 sudo pacman -S --needed --noconfirm grub-efi-x86_64 efibootmgr dosfstools os-prober mtools
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
