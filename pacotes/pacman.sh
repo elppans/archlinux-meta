@@ -37,14 +37,9 @@ fi
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
 mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_pkg_filtered.lst")
-mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
 
 # Verifica se há pacotes
 if [[ ${#pacotes[@]} -eq 0 ]]; then
-    echo "Nenhum pacote válido foi encontrado."
-    exit 1
-fi
-if [[ ${#removepacotes[@]} -eq 0 ]]; then
     echo "Nenhum pacote válido foi encontrado."
     exit 1
 fi
@@ -56,6 +51,13 @@ for pacote in "${pacotes[@]}"; do
 done
 sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+
+mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
+
+if [[ ${#removepacotes[@]} -eq 0 ]]; then
+    echo "Nenhum pacote listado em Blacklist foi encontrado."
+    # exit 1
+fi
 
 # Remove todos os pacotes em um único comando usando pacman
 echo -e "Removendo os seguintes pacotes listados em Blacklist e que estão instalados:"
