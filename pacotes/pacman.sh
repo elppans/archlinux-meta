@@ -32,7 +32,7 @@ fi
 #-----------------------------#
 if [ -f "pacman_black.list" ]; then
     grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
-	grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') > "/tmp/remove_pkg_filtered.lst"
+	pacman -Qq | grep -vFxf <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') "pacman_black.list" > "/tmp/remove_pkg_filtered.lst"
 fi
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
@@ -58,7 +58,7 @@ sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 # Remove todos os pacotes em um único comando usando pacman
-echo -e "Removendo os seguintes pacotes listados em Blacklist:"
+echo -e "Removendo os seguintes pacotes listados em Blacklist e que estão instalados:"
 for rmpacote in "${removepacotes[@]}"; do
     echo "- $rmpacote"
 done
