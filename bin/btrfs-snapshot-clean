@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# Exigir privilégios de root
+if [ "$EUID" -ne 0 ]; then
+    echo "Erro: Este script precisa ser executado como root (sudo)." >&2
+    exit 1
+fi
+
+echo "Verificando o sistema de arquivos da raiz (/) ..."
+
+# Identifica o tipo de sistema de arquivos do ponto de montagem /
+FSTYPE=$(findmnt -n -o FSTYPE /)
+
+if [ "$FSTYPE" != "btrfs" ]; then
+    echo "O sistema não está instalado em um volume Btrfs (Detectado: $FSTYPE)."
+    exit 0
+fi
+
+echo "[-] Sistema em Btrfs detectado com sucesso."
+
+# Verificar se o diretório de snapshots existe e possui subdiretórios
+SNAPSHOTS_DIR="/.snapshots"
+if [ ! -d "$SNAPSHOTS_DIR" ] || [ -z "$(ls -A "$SNAPSHOTS_DIR" 2>/dev/null)" ]; then
+    echo "Nenhum snapshot encontrado em $SNAPSHOTS_DIR para limpeza."
+    exit 0
+fi
+
+# Exibir os snapshots encontrados (apenas os numerados)
+echo "Snapshots detectados para remoção:"
+ls -1 "$SNAPSHOTS_DIR"
+
+echo ""
+read -r -p "Deseja prosseguir com a limpeza dos snapshots acima? [s/N] " RESPONSE
+
+case "$RESPONSE" in
+    [sS]|[sS][oO])
+        echo "Iniciando a remoção dos subvolumes..."
+        
+        # Iteração sobre os diretórios dentro de /.snapshots
+        for i in $(ls -1 "$SNAPSHOTS_DIR"); do
+            TARGET="$SNAPSHOTS_DIR/$i/snapshot"
+            if [ -e "$TARGET" ]; then
+                btrfs subvolume delete "$TARGET"
+            else
+                echo "Aviso: Subvolume $TARGET não encontrado ou já removido."
+            fi
+        done
+        
+        # Forçar a sincronização síncrona dos blocos desalocados
+        echo "Forçando sincronização do sistema de arquivos (btrfs subvolume sync)..."
+        btrfs subvolume sync /
+        
+        echo "Limpeza concluída com sucesso."
+        ;;
+    *)
+        echo "Operação cancelada pelo usuário."
+        exit 0
+        ;;
+esac
