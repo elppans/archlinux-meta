@@ -64,7 +64,8 @@ read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo de instalação de TODOS os pacotes instalados "como Explicitamente" para "como dependência"'
 sleep 5
-sudo pacman -D --asdeps $(pacman -Qqn)
+# Opção "-n" significa apenas "pacotes nativos", então é melhor ser mais Hardcore e remover para exatamente TODOS os pacotes, independente de qual seja.
+sudo pacman -D --asdeps $(pacman -Qq)
 
 read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
