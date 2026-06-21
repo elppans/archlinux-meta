@@ -32,23 +32,19 @@ fi
 #-----------------------------#
 if [ -f "pacman_black.list" ]; then
     grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
+	grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') > "/tmp/remove_pkg_filtered.lst"
 fi
-
-# Cria uma lista de pacotes a partir do arquivo, ignorando linhas comentadas ou vazias
-# pacotes=()
-# while IFS= read -r linha; do
-#     # Ignora linhas comentadas ou vazias
-#     if [[ "$linha" =~ ^#.*$ || -z "$linha" ]]; then
-#         continue
-#     fi
-#     pacotes+=("$linha")
-# done < "/tmp/install_pkg_filtered.lst"
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
 mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/install_pkg_filtered.lst")
+mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
 
 # Verifica se há pacotes
 if [[ ${#pacotes[@]} -eq 0 ]]; then
+    echo "Nenhum pacote válido foi encontrado."
+    exit 1
+fi
+if [[ ${#removepacotes[@]} -eq 0 ]]; then
     echo "Nenhum pacote válido foi encontrado."
     exit 1
 fi
@@ -60,6 +56,14 @@ for pacote in "${pacotes[@]}"; do
 done
 sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+
+# Remove todos os pacotes em um único comando usando pacman
+echo -e "Removendo os seguintes pacotes listados em Blacklist:"
+for rmpacote in "${removepacotes[@]}"; do
+    echo "- $rmpacote"
+done
+sleep 5
+"${HELPER}" -Rns "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
 
 echo "Processo concluído!"
 
