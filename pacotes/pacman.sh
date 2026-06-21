@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2145,SC1091
+# shellcheck disable=SC2145,SC1091,SC2046
 
 pacman_lo="$(pwd)"
 export pacman_lo
@@ -32,7 +32,7 @@ fi
 #-----------------------------#
 if [ -f "pacman_black.list" ]; then
     grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
-	pacman -Qq | grep -vFxf <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') "pacman_black.list" > "/tmp/remove_pkg_filtered.lst"
+	pacman -Qq $(grep -vFx <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') "pacman_black.list") 2>/dev/null > "/tmp/remove_pkg_filtered.lst"
 fi
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
