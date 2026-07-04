@@ -7,7 +7,7 @@ if pacman -Q winetricks &> /dev/null; then
 fi
 
 # Verifica se o aplicativo está instalado via Flatpak
-if command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
+if command -v flatpak &> /dev/null && flatpak list | grep -q "org.winehq.Wine"; then
     /usr/bin/flatpak run --command=winetricks org.winehq.Wine "$@"
     exit 0
 fi
