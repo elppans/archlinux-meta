@@ -14,24 +14,25 @@ verificar_helper() {
 # Função para escolher e instalar o gerenciador de pacotes
 escolher_helper() {
     echo "Qual gerenciador de pacotes você deseja instalar?"
-    echo "1) yay"
-    echo "2) paru"
-    read -r -p "Digite o número correspondente: " escolha
+    echo "y) yay (RECOMENDADO)"
+    echo "p) paru"
+    read -r -p "Digite a opção correspondente (Padrão: \"Y\"): " escolha
 
     case $escolha in
-        1)
+        y|Y)
             echo "Instalando yay..."
             bash pacote-helper-yay.sh
             export HELPER="yay"
             ;;
-        2)
+        p|P)
             echo "Instalando paru..."
             bash pacote-helper-paru.sh
             export HELPER="paru"
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
-            escolher_helper
+            # escolher_helper
+			export HELPER="yay"
             ;;
     esac
 }
