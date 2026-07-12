@@ -68,7 +68,7 @@ custom_bindings=(
 	"VSCodium:codium --new-window --locale pt-BR:<Ctrl><Super>v"
     # "gnome-calculator:gnome-calculator:<Super>c"
     "gnome-calendar:gnome-calendar:<Alt><Super>c"
-	"gnome-system-monitor:gnome-system-monitor --gapplication-service:<Ctrl><Super>M"
+	"gnome-system-monitor:gnome-system-monitor --show-resources-tab:<Ctrl><Super>M"
     "Terminal:kgx:<Ctrl><Super>t"
 )
 
