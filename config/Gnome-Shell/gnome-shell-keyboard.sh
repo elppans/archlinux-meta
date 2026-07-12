@@ -40,7 +40,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys calculator "['<Shift>
 gsettings set org.gnome.settings-daemon.plugins.media-keys email "['@as []']" # Desabilitado
 gsettings set org.gnome.settings-daemon.plugins.media-keys control-center "['<Ctrl><Super>c']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys help "['<Super>F1']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys www-browser "['<Super>b']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>b']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys search "['<Super>p']"
 
