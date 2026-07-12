@@ -10,7 +10,7 @@ gsettings reset org.gnome.settings-daemon.plugins.media-keys calculator
 gsettings reset org.gnome.settings-daemon.plugins.media-keys email
 gsettings reset org.gnome.settings-daemon.plugins.media-keys control-center
 gsettings reset org.gnome.settings-daemon.plugins.media-keys help
-gsettings reset org.gnome.settings-daemon.plugins.media-keys www-browser
+gsettings reset org.gnome.settings-daemon.plugins.media-keys www
 gsettings reset org.gnome.settings-daemon.plugins.media-keys home
 gsettings reset org.gnome.settings-daemon.plugins.media-keys search
 
