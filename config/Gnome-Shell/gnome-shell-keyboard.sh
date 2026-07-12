@@ -15,7 +15,7 @@ gsettings reset org.gnome.settings-daemon.plugins.media-keys home
 gsettings reset org.gnome.settings-daemon.plugins.media-keys search
 
 # 2. Resetar controle de Som e Mídia
-gsettings reset org.gnome.settings-daemon.plugins.media-keys microphone-mute
+gsettings reset org.gnome.settings-daemon.plugins.media-keys mic-mute
 gsettings reset org.gnome.settings-daemon.plugins.media-keys volume-mute
 gsettings reset org.gnome.settings-daemon.plugins.media-keys volume-up
 gsettings reset org.gnome.settings-daemon.plugins.media-keys volume-down
@@ -45,7 +45,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys search "['<Super>p']"
 
 # Som e Mídia (Utilizando os keycodes do Teclado Numérico - KP)
-gsettings set org.gnome.settings-daemon.plugins.media-keys microphone-mute "['<Super>KP_Divide']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys mic-mute "['<Super>KP_Divide']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['<Super>KP_Multiply']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['<Super>KP_Add']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['<Super>KP_Subtract']"
