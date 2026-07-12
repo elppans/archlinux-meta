@@ -88,6 +88,7 @@ echo "Efetuando configurações do sistema..."
 sleeping 6
 cd "$install"/config/ || exit 1
 ./Gnome-Shell/gnome-shell-set.sh # Configurações do Gnome Shell+
+./Gnome-Shell/gnome-shell-keyboard.sh # Configurações de atalhos do Gnome Shell+
 ./System/samba-share-set.sh      # Configuração do SAMBA
 
 # Finalizando configurações do sistema e pacotes
