@@ -63,12 +63,12 @@ custom_bindings=(
     "Flameshot:flameshot gui:<Super>Print"
     "GEdit:gedit:<Super>t"
     "Kate:kate:<Super>k"
-    "Nautilus:nautilus:<Super>e"
+    # "Nautilus:nautilus:<Super>e"
     # "VSCode:code:<Ctrl><Super>v"
 	"VSCodium:codium --new-window --locale pt-BR:<Ctrl><Super>v"
     # "gnome-calculator:gnome-calculator:<Super>c"
     "gnome-calendar:gnome-calendar:<Alt><Super>c"
-    "Terminal:gnome-terminal:<Ctrl><Super>t"
+    "Terminal:gnome-console:<Ctrl><Super>t"
 )
 
 # Inicializa a lista de caminhos para o gsettings
