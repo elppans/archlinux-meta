@@ -68,7 +68,8 @@ custom_bindings=(
 	"VSCodium:codium --new-window --locale pt-BR:<Ctrl><Super>v"
     # "gnome-calculator:gnome-calculator:<Super>c"
     "gnome-calendar:gnome-calendar:<Alt><Super>c"
-    "Terminal:gnome-console:<Ctrl><Super>t"
+	"gnome-system-monitor:gnome-system-monitor --gapplication-service:<Ctrl><Super>M"
+    "Terminal:kgx:<Ctrl><Super>t"
 )
 
 # Inicializa a lista de caminhos para o gsettings
