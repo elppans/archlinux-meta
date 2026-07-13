@@ -76,6 +76,7 @@ mkdir -p "$HOME"/.config/Kvantum/KvLibadwaita
 
 # Copia os arquivos de definição do tema KvLibadwaita do host para o novo diretorio
 sudo curl -fsSL "https://raw.githubusercontent.com/elppans/KvLibadwaita/refs/heads/main/src/KvLibadwaita/KvLibadwaitaDark.svg" -o "/usr/share/Kvantum/KvLibadwaita/KvLibadwaitaDark.svg"
+sudo curl -fsSL "https://raw.githubusercontent.com/elppans/KvLibadwaita/refs/heads/main/src/KvLibadwaita/KvLibadwaita.svg" -o "/usr/share/Kvantum/KvLibadwaita/KvLibadwaita.svg"
 rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
 
 # Teste do Flatpak para listar o conteúdo do diretorio local mapeada dentro do sandbox
