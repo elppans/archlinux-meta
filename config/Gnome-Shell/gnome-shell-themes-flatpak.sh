@@ -61,13 +61,13 @@ fi
 
 # Aplica overrides de sistema de arquivos faltantes
 if [ ${#TO_APPLY_FS[@]} -gt 0 ]; then
-    echo "Aplicando permissões de diretório: ${TO_APPLY_FS[*]}"
+    # echo "Aplicando permissões de diretório: ${TO_APPLY_FS[*]}"
     flatpak override --user "${TO_APPLY_FS[@]}"
 fi
 
 # Aplica overrides de variáveis de ambiente faltantes
 if [ ${#TO_APPLY_ENV[@]} -gt 0 ]; then
-    echo "Aplicando variáveis de ambiente: ${TO_APPLY_ENV[*]}"
+    # echo "Aplicando variáveis de ambiente: ${TO_APPLY_ENV[*]}"
     flatpak override --user "${TO_APPLY_ENV[@]}"
 fi
 
