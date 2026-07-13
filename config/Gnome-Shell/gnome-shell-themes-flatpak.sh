@@ -71,4 +71,8 @@ if [ ${#TO_APPLY_ENV[@]} -gt 0 ]; then
     flatpak override --user "${TO_APPLY_ENV[@]}"
 fi
 
+if ! flatpak run --command=env org.kde.gwenview | grep -E 'QT_|KVANTUM_' | grep "$KVTHEME" ; then
+flatpak override --user --env=KVANTUM_THEME="$KVTHEME"
+fi
+
 # echo "Configuração atualizada com sucesso."
