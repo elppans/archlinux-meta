@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
+GNOMESHELLCMD="$0"
+GNOMESHELLDIR="$(dirname "$GNOMESHELLCMD")"
+export GNOMESHELLDIR
+
 # Temas nativos em aplicativos de terceiros:
 
-sudo pacman -Sy --needed kvantum qt5ct qt6ct gsettings-qt5 gsettings-qt6 adw-gtk-theme xdg-desktop-portal-gnome xdg-desktop-portal gnome-themes-extra
-yay -Sy --needed kvantum-theme-libadwaita-git
+# sudo pacman -Sy --needed kvantum qt5ct qt6ct gsettings-qt5 gsettings-qt6 adw-gtk-theme xdg-desktop-portal-gnome xdg-desktop-portal gnome-themes-extra
+# yay -Sy --needed kvantum-theme-libadwaita-git
+# Ps.: Adicionado pacotes na Sessão "pacotes/pacman.list"
 
 gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
@@ -16,9 +21,10 @@ grep -q 'QT_STYLE_OVERRIDE=kvantum' /etc/environment || echo -e 'QT_STYLE_OVERRI
 # Temas para aplicativos Flatpak
 
 # Instala o tema Adwaita para o runtime Qt5 e Qt6 do Flatpak
-flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
-flatpak install flathub org.kde.KStyle.Kvantum//5.15 
-flatpak install flathub org.kde.KStyle.Kvantum//6.10
+# flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
+# flatpak install flathub org.kde.KStyle.Kvantum//5.15 
+# flatpak install flathub org.kde.KStyle.Kvantum//6.10
+# Ps.: Adicionado pacotes na Sessão "pacotes/flatpak.list"
 
 # Permite que os Flatpaks herdem as configurações de fontes e ícones do sistema
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
@@ -44,7 +50,7 @@ flatpak override --user --env=QT_STYLE_OVERRIDE=kvantum
 # flatpak override --user --reset --filesystem=/usr/share/Kvantum
 
 # Verificação tecnica do environment via Flatpak
-flatpak override --user --show
+# flatpak override --user --show
 
 # Tema atual do KVantum no sistema
 KVTHEME="$(sed -n 's/^theme=\(.*\)/\1/p' "$HOME"/.config/Kvantum/kvantum.kvconfig)"
@@ -54,10 +60,10 @@ echo "$KVTHEME"
 flatpak override --user --env=KVANTUM_THEME="$KVTHEME"
 
 # Auditar configurão do KVantum em Flatpak de dentro do sandbox
-flatpak run --command=cat org.kde.gwenview "$HOME"/.config/Kvantum/kvantum.kvconfig | grep -i '^theme='
+# flatpak run --command=cat org.kde.gwenview "$HOME"/.config/Kvantum/kvantum.kvconfig | grep -i '^theme='
 
 # Auditar configurão do KVantum em Flatpak da variável de ambiente
-flatpak run --command=env org.kde.gwenview | grep -E 'QT_|KVANTUM_'
+# flatpak run --command=env org.kde.gwenview | grep -E 'QT_|KVANTUM_'
 
 # Diretórios de temas KVantum
 # ls /usr/share/Kvantum
@@ -73,3 +79,10 @@ rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
 
 # Teste do Flatpak para listar o conteúdo do diretorio local mapeada dentro do sandbox
 # flatpak run --command=ls org.kde.gwenview "$HOME"/.config/Kvantum/KvLibadwaita
+
+if [ -f "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" ]; then
+	sudo cp -a "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" /etc/profile.d/
+else
+	echo "Arquivo gnome-shell-themes-flatpak.sh não encontrado!"
+	exit 1
+fi

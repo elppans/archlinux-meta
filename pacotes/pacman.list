@@ -26,14 +26,14 @@ gnome-shell-extension-caffeine         # Impede que a tela desligue ou entre em 
 nautilus-share                         # Compartilha pastas via Samba pelo Nautilus.
 # actions-for-nautilus-git               # AUR. Ações adicionais para o Nautilus (explorador de arquivos)
 
-### Aparência - Ícones, temas e cursores
+### Aparência (1) - Ícones, temas e cursores
 
 # obsidian-icon-theme                    # Tema de ícones Obsidian baseado no Papirus
 # cutefish-icons                         # Conjunto de ícones do ambiente Cutefish
 # orchis-theme                           # Tema moderno para GTK e GNOME Shell
 tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
 vimix-cursors                          # Tema de cursores Vimix
-# gnome-themes-extra                     # Conjunto de temas adicionais para GTK
+gnome-themes-extra                     # Conjunto de temas adicionais para GTK
 # tela-circle-icon-theme-all             # Conjunto de ícones Tela Circle
 # yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
 # yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
@@ -42,6 +42,19 @@ vimix-cursors                          # Tema de cursores Vimix
 # yaru-session                         # Sessão do GNOME com o tema Yaru  
 # yaru-sound-theme                     # Tema de sons Yaru  
 # yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
+
+### Aparência (2) - Temas para aplicativos de terceiros
+
+kvantum                                # SVG-based theme engine for Qt6 (including config tool and extra themes)
+qt5ct                                  # Qt5 Configuration Utility
+qt6ct                                  # Qt6 Configuration Utility
+gsettings-qt5                          # Library to access GSettings from Qt5
+gsettings-qt6                          # Library to access GSettings from Qt6
+adw-gtk-theme                          # Unofficial GTK 3 port of the libadwaita theme
+# xdg-desktop-portal-gnome             # Já na sessão Wayland
+# xdg-desktop-portal                   # Já na sessão Wayland
+# gnome-themes-extra                   # Já na sessão Aparência (1)
+kvantum-theme-libadwaita-git           # Libaidwaita theme for Kvantum
 
 ### Wayland - Compatibilidade com GNOME Shell
 

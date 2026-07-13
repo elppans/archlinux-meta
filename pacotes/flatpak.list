@@ -51,6 +51,12 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 
 # flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager (Não funciona para o Gnome nativo)
 
+### Aparência (3) - Temas para aplicativos de terceiros (Sessão 1 e 2 estão em pacman.list)
+flathub org.gtk.Gtk3theme.adw-gtk3                     # The libadwaita theme ported to GTK 3
+flathub org.gtk.Gtk3theme.adw-gtk3-dark                # The libadwaita theme ported to GTK 3
+flathub org.kde.KStyle.Kvantum//5.15                   # SVG-based theme engine for Qt5
+flathub org.kde.KStyle.Kvantum//6.10                   # SVG-based theme engine for Qt5
+
 ### **Outros aplicativos**
 
 # flathub org.gtkhash.gtkhash                           # Calcular resumos de mensagens ou somas de verificação (checksums) > Trocado por Collision
