@@ -54,7 +54,8 @@ done
 # 3. Execução condicional
 if [ ${#TO_APPLY_FS[@]} -eq 0 ] && [ ${#TO_APPLY_ENV[@]} -eq 0 ]; then
     # echo "Configuração do Flatpak já está íntegra e consistente. Nada a fazer."
-    exit 0
+    #exit 0
+	echo &>>/dev/null
 fi
 
 # echo "Inconsistências encontradas. Aplicando correções..."
@@ -71,7 +72,7 @@ if [ ${#TO_APPLY_ENV[@]} -gt 0 ]; then
     flatpak override --user "${TO_APPLY_ENV[@]}"
 fi
 
-if ! flatpak run --command=env org.kde.gwenview | grep -E 'QT_|KVANTUM_' | grep "$KVTHEME" ; then
+if ! flatpak run --command=env org.kde.gwenview | grep -E 'QT_|KVANTUM_' | grep "$KVTHEME" >>/dev/null ; then
 flatpak override --user --env=KVANTUM_THEME="$KVTHEME"
 fi
 
