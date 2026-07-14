@@ -9,7 +9,7 @@ dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 # Ajustes de configurações via gsettings
 
 # Temas e Configurações Gnome
-# gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com # (Esta extensão não existe mais)
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 # gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
 # gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
@@ -102,10 +102,10 @@ sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local
 cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
 
 # Trocar o ícone do actions-for-nautilus-configurator e padronizando em "skel" (O ícone padrão TAMBÉM é MUITO FEIO)
-sudo sed -i 's/^Icon=.*/Icon=applications-interfacedesign/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
-grep -q 'Categories' "/usr/share/applications/actions-for-nautilus-configurator.desktop" || \
-echo -e 'Categories=GNOME;GTK;System;Settings;DesktopSettings;' | sudo tee -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" &>>/dev/null
-sudo mkdir -p "/etc/skel/.local/share/applications"
-mkdir -p "$HOME/.local/share/applications"
-sudo cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
-cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "$HOME/.local/share/applications"
+# sudo sed -i 's/^Icon=.*/Icon=applications-interfacedesign/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
+# grep -q 'Categories' "/usr/share/applications/actions-for-nautilus-configurator.desktop" || \
+# echo -e 'Categories=GNOME;GTK;System;Settings;DesktopSettings;' | sudo tee -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" &>>/dev/null
+# sudo mkdir -p "/etc/skel/.local/share/applications"
+# mkdir -p "$HOME/.local/share/applications"
+# sudo cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
+# cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "$HOME/.local/share/applications"

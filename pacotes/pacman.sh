@@ -65,7 +65,7 @@ for rmpacote in "${removepacotes[@]}"; do
     echo "- $rmpacote"
 done
 sleep 5
-"${HELPER}" -Rns --needed "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
+"${HELPER}" -Rns --noconfirm "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
 
 echo "Processo concluído!"
 

@@ -4,7 +4,8 @@
 # Modifique a senha para sua preferência com o comando sudo smbpasswd SEU_USUÁRIO
 
 # Instalação do pacote samba
-sudo pacman --needed --noconfirm -Syu samba
+# sudo pacman --quiet --needed --noconfirm -Syu samba
+# Ps.: Adicionado pacotes na Sessão "pacotes/pacman.list"
 
 # Configuração do SAMBA
 
