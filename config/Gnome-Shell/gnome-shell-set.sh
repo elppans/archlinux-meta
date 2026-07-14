@@ -11,10 +11,12 @@ dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 # Temas e Configurações Gnome
 # gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com # (Esta extensão não existe mais)
 # gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
 # gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-# gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
+# gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact" # 'adwaita' 'adw-gtk3-dark' 
 # gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
 # gsettings set org.gnome.desktop.sound theme-name "Yaru"
+# Ps.: Adicionado parâmetros na Sessão  "pacotes/pacman.ini"
 
 # Configurações gerais do Gnome
 gsettings set org.gnome.Console transparency true

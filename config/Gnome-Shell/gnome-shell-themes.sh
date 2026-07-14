@@ -4,21 +4,34 @@ GNOMESHELLCMD="$0"
 GNOMESHELLDIR="$(dirname "$GNOMESHELLCMD")"
 export GNOMESHELLDIR
 
+# ==========================================
 # Temas nativos em aplicativos de terceiros:
+# ==========================================
 
 # sudo pacman -Sy --needed kvantum qt5ct qt6ct gsettings-qt5 gsettings-qt6 adw-gtk-theme xdg-desktop-portal-gnome xdg-desktop-portal gnome-themes-extra
 # yay -Sy --needed kvantum-theme-libadwaita-git
 # Ps.: Adicionado pacotes na Sessão "pacotes/pacman.list"
 
-gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+# gsettings set org.gnome.desktop.interface gtk-theme 'adwaita' # 'adw-gtk3-dark'
+# gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
+# Ps.: Adicionado parâmetros na Sessão "config/Gnome-Shell/gnome-shell-set.sh"
+
 grep -q 'QT_QPA_PLATFORM="wayland;xcb"' /etc/environment || echo -e 'QT_QPA_PLATFORM="wayland;xcb"' | sudo tee -a /etc/environment
 grep -q 'QT_QPA_PLATFORMTHEME=qt5ct' /etc/environment || echo -e 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment
 grep -q 'QT_STYLE_OVERRIDE=kvantum' /etc/environment || echo -e 'QT_STYLE_OVERRIDE=kvantum' | sudo tee -a /etc/environment
 # cat /etc/environment 
 # sudo reboot
 
+if [ -f "$GNOMESHELLDIR/gnome-shell-themes-kvantum.sh" ]; then
+	"$GNOMESHELLDIR/gnome-shell-themes-kvantum.sh"
+else
+	echo "Arquivo gnome-shell-themes-kvantum.sh não encontrado!"
+	exit 1
+fi
+
+# ==========================================
 # Temas para aplicativos Flatpak
+# ==========================================
 
 # Instala o tema Adwaita para o runtime Qt5 e Qt6 do Flatpak
 # flatpak install flathub org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
@@ -84,6 +97,7 @@ rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
 
 if [ -f "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" ]; then
 	sudo cp -a "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" /etc/profile.d/
+	sudo chmod +x /etc/profile.d/gnome-shell-themes-flatpak.sh
 else
 	echo "Arquivo gnome-shell-themes-flatpak.sh não encontrado!"
 	exit 1
