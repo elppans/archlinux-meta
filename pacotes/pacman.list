@@ -31,10 +31,11 @@ nautilus-share                         # Compartilha pastas via Samba pelo Nauti
 # obsidian-icon-theme                  # Tema de ícones Obsidian baseado no Papirus
 # cutefish-icons                       # Conjunto de ícones do ambiente Cutefish
 orchis-theme                           # Tema moderno para GTK e GNOME Shell
-tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
+# tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
 bibata-cursor-theme                    # AUR. Tema de cursores Bibata
 # vimix-cursors                        # Tema de cursores Vimix
 # gnome-themes-extra                   # Conjunto de temas adicionais para GTK
+kora-icon-theme                        # Conjunto de ícones Tela Kora
 # tela-circle-icon-theme-all           # Conjunto de ícones Tela Circle
 # yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
 # yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  

@@ -10,12 +10,12 @@ dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 
 # Temas e Configurações Gnome
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-# gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
+gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
-# gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors"
-# gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact" # 'adwaita' 'adw-gtk3-dark' 
-# gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Aqua-Light"
-# gsettings set org.gnome.desktop.sound theme-name "Yaru"
+gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
+gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact" # 'adwaita' 'adw-gtk3-dark' 
+gsettings set org.gnome.desktop.interface icon-theme "Kora"
+gsettings set org.gnome.desktop.sound theme-name "Yaru"
 # Ps.: Adicionado parâmetros na Sessão  "pacotes/pacman.ini"
 
 # Configurações gerais do Gnome
@@ -30,6 +30,7 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 # gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
 gsettings set org.gnome.shell.weather automatic-location true
 gsettings set org.gnome.shell.extensions.window-list grouping-mode 'auto'
+gsettings set org.gnome.shell always-show-log-out true
 
 # Configurações gerais do Mutter
 gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas novas
