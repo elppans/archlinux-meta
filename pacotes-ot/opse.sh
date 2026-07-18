@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 
+locdir="$(pwd)"
+bdir="$(dirname "$locdir")"
+export bdir
+
 if command -v zypper ; then
+	sudo zypper --non-interactive refresh
 	sudo zypper -n install sound-theme-yaru kora-icon-theme # Tema 
 	sudo zypper -n install caffeine-guava gnome-themes-extras gtk2-engine-murrine # Suporte extensão
 	sudo zypper -n install git make # Pacotes Devel
+	sudo zypper -n install --no-recommends jq ruby ShellCheck shfmt nodejs npm # Pacotes Shell
 elif command -v git ; then
         git --version
 fi
+
+sudo npm install -g prettier stylelint # Pacotes Shell (Global)
 
 mkdir -p ~/build
 
@@ -37,7 +45,8 @@ gsettings --schemadir ~/.local/share/gnome-shell/extensions/caffeine@patapon.inf
 gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com']"
 
 cd ~/build || exit 1
-git clone https://github.com/elppans/archlinux-meta.git
+# git clone https://github.com/elppans/archlinux-meta.git
+mv "$bdir" ~/build || exit 1
 
 cd ~/build/archlinux-meta/config/Gnome-Shell || exit 1
 ./gnome-shell-set.sh 
