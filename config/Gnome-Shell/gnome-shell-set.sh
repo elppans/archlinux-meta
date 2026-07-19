@@ -14,7 +14,7 @@ gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
 gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
 gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact" # 'adwaita' 'adw-gtk3-dark' 
-gsettings set org.gnome.desktop.interface icon-theme "Kora"
+gsettings set org.gnome.desktop.interface icon-theme 'Kora'
 gsettings set org.gnome.desktop.sound theme-name "Yaru"
 # Ps.: Adicionado parâmetros na Sessão  "pacotes/pacman.ini"
 

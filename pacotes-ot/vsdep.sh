@@ -22,7 +22,7 @@ elif command -v pacman ; then
 fi
 
 echo "==> Instalando ferramentas CLI globais via npm..."
-sudo npm install -g "${NODE_PKGS[@]}"
+sudo npm install --global "${NODE_PKGS[@]}"
 
 echo "==> Verificando instalações:"
 for cmd in jq prettier ruby shellcheck shfmt stylelint; do
