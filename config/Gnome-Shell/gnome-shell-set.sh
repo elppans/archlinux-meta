@@ -116,20 +116,21 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 # sudo cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
 # cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "$HOME/.local/share/applications"
 
+# Trancar icon-theme
 # 1. Certifique-se de criar o diretório de locks
-sudo mkdir -p /etc/dconf/db/local.d/locks
+# sudo mkdir -p /etc/dconf/db/local.d/locks
 
 # 2. Defina o valor padrão
-sudo mkdir -p /etc/dconf/db/local.d
-cat << 'EOF' | sudo tee /etc/dconf/db/local.d/00-icon-theme
-[org/gnome/desktop/interface]
-icon-theme='Kora'
-EOF
+# sudo mkdir -p /etc/dconf/db/local.d
+# cat << 'EOF' | sudo tee /etc/dconf/db/local.d/00-icon-theme
+# [org/gnome/desktop/interface]
+# icon-theme='Kora'
+# EOF
 
 # 3. Bloqueie a alteração por outros processos
-cat << 'EOF' | sudo tee /etc/dconf/db/local.d/locks/icon-theme
-/org/gnome/desktop/interface/icon-theme
-EOF
+# cat << 'EOF' | sudo tee /etc/dconf/db/local.d/locks/icon-theme
+# /org/gnome/desktop/interface/icon-theme
+# EOF
 
 # 4. Atualize a base dconf
 sudo dconf update
