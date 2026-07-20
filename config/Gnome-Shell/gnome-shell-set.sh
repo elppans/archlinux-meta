@@ -14,9 +14,14 @@ gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
 gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
 gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact" # 'adwaita' 'adw-gtk3-dark' 
-gsettings set org.gnome.desktop.interface icon-theme 'Kora'
 gsettings set org.gnome.desktop.sound theme-name "Yaru"
 # Ps.: Adicionado parâmetros na Sessão  "pacotes/pacman.ini"
+
+# Gravação via gsettings com fallback direto no dconf para tema de ícone
+gsettings set org.gnome.desktop.interface icon-theme 'Kora'
+dconf write /org/gnome/desktop/interface/icon-theme "'Kora'"
+# Ps.: Adicionado parâmetros na Sessão  "pacotes/pacman.ini"
+# Ps.2: criação de regra de lock no dconf para icon-theme
 
 # Configurações gerais do Gnome
 gsettings set org.gnome.Console transparency true
@@ -110,3 +115,21 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 # mkdir -p "$HOME/.local/share/applications"
 # sudo cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "/etc/skel/.local/share/applications"
 # cp -a "/usr/share/applications/actions-for-nautilus-configurator.desktop" "$HOME/.local/share/applications"
+
+# 1. Certifique-se de criar o diretório de locks
+sudo mkdir -p /etc/dconf/db/local.d/locks
+
+# 2. Defina o valor padrão
+sudo mkdir -p /etc/dconf/db/local.d
+cat << 'EOF' | sudo tee /etc/dconf/db/local.d/00-icon-theme
+[org/gnome/desktop/interface]
+icon-theme='Kora'
+EOF
+
+# 3. Bloqueie a alteração por outros processos
+cat << 'EOF' | sudo tee /etc/dconf/db/local.d/locks/icon-theme
+/org/gnome/desktop/interface/icon-theme
+EOF
+
+# 4. Atualize a base dconf
+sudo dconf update
