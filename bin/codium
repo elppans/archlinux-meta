@@ -8,7 +8,7 @@ fi
 
 # Verifica se existe o comando codium
 if command -v codium &> /dev/null; then
-	ls /usr/bin/codium 2>/dev/null && /usr/bin/codium "$@" || ls /usr/local/bin/codium && /usr/local/bin/codium "$@"
+	ls /usr/bin/codium 2>/dev/null && /usr/bin/codium "$@" || ls /usr/local/bin/codium 2>/dev/null && /usr/local/bin/codium "$@"
     exit 0
 fi
 
