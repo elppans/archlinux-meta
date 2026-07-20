@@ -49,7 +49,7 @@ Icon=$ICON" | sudo tee "$FILE_PATH" &>>/dev/null
 done
 
 echo "Sincronizando arquivos .directory em: $HOME_DIR"
-rsync -ah /etc/skel/. "$HOME_DIR"
+rsync -ah /etc/skel/ "$HOME/"
 
 echo "Atualizando o cache do ambiente gráfico..."
 
