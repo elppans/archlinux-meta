@@ -1,16 +1,22 @@
 #!/bin/bash
 
-# Verifica se o codium está instalado via pacman
-if pacman -Q codium &> /dev/null; then
-    /usr/bin/codium "$@"
-    exit 0
-fi
-
 # Verifica se o codium está instalado via Flatpak
 if command -v flatpak &> /dev/null && flatpak list | grep -q "com.vscodium.codium"; then
     flatpak run com.vscodium.codium "$@"
     exit 0
 fi
+
+# Verifica se existe o comando codium
+if command -v codium &> /dev/null; then
+	ls /usr/bin/codium 2>/dev/null && /usr/bin/codium "$@" || ls /usr/local/bin/codium && /usr/local/bin/codium "$@"
+    exit 0
+fi
+
+# Verifica se o codium está instalado via pacman
+# if pacman -Q codium &> /dev/null; then
+#     /usr/bin/codium "$@"
+#     exit 0
+# fi
 
 # Caso nenhum seja encontrado, exibe uma mensagem de erro
 echo "Nenhuma instalação do 'codium' foi encontrada. Certifique-se de que o codium está instalado!"
