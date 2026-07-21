@@ -44,9 +44,10 @@ gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas nov
 # gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer', 'variable-refresh-rate']" # Ativar escala fracionada e VRR no Wayland
 
 # Temas e Configurações GDM
+sudo chown -R gdm:gdm /var/lib/gdm
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark""
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact""
-# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Vimix-cursors""
+sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"" # "Vimix-cursors"
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true"
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true"
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true"
