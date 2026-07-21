@@ -47,6 +47,7 @@ gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas nov
 sudo chown -R gdm:gdm /var/lib/gdm
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark""
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact""
+# shellcheck disable=SC2140
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"" # "Vimix-cursors"
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true"
 sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true"
