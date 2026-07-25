@@ -34,8 +34,10 @@ if [ -d "$bindir/../helper" ]; then
 	sleeping 5
 	if pacman -Qqs chaotic-mirrorlist ;then
 		cd "$bindir/../helper" || exit 1
-		chmod +x chaotic-aur-remove.sh
-		./chaotic-aur-remove.sh
+		#chmod +x chaotic-aur-remove.sh
+		#./chaotic-aur-remove.sh
+		chmod +x chaotic-aur_hyde.sh
+		./chaotic-aur_hyde.sh --uninstall
 		cd "$bindir" || exit 1
 	fi
 fi
