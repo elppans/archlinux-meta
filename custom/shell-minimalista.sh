@@ -7,9 +7,9 @@
 # https://starship.rs/guide/
 if pacman -Qqs starship; then
 	if [ -f "$HOME"/.bashrc ]; then
-		grep -q "starship init bash" "$HOME"/.bashrc || echo -e 'eval "$(starship init bash)"' | tee -a "$HOME"/.bashrc
+		grep -q "starship init bash" "$HOME"/.bashrc || echo -e 'command -v starship &>>/dev/null && eval "$(starship init bash)"' | tee -a "$HOME"/.bashrc
 	else
 		cp -a /etc/.bashrc "$HOME"/.bashrc
-		grep -q "starship init bash" "$HOME"/.bashrc || echo -e 'eval "$(starship init bash)"' | tee -a "$HOME"/.bashrc
+		grep -q "starship init bash" "$HOME"/.bashrc || echo -e 'command -v starship &>>/dev/null && eval "$(starship init bash)"' | tee -a "$HOME"/.bashrc
 	fi
 fi

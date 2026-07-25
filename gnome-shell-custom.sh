@@ -92,6 +92,7 @@ cd "$install"/config/Gnome-Shell || exit 1
 ./gnome-shell-build-xdg-directories.sh # Configuração e sincronização dos arquivos de diretórios XDG 
 ./gnome-shell-keyboard.sh # Configurações de atalhos do Gnome Shell+
 ./gnome-shell-themes.sh # Configurações de temas para aplicativos externos do Gnome Shell+
+./gnome-shell-headerbar.sh # Define o estilo CSS para reduzir o tamanho da barra
 
 cd "$install"/config/System || exit 1
 ./samba-share-set.sh      # Configuração do SAMBA

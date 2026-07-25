@@ -26,10 +26,11 @@ cd "$HOME/build" || exit 1
 # cd "$HOME/build/vscodeum" || exit 1
 # makepkg -Cris
 
-sudo wget -O "/usr/local/bin/vscodeum-extensions" "https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/usr/local/bin/vscodeum-extensions"
-sudo chmod +x "/usr/local/bin/vscodeum-extensions"
-sudo wget -O "/usr/local/bin/paclean" "https://raw.githubusercontent.com/elppans/paclean/refs/heads/main/usr/bin/paclean"
-sudo chmod +x "/usr/local/bin/paclean"
+# sudo wget -O "/usr/local/bin/vscodeum-extensions" "https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/usr/local/bin/vscodeum-extensions"
+# sudo chmod +x "/usr/local/bin/vscodeum-extensions"
+
+# sudo wget -O "/usr/local/bin/paclean" "https://raw.githubusercontent.com/elppans/paclean/refs/heads/main/usr/bin/paclean"
+# sudo chmod +x "/usr/local/bin/paclean"
 
 if pacman -Qqs sddm-silent-theme ; then
 	mkdir -p "$HOME/build/sddm-silent-customizer"
