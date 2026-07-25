@@ -37,7 +37,7 @@ if [ -d "$bindir/../helper" ]; then
 		#chmod +x chaotic-aur-remove.sh
 		#./chaotic-aur-remove.sh
 		chmod +x chaotic-aur_hyde.sh
-		./chaotic-aur_hyde.sh --uninstall
+		sudo ./chaotic-aur_hyde.sh --uninstall
 		cd "$bindir" || exit 1
 	fi
 fi
