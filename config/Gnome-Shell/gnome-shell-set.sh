@@ -94,12 +94,18 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ categories "['Development']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ translate true
 
+
+sudo cat <<'EOF'> /usr/local/bin/gnome-shell-app-reload
+#!/usr/bin/env bash
+
 # Restaura o layout padrão da menu de aplicativos (app-picker) do GNOME.
 # Remove alterações personalizadas e reorganiza os ícones em categorias padrão.
 xdg-desktop-menu forceupdate
 update-desktop-database ~/.local/share/applications
 gsettings reset org.gnome.shell app-picker-layout
 dconf reset -f /org/gnome/shell/app-picker-layout/
+EOF
+sudo chmod +x /usr/local/bin/gnome-shell-app-reload
 
 
 # Configurações diretas
@@ -138,3 +144,4 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 
 # 4. Atualize a base dconf
 sudo dconf update
+/usr/local/bin/gnome-shell-app-reload
