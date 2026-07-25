@@ -30,8 +30,10 @@ escolher_helper() {
             export HELPER="paru"
             ;;
         *)
-            echo "Escolha inválida. Por favor, tente novamente."
+            #echo "Escolha inválida. Por favor, tente novamente."
             # escolher_helper
+            echo "Instalando yay..."
+            bash pacote-helper-yay.sh
 			export HELPER="yay"
             ;;
     esac
