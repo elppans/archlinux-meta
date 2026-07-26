@@ -13,7 +13,7 @@ gnome_enable_ext() {
     # Verifica se já está na lista
     if [[ "$current" == *"$uuid"* ]]; then
         echo "Extensão $uuid já está habilitada."
-        # return 0
+        return 0
     fi
 
     # Formata a nova string de array injetando o novo UUID
