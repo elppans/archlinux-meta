@@ -1,8 +1,32 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2154,SC1091
+# shellcheck disable=SC2154,SC1091,SC2155,SC2001
 
 GSEPWD="$(pwd)"
 export GSEPWD
+
+gnome_enable_ext() {
+    local uuid="$1"
+    
+    # Lê as extensões ativas no formato array do GSettings
+    local current=$(gsettings get org.gnome.shell enabled-extensions)
+    
+    # Verifica se já está na lista
+    if [[ "$current" == *"$uuid"* ]]; then
+        echo "Extensão $uuid já está habilitada."
+        return 0
+    fi
+
+    # Formata a nova string de array injetando o novo UUID
+    if [[ "$current" == "[]" ]]; then
+        local updated="['$uuid']"
+    else
+        local updated=$(echo "$current" | sed "s/]/, '$uuid']/")
+    fi
+
+    # Escreve de volta no DConf
+    gsettings set org.gnome.shell enabled-extensions "$updated"
+    echo "Extensão $uuid habilitada com sucesso."
+}
 
 gnome-shell-extension-appindicator() {
 	mkdir -p /tmp/gnome-shell-extension-appindicator && cd /tmp/gnome-shell-extension-appindicator || exit 1
@@ -29,7 +53,11 @@ quick-sound-switcher() {
 }
 enable-extensions() {
 	# Ativar as 3 extensões instaladas
-	gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'quick-sound-switcher@dustin-hawkins']"
+	# gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'quick-sound-switcher@dustin-hawkins']"
+	gnome_enable_ext "appindicatorsupport@rgcjonas.gmail.com"
+	gnome_enable_ext "caffeine@patapon.info"
+	gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
+	gnome_enable_ext "quick-sound-switcher@dustin-hawkins"
 }
 
 if [ "$(command -v pacman)" ]; then

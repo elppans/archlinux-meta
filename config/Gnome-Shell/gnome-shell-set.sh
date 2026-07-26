@@ -9,7 +9,7 @@ dconf write /org/gnome/nautilus/preferences/show-delete-permanently true
 # Ajustes de configurações via gsettings
 
 # Temas e Configurações Gnome
-gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+# gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com # Movido para "gnome-shell-extensions.sh"
 gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' # 'prefer-light' 'default'
 gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"

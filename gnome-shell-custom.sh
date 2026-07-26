@@ -87,12 +87,13 @@ sleeping 6
 echo "Efetuando configurações do sistema..."
 sleeping 6
 cd "$install"/config/Gnome-Shell || exit 1
-./gnome-shell-themes-orchis.sh # Instalação e configuração de temas
-./gnome-shell-set.sh # Configurações do Gnome Shell+
 ./gnome-shell-build-xdg-directories.sh # Configuração e sincronização dos arquivos de diretórios XDG 
-./gnome-shell-keyboard.sh # Configurações de atalhos do Gnome Shell+
-./gnome-shell-themes.sh # Configurações de temas para aplicativos externos do Gnome Shell+
+./gnome-shell-extensions.sh # Extensões do Gnome Shell
 ./gnome-shell-headerbar.sh # Define o estilo CSS para reduzir o tamanho da barra
+./gnome-shell-keyboard.sh # Configurações de atalhos do Gnome Shell+
+./gnome-shell-set.sh # Configurações do Gnome Shell+
+./gnome-shell-themes-orchis.sh # Instalação e configuração de temas
+./gnome-shell-themes.sh # Configurações de temas para aplicativos externos do Gnome Shell+
 
 cd "$install"/config/System || exit 1
 ./samba-share-set.sh      # Configuração do SAMBA
