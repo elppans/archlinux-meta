@@ -52,7 +52,7 @@ qt5ct                                  # Qt5 Configuration Utility
 qt6ct                                  # Qt6 Configuration Utility
 gsettings-qt5                          # Library to access GSettings from Qt5
 gsettings-qt6                          # Library to access GSettings from Qt6
-adw-gtk-theme                          # Unofficial GTK 3 port of the libadwaita theme
+# adw-gtk-theme                          # Unofficial GTK 3 port of the libadwaita theme
 # xdg-desktop-portal-gnome             # Já na sessão Wayland
 # xdg-desktop-portal                   # Já na sessão Wayland
 # gnome-themes-extra                   # Já na sessão Aparência (1)
@@ -141,3 +141,4 @@ mediainfo                              # Fornece informações técnicas e de ta
 aurm                                   # AUR. Auxiliar profissional de manutenção AUR com automação e sincronização no GitHub	
 pacod                                  # AUR. Lista dependências opcionais (optdepends) de pacotes e grupos pacman	
 starship                               # Prompt minimalista, rápido e personalizável para qualquer Shell
+zenity                                 # Display graphical dialog boxes from shell scripts
