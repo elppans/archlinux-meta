@@ -10,7 +10,37 @@ verificar_helper() {
         escolher_helper
     fi
 }
+helper_yay(){
+sudo pacman --needed -Sy base-devel debugedit fakeroot
 
+# Wrappers do pacman (AUR Helper)
+if pacman -Sqs | grep ^yay$ ;then
+	sudo pacman --needed -Sy yay
+else
+	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
+	git clone https://aur.archlinux.org/yay.git "$HOME/build/yay"
+	cd "$HOME/build/yay" || exit 1
+	makepkg -Cris -L --needed --noconfirm
+	cd - || exit 1
+fi
+}
+helper_paru(){
+sudo pacman --needed -Sy base-devel debugedit fakeroot
+
+# Dependências opcionais para o paru:
+sudo pacman --needed -Sy bat devtools
+
+# Wrappers do pacman (AUR Helper)
+if pacman -Sqs | grep ^paru$ ;then
+	sudo pacman --needed -Sy paru
+else
+	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
+	git clone https://aur.archlinux.org/paru.git "$HOME"/build/paru
+	cd "$HOME"/build/paru || exit
+	makepkg --needed --noconfirm -Cris
+	cd - || exit 1
+fi
+}
 # Função para escolher e instalar o gerenciador de pacotes
 escolher_helper() {
     echo "Qual gerenciador de pacotes você deseja instalar?"
@@ -21,19 +51,19 @@ escolher_helper() {
     case $escolha in
         y|Y)
             echo "Instalando yay..."
-            bash pacote-helper-yay.sh
+            helper_yay
             export HELPER="yay"
             ;;
         p|P)
             echo "Instalando paru..."
-            bash pacote-helper-paru.sh
+            helper_paru
             export HELPER="paru"
             ;;
         *)
             #echo "Escolha inválida. Por favor, tente novamente."
             # escolher_helper
             echo "Instalando yay..."
-            bash pacote-helper-yay.sh
+            helper_yay
 			export HELPER="yay"
             ;;
     esac
