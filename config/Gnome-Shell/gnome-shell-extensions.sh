@@ -59,12 +59,12 @@ enable-extensions() {
 	gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
 	gnome_enable_ext "quick-sound-switcher@dustin-hawkins"
 }
-
+helper(){
+	bash <(curl -fsSL https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh)
+}
 if [ "$(command -v pacman)" ]; then
 	# Gerenciamento de pacotes e manutenção do sistema
-	cd "$install"/helper/ || exit 1
-	source helper_install.sh # Wrappers do pacman (AUR Helper)
-	cd "$install" || exit 1
+	helper
 	if ! pacman -Q gnome-shell-extension-appindicator &>/dev/null; then
 		"${HELPER}" --needed --noconfirm -S gnome-shell-extension-appindicator
 	fi
