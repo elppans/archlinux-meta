@@ -53,11 +53,11 @@ quick-sound-switcher() {
 }
 enable-extensions() {
 	# Ativar as 3 extensões instaladas
-	# gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'quick-sound-switcher@dustin-hawkins']"
 	gnome_enable_ext "appindicatorsupport@rgcjonas.gmail.com"
 	gnome_enable_ext "caffeine@patapon.info"
 	gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
 	gnome_enable_ext "quick-sound-switcher@dustin-hawkins"
+	gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'quick-sound-switcher@dustin-hawkins']"
 }
 helper(){
 	bash <(curl -fsSL https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh)

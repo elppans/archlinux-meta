@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sudo pacman --needed -Sy base-devel debugedit fakeroot
+sudo pacman --needed --noconfirm -Sy base-devel debugedit fakeroot
 
 # Wrappers do pacman (AUR Helper)
 if pacman -Sqs | grep ^yay$ ;then
-	sudo pacman --needed -Sy yay
+	sudo pacman --needed --noconfirm -Sy yay
 else
 	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
 	git clone https://aur.archlinux.org/yay.git "$HOME/build/yay"

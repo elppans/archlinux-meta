@@ -11,11 +11,11 @@ verificar_helper() {
     fi
 }
 helper_yay(){
-sudo pacman --needed -Sy base-devel debugedit fakeroot
+sudo pacman --needed --noconfirm -Sy base-devel debugedit fakeroot
 
 # Wrappers do pacman (AUR Helper)
 if pacman -Sqs | grep ^yay$ ;then
-	sudo pacman --needed -Sy yay
+	sudo pacman --needed --noconfirm -Sy yay
 else
 	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
 	git clone https://aur.archlinux.org/yay.git "$HOME/build/yay"
@@ -25,14 +25,14 @@ else
 fi
 }
 helper_paru(){
-sudo pacman --needed -Sy base-devel debugedit fakeroot
+sudo pacman --needed --noconfirm -Sy base-devel debugedit fakeroot
 
 # Dependências opcionais para o paru:
-sudo pacman --needed -Sy bat devtools
+sudo pacman --needed --noconfirm -Sy bat devtools
 
 # Wrappers do pacman (AUR Helper)
 if pacman -Sqs | grep ^paru$ ;then
-	sudo pacman --needed -Sy paru
+	sudo pacman --needed --noconfirm -Sy paru
 else
 	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
 	git clone https://aur.archlinux.org/paru.git "$HOME"/build/paru

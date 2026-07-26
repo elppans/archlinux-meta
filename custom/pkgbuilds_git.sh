@@ -1,4 +1,8 @@
 #!/bin/bash
+
+mkdir -p "$HOME"/build
+echo -e 'build\nBuild' | tee -a "$HOME"/.hidden &>>/dev/null
+
 # Remover pacotes virt*
 # sudo pacman -Rsunc $(pacman -Qqs | grep ^virt) ; sudo paclean ; sudo pacman -Syyu
 
