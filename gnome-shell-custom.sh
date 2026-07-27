@@ -80,10 +80,6 @@ echo "Efetuando instalação de pacotes Flatpak..."
 sleeping 6
 ./flatpak.sh
 
-# Customizações do sistema com Scripts
-echo "Efetuando execução de Customizações do sistema via Scripts"
-find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
-
 # Configurações do sistema
 echo "Efetuando configurações do sistema..."
 sleeping 6
@@ -108,6 +104,12 @@ sleeping 6
 echo "Efetuando configuração baseado em pacotes Flatpak"
 sleeping 6
 ./flatpak.ini
+
+# Customizações do sistema com Scripts
+echo "Efetuando execução de Customizações do sistema via Scripts"
+sleeping 6
+find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
+
 
 # Mensagem final
 echo -e "\nInstalação concluída com sucesso!"
