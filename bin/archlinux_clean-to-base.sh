@@ -76,32 +76,32 @@ sudo chsh -s /bin/bash "$USER"
 
 # Pause para verificar se as respostas estão corretas.
 # Se OK, apertar ENTER para continuar, senão, CTRL+C para cancelar
-read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
+read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo de instalação de TODOS os pacotes instalados "como Explicitamente" para "como dependência"'
 sleeping 5
 # Opção "-n" significa apenas "pacotes nativos", então é melhor ser mais Hardcore e remover para exatamente TODOS os pacotes, independente de qual seja.
 sudo pacman -D --asdeps $(pacman -Qq)
 
-read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
+read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Alterando o motivo da instalação para "como explicitamente" apenas os PACOTES ESSENCIAIS. Aqueles que você NÃO deseja remover'
 sleeping 5
 sudo pacman -D --asexplicit $(pacman -Qqs ucode) base linux linux-firmware btrfs-progs git nano networkmanager pipewire wpa_supplicant wireless_tools sudo wget
 
-read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
+read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Remover os pacotes, menos os configurados como "Instalados Explicitamente"'
 sleeping 5
 sudo pacman -Rsunc $(pacman -Qttdq)
 
-read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
+read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Retornando alguns pacotes de compilação'
 sleeping 5
 sudo pacman --needed --noconfirm -S base-devel
 
-read -p "Aperte ENTER para continuar, ou CTRL+C para cancelar" ;
+read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
 echo -e 'Garantindo o GRUB'
 sleeping 5
