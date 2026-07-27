@@ -93,7 +93,7 @@ read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para
 
 echo -e 'Remover os pacotes, menos os configurados como "Instalados Explicitamente"'
 sleeping 5
-sudo pacman -Rsunc $(pacman -Qttdq)
+sudo pacman --noconfirm -Rsunc $(pacman -Qttdq)
 
 read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
