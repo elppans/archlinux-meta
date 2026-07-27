@@ -65,9 +65,6 @@ pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh # Adicionar repositório Chao
 source helper_install.sh # Wrappers do pacman (AUR Helper)
 cd "$install" || exit 1
 
-# Customizações do sistema com Scripts
-find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
-
 # Remoção de pacotes:
 # sudo pacman --noconfirm -R epiphany gnome-music         # Remove o navegador GNOME Web, o aplicativo de música do GNOME.
 
@@ -82,6 +79,10 @@ sleeping 6
 echo "Efetuando instalação de pacotes Flatpak..."
 sleeping 6
 ./flatpak.sh
+
+# Customizações do sistema com Scripts
+echo "Efetuando execução de Customizações do sistema via Scripts"
+find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Configurações do sistema
 echo "Efetuando configurações do sistema..."
