@@ -9,7 +9,9 @@ fi
 mkdir -p "$HOME"/.config/Kvantum/KvLibadwaita
 
 # Copia os arquivos de definição do tema KvLibadwaita do host para o novo diretorio
-rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
+if [ -d "/usr/share/Kvantum/KvLibadwaita/" ]; then
+	rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
+fi
 
 # Tema atual do KVantum no sistema
 KVTHEME="$(sed -n 's/^theme=\(.*\)/\1/p' "$HOME"/.config/Kvantum/kvantum.kvconfig)"
