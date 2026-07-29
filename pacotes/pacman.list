@@ -47,16 +47,16 @@ yaru-sound-theme                       # Tema de sons Yaru
 
 ### Aparência (2) - Temas para aplicativos de terceiros
 
-kvantum                                # SVG-based theme engine for Qt6 (including config tool and extra themes)
-qt5ct                                  # Qt5 Configuration Utility
-qt6ct                                  # Qt6 Configuration Utility
-gsettings-qt5                          # Library to access GSettings from Qt5
-gsettings-qt6                          # Library to access GSettings from Qt6
+## kvantum                                # SVG-based theme engine for Qt6 (including config tool and extra themes)
+## qt5ct                                  # Qt5 Configuration Utility
+## qt6ct                                  # Qt6 Configuration Utility
+## gsettings-qt5                          # Library to access GSettings from Qt5
+## gsettings-qt6                          # Library to access GSettings from Qt6
 # adw-gtk-theme                          # Unofficial GTK 3 port of the libadwaita theme
 # xdg-desktop-portal-gnome             # Já na sessão Wayland
 # xdg-desktop-portal                   # Já na sessão Wayland
 # gnome-themes-extra                   # Já na sessão Aparência (1)
-kvantum-theme-libadwaita-git           # AUR. Libaidwaita theme for Kvantum
+## kvantum-theme-libadwaita-git           # AUR. Libaidwaita theme for Kvantum## 
 
 ### Wayland - Compatibilidade com GNOME Shell
 
