@@ -56,23 +56,23 @@ yaru-sound-theme                       # Tema de sons Yaru
 # xdg-desktop-portal-gnome             # Já na sessão Wayland
 # xdg-desktop-portal                   # Já na sessão Wayland
 # gnome-themes-extra                   # Já na sessão Aparência (1)
-## kvantum-theme-libadwaita-git           # AUR. Libaidwaita theme for Kvantum## 
+# kvantum-theme-libadwaita-git           # AUR. Libaidwaita theme for Kvantum## 
 
 ### Wayland - Compatibilidade com GNOME Shell
 
-xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
-xorg-xlsclients                        # Instala a ferramenta xlsclients para listar clientes X em execução.
-glfw-wayland                           # Instala a biblioteca GLFW com suporte ao Wayland para aplicações gráficas.
-libinput                               # Instala a biblioteca libinput para gerenciamento de dispositivos de entrada.
-wayland                                # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente.
-wayland-protocols                      # Instala protocolos adicionais para comunicação dentro do ambiente Wayland.
-xdg-desktop-portal                     # Instala os portais XDG para integração e compatibilidade entre aplicações.
-xdg-desktop-portal-gnome               # Instala suporte específico dos portais XDG para o ambiente GNOME.
-egl-wayland                            # EGLStream-based Wayland external platform
-lib32-wayland                          # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente. (32 bits)
-qt5-wayland                            # Provides APIs for Wayland
-qt6-wayland                            # Provides APIs for Wayland
-xorg-xwayland                          # run X clients under wayland
+### xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
+### xorg-xlsclients                        # Instala a ferramenta xlsclients para listar clientes X em execução.
+### glfw-wayland                           # Instala a biblioteca GLFW com suporte ao Wayland para aplicações gráficas.
+### libinput                               # Instala a biblioteca libinput para gerenciamento de dispositivos de entrada.
+### wayland                                # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente.
+### wayland-protocols                      # Instala protocolos adicionais para comunicação dentro do ambiente Wayland.
+### xdg-desktop-portal                     # Instala os portais XDG para integração e compatibilidade entre aplicações.
+### xdg-desktop-portal-gnome               # Instala suporte específico dos portais XDG para o ambiente GNOME.
+### egl-wayland                            # EGLStream-based Wayland external platform
+### lib32-wayland                          # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente. (32 bits)
+### qt5-wayland                            # Provides APIs for Wayland
+### qt6-wayland                            # Provides APIs for Wayland
+### xorg-xwayland                          # run X clients under wayland
 
 ### Pacotes - Gerenciadores alternativos
 
@@ -142,3 +142,6 @@ aurm                                   # AUR. Auxiliar profissional de manutenç
 pacod                                  # AUR. Lista dependências opcionais (optdepends) de pacotes e grupos pacman	
 starship                               # Prompt minimalista, rápido e personalizável para qualquer Shell
 zenity                                 # Display graphical dialog boxes from shell scripts
+
+### Navegadores 
+firefox-i18n-pt-br
