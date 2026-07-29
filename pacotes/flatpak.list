@@ -28,7 +28,8 @@ flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08 # MangoHud: # Overl
 ### **Edição de Texto e Markdown**
 
 flathub org.kde.kate                                 # Kate: Editor de texto avançado
-flathub com.github.marktext.marktext                 # MarkText: Editor de texto Markdown simples e poderoso
+# flathub com.github.marktext.marktext               # MarkText: Editor de texto Markdown simples e poderoso
+flathub org.gnome.gitlab.somas.Apostrophe            # MarkText: Editor de texto Markdown simples e poderoso (Parte de aplicativos Gnome, Integrado)
 flathub com.vscodium.codium                          # VSCodium: Versão open-source do VS Code (sem rastreamento)
 
 ### **Imagens e Personalização**
