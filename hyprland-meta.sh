@@ -110,7 +110,7 @@ sudo pacman -S --needed \
     pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
     iwd wireless_tools wpa_supplicant openssh wget \
     btop htop smartmontools vim nano \
-	waybar wl-clipboard cliphist
+	hyprpaper waybar wl-clipboard cliphist
 
 # Ativação do Display manager (Gerenciador de Login)
 cd "$install"/display-manager/ || exit 1
