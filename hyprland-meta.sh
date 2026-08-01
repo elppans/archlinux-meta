@@ -67,6 +67,13 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+locdir="$(pwd)"
+install="$locdir"
+export install
+# shellcheck disable=SC2086
+base_install="$(basename $install)"
+export base_install
+
 # Obtém a versão do kernel em execução
 kernel_version=$(uname -r)
 
@@ -102,14 +109,15 @@ sudo pacman -S --needed \
     qt5-wayland qt6-wayland polkit polkit-kde-agent \
     pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
     iwd wireless_tools wpa_supplicant openssh wget \
-    btop htop smartmontools vim nano \
-    sddm
+    btop htop smartmontools vim nano
+
+# Ativação do Display manager (Gerenciador de Login)
+cd "$install"/display-manager/ || exit 1
+chmod +x display-manager-sddm_instalar.sh
+./display-manager-sddm_instalar.sh
+cd "$install" || exit 1
 
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
-
-# Ativação do Display manager (Gerenciador de Login)
-sudo systemctl disable "$(systemctl status display-manager.service | head -n1 | awk '{print $2}')" &>>/dev/null
-sudo systemctl enable sddm.service
 
 # Seguir para instalação do tema ML4W ou HyDE

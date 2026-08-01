@@ -23,12 +23,17 @@ install="$locdir"
 export install
 
 detectar_vm() {
+	# Verificar se a máquina é virtual e instalar pacotes se necessário
+	echo "Verificando se o Host é real ou virtual..."
+	sleep 5
 	cd "$install"/pacotes/ || exit 1
 	./detect-vm.sh
 	cd "$install" || exit 1
 }
-
 verificar_repositorios() {
+	# Verificar repositórios
+	echo "Verificando repositórios existentes..."
+	sleep 5
 	# Verificação do repositório MULTILIB
 	cd "$install"/helper/ || exit 1
 	./multilib-check.sh
@@ -37,151 +42,57 @@ verificar_repositorios() {
 	cd "$install" || exit 1
 
 }
-
-# Função para verificar se o programa está instalado
 verificar_helper() {
-	if command -v yay &>/dev/null; then
-		echo "O 'yay' está instalado!"
-		HELPER="yay"
-		export HELPER
-	elif command -v paru &>/dev/null; then
-		echo "O 'paru' está instalado!"
-		HELPER="paru"
-		export HELPER
-	else
-		escolher_helper
-	fi
+	# Verificando Helper e instalando, caso necessário
+# Gerenciamento de pacotes e manutenção do sistema
+cd "$install"/helper/ || exit 1
+chmod +x helper_install.sh
+# shellcheck disable=SC1091
+source helper_install.sh # Wrappers do pacman (AUR Helper)
+cd "$install" || exit 1
 }
-
-# Função para escolher e instalar o gerenciador de pacotes
-escolher_helper() {
-	echo "Qual gerenciador de pacotes você deseja instalar?"
-	echo "1) yay"
-	echo "2) paru"
-	read -r -p "Digite o número correspondente: " escolha
-
-	case $escolha in
-	1)
-		echo "Instalando yay..."
-		cd "$install"/helper/ || exit 1
-		bash pacote-helper-yay.sh
-		HELPER="yay"
-		export HELPER
-		;;
-	2)
-		echo "Instalando paru..."
-		cd "$install"/helper/ || exit 1
-		bash pacote-helper-paru.sh
-		HELPER="paru"
-		export HELPER
-		;;
-	*)
-		echo "Escolha inválida. Por favor, tente novamente."
-		escolher_helper
-		;;
-	esac
-}
-
-if pacman -Qqs hyprland; then
-	echo "Hyprland instalado, continuando operação..."
+instalar_sddm_silent_theme() {
+	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
+	# Mais informações: https://github.com/uiriansan/SilentSDDM
+	echo "Instalando tema para SDDM..."
 	sleep 5
-	# **PACOTES**
-
+# Ativação do Display manager (Gerenciador de Login)
+cd "$install"/display-manager/ || exit 1
+chmod +x display-manager-sddm_silent-theme.sh
+./display-manager-sddm_silent-theme.sh
+cd "$install" || exit 1
+}
+pacotes_essenciais() {
 	# Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes essenciais estejam instalados..."
 	sleep 5
 	sudo pacman --needed --noconfirm -S git base-devel
+
+}
+pacotes_recomendados() {
 	# Utilitários Recomendados (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes recomendados estejam instalados..."
 	sleep 5
-	sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty \
-		pinta
-	# Verificar se a máquina é virtual e instalar pacotes se necessário
-	echo "Verificando se o Host é real ou virtual..."
-	sleep 5
-	detectar_vm
-	# Verificar repositórios
-	echo "Verificando repositórios existentes..."
-	sleep 5
-	verificar_repositorios
-	# Verificando Helper e instalando, caso necessário
-	echo "Verificando Helper..."
-	sleep 5
-	verificar_helper
-
-	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
-	# Mais informações: https://github.com/uiriansan/SilentSDDM
-	# Ativação do Display manager (Gerenciador de Login)
-	echo "Instalando tema para SDDM..."
-	sleep 5
-	"$HELPER" -Sy --needed --noconfirm sddm-silent-theme || exit 1
-	if [ -f /etc/sddm.conf ]; then
-		cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
-		echo -e "# Make sure these options are correct:
-	[General]
-    	InputMethod=qtvirtualkeyboard
-    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
-
-    	[Theme]
-    	Current=silent
-	" | sudo tee /etc/sddm.conf
-	else
-		echo -e "# Make sure these options are correct:
-    	[General]
-    	InputMethod=qtvirtualkeyboard
-    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
-
-    	[Theme]
-    	Current=silent
-	" | sudo tee /etc/sddm.conf &>>/dev/null
-	fi
-	# shellcheck disable=SC2046
-	sudo systemctl disable $(systemctl status display-manager.service | head -n1 | awk '{print $2}')
-	systemctl is-enabled display-manager.service && sudo systemctl disable display-manager.service
-	systemctl is-enabled sddm.service || sudo systemctl enable sddm.service
-
-	# Script para usar com "SDDM-Silent-Theme"
-	if pacman -Qqs sddm-silent-theme; then
-		if [ -f /usr/local/bin/faceconv ]; then
-			sudo rm -rf "/usr/local/bin/faceconv"
-		fi
-		mkdir -p "$HOME/build/sddm-silent-customizer"
-		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
-		cd "$HOME/build/sddm-silent-customizer" || exit 1
-		makepkg -Cris || exit 1
-	fi
-
-	# **The ML4W Dotfiles for Hyprland**
-	echo "Iniciando instalação do ML4W Dotfiles para Hyperland..."
-	sleep 5
-
-	# git clone https://aur.archlinux.org/ml4w-hyprland.git "$HOME"/ml4w-hyprland
-	# touch "$HOME"/.hidden
-	# grep 'ml4w-hyprland' "$HOME"/.hidden || echo 'ml4w-hyprland' >> "$HOME"/.hidden
-	# cd "$HOME"/ml4w-hyprland || exit 1
-	# makepkg --needed --noconfirm -Cris
-
-	# Garantindo que o instalador finalize sem reiniciar, para adicionar as customiza\C3\A7\C3\B5es
-	# sudo chmod -x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old
-	# ml4w-hyprland-setup
-
+	sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty pinta
+}
+ml4w_lista_de_dependências_oficiais() {
 	# Baixa a lista de dependências oficiais e armazena em uma variá1vel
 	echo "Baixando lista de dependências oficial do github e instalando pacotes..."
 	sleep 5
 	mapfile -t PACKAGES < <(curl -fsSL https://raw.githubusercontent.com/mylinuxforwork/dotfiles/refs/heads/main/setup/dependencies/packages-arch | sed '/^#/d')
-
 	# Executa o instalador Helper usando o array de forma segura
 	"$HELPER" -Sy --needed "${PACKAGES[@]}"
-
+}
+ml4w_os_install() {
 	# Instalar o ML4W versão Stable pelo link oficial
 	echo "Instalando ML4W versão Stable pelo link oficial..."
 	sleep 5
 	bash <(curl -s https://ml4w.com/os/stable)
-
+}
+ml4w_configuracoes_customizadas() {
 	# **CUSTOMIZAÇÃO**
 
-	echo "Adicionando configurações customzadas..."
+	echo "Adicionando configurações customizadas..."
 	sleep 5
 	# tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
 	# cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
@@ -204,6 +115,25 @@ if pacman -Qqs hyprland; then
 	# Reativando as permissoes do script do ML4W
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
+}
+
+if pacman -Qqs hyprland; then
+	echo "Hyprland instalado, continuando operação..."
+	sleep 5
+
+	pacotes_essenciais
+	pacotes_recomendados
+	detectar_vm 
+	verificar_repositorios 
+	verificar_helper 
+	instalar_sddm_silent_theme 
+
+	# **The ML4W Dotfiles for Hyprland**
+	echo "Iniciando instalação do ML4W Dotfiles para Hyperland..."
+	sleep 5
+	ml4w_lista_de_dependências_oficiais
+	ml4w_os_install
+	ml4w_configuracoes_customizadas
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
