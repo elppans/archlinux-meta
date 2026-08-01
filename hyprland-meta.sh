@@ -109,7 +109,8 @@ sudo pacman -S --needed \
     qt5-wayland qt6-wayland polkit polkit-kde-agent \
     pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber \
     iwd wireless_tools wpa_supplicant openssh wget \
-    btop htop smartmontools vim nano
+    btop htop smartmontools vim nano \
+	waybar wl-clipboard cliphist
 
 # Ativação do Display manager (Gerenciador de Login)
 cd "$install"/display-manager/ || exit 1
