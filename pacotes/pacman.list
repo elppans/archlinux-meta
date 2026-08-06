@@ -42,7 +42,7 @@ kora-icon-theme                        # Conjunto de ícones Tela Kora
 # yaru-icon-theme                      # Tema de ícones Yaru  
 # yaru-metacity-theme                  # Tema Yaru para Metacity (gerenciador de janelas)  
 # yaru-session                         # Sessão do GNOME com o tema Yaru  
-yaru-sound-theme                       # Tema de sons Yaru  
+# yaru-sound-theme                     # Tema de sons Yaru  
 # yaru-unity-theme                     # Tema Yaru inspirado no Unity  # REMOVIDO
 
 ### Aparência (2) - Temas para aplicativos de terceiros
