@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # Lista para automatizar a instalação e configuração de diversos pacotes no Arch Linux,
 # organizados por categoria para facilitar a manutenção do sistema.
 #
@@ -31,7 +32,7 @@ nautilus-share                         # Compartilha pastas via Samba pelo Nauti
 # obsidian-icon-theme                  # Tema de ícones Obsidian baseado no Papirus
 # cutefish-icons                       # Conjunto de ícones do ambiente Cutefish
 orchis-theme                           # Tema moderno para GTK e GNOME Shell
-# tela-circle-icon-theme-black           # Variante preta do conjunto de ícones Tela Circle
+# tela-circle-icon-theme-black         # Variante preta do conjunto de ícones Tela Circle
 bibata-cursor-theme                    # AUR. Tema de cursores Bibata
 # vimix-cursors                        # Tema de cursores Vimix
 # gnome-themes-extra                   # Conjunto de temas adicionais para GTK
@@ -47,71 +48,71 @@ kora-icon-theme                        # Conjunto de ícones Tela Kora
 
 ### Aparência (2) - Temas para aplicativos de terceiros
 
-## kvantum                                # SVG-based theme engine for Qt6 (including config tool and extra themes)
-## qt5ct                                  # Qt5 Configuration Utility
-## qt6ct                                  # Qt6 Configuration Utility
-## gsettings-qt5                          # Library to access GSettings from Qt5
-## gsettings-qt6                          # Library to access GSettings from Qt6
-# adw-gtk-theme                          # Unofficial GTK 3 port of the libadwaita theme
+## kvantum                             # SVG-based theme engine for Qt6 (including config tool and extra themes)
+## qt5ct                               # Qt5 Configuration Utility
+## qt6ct                               # Qt6 Configuration Utility
+## gsettings-qt5                       # Library to access GSettings from Qt5
+## gsettings-qt6                       # Library to access GSettings from Qt6
+# adw-gtk-theme                        # Unofficial GTK 3 port of the libadwaita theme
 # xdg-desktop-portal-gnome             # Já na sessão Wayland
 # xdg-desktop-portal                   # Já na sessão Wayland
 # gnome-themes-extra                   # Já na sessão Aparência (1)
-# kvantum-theme-libadwaita-git           # AUR. Libaidwaita theme for Kvantum## 
+# kvantum-theme-libadwaita-git         # AUR. Libaidwaita theme for Kvantum## 
 
 ### Wayland - Compatibilidade com GNOME Shell
 
-### xorg-xwayland                          # Instala o XWayland para compatibilidade entre X11 e Wayland.
-### xorg-xlsclients                        # Instala a ferramenta xlsclients para listar clientes X em execução.
-### glfw-wayland                           # Instala a biblioteca GLFW com suporte ao Wayland para aplicações gráficas.
-### libinput                               # Instala a biblioteca libinput para gerenciamento de dispositivos de entrada.
-### wayland                                # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente.
-### wayland-protocols                      # Instala protocolos adicionais para comunicação dentro do ambiente Wayland.
-### xdg-desktop-portal                     # Instala os portais XDG para integração e compatibilidade entre aplicações.
-### xdg-desktop-portal-gnome               # Instala suporte específico dos portais XDG para o ambiente GNOME.
-### egl-wayland                            # EGLStream-based Wayland external platform
-### lib32-wayland                          # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente. (32 bits)
-### qt5-wayland                            # Provides APIs for Wayland
-### qt6-wayland                            # Provides APIs for Wayland
-### xorg-xwayland                          # run X clients under wayland
+### xorg-xwayland                      # Instala o XWayland para compatibilidade entre X11 e Wayland.
+### xorg-xlsclients                    # Instala a ferramenta xlsclients para listar clientes X em execução.
+### glfw-wayland                       # Instala a biblioteca GLFW com suporte ao Wayland para aplicações gráficas.
+### libinput                           # Instala a biblioteca libinput para gerenciamento de dispositivos de entrada.
+### wayland                            # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente.
+### wayland-protocols                  # Instala protocolos adicionais para comunicação dentro do ambiente Wayland.
+### xdg-desktop-portal                 # Instala os portais XDG para integração e compatibilidade entre aplicações.
+### xdg-desktop-portal-gnome           # Instala suporte específico dos portais XDG para o ambiente GNOME.
+### egl-wayland                        # EGLStream-based Wayland external platform
+### lib32-wayland                      # Instala o protocolo Wayland para um servidor gráfico mais moderno e eficiente. (32 bits)
+### qt5-wayland                        # Provides APIs for Wayland
+### qt6-wayland                        # Provides APIs for Wayland
+### xorg-xwayland                      # run X clients under wayland
 
 ### Pacotes - Gerenciadores alternativos
 
 flatpak                                # Gerenciador de pacotes Flatpak
-# snapd                                  # AUR. Gerenciador de pacotes Snapd
+# snapd                                # AUR. Gerenciador de pacotes Snapd
 
 ### Sistema - Segurança e controle de acesso
 
-# apparmor                               # Segurança no kernel (Recomendável para usar com Snapd)
+# apparmor                             # Segurança no kernel (Recomendável para usar com Snapd)
 
 ### Gaming - Jogos, suporte e performance
 
 gamemode                               # Otimização de desempenho para jogos
 lib32-gamemode                         # Versão 32-bit do Gamemode para compatibilidade
-# lutris                                 # Plataforma de gerenciamento de jogos
-# wine-staging                           # Versão avançada do Wine para rodar jogos Windows
-# winetricks                             # Ferramenta auxiliar para configurações no Wine
-# lib32-libpulse                         # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
-# lib32-libsndfile                       # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
-# lib32-libasyncns                       # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
-# game-devices-udev                      # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
-# steam-native-runtime                   # Steam em modo nativo
-steam-devices                            # List of devices Steam and SteamVR will want read/write permissions on
+# lutris                               # Plataforma de gerenciamento de jogos
+# wine-staging                         # Versão avançada do Wine para rodar jogos Windows
+# winetricks                           # Ferramenta auxiliar para configurações no Wine
+# lib32-libpulse                       # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
+# lib32-libsndfile                     # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
+# lib32-libasyncns                     # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
+# game-devices-udev                    # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
+# steam-native-runtime                 # Steam em modo nativo
+steam-devices                          # List of devices Steam and SteamVR will want read/write permissions on
 
 ### Utilitários - Ferramentas de captura e imagem
 
-# flameshot                              # Ferramenta de captura de tela avançada
+# flameshot                            # Ferramenta de captura de tela avançada
 
 ### Aplicativos - Mensageiros e comunicação
 
-# telegram-desktop                       # Aplicativo de mensagens Telegram
-# zapzap                                 # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
+# telegram-desktop                     # Aplicativo de mensagens Telegram
+# zapzap                               # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
 
 ### Dev - Ferramentas de análise e formatação
 
 jq                                     # Processador de JSON no terminal
 prettier                               # Formatador de código para várias linguagens
 ruby                                   # Uma linguagem orientada a objetos para programação rápida e fácil
-# shellcheck                           # Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
+## shellcheck                          # AUR. Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
 shfmt                                  # Formatador para scripts shell
 # stylelint                            # AUR Linter para arquivos CSS e preprocessadores como SCSS > Portado para "vscodium_extensions"
 
@@ -121,22 +122,22 @@ kernel-modules-hook                    # Gerenciamento de módulos do kernel ap�
 xf86-video-amdgpu                      # Driver gráfico para placas AMD
 xf86-video-ati                         # Driver gráfico para placas ATI
 xf86-video-intel                       # Driver gráfico para chips Intel
-lib32-fontconfig                       # Biblioteca para configuração de fontes (32-bit)
+# lib32-fontconfig                     # Biblioteca para configuração de fontes (32-bit)
 ttf-liberation                         # Conjunto de fontes Liberation
 wqy-zenhei                             # Fonte chinesa de alta qualidade
-lib32-systemd                          # Compatibilidade do systemd para arquitetura 32-bit
+# lib32-systemd                        # Compatibilidade do systemd para arquitetura 32-bit
 
 ### Utilitários - Ferramentas auxiliares e complementares
 
-# gtkhash                                # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git") > Trocado por Collision
-# meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
-xclip                                  # Utilitário para manipulação da área de transferência no Linux
-# mystiq                                 # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples > Removido para usar HandBrake (Flatpak)
-# xboxdrv                                # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
-inkscape                               # Editor de gráficos vetoriais  (Complemento para tema Yaru)
-xorg-server-xvfb                       # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
+# gtkhash                              # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git") > Trocado por Collision
+# meld                                 # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
+# xclip                                # Utilitário para manipulação da área de transferência no Linux
+# mystiq                               # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples > Removido para usar HandBrake (Flatpak)
+# xboxdrv                              # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
+# inkscape                             # Editor de gráficos vetoriais  (Complemento para tema Yaru)
+# xorg-server-xvfb                     # Servidor X virtual framebuffer (Xvfb)  (Complemento para tema Yaru)
 fastfetch                              # Ferramenta de informação de sistema rica em recursos e orientada ao desempenho, semelhante ao neofetch
-axel                                   # Acelerador de download de linha de comando leve
+# axel                                 # Acelerador de download de linha de comando leve
 mediainfo                              # Fornece informações técnicas e de tags sobre arquivos de mídia (interface CLI)
 aurm                                   # AUR. Auxiliar profissional de manutenção AUR com automação e sincronização no GitHub	
 pacod                                  # AUR. Lista dependências opcionais (optdepends) de pacotes e grupos pacman	

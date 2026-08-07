@@ -1,62 +1,63 @@
+# shellcheck disable=SC2148
 # Lista para automatizar a instalação de diversos aplicativos via Flatpak a partir do repositório Flathub.
 # Ele inclui navegadores, ferramentas de acesso remoto, plataformas de jogos, editores de texto e imagem,
 # aplicativos de comunicação e personalização do sistema, garantindo uma configuração eficiente e otimizada.
 
 ### **Navegadores Web**
 
-# flathub com.brave.Browser                            # Brave: Navegador rápido e focado em privacidade
-# flathub com.microsoft.Edge                           # Edge: Navegador da Microsoft
-# flathub org.mozilla.firefox                            # Firefox: Navegador confiável e de código aberto (Movido para pacman.list como firefox-i18n-pt-br)
-# flathub com.opera.Opera                              # Opera: Navegador com recursos avançados
-# flathub com.vivaldi.Vivaldi                          # Vivaldi: Navegador altamente personalizável
-# flathub com.google.Chrome                            # Chrome: Navegador do Google
+# flathub com.brave.Browser                             # Brave: Navegador rápido e focado em privacidade
+# flathub com.microsoft.Edge                            # Edge: Navegador da Microsoft
+# flathub org.mozilla.firefox                           # Firefox: Navegador confiável e de código aberto (Movido para pacman.list como firefox-i18n-pt-br)
+# flathub com.opera.Opera                               # Opera: Navegador com recursos avançados
+# flathub com.vivaldi.Vivaldi                           # Vivaldi: Navegador altamente personalizável
+# flathub com.google.Chrome                             # Chrome: Navegador do Google
 
 ### **Acesso Remoto**
 
-# flathub com.anydesk.Anydesk                          # AnyDesk: Software de acesso remoto
-# flathub com.rustdesk.RustDesk                        # RustDesk: Acesso remoto de código aberto
+# flathub com.anydesk.Anydesk                           # AnyDesk: Software de acesso remoto
+# flathub com.rustdesk.RustDesk                         # RustDesk: Acesso remoto de código aberto
 
 ### **Jogos e Ferramentas para Games**
 
-flathub com.heroicgameslauncher.hgl                  # Heroic Games Launcher: Cliente para Epic Games e GOG
-flathub net.lutris.Lutris                            # Lutris: Plataforma de jogos
-flathub com.valvesoftware.Steam                      # Steam: Plataforma de jogos
-flathub com.github.Matoking.protontricks             # Protontricks: Configuração de jogos Steam com Proton
-flathub com.vysp3r.ProtonPlus                        # ProtonPlus: Gerenciador de ferramentas de compatibilidade moderno
+flathub com.heroicgameslauncher.hgl                     # Heroic Games Launcher: Cliente para Epic Games e GOG
+flathub net.lutris.Lutris                               # Lutris: Plataforma de jogos
+flathub com.valvesoftware.Steam                         # Steam: Plataforma de jogos
+flathub com.github.Matoking.protontricks                # Protontricks: Configuração de jogos Steam com Proton
+flathub com.vysp3r.ProtonPlus                           # ProtonPlus: Gerenciador de ferramentas de compatibilidade moderno
 flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08 # MangoHud: # Overlay para monitoramento de desempenho (FPS, CPU, GPU)
 
 ### **Edição de Texto e Markdown**
 
-flathub org.kde.kate                                 # Kate: Editor de texto avançado
-# flathub com.github.marktext.marktext               # MarkText: Editor de texto Markdown simples e poderoso
-flathub org.gnome.gitlab.somas.Apostrophe            # MarkText: Editor de texto Markdown simples e poderoso (Parte de aplicativos Gnome, Integrado)
-flathub com.vscodium.codium                          # VSCodium: Versão open-source do VS Code (sem rastreamento)
+# flathub org.kde.kate                                  # Kate: Editor de texto avançado
+# flathub com.github.marktext.marktext                  # MarkText: Editor de texto Markdown simples e poderoso
+flathub org.gnome.gitlab.somas.Apostrophe               # MarkText: Editor de texto Markdown simples e poderoso (Parte de aplicativos Gnome, Integrado)
+flathub com.vscodium.codium                             # VSCodium: Versão open-source do VS Code (sem rastreamento)
 
 ### **Imagens e Personalização**
 
-flathub org.kde.gwenview                             # Gwenview: Visualizador de imagens do KDE
-# flathub com.github.maoschanz.DynamicWallpaperEditor  # Editor de papel de parede dinâmico
-flathub org.flameshot.Flameshot                      # Take and annotate screenshots
+# flathub org.kde.gwenview                                # Gwenview: Visualizador de imagens do KDE
+# flathub com.github.maoschanz.DynamicWallpaperEditor   # Editor de papel de parede dinâmico
+flathub org.flameshot.Flameshot                         # Take and annotate screenshots
 
 ### **Banco de Dados e Ferramentas de Desenvolvimento**
 
-flathub io.dbeaver.DBeaverCommunity                  # DBeaver: Gerenciamento de banco de dados multi-plataforma
+flathub io.dbeaver.DBeaverCommunity                     # DBeaver: Gerenciamento de banco de dados multi-plataforma
 
 ### **Comunicação e Mensagens**
 
-flathub com.discordapp.Discord                       # Discord: Comunicação para texto, voz e vídeo
-flathub org.telegram.desktop                         # Telegram Desktop: Mensagens rápidas e seguras
-flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsApp para Linux
+flathub com.discordapp.Discord                          # Discord: Comunicação para texto, voz e vídeo
+flathub org.telegram.desktop                            # Telegram Desktop: Mensagens rápidas e seguras
+flathub com.rtosta.zapzap                               # ZapZap: Cliente de WhatsApp para Linux
 
 ### **Personalização do Sistema**
 
-# flathub io.github.realmazharhussain.GdmSettings      # GDM Settings: Configuração do GNOME Display Manager (Não funciona para o Gnome nativo)
+# flathub io.github.realmazharhussain.GdmSettings       # GDM Settings: Configuração do GNOME Display Manager (Não funciona para o Gnome nativo)
 
 ### Aparência (3) - Temas para aplicativos de terceiros (Sessão 1 e 2 estão em pacman.list)
-# flathub org.gtk.Gtk3theme.adw-gtk3                     # The libadwaita theme ported to GTK 3
-# flathub org.gtk.Gtk3theme.adw-gtk3-dark                # The libadwaita theme ported to GTK 3
-# flathub org.kde.KStyle.Kvantum//5.15                   # SVG-based theme engine for Qt5
-# flathub org.kde.KStyle.Kvantum//6.10                   # SVG-based theme engine for Qt5
+# flathub org.gtk.Gtk3theme.adw-gtk3                    # The libadwaita theme ported to GTK 3
+# flathub org.gtk.Gtk3theme.adw-gtk3-dark               # The libadwaita theme ported to GTK 3
+# flathub org.kde.KStyle.Kvantum//5.15                  # SVG-based theme engine for Qt5
+# flathub org.kde.KStyle.Kvantum//6.10                  # SVG-based theme engine for Qt5
 
 ### **Outros aplicativos**
 
@@ -67,7 +68,7 @@ flathub com.rtosta.zapzap                            # ZapZap: Cliente de WhatsA
 # flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
 # flathub de.haeckerfelix.Fragments                     # Cliente BitTorrent simples para o GNOME
 # flathub org.remmina.Remmina                           # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos
-flathub com.github.tchx84.Flatseal                    # Gerencie as permissões de Flatpaks
+flathub com.github.tchx84.Flatseal                      # Gerencie as permissões de Flatpaks
 # flathub org.gnome.Showtime                            # Aplicativo de video Gnome
 # flathub org.gnome.Decibels                            # Aplicativo de música Gnome
 # flathub fr.handbrake.ghb                              # Aplicativo para conversão de Medias
