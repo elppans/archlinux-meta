@@ -130,7 +130,7 @@ wqy-zenhei                             # Fonte chinesa de alta qualidade
 ### Utilitários - Ferramentas auxiliares e complementares
 
 # gtkhash                              # AUR. Ferramenta para calcular e verificar somas de verificação de arquivos. (Complemento para "actions-for-nautilus-git") > Trocado por Collision
-# meld                                 # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
+meld                                   # Ferramenta para comparação de arquivos e diretórios. (Complemento para "actions-for-nautilus-git")
 # xclip                                # Utilitário para manipulação da área de transferência no Linux
 # mystiq                               # AUR. Conversor de vídeo e áudio baseado no FFmpeg com interface gráfica simples > Removido para usar HandBrake (Flatpak)
 # xboxdrv                              # AUR. Driver do gamepad do Xbox Userspace e remapeador de entrada
@@ -143,6 +143,7 @@ aurm                                   # AUR. Auxiliar profissional de manutenç
 pacod                                  # AUR. Lista dependências opcionais (optdepends) de pacotes e grupos pacman	
 starship                               # Prompt minimalista, rápido e personalizável para qualquer Shell
 zenity                                 # Display graphical dialog boxes from shell scripts
+collision                              # Ferramenta para calcular e verificar somas de verificação de arquivos.
 
 ### Navegadores 
 firefox-i18n-pt-br
