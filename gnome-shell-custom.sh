@@ -16,6 +16,15 @@ export install
 base_install="$(basename $install)"
 export base_install
 
+PACOTES=(
+	# Pacotes Dev
+	base-devel # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
+	curl       # Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
+	git        # Sistema de controle de versão distribuído
+	expac      # Utilitário de extração de dados do banco de dados do pacman
+	pkgfile    # Ferramenta para buscar qual pacote provê determinado arquivo/binário
+)
+
 # Gnome Shell Meta Packages
 for pkg in gnome gdm; do
 	if ! pacman -Qs "$pkg" >/dev/null; then
@@ -51,9 +60,7 @@ source multilib-check.sh
 cd "$install" || exit 1
 
 # Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
-sudo pacman --needed --noconfirm -Syu base-devel git curl # Atualiza os sistema e instala pacotes essenciais para desenvolvimento junto com o Git.
-sudo pacman --needed --noconfirm -Syu expac               # Ferramenta para exibir informações detalhadas sobre pacotes do pacman
-sudo pacman --needed --noconfirm -Syu pkgfile             # Utilitário para buscar arquivos pertencentes a pacotes no repositório
+sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
 sudo pkgfile -u
 
 # Exemplo de uso para a instalação de dependências opcionais:
