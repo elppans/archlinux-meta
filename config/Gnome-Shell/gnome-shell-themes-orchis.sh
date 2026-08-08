@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 # shellcheck disable=all
 
+source /etc/os-release
+
+if [[ "$ID" == "arch" ]]; then
+    echo "Arch Linux"
+	DISTRO="arch"
+elif [[ "$ID" =~ ^opensuse ]]; then
+    echo "openSUSE"
+	DISTRO="opensuse"
+else
+    echo "Outra distribuição ($ID)"
+	exit 1
+fi
+export DISTRO
+
 kora_icons() {
 	cd /tmp
 	git clone https://github.com/bikass/kora.git
@@ -11,7 +25,7 @@ orchis_theme() {
 	cd /tmp || exit 1
 	git clone https://github.com/elppans/Orchis-theme.git
 	cd /tmp/Orchis-theme || exit 1
-	./install.sh -c dark -l -f -i opensuse --tweaks compact dock # primary = barra flutuante
+	./install.sh -c dark -l -f -i "$DISTRO" --tweaks compact dock # primary = barra flutuante
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 }
 bibata-cursor-theme() {
@@ -27,17 +41,17 @@ if [ "$(command -v pacman)" ]; then
 	cd "$install"/helper/ || exit 1
 	source helper_install.sh # Wrappers do pacman (AUR Helper)
 	cd "$install" || exit 1
-	if ! pacman -Q yaru-sound-theme &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S yaru-sound-theme
-	fi
+	# if ! pacman -Q yaru-sound-theme &>/dev/null; then
+		# "${HELPER}" --needed --noconfirm -S yaru-sound-theme
+	# fi
 	if ! pacman -Q kora-icon-theme &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S kora-icon-theme
+		kora_icons
 	fi
 	if ! pacman -Q orchis-theme &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S orchis-theme
+		orchis_theme
 	fi
 	if ! pacman -Q bibata-cursor-theme &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S bibata-cursor-theme
+		bibata-cursor-theme
 	fi
 elif [ "$(command -v zypper)" ]; then
 	sudo zypper --quiet --non-interactive refresh
