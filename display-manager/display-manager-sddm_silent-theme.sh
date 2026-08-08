@@ -45,9 +45,6 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 
 	# Script para usar com "SDDM-Silent-Theme"
 	if pacman -Qqs sddm-silent-theme; then
-		if [ -f /usr/local/bin/faceconv ]; then
-			sudo rm -rf "/usr/local/bin/faceconv"
-		fi
 		mkdir -p "$HOME/build/sddm-silent-customizer"
 		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
 		cd "$HOME/build/sddm-silent-customizer" || exit 1
@@ -74,3 +71,5 @@ else
 	sleep 5
 	# exit 0
 fi
+
+# faceconv está na lista de pkgbuilds_git.sh
