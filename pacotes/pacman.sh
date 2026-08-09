@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2145,SC1091,SC2046
+# shellcheck disable=SC2145,SC1091,SC2046,SC2128
 
 pacman_lo="$(pwd)"
 export pacman_lo
@@ -18,9 +18,9 @@ if [[ -z "$HELPER" ]]; then
 	exit 1
 elif command -v "$HELPER" &>/dev/null; then
 	if [ "$HELPER" == "paru" ]; then
-		export HELPER="paru --removemake --sudoloop --nokeepsrc"
+		HELPER=(paru --removemake --sudoloop --nokeepsrc)
 	elif [ "$HELPER" == "yay" ]; then
-		export HELPER="yay --removemake --sudoloop"
+		HELPER=(yay --removemake --sudoloop)
 	else
 		echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
 		exit 1
@@ -59,7 +59,7 @@ for pacote in "${pacotes[@]}"; do
 	echo "- $pacote"
 done
 sleep 5
-"${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+"${HELPER[@]}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
 
 mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
 
@@ -73,7 +73,7 @@ else
 		echo "- $rmpacote"
 	done
 	sleep 5
-	"${HELPER}" -Rns --noconfirm "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
+	"${HELPER[@]}" -Rns --noconfirm "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
 fi
 
 echo "Processo concluído!"
