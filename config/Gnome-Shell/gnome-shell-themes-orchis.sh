@@ -29,7 +29,7 @@ orchis_theme() {
 	echo "Para mudar algo no tema, masta usar o Script \"install.sh\"... "
 	sleep 5
 	cd "$XDG_PROJECTS_DIR" || exit 1
-	git clone https://github.com/elppans/Orchis-theme.git
+	git clone https://github.com/vinceliuice/Orchis-theme.git
 	cd "$XDG_PROJECTS_DIR"/Orchis-theme || exit 1
 	# Garantindo que não tenha sugeira no usuário
 	./install.sh -u &>/dev/null
