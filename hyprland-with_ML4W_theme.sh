@@ -121,17 +121,17 @@ if pacman -Qqs hyprland; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
 
-	pacotes_essenciais
-	pacotes_recomendados
-	detectar_vm 
 	verificar_repositorios 
 	verificar_helper 
-	instalar_sddm_silent_theme 
+	detectar_vm 
+	# pacotes_essenciais
+	# pacotes_recomendados
+	# instalar_sddm_silent_theme 
 
 	# **The ML4W Dotfiles for Hyprland**
 	echo "Iniciando instalação do ML4W Dotfiles para Hyperland..."
 	sleep 5
-	ml4w_lista_de_dependências_oficiais
+	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
 	ml4w_configuracoes_customizadas
 
