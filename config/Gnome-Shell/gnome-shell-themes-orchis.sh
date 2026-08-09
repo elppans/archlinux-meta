@@ -52,9 +52,9 @@ if [ "$(command -v pacman)" ]; then
 	if ! pacman -Q kora-icon-theme &>/dev/null; then
 		kora_icons
 	fi
-	if ! pacman -Q orchis-theme &>/dev/null; then
-		orchis_theme
-	fi
+	# if ! pacman -Q orchis-theme &>/dev/null; then
+		orchis_theme # ativado orchis-theme da sessão pacman.list para completar a configuração de gsettings
+	# fi
 	if ! pacman -Q bibata-cursor-theme &>/dev/null; then
 		bibata-cursor-theme
 	fi
