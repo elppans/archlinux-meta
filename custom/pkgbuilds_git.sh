@@ -11,14 +11,16 @@ PACOTES_PKGBUILD=(
 	# bridge-nm
 	# virt-qmod
 	# virt-gmod
-	# vscodeum # Pacote está na sessão flatpak.ini
+	vscodeum # Pacote está na sessão flatpak.ini
 	faceconv
 	nautilus-baobab
 )
 
 for pacote in "${PACOTES_PKGBUILD[@]}"; do
+if ! pacman -Qq "$pacote" &>>/dev/null ;then
 	mkdir -p "$HOME/build/$pacote"
 	cd "$HOME/build/$pacote" || exit 1
 	wget -O PKGBUILD "https://raw.githubusercontent.com/elppans/$pacote/refs/heads/main/pkgbuild/PKGBUILD" || { echo "Falha ao baixar PKGBUILD de $pacote"; continue; }
 	makepkg -Cris
+fi
 done
