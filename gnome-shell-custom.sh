@@ -88,7 +88,7 @@ sleeping 6
 ./flatpak.sh
 
 # Configurações do sistema
-echo "Efetuando configurações do sistema..."
+echo "Efetuando configurações do Gnome Shell..."
 sleeping 6
 # cd "$install"/config/Gnome-Shell || exit 1
 # ./gnome-shell-build-xdg-directories.sh # Configuração e sincronização dos arquivos de diretórios XDG
@@ -100,6 +100,8 @@ sleeping 6
 # ./gnome-shell-themes.sh                # Configurações de temas para aplicativos externos do Gnome Shell+
 find "$install"/config/Gnome-Shell -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
+echo "Efetuando configurações do SAMBA..."
+sleeping 6
 cd "$install"/config/System || exit 1
 ./samba-share-set.sh # Configuração do SAMBA
 
@@ -119,16 +121,25 @@ sleeping 6
 find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Sincroniza estrutura de meta-pac para a raiz do sistema
+echo "Efetuando sincronização da Sessão Meta-Pac..."
+sleeping 6
 if command -v rsync >/dev/null 2>&1; then
 	(
 		umask 000
 		sudo rsync -rlt "$install"/meta-pac/ /
 	)
 fi
+echo "Efetuando sincronização da Sessão Skel para $HOME..."
+sleeping 6
 rsync -ah /etc/skel/ "$HOME"/
+
+echo "Ocultando $base_install no diretório $HOME..."
+sleeping 6
+echo "${base_install}" >>"$HOME/.hidden"
 
 # Mensagem final
 echo -e "\nInstalação concluída com sucesso!"
+sleeping 6
 
 # Verifica se há inibidores ativos
 if systemd-inhibit | grep -q 'UID'; then
@@ -142,4 +153,4 @@ else
 	sudo systemctl reboot
 fi
 
-echo "${base_install}" >>"$HOME/.hidden"
+

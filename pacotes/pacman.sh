@@ -13,26 +13,26 @@ source helper_install.sh
 cd "$pacman_lo" || exit 1
 
 if [[ -z "$HELPER" ]]; then
-    echo "Erro: A variável HELPER não está definida!"
-    echo "$HELPER"
-    exit 1
-elif ! command -v "$HELPER" &> /dev/null; then
-    echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
-    exit 1
+	echo "Erro: A variável HELPER não está definida!"
+	echo "$HELPER"
+	exit 1
+elif ! command -v "$HELPER" &>/dev/null; then
+	echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
+	exit 1
 fi
 
 # Verifica se o arquivo pacman.list existe
 if [[ ! -f "pacman.list" ]]; then
-    echo "Arquivo 'pacman.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
-    exit 1
+	echo "Arquivo 'pacman.list' não encontrado. Certifique-se de que ele existe no mesmo diretório do script."
+	exit 1
 fi
 
 #-----------------------------#
 # remove blacklisted packages #
 #-----------------------------#
 if [ -f "pacman_black.list" ]; then
-    grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") > "/tmp/install_pkg_filtered.lst"
-	pacman -Qq $(grep -vFx <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') "pacman_black.list") 2>/dev/null > "/tmp/remove_pkg_filtered.lst"
+	grep -v -f <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') <(sed 's/#.*//;s/ //g;/^$/d' "pacman.list") >"/tmp/install_pkg_filtered.lst"
+	pacman -Qq $(grep -vFx <(grep -v '^#' "pacman_black.list" | sed 's/#.*//;s/ //g;/^$/d') "pacman_black.list") 2>/dev/null >"/tmp/remove_pkg_filtered.lst"
 fi
 
 # Forma robusta de carregar o array ignorando comentários e espaços extras
@@ -40,14 +40,14 @@ mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d
 
 # Verifica se há pacotes
 if [[ ${#pacotes[@]} -eq 0 ]]; then
-    echo "Nenhum pacote válido foi encontrado."
-    exit 1
+	echo "Nenhum pacote válido foi encontrado."
+	exit 1
 fi
 
 # Instala todos os pacotes em um único comando usando pacman
 echo -e "Instalando os seguintes pacotes:"
 for pacote in "${pacotes[@]}"; do
-    echo "- $pacote"
+	echo "- $pacote"
 done
 sleep 5
 "${HELPER}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
@@ -55,17 +55,17 @@ sleep 5
 mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
 
 if [[ ${#removepacotes[@]} -eq 0 ]]; then
-    echo "Nenhum pacote listado em Blacklist foi encontrado."
-    # exit 1
+	echo "Nenhum pacote listado em Blacklist foi encontrado."
+	# exit 1
+else
+	# Remove todos os pacotes em um único comando usando pacman
+	echo -e "Removendo os seguintes pacotes listados em Blacklist e que estão instalados:"
+	for rmpacote in "${removepacotes[@]}"; do
+		echo "- $rmpacote"
+	done
+	sleep 5
+	"${HELPER}" -Rns --noconfirm "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
 fi
-
-# Remove todos os pacotes em um único comando usando pacman
-echo -e "Removendo os seguintes pacotes listados em Blacklist e que estão instalados:"
-for rmpacote in "${removepacotes[@]}"; do
-    echo "- $rmpacote"
-done
-sleep 5
-"${HELPER}" -Rns --noconfirm "${removepacotes[@]}" || echo "Erro ao remover alguns pacotes."
 
 echo "Processo concluído!"
 

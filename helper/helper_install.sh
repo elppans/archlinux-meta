@@ -5,7 +5,7 @@ verificar_helper() {
     if command -v yay &> /dev/null; then
         export HELPER="yay"
     elif command -v paru &> /dev/null; then
-        export HELPER="paru"
+        export HELPER="paru --removemake --sudoloop --nokeepsrc"
     else
         escolher_helper
     fi
@@ -57,7 +57,7 @@ escolher_helper() {
         p|P)
             echo "Instalando paru..."
             helper_paru
-            export HELPER="paru"
+            export HELPER="paru --removemake --sudoloop --nokeepsrc"
             ;;
         *)
             echo "Escolha inválida. Por favor, tente novamente."
