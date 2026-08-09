@@ -110,9 +110,12 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Remove arquivos customizados de "/etc/profile.d"
 {
-sudo rm -rf /etc/profile.d/gnome-shell-extensions_manager.sh
-sudo rm -rf /etc/profile.d/gnome-shell-themes-flatpak.sh
-sudo rm -rf /etc/profile.d/silent-sddm-switch_theme.sh
+sudo rm -rf /etc/profile.d/gnome-shell-extensions_manager.sh \
+/etc/profile.d/silent-sddm-switch_theme.sh \
+/etc/profile.d/homebin.sh  \
+/etc/profile.d/kvantum-themes-flatpak.sh  \
+/etc/profile.d/scrolllock-led.sh  \
+/etc/profile.d/wayland-env.sh
 sudo unlink /usr/local/bin/silent-sddm-switch_theme
 }  &>>/dev/null
 

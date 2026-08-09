@@ -95,10 +95,10 @@ rsync -ah /usr/share/Kvantum/KvLibadwaita/ "$HOME"/.config/Kvantum/KvLibadwaita/
 # Teste do Flatpak para listar o conteúdo do diretorio local mapeada dentro do sandbox
 # flatpak run --command=ls org.kde.gwenview "$HOME"/.config/Kvantum/KvLibadwaita
 
-if [ -f "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" ]; then
-	sudo cp -a "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" /etc/profile.d/
-	sudo chmod +x /etc/profile.d/gnome-shell-themes-flatpak.sh
-else
-	echo "Arquivo gnome-shell-themes-flatpak.sh não encontrado!"
-	exit 1
-fi
+# if [ -f "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" ]; then
+# 	sudo cp -a "$GNOMESHELLDIR/gnome-shell-themes-flatpak.sh" /etc/profile.d/
+# 	sudo chmod +x /etc/profile.d/gnome-shell-themes-flatpak.sh
+# else
+# 	echo "Arquivo gnome-shell-themes-flatpak.sh não encontrado!"
+# 	exit 1
+# fi
