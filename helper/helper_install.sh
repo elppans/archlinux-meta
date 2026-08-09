@@ -44,9 +44,9 @@ fi
 # Função para escolher e instalar o gerenciador de pacotes
 escolher_helper() {
     echo "Qual gerenciador de pacotes você deseja instalar?"
-    echo "y) yay (RECOMENDADO)"
-    echo "p) paru"
-    read -r -p "Digite a opção correspondente (Padrão: \"Y\"): " escolha
+    echo "y) yay (Recomendado para a maioria)"
+    echo "p) paru (Tem mais funções)"
+    read -r -p "Digite a opção correspondente: " escolha
 
     case $escolha in
         y|Y)
@@ -60,11 +60,12 @@ escolher_helper() {
             export HELPER="paru"
             ;;
         *)
-            #echo "Escolha inválida. Por favor, tente novamente."
-            # escolher_helper
-            echo "Instalando yay..."
-            helper_yay
-			export HELPER="yay"
+            echo "Escolha inválida. Por favor, tente novamente."
+			sleep 3
+            escolher_helper
+            # echo "Instalando yay..."
+            # helper_yay
+			# export HELPER="yay"
             ;;
     esac
 }
