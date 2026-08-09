@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Usar apenas se for necessário
+#Observação: Alguma destas variáveis está fazendo com que seja desativado o Clipboard emtre host e VM (Testado em uma VM)
+
 # Função para detectar se o sistema está em uma VM
 detect_vm() {
     if command -v systemd-detect-virt &> /dev/null; then
