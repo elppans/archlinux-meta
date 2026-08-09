@@ -36,7 +36,7 @@ orchis_theme() {
 	# compact = Desativa barra flutuante
 	# submenu = Seta a cor do submenu para estilo Dark. Sem esta opção a cor do submenu é estilo Light
 	# dock = Corrige estilo para extension 'dash-to-dock' ou 'ubuntu-dock'
-	./install.sh --theme default --color dark --icon "$DISTRO" --libadwaita --fixed --tweaks submenu compact dock
+	./install.sh --theme all --icon "$DISTRO" --tweaks primary submenu compact dock
 	# Fix for Flatpak
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 }
