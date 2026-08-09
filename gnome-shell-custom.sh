@@ -124,7 +124,7 @@ if command -v rsync >/dev/null 2>&1; then
 		sudo rsync -rlt "$install"/meta-pac/ /
 	)
 fi
-cp -rf /etc/skel/. "$HOME"/.bashrc
+rsync -ah /etc/skel/ "$HOME"/
 
 # Mensagem final
 echo -e "\nInstalação concluída com sucesso!"
