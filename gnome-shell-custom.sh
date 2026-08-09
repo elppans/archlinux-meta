@@ -69,7 +69,7 @@ sudo pkgfile -u
 # Gerenciamento de pacotes e manutenção do sistema
 cd "$install"/helper/ || exit 1
 pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh # Adicionar repositório Chaotic-AUR
-source helper_install.sh # Wrappers do pacman (AUR Helper)
+source helper_install.sh                           # Wrappers do pacman (AUR Helper)
 cd "$install" || exit 1
 
 # Remoção de pacotes:
@@ -91,16 +91,16 @@ sleeping 6
 echo "Efetuando configurações do sistema..."
 sleeping 6
 cd "$install"/config/Gnome-Shell || exit 1
-./gnome-shell-build-xdg-directories.sh # Configuração e sincronização dos arquivos de diretórios XDG 
-./gnome-shell-extensions.sh # Extensões do Gnome Shell
-./gnome-shell-headerbar.sh # Define o estilo CSS para reduzir o tamanho da barra
-./gnome-shell-keyboard.sh # Configurações de atalhos do Gnome Shell+
-./gnome-shell-set.sh # Configurações do Gnome Shell+
-./gnome-shell-themes-orchis.sh # Instalação e configuração de temas
-./gnome-shell-themes.sh # Configurações de temas para aplicativos externos do Gnome Shell+
+./gnome-shell-build-xdg-directories.sh # Configuração e sincronização dos arquivos de diretórios XDG
+./gnome-shell-extensions.sh            # Extensões do Gnome Shell
+./gnome-shell-headerbar.sh             # Define o estilo CSS para reduzir o tamanho da barra
+./gnome-shell-keyboard.sh              # Configurações de atalhos do Gnome Shell+
+./gnome-shell-set.sh                   # Configurações do Gnome Shell+
+./gnome-shell-themes-orchis.sh         # Instalação e configuração de temas (Orchis)
+./gnome-shell-themes.sh                # Configurações de temas para aplicativos externos do Gnome Shell+
 
 cd "$install"/config/System || exit 1
-./samba-share-set.sh      # Configuração do SAMBA
+./samba-share-set.sh # Configuração do SAMBA
 
 # Finalizando configurações do sistema e pacotes
 cd "$install"/pacotes/ || exit 1
@@ -117,6 +117,13 @@ echo "Efetuando execução de Customizações do sistema via Scripts"
 sleeping 6
 find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
+# Sincroniza estrutura de meta-pac para a raiz do sistema
+if command -v rsync >/dev/null 2>&1; then
+	(
+		umask 000
+		rsync -rlt "$install"/meta-pac/ /
+	)
+fi
 
 # Mensagem final
 echo -e "\nInstalação concluída com sucesso!"
@@ -133,4 +140,4 @@ else
 	sudo systemctl reboot
 fi
 
-echo "${base_install}" >> "$HOME/.hidden"
+echo "${base_install}" >>"$HOME/.hidden"
