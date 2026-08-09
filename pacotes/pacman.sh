@@ -16,7 +16,16 @@ if [[ -z "$HELPER" ]]; then
 	echo "Erro: A variável HELPER não está definida!"
 	echo "$HELPER"
 	exit 1
-elif ! command -v "$HELPER" &>/dev/null; then
+elif command -v "$HELPER" &>/dev/null; then
+	if [ "$HELPER" == "paru" ]; then
+		export HELPER="paru --removemake --sudoloop --nokeepsrc"
+	elif [ "$HELPER" == "yay" ]; then
+		export HELPER="yay --removemake --sudoloop"
+	else
+		echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
+		exit 1
+	fi
+else
 	echo "Erro: '$HELPER' não é um helper válido ou não está instalado!"
 	exit 1
 fi
