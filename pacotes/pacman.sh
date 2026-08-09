@@ -59,7 +59,7 @@ for pacote in "${pacotes[@]}"; do
 	echo "- $pacote"
 done
 sleep 5
-"${HELPER[@]}" -Syu --needed "${pacotes[@]}" || echo "Erro ao instalar alguns pacotes."
+"${HELPER[@]}" -Syu --needed "${pacotes[@]}" --overwrite \* || echo "Erro ao instalar alguns pacotes."
 
 mapfile -t removepacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "/tmp/remove_pkg_filtered.lst")
 
