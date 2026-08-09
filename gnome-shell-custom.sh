@@ -121,9 +121,10 @@ find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa to
 if command -v rsync >/dev/null 2>&1; then
 	(
 		umask 000
-		rsync -rlt "$install"/meta-pac/ /
+		sudo rsync -rlt "$install"/meta-pac/ /
 	)
 fi
+cp -rf /etc/skel/. "$HOME"/.bashrc
 
 # Mensagem final
 echo -e "\nInstalação concluída com sucesso!"
