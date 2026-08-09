@@ -2,6 +2,7 @@
 # shellcheck disable=all
 
 source /etc/os-release
+source "$HOME"/.config/user-dirs.dirs
 
 if [[ "$ID" == "arch" ]]; then
     echo "Arch Linux"
@@ -22,14 +23,20 @@ kora_icons() {
 	# cp -a /tmp/kora/{kora,kora-pgrey} "$HOME/.local/share/icons/"
 }
 orchis_theme() {
-	cd /tmp || exit 1
+	echo "Configurando tema Orchis..."
+	sleep 5
+	echo "O tema será salvo em \"$XDG_PROJECTS_DIR\","
+	echo "Para mudar algo no tema, masta usar o Script \"install.sh\"... "
+	sleep 5
+	cd "$XDG_PROJECTS_DIR" || exit 1
 	git clone https://github.com/elppans/Orchis-theme.git
-	cd /tmp/Orchis-theme || exit 1
-	./install.sh -c dark -l -f -i "$DISTRO" --tweaks compact dock 
+	cd "$XDG_PROJECTS_DIR"/Orchis-theme || exit 1
+	# Garantindo que não tenha sugeira no usuário
+	./install.sh -u &>/dev/null
 	# compact = Desativa barra flutuante
 	# submenu = Seta a cor do submenu para estilo Dark. Sem esta opção a cor do submenu é estilo Light
 	# dock = Corrige estilo para extension 'dash-to-dock' ou 'ubuntu-dock'
-	./install.sh -t default -i "$DISTRO" -l -f --tweaks submenu compact dock
+	./install.sh --theme default --color dark --icon "$DISTRO" --libadwaita --fixed --tweaks submenu compact dock
 	# Fix for Flatpak
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 }
