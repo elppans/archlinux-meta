@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if command -v kvantummanager &>/dev/null; then
+# if command -v kvantummanager &>/dev/null; then
 
 	if [ -f "$HOME/.config/Kvantum/kvantum.kvconfig" ]; then
 
@@ -84,4 +84,4 @@ if command -v kvantummanager &>/dev/null; then
 
 	# echo "Configuração atualizada com sucesso."
 	fi
-fi
+# fi
