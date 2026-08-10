@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#
+# Instala o tema Orchis em modo claro (light) ou escuro (dark).
+#
+# Uso:
+#   ./install-orchis.sh light
+#   ./install-orchis.sh dark
+#
+# Regras:
+#   - light -> --color light   (sem a tweak "submenu")
+#   - dark  -> --color dark    (com a tweak "submenu")
+
+set -euo pipefail
+
+MODE="${1:-}"
+
+if [[ "$MODE" != "light" && "$MODE" != "dark" ]]; then
+	echo "Configura o tema Orchis em modo claro (light) ou escuro (dark)."
+	echo
+    echo "Uso: $0 <light|dark>"
+    exit 1
+fi
+
+if [ ! -d "$XDG_PROJECTS_DIR"/Orchis-theme ]; then
+    git clone https://github.com/vinceliuice/Orchis-theme.git "$XDG_PROJECTS_DIR"/Orchis-theme
+fi
+cd "$XDG_PROJECTS_DIR"/Orchis-theme || exit 1
+
+if [ ! -f "$XDG_PROJECTS_DIR"/Orchis-theme/install.sh ]; then
+    echo "Arquivo de configuração não encontrado!"
+    exit 1
+fi
+
+    # Garantindo que não tenha sujeira no usuário
+    ./install.sh -u &>/dev/null
+
+
+
+# Tweaks base (sempre presentes)
+TWEAKS=(primary compact dock)
+
+if [[ "$MODE" == "dark" ]]; then
+    COLOR="dark"
+    TWEAKS+=(submenu)
+else
+    COLOR="light"
+fi
+
+# compact  = Desativa barra flutuante
+# submenu  = Seta a cor do submenu para estilo Dark (usado só no modo dark)
+# dock     = Corrige estilo para extension 'dash-to-dock' ou 'ubuntu-dock'
+# -l       = Necessário para o tema com libadwaita
+# --color  = dark ou light, controla o esquema de cor com -l
+
+./install.sh --theme all --color "$COLOR" --icon "$DISTRO" --libadwaita --fixed --tweaks "${TWEAKS[@]}"
+
+#  Fix for Flatpak (só aplica se ainda não estiver presente)
+if sudo flatpak override --show | grep -q 'xdg-config/gtk-3.0'; then
+    echo "Flatpak override para xdg-config/gtk-3.0 já está presente. Nada a fazer."
+else
+    sudo flatpak override --filesystem=xdg-config/gtk-3.0
+fi

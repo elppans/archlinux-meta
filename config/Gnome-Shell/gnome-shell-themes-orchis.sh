@@ -36,7 +36,11 @@ orchis_theme() {
 	# compact = Desativa barra flutuante
 	# submenu = Seta a cor do submenu para estilo Dark. Sem esta opção a cor do submenu é estilo Light
 	# dock = Corrige estilo para extension 'dash-to-dock' ou 'ubuntu-dock'
-	./install.sh --theme all --icon "$DISTRO" --tweaks primary submenu compact dock
+	# -l, --libadwaita = O tema bonito funciona apenas com esta opção instalada. Independente de ter kvantum instalado ou não.
+	# --color dark = Usar com "-l". Com o tema usando a esta opção, a configuração entre dark e light só funciona através do comando e esta opção.
+	# Então para usar o tema branco, deve usar --color light
+	# O tema padrão (Sem a opção -l) funciona normalmente, sem recorrer à opção "--color"
+	./install.sh --theme all --color dark --icon "$DISTRO" --libadwaita --fixed --tweaks primary submenu compact dock
 	# Fix for Flatpak
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 }

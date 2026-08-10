@@ -37,6 +37,7 @@ case "$RESPONSE" in
         echo "Iniciando a remoção dos subvolumes..."
         
         # Iteração sobre os diretórios dentro de /.snapshots
+        # shellcheck disable=SC2045
         for i in $(ls -1 "$SNAPSHOTS_DIR"); do
             TARGET="$SNAPSHOTS_DIR/$i/snapshot"
             if [ -e "$TARGET" ]; then
