@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC1091
 
 #
 # Instala o tema Orchis em modo claro (light) ou escuro (dark).
@@ -13,8 +14,7 @@
 
 set -euo pipefail
 
-ssource /etc/os-release
-# shellcheck disable=SC1091
+source /etc/os-release
 source "$HOME/.config/user-dirs.dirs"
 
 DISTRO="$ID"
