@@ -13,9 +13,11 @@
 
 set -euo pipefail
 
+ssource /etc/os-release
 # shellcheck disable=SC1091
 source "$HOME/.config/user-dirs.dirs"
 
+DISTRO="$ID"
 MODE="${1:-}"
 
 if [[ "$MODE" != "light" && "$MODE" != "dark" ]]; then
