@@ -13,6 +13,9 @@
 
 set -euo pipefail
 
+# shellcheck disable=SC1091
+source "$HOME/.config/user-dirs.dirs"
+
 MODE="${1:-}"
 
 if [[ "$MODE" != "light" && "$MODE" != "dark" ]]; then
