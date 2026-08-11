@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2329
 
 # https://www.ml4w.com/
 # https://ml4w.com/os/
