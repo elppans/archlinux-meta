@@ -25,12 +25,12 @@ kora_icons() {
 orchis_theme() {
 	echo "Configurando tema Orchis..."
 	sleep 5
-	echo "O tema será salvo em \"$XDG_PROJECTS_DIR\","
+	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
 	echo "Para mudar algo no tema, masta usar o Script \"install.sh\"... "
 	sleep 5
-	cd "$XDG_PROJECTS_DIR" || exit 1
-	git clone https://github.com/vinceliuice/Orchis-theme.git
-	cd "$XDG_PROJECTS_DIR"/Orchis-theme || exit 1
+		sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
+	rsync -ah /etc/skel/. "$HOME/"
+	cd "$HOME/.local/share/Orchis-theme" || exit 1
 	# Garantindo que não tenha sugeira no usuário
 	./install.sh -u &>/dev/null
 	# compact = Desativa barra flutuante
@@ -63,9 +63,9 @@ if [ "$(command -v pacman)" ]; then
 	if ! pacman -Q kora-icon-theme &>/dev/null; then
 		kora_icons
 	fi
-	# if ! pacman -Q orchis-theme &>/dev/null; then
+	if ! pacman -Q orchis-theme &>/dev/null; then
 		orchis_theme # ativado orchis-theme da sessão pacman.list para completar a configuração de gsettings
-	# fi
+	fi
 	if ! pacman -Q bibata-cursor-theme &>/dev/null; then
 		bibata-cursor-theme
 	fi
