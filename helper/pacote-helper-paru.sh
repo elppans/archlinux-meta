@@ -10,7 +10,7 @@ if pacman -Sqs | grep ^paru$ ;then
 	sudo pacman --needed --noconfirm -Sy paru
 else
 	mkdir -p "$HOME/build" && echo 'build' >>"$HOME/.hidden"
-	git clone https://aur.archlinux.org/paru.git "$HOME"/build/paru
+	git clone https://aur.archlinux.org/paru-bin.git "$HOME"/build/paru
 	cd "$HOME"/build/paru || exit
 	makepkg --needed --noconfirm -Cris
 	cd - || exit 1
