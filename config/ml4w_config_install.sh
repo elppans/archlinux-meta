@@ -9,7 +9,7 @@ rsync -ah "$HOME"/.config "$HOME/.backup_dotfiles/.config_$(date +%Y%m%d%H%M)"
 rsync -ahvz --keep-dirlinks --copy-unsafe-links --ignore-existing "$mk4wlo/ML4W/.config/." "$HOME/.config/" && export RCP="1"
 
 # Cenário 2: "Adicione o que não existe OU atualize apenas se for DIFERENTE"
-rsync -ahvz --keep-dirlinks --copy-unsafe-links "$mk4wlo/ML4W/.config/." "$HOME/.config/" && RCP="1"
+# rsync -ahvz --keep-dirlinks --copy-unsafe-links "$mk4wlo/ML4W/.config/." "$HOME/.config/" && RCP="1"
 
 	if [ "$RCP" == "1" ]; then
 		echo "Copiado .config para $HOME/.config!"
