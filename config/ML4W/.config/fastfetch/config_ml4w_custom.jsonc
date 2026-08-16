@@ -1,0 +1,192 @@
+// Inspired by Catnap
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        // "source": "Blackarch", // Path to your logo file
+        "source": "~/.config/ml4w/assets/ml4w.png", // Path to your logo file
+        "type": "auto",                    // 'auto' detects the best protocol for your terminal
+        "width": 12,                       // Adjust width (in characters)
+        "padding": {
+            "top": 1,
+            "right": 4,
+            "left": 3
+        }
+    },
+    "display": {
+        "separator": "  ",
+        "color": {
+            "keys": "white"
+        },
+        "bar": {
+            "char": {
+                "elapsed": "\u001b[0;35m\u2588\u001b[0m",
+                "total": "\u2588"
+            },
+            "width": 15
+        }
+    },
+    "modules": [
+        {
+            "key": "╭───────────╮",
+            "type": "custom"
+        },
+        {
+            "key": "│ {#34} user    {#keys}│",
+            "type": "title",
+            "format": "{user-name}"
+        },
+        {
+            "key": "│ {#34}󰇅 hname   {#keys}│",
+            "type": "title",
+            "format": "{host-name}"
+        },
+        // {
+        //     "type": "command",
+        //     "key": "│ {#34}󱦟 os age  {#keys}│",
+        //     "keyColor": "magenta",
+        //     "text": "printf \"\\e[0m%s days\\e[0m\" \"$(( ($(date +%s) - $(stat -c %W /)) / 86400 ))\""
+        // },
+        {
+            "condition": {                                    // Conditional module: only show on non-macOS
+                "!system": "macOS"
+            },
+            "type": "disk",
+            "keyIcon": "",
+            "key": "│{#34} {icon} os age {#keys} │",
+            // "keyColor": "magenta",
+            "folders": "/",                                   // Check root filesystem
+            "format": "{create-time:10} [{days} days ({years} years)]"        // Show creation time and age in days
+        },
+        {
+            "key": "│ {#34}󰅐 uptime  {#keys}│",
+            "type": "uptime"
+        },
+        {
+            "key": "│ {#34}{icon} distro  {#keys}│",
+            "type": "os"
+        },
+        {
+            "key": "│ {#34}{icon} kernel  {#keys}│",
+            "type": "kernel"
+        },
+        // {
+        //     "key": "│ {#34}{icon} loginm  {#keys}│",
+        //     "type": "lm"
+        // },
+        {
+            "key": "│ {#34}{icon} wm{#keys}      │",
+            "type": "wm"
+        },
+        // {
+        //     "key": "│ {#34}{icon} desktop {#keys}│",
+        //     "type": "de"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} theme {#keys}  │",
+        //     "type": "theme"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} icons {#keys}  │",
+        //     "type": "icons"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} cursor {#keys} │",
+        //     "type": "cursor"
+        // },
+        // {
+        //     "key": "│ {#blue}{icon} font {#keys}   │",
+        //     "type": "font"
+        // },
+        // {
+        //     "key": "│ {#blue}{icon}  locale {#keys}│",
+        //     "type": "locale"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} wpaper {#keys} │",
+        //     "type": "wallpaper"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} monitor {#31}│ {name} ",
+        //     // "keyColor": "31",
+        //     "type": "monitor"
+        // },
+        {
+            "key": "│ {#34}{icon} display {#keys}│",
+            "type": "display"
+        },
+        // {
+        //     "key": "│ {#34}{icon} packages{#keys}│",
+        //     "type": "packages"
+        // },
+        {
+            "key": "│ {#34} term    {#keys}│",
+            "type": "terminal"
+        },
+        {
+            "key": "│ {#34} shell   {#keys}│",
+            "type": "shell"
+        },
+        {
+            "key": "│ {#34}󰍛 cpu     {#keys}│",
+            "type": "cpu",
+            "showPeCoreCount": true,
+            "temp": true
+        },
+        {
+            "key": "│ {#34}󰍛 gpu     {#keys}│",
+            "type": "gpu",
+            "showPeCoreCount": true,
+            "temp": true
+        },
+        {
+            "key": "│ {#34}{icon} sound {#keys}  │",
+            "type": "sound"
+        },
+        {
+            "key": "│ {#34}󰉉 disk    {#keys}│",
+            "type": "disk",
+            "folders": "/",
+            "usar_barra": true
+        },
+        {
+            "key": "│ {#34}{icon} memory  {#keys}│",
+            "type": "memory",
+            "usar_barra": true
+        },
+        {
+            "key": "│ {#34}{icon} network {#keys}│",
+            "type": "localip"
+        },
+        // {
+        //     "key": "│ {#34} pubip   {#keys}│",
+        //     "type": "publicip"
+        // },
+        // {
+        //     "key": "│ {#34} dns     {#keys}│",
+        //     "type": "dns"
+        // },
+        // {
+        //     "key": "│ {#34}{icon} media   {#keys}│",
+        //     "type": "media"
+        // },
+        // {
+        //     "type": "weather",
+        //     "key": "│ {#34}{icon} WEATHER {#keys}│",
+        //     "timeout": 1000,
+        //     "keyColor": "cyan"
+        // },
+        {
+            "key": "├───────────┤",
+            "type": "custom"
+        },
+        {
+            "key": "│ {#34}{icon} colors  {#keys}│",
+            "type": "colors",
+            "symbol": "circle"
+        },
+        {
+            "key": "╰───────────╯",
+            "type": "custom"
+        }
+    ]
+}
