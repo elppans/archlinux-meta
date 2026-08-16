@@ -23,9 +23,3 @@ rsync -ah "$HOME"/.config "$HOME/.backup_dotfiles/.config_$(date +%Y%m%d%H%M)"
 
 tar -c -C "$mk4wlo/ML4W" . | tar -x --skip-old-files -f - -C "$HOME"
 
-	if [ "$RCP" == "1" ]; then
-		echo "Copiado .config para $HOME/.config!"
-	else
-		echo "Não foi possível copiar .config para $HOME/.config!" &&
-			exit 1
-	fi
