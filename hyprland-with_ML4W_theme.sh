@@ -114,7 +114,7 @@ ml4w_configuracoes_customizadas() {
 	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 }
 
-if pacman -Qqs hyprland; then
+if pacman -Qq hyprland &>/dev/null; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
 
