@@ -118,7 +118,8 @@ if command -v rsync >/dev/null 2>&1; then
 fi
 echo "Efetuando sincronização da Sessão Skel para $HOME..."
 sleeping 6
-cp -a /etc/skel/. "$HOME"/
+sudo cp -a /etc/skel/. "$HOME"/
+sudo chown -Rf "$HOME"
 
 echo "Ocultando $base_install no diretório $HOME..."
 sleeping 6
