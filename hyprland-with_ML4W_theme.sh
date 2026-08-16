@@ -43,6 +43,16 @@ verificar_repositorios() {
 	cd "$install" || exit 1
 
 }
+verificar_kernel_hooks() {
+if ! pacman -Qq kernel-modules-hook &>/dev/null; then
+    # Sincroniza a base de dados E atualiza o sistema para evitar parcial upgrade
+    sudo pacman -Syu --needed --noconfirm kernel-modules-hook
+
+    # Ativa e inicia o serviço para limpar módulos antigos
+	# liberando espaço e evitando possíveis conflitos com módulos desnecessários.
+    sudo systemctl enable --now linux-modules-cleanup.service
+fi
+}
 verificar_helper() {
 	# Verificando Helper e instalando, caso necessário
 # Gerenciamento de pacotes e manutenção do sistema
@@ -119,6 +129,7 @@ if pacman -Qq hyprland &>/dev/null; then
 	sleep 5
 
 	verificar_repositorios 
+	verificar_kernel_hooks
 	verificar_helper 
 	detectar_vm 
 	# pacotes_essenciais
@@ -130,7 +141,7 @@ if pacman -Qq hyprland &>/dev/null; then
 	sleep 5
 	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
-	# ml4w_configuracoes_customizadas
+	ml4w_configuracoes_customizadas
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"

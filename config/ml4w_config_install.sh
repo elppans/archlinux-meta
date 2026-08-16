@@ -2,8 +2,12 @@
 
 mk4wlo="$(pwd)"
 export mk4wlo
-mkdir -p "$HOME"/.backup_dotfiles
-rsync -ah "$HOME"/.config "$HOME/.backup_dotfiles/.config_$(date +%Y%m%d%H%M)"
+mkdir -p "$HOME/.backup_dotfiles"
+tar -czf "$HOME/.backup_dotfiles/config_$(date +%Y%m%d%H%M).tar.gz" -C "$HOME" .config
+
+# Restaurar este backup se necessário no futuro:
+# Extrair preservando permissões estritas:
+# tar -xzpf "$HOME/.backup_dotfiles/config_NOME.tar.gz" -C "$HOME"
 
 # Proposito de cópia como um "/etc/skel"
 

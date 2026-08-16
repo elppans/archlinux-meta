@@ -59,6 +59,15 @@ cd "$install"/helper/ || exit 1
 source multilib-check.sh
 cd "$install" || exit 1
 
+if ! pacman -Qq kernel-modules-hook &>/dev/null; then
+    # Sincroniza a base de dados E atualiza o sistema para evitar parcial upgrade
+    sudo pacman -Syu --needed --noconfirm kernel-modules-hook
+
+    # Ativa e inicia o serviço para limpar módulos antigos
+	# liberando espaço e evitando possíveis conflitos com módulos desnecessários.
+    sudo systemctl enable --now linux-modules-cleanup.service
+fi
+
 # Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
 sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
 sudo pkgfile -u
@@ -110,15 +119,11 @@ find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa to
 # Sincroniza estrutura de meta-dir para a raiz do sistema
 echo "Efetuando sincronização da Sessão Meta-dir..."
 sleeping 6
-if command -v rsync >/dev/null 2>&1; then
-	(
-		umask 000
-		sudo rsync -rlt "$install"/meta-dir/ /
-	)
-fi
+sudo tar -c -C "$install/meta-dir" . | sudo tar -x --skip-old-files -p -f - -C /
+
 echo "Efetuando sincronização da Sessão Skel para $HOME..."
 sleeping 6
-sudo cp -a /etc/skel/. "$HOME"/
+tar -c -C /etc/skel . | tar -x --skip-old-files -f - -C "$HOME"
 sudo chown -Rf "$USER":"$USER" "$HOME"
 
 echo "Ocultando $base_install no diretório $HOME..."

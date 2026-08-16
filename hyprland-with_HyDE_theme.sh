@@ -62,7 +62,16 @@ pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
 cd "$install" || exit 1
 
 }
+verificar_kernel_hooks() {
+if ! pacman -Qq kernel-modules-hook &>/dev/null; then
+    # Sincroniza a base de dados E atualiza o sistema para evitar parcial upgrade
+    sudo pacman -Syu --needed --noconfirm kernel-modules-hook
 
+    # Ativa e inicia o serviço para limpar módulos antigos
+	# liberando espaço e evitando possíveis conflitos com módulos desnecessários.
+    sudo systemctl enable --now linux-modules-cleanup.service
+fi
+}
 # Função para verificar se o programa está instalado
 verificar_helper() {
     if command -v yay &> /dev/null; then
@@ -123,6 +132,9 @@ if pacman -Qqs hyprland ; then
 
 	# Verificar repositórios
 	verificar_repositorios
+
+	# Verificar Kernel Hooks
+	verificar_kernel_hooks
 
     # Verificando Helper e instalando, caso necessário
     verificar_helper
