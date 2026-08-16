@@ -95,10 +95,6 @@ ml4w_configuracoes_customizadas() {
 
 	echo "Adicionando configurações customizadas..."
 	sleep 5
-	# tar -zxf "$install"/config/hyde_bin/hyde_bin.tar.gz -C "$HOME/.config"
-	# cp -a "$install"/config/ML4W/.config/hypr/* "$HOME/.config/hypr/"
-	# chmod +x "$install"/bin/*
-	# sudo cp -a "$install"/bin/* /usr/local/bin
 	cd "$install/config" || exit 1
 	./ml4w_config_install.sh
 	# ./ml4w_hyde_bin_install.sh
@@ -106,12 +102,12 @@ ml4w_configuracoes_customizadas() {
 
 	# Definir volume máximo para 150% via atalho FN
 	# KEYBINCONF="$HOME/.mydotfiles/com.ml4w.dotfiles.stable/.config/hypr/conf/keybindings/default.conf"
-	KEYBINCONF="$HOME/.config/hypr/conf/keybindings/default.conf"
-	cp -a "$KEYBINCONF" "$KEYBINCONF".backup_"$(date +%Y%m%d%H%M%S)" || exit 1
-	grep -q 'wpctl set-volume -l 1.5' "$KEYBINCONF" || sed -i 's/wpctl set-volume -l 1/wpctl set-volume -l 1.5/' "$KEYBINCONF"
+	# KEYBINCONF="$HOME/.config/hypr/conf/keybindings/default.conf"
+	# cp -a "$KEYBINCONF" "$KEYBINCONF".backup_"$(date +%Y%m%d%H%M%S)" || exit 1
+	# grep -q 'wpctl set-volume -l 1.5' "$KEYBINCONF" || sed -i 's/wpctl set-volume -l 1/wpctl set-volume -l 1.5/' "$KEYBINCONF"
 
 	# Ativando "Auto Ocultar" Dock
-	touch "$HOME"/.config/ml4w/settings/dock-autohide
+	# touch "$HOME"/.config/ml4w/settings/dock-autohide
 
 	# Reativando as permissoes do script do ML4W
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
