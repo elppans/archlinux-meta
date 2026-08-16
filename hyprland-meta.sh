@@ -157,12 +157,14 @@ grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/# Misc options/a ILoveCan
 # Descomenta "Color" se ele estiver comentado
 sudo sed -i 's/^#\s*Color/Color/' /etc/pacman.conf
 
+if pacman -Qq kernel-modules-hook >/dev/null ;then
 # Instala o pacote 'kernel-modules-hook'
 sudo pacman --needed --noconfirm -Sy kernel-modules-hook
 
 # Ativa e inicia o serviço 'linux-modules-cleanup' para limpar os módulos antigos
 # do kernel, liberando espaço e evitando possíveis conflitos com módulos desnecessários.
 sudo systemctl enable --now linux-modules-cleanup.service
+fi
 
 # Instalando Hyprland (Meta)
 sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"

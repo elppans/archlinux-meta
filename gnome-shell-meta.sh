@@ -76,6 +76,7 @@ sudo sed -i 's/^#\s*Color/Color/' /etc/pacman.conf
 # Atualização da lista de pacotes
 sudo pacman -Syy
 
+if pacman -Qq kernel-modules-hook >/dev/null ;then
 # Instala o pacote 'kernel-modules-hook' para garantir que os módulos do kernel
 # sejam gerenciados corretamente após a atualização ou mudança do kernel.
 sudo pacman --needed --noconfirm -Syu kernel-modules-hook
@@ -83,6 +84,7 @@ sudo pacman --needed --noconfirm -Syu kernel-modules-hook
 # Ativa e inicia o serviço 'linux-modules-cleanup' para limpar os módulos antigos
 # do kernel, liberando espaço e evitando possíveis conflitos com módulos desnecessários.
 systemctl is-enabled linux-modules-cleanup.service || sudo systemctl enable --now linux-modules-cleanup.service
+fi
 
 # Instalando Gnome Shell (Meta)
 sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"

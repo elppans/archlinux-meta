@@ -119,7 +119,7 @@ shfmt                                  # Formatador para scripts shell
 
 ### Sistema - Kernel, drivers e compatibilidade
 
-kernel-modules-hook                    # Gerenciamento de módulos do kernel após atualizações
+# kernel-modules-hook                    # Gerenciamento de módulos do kernel após atualizações
 xf86-video-amdgpu                      # Driver gráfico para placas AMD
 xf86-video-ati                         # Driver gráfico para placas ATI
 xf86-video-intel                       # Driver gráfico para chips Intel
