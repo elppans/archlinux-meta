@@ -130,7 +130,7 @@ if pacman -Qqs hyprland; then
 	sleep 5
 	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
-	ml4w_configuracoes_customizadas
+	# ml4w_configuracoes_customizadas
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
