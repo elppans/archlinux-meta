@@ -101,7 +101,7 @@ ml4w_configuracoes_customizadas() {
 	# sudo cp -a "$install"/bin/* /usr/local/bin
 	cd "$install/config" || exit 1
 	./ml4w_config_install.sh
-	./ml4w_hyde_bin_install.sh
+	# ./ml4w_hyde_bin_install.sh
 	cd "$install" || exit 1
 
 	# Definir volume máximo para 150% via atalho FN
@@ -134,7 +134,7 @@ if pacman -Qqs hyprland; then
 	sleep 5
 	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
-	# ml4w_configuracoes_customizadas
+	ml4w_configuracoes_customizadas
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
