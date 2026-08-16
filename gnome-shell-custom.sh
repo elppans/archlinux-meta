@@ -119,7 +119,7 @@ fi
 echo "Efetuando sincronização da Sessão Skel para $HOME..."
 sleeping 6
 sudo cp -a /etc/skel/. "$HOME"/
-sudo chown -Rf "$HOME"
+sudo chown -Rf "$USER":"$USER" "$HOME"
 
 echo "Ocultando $base_install no diretório $HOME..."
 sleeping 6
