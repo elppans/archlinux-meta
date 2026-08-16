@@ -126,7 +126,7 @@ if pacman -Qqs hyprland; then
 	# instalar_sddm_silent_theme 
 
 	# **The ML4W Dotfiles for Hyprland**
-	echo "Iniciando instalação do ML4W Dotfiles para Hyperland..."
+	echo "Iniciando instalação do ML4W Dotfiles para Hyprland..."
 	sleep 5
 	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
