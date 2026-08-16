@@ -6,7 +6,7 @@ mkdir -p "$HOME"/.backup_dotfiles
 rsync -ah "$HOME"/.config "$HOME/.backup_dotfiles/.config_$(date +%Y%m%d%H%M)"
 
 # Cenário 1: "Apenas adicione o que NÃO existe" (Ignorar completamente o que já está no destino)
-rsync -ahvz --keep-dirlinks --safe-links --ignore-existing "$mk4wlo/ML4W/.config/." "$HOME/.config/" && RCP="1"
+rsync -ahvz --keep-dirlinks --safe-links --ignore-existing "$mk4wlo/ML4W/.config/." "$HOME/.config/" && export RCP="1"
 
 # Cenário 2: "Adicione o que não existe OU atualize apenas se for DIFERENTE"
 # rsync -ahvzc --keep-dirlinks --safe-links "$mk4wlo/ML4W/.config/." "$HOME/.config/" && RCP="1"
