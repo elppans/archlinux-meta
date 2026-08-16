@@ -18,7 +18,7 @@ export base_install
 
 PACOTES=(
 	# Pacotes Dev
-	base-devel # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
+	base-devel # Meta-dirote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
 	curl       # Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
 	git        # Sistema de controle de versão distribuído
 	expac      # Utilitário de extração de dados do banco de dados do pacman
@@ -82,10 +82,12 @@ cd "$install"/pacotes/ || exit 1
 echo "Efetuando instalação de pacotes \"pacman\" e \"AUR\"..."
 sleeping 6
 ./pacman.sh
+./pacman.ini
 
 echo "Efetuando instalação de pacotes Flatpak..."
 sleeping 6
 ./flatpak.sh
+./flatpak.ini
 
 # Configurações do sistema
 echo "Efetuando configurações do Gnome Shell..."
@@ -98,40 +100,25 @@ sleeping 6
 # ./gnome-shell-set.sh                   # Configurações do Gnome Shell+
 # ./gnome-shell-themes-orchis.sh         # Instalação e configuração de temas (Orchis)
 # ./gnome-shell-themes.sh                # Configurações de temas para aplicativos externos do Gnome Shell+
-find "$install"/config/Gnome-Shell -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
-
-echo "Efetuando configurações do SAMBA..."
-sleeping 6
-cd "$install"/config/System || exit 1
-./samba-share-set.sh # Configuração do SAMBA
-
-# Finalizando configurações do sistema e pacotes
-cd "$install"/pacotes/ || exit 1
-echo "Efetuando configuração baseado em pacotes \"pacman\" e \"AUR\" instalados"
-sleeping 6
-./pacman.ini
-
-echo "Efetuando configuração baseado em pacotes Flatpak"
-sleeping 6
-./flatpak.ini
+find "$install"/config/Gnome-Shell -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "config/Gnome-Shell", desde que tenham permissão de execução
 
 # Customizações do sistema com Scripts
 echo "Efetuando execução de Customizações do sistema via Scripts"
 sleeping 6
 find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
-# Sincroniza estrutura de meta-pac para a raiz do sistema
-echo "Efetuando sincronização da Sessão Meta-Pac..."
+# Sincroniza estrutura de meta-dir para a raiz do sistema
+echo "Efetuando sincronização da Sessão Meta-dir..."
 sleeping 6
 if command -v rsync >/dev/null 2>&1; then
 	(
 		umask 000
-		sudo rsync -rlt "$install"/meta-pac/ /
+		sudo rsync -rlt "$install"/meta-dir/ /
 	)
 fi
 echo "Efetuando sincronização da Sessão Skel para $HOME..."
 sleeping 6
-rsync -ah /etc/skel/ "$HOME"/
+cp -a /etc/skel/. "$HOME"/
 
 echo "Ocultando $base_install no diretório $HOME..."
 sleeping 6

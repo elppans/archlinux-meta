@@ -9,6 +9,9 @@
 
 # Configuração do SAMBA
 
+echo "Efetuando configurações do SAMBA..."
+sleeping 6
+
 ## Configuração do arquivo smb.conf
 sudo curl -JLk -o /etc/samba/smb.conf "https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD"
 sudo sed -i -E 's/(log file = ).*/\1\/var\/log\/samba\/%m.log/' /etc/samba/smb.conf
