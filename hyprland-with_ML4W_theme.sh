@@ -19,6 +19,25 @@ if [ "$EUID" -eq 0 ]; then
 	exit 1
 fi
 
+# LOG
+COMMAND="$0"
+BASECMD="$(basename "$COMMAND")"
+LOGDIR="$HOME/.$BASECMD"
+
+##      Usando arquivo de log
+mkdir -p "$LOGDIR"
+LOGFILE="$LOGDIR/${0##*/}".log
+LOGFILEERROR="$LOGDIR/${0##*/}"_error.log
+
+# Habilita log copiando a saída padrão para o arquivo LOGFILE
+exec 1> >(tee -a "$LOGFILE")
+
+# faz o mesmo para a saída de ERROS
+exec 2> >(tee -a "$LOGFILEERROR")
+
+##      Usando arquivo de log - FIM
+# LOG
+
 locdir="$(pwd)"
 install="$locdir"
 export install
@@ -123,11 +142,19 @@ ml4w_configuracoes_customizadas() {
 	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 }
-
+ml4w_dotfiles_install(){
+	# **The ML4W Dotfiles for Hyprland**
+	echo "Iniciando instalação do ML4W Dotfiles para Hyprland..."
+	sleep 5
+	# ml4w_lista_de_dependências_oficiais
+	ml4w_os_install
+	ml4w_configuracoes_customizadas
+}
 if pacman -Qq hyprland &>/dev/null; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
 
+if [ "$(command -v pacman)" ]; then
 	verificar_repositorios 
 	verificar_kernel_hooks
 	verificar_helper 
@@ -135,13 +162,10 @@ if pacman -Qq hyprland &>/dev/null; then
 	# pacotes_essenciais
 	# pacotes_recomendados
 	# instalar_sddm_silent_theme 
-
-	# **The ML4W Dotfiles for Hyprland**
-	echo "Iniciando instalação do ML4W Dotfiles para Hyprland..."
-	sleep 5
-	# ml4w_lista_de_dependências_oficiais
-	ml4w_os_install
-	ml4w_configuracoes_customizadas
+	ml4w_dotfiles_install
+else
+	ml4w_dotfiles_install
+fi
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
