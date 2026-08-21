@@ -23,19 +23,23 @@ fi
 COMMAND="$0"
 BASECMD="$(basename "$COMMAND")"
 LOGDIR="$HOME/.$BASECMD"
-
-##      Usando arquivo de log
 mkdir -p "$LOGDIR"
-LOGFILE="$LOGDIR/${0##*/}".log
-LOGFILEERROR="$LOGDIR/${0##*/}"_error.log
 
-# Habilita log copiando a saída padrão para o arquivo LOGFILE
-exec 1> >(tee -a "$LOGFILE")
+LOGFILE="$LOGDIR/$BASECMD.log"
+LOGFILEERROR="$LOGDIR/${BASECMD}_error.log"
 
-# faz o mesmo para a saída de ERROS
-exec 2> >(tee -a "$LOGFILEERROR")
+# separador + timestamp de início, útil pra achar cada execução no log
+{
+    printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
+} | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
 
-##      Usando arquivo de log - FIM
+# stdout com timestamp por linha
+exec 1> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILE")
+# stderr com timestamp por linha (grava nos dois arquivos e continua mostrando na tela)
+exec 2> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILEERROR" | tee -a "$LOGFILE" >&2)
+
+# garante que os subprocessos do tee/awk terminem de escrever antes do script sair
+trap 'wait' EXIT
 # LOG
 
 locdir="$(pwd)"
