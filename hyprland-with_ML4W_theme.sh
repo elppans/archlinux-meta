@@ -150,11 +150,19 @@ ml4w_dotfiles_install(){
 	ml4w_os_install
 	ml4w_configuracoes_customizadas
 }
-if pacman -Qq hyprland &>/dev/null; then
+command_hyprland(){
+#if pacman -Qq hyprland &>/dev/null; then
+if [ "$(command -v hyprland)" ]; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
+else
+	echo "Deve instalar a base Hyprland primeiro!"
+	exit 1
+fi
+}
 
 if [ "$(command -v pacman)" ]; then
+	command_hyprland
 	verificar_repositorios 
 	verificar_kernel_hooks
 	verificar_helper 
@@ -164,16 +172,14 @@ if [ "$(command -v pacman)" ]; then
 	# instalar_sddm_silent_theme 
 	ml4w_dotfiles_install
 else
+	command_hyprland
 	ml4w_dotfiles_install
 fi
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
 	exit 0
-else
-	echo "Deve instalar a base Hyprland primeiro!"
-	exit 1
-fi
+
 
 # **Dock INFERIOR**
 # Se não quiser usar o Dock (Da parte inferior da tela), crie este arquivo:
