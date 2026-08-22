@@ -29,9 +29,9 @@ LOGFILE="$LOGDIR/$BASECMD.log"
 LOGFILEERROR="$LOGDIR/${BASECMD}_error.log"
 
 # separador + timestamp de início, útil pra achar cada execução no log
-{
-    printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
-} | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
+# {
+#     printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
+# } | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
 
 # stdout com timestamp por linha
 exec 1> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILE")

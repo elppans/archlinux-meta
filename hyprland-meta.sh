@@ -84,9 +84,11 @@ PACOTES=(
 	nwg-displays # Interface gráfica GTK para configuração e layout de monitores
 
 	# Terminal & Captura de Tela
-	kitty # Emulador de terminal acelerado por GPU com suporte a imagens
-	grim  # Utilitário CLI para captura de tela (screenshot) em Wayland
-	slurp # Ferramenta para seleção visual de regiões na tela (usado com o grim)
+	kitty    # Emulador de terminal acelerado por GPU com suporte a imagens
+	grim     # Utilitário CLI para captura de tela (screenshot) em Wayland
+	slurp    # Ferramenta para seleção visual de regiões na tela (usado com o grim)
+	hyprshot # Utilitário para captura de tela (screenshot) em Wayland
+	satty    # Modern screenshot annotation tool
 
 	# Portais & Integração XDG
 	xdg-desktop-portal-hyprland # Backend de portal desktop nativo para Hyprland (screencast, sharing)

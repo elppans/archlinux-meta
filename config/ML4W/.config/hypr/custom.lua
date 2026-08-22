@@ -60,6 +60,17 @@ hl.bind(mainMod .. " + CTRL + DOWN", hl.dsp.layout("swapsplit"), { description =
 -- hl.bind(mainMod .. " + ALT + left", hl.dsp.window.swap({ direction = "l" }), { description = "Swap tiled window left" })
 
 -- Action
+
+-- Screenshots: substituir os atalhos padrão do ML4W
+-- Pacotes necessários: hyprshot satty wl-clipboard
+hl.unbind(mainMod .. " + PRINT")
+hl.unbind(mainMod .. " + ALT + F")
+hl.unbind(mainMod .. " + ALT + S")
+hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region --raw | satty --filename -"), { description = "Screenshot: select area and annotate" })
+hl.bind(mainMod .. " + ALT + F", hl.dsp.exec_cmd("hyprshot -m output"), { description = "Take an instant full-screen screenshot" })
+hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd("hyprshot -m region"), { description = "Take an instant area screenshot" })
+
+-- 
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/launcher.sh"), { description = "Open application launcher" })
 hl.bind(mainMod .. " + CTRL + DELETE", hl.dsp.exec_cmd("qs ipc call power toggle"), { description = "Start Power Menu" })
 hl.bind(mainMod .. " + CTRL + HOME", hl.dsp.exec_cmd("~/.config/ml4w/scripts/ml4w-reload-statusbar"), { description = "Reload Status Bar" })
