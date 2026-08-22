@@ -111,7 +111,24 @@ pacotes_recomendados() {
 	# Utilitários Recomendados (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes recomendados estejam instalados..."
 	sleep 5
-	sudo pacman --needed --noconfirm -S hyprutils nwg-displays xdg-user-dirs swappy satty pinta
+    local recomendados=(
+        # hyprutils
+        # nwg-displays
+		# xdg-user-dirs
+		# swappy
+		pinta
+		hyprshot
+		satty
+		wl-clipboard
+    )
+
+    if command -v pacman &>/dev/null; then
+        sudo pacman --needed --noconfirm -S "${recomendados[@]}"
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y "${recomendados[@]}"
+    elif command -v zypper &>/dev/null; then
+        sudo zypper install -y "${recomendados[@]}"
+    fi
 }
 ml4w_lista_de_dependências_oficiais() {
 	# Baixa a lista de dependências oficiais e armazena em uma variá1vel
@@ -157,6 +174,7 @@ remover_pacotes() {
         hyprsysteminfo
         hyprsysteminfo-debug
         python-screeninfo
+		python-pywalfox
     )
 
     if command -v pacman &>/dev/null; then
@@ -170,11 +188,11 @@ remover_pacotes() {
 if [ "$(command -v pacman)" ]; then
 	command_hyprland
 	verificar_repositorios 
+	pacotes_essenciais
 	verificar_kernel_hooks
 	verificar_helper 
 	detectar_vm 
-	# pacotes_essenciais
-	# pacotes_recomendados
+	pacotes_recomendados
 	# instalar_sddm_silent_theme 
 	ml4w_dotfiles_install
 	remover_pacotes
