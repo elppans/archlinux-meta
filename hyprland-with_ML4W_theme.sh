@@ -120,6 +120,9 @@ pacotes_recomendados() {
 		hyprshot
 		satty
 		wl-clipboard
+		ttf-font-awesome
+		ttf-nerd-fonts-symbols
+		noto-fonts-emoji
     )
 
     if command -v pacman &>/dev/null; then
@@ -201,6 +204,7 @@ else
 	ml4w_dotfiles_install
 	remover_pacotes
 fi
+	fc-cache -f
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
