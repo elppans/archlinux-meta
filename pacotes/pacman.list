@@ -34,10 +34,10 @@ nautilus-python                        # Python bindings for the Nautilus Extens
 # cutefish-icons                       # Conjunto de ícones do ambiente Cutefish
 orchis-theme                           # Tema moderno para GTK e GNOME Shell (A versão via git dá pra customizar - Reativado para completar a configuração de gsettings)
 # tela-circle-icon-theme-black         # Variante preta do conjunto de ícones Tela Circle
-bibata-cursor-theme                    # AUR. Tema de cursores Bibata
+# bibata-cursor-theme                    # AUR. Tema de cursores Bibata
 # vimix-cursors                        # Tema de cursores Vimix
 # gnome-themes-extra                   # Conjunto de temas adicionais para GTK
-kora-icon-theme                        # AUR. Conjunto de ícones Tela Kora
+# kora-icon-theme                        # AUR. Conjunto de ícones Tela Kora
 # tela-circle-icon-theme-all           # Conjunto de ícones Tela Circle
 # yaru-gnome-shell-theme               # Tema Yaru para o GNOME Shell  
 # yaru-gtk-theme                       # Tema Yaru para aplicativos GTK  
@@ -149,3 +149,20 @@ collision                              # Ferramenta para calcular e verificar so
 
 ### Navegadores 
 firefox-i18n-pt-br
+
+### Pacotes opcionais file-roller
+7zip
+arj
+binutils
+bzip3
+cdrtools
+cpio
+dpkg
+lhasa
+lrzip
+rpmextract
+squashfs-tools
+unace
+unrar
+unzip
+zip

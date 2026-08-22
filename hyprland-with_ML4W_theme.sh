@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2329
+# shellcheck disable=SC2329,SC2016
 
 # https://www.ml4w.com/
 # https://ml4w.com/os/
