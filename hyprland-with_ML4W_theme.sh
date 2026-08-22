@@ -29,14 +29,19 @@ LOGFILE="$LOGDIR/$BASECMD.log"
 LOGFILEERROR="$LOGDIR/${BASECMD}_error.log"
 
 # separador + timestamp de início, útil pra achar cada execução no log
-# {
-#     printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
-# } | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
+{
+    printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
+} | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
 
-# stdout com timestamp por linha
-exec 1> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILE")
-# stderr com timestamp por linha (grava nos dois arquivos e continua mostrando na tela)
-exec 2> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILEERROR" | tee -a "$LOGFILE" >&2)
+# stdout COM timestamp por linha
+# exec 1> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILE")
+# stderr COM timestamp por linha (grava nos dois arquivos e continua mostrando na tela)
+# exec 2> >(stdbuf -oL awk '{ print strftime("%F %T"), $0; fflush() }' | tee -a "$LOGFILEERROR" | tee -a "$LOGFILE" >&2)
+
+# stdout SEM timestamp
+exec 1> >(stdbuf -oL tee -a "$LOGFILE")
+# stderr SEM timestamp (grava nos dois arquivos e continua mostrando na tela)
+exec 2> >(stdbuf -oL tee -a "$LOGFILEERROR" | tee -a "$LOGFILE" >&2)
 
 # garante que os subprocessos do tee/awk terminem de escrever antes do script sair
 trap 'wait' EXIT
@@ -101,7 +106,6 @@ pacotes_essenciais() {
 	echo "Garantindo que pacotes essenciais estejam instalados..."
 	sleep 5
 	sudo pacman --needed --noconfirm -S git base-devel
-
 }
 pacotes_recomendados() {
 	# Utilitários Recomendados (Garantindo que estejam instalados)
@@ -118,8 +122,7 @@ ml4w_lista_de_dependências_oficiais() {
 	"$HELPER" -Sy --needed "${PACKAGES[@]}"
 }
 ml4w_os_install() {
-	# Instalar o ML4W versão Stable pelo link oficial
-	echo "Instalando ML4W versão Stable pelo link oficial..."
+	echo "Instalando ML4W..."
 	sleep 5
 	bash <(curl -s https://ml4w.com/os/stable)
 }
@@ -130,21 +133,7 @@ ml4w_configuracoes_customizadas() {
 	sleep 5
 	cd "$install/config" || exit 1
 	./ml4w_config_install.sh
-	# ./ml4w_hyde_bin_install.sh
 	cd "$install" || exit 1
-
-	# Definir volume máximo para 150% via atalho FN
-	# KEYBINCONF="$HOME/.mydotfiles/com.ml4w.dotfiles.stable/.config/hypr/conf/keybindings/default.conf"
-	# KEYBINCONF="$HOME/.config/hypr/conf/keybindings/default.conf"
-	# cp -a "$KEYBINCONF" "$KEYBINCONF".backup_"$(date +%Y%m%d%H%M%S)" || exit 1
-	# grep -q 'wpctl set-volume -l 1.5' "$KEYBINCONF" || sed -i 's/wpctl set-volume -l 1/wpctl set-volume -l 1.5/' "$KEYBINCONF"
-
-	# Ativando "Auto Ocultar" Dock
-	# touch "$HOME"/.config/ml4w/settings/dock-autohide
-
-	# Reativando as permissoes do script do ML4W
-	# sudo mv /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh.old /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
-	# sudo chmod +x /usr/lib/ml4w-hyprland/install/dotfiles/reboot.sh
 }
 ml4w_dotfiles_install(){
 	# **The ML4W Dotfiles for Hyprland**
@@ -155,7 +144,6 @@ ml4w_dotfiles_install(){
 	ml4w_configuracoes_customizadas
 }
 command_hyprland(){
-#if pacman -Qq hyprland &>/dev/null; then
 if [ "$(command -v hyprland)" ]; then
 	echo "Hyprland instalado, continuando operação..."
 	sleep 5
@@ -164,7 +152,21 @@ else
 	exit 1
 fi
 }
+remover_pacotes() {
+    local pacotes=(
+        hyprsysteminfo
+        hyprsysteminfo-debug
+        python-screeninfo
+    )
 
+    if command -v pacman &>/dev/null; then
+        sudo pacman -Rns --noconfirm "${pacotes[@]}"
+    elif command -v dnf &>/dev/null; then
+        sudo dnf remove -y "${pacotes[@]}"
+    elif command -v zypper &>/dev/null; then
+        sudo zypper remove -y "${pacotes[@]}"
+    fi
+}
 if [ "$(command -v pacman)" ]; then
 	command_hyprland
 	verificar_repositorios 
@@ -175,53 +177,14 @@ if [ "$(command -v pacman)" ]; then
 	# pacotes_recomendados
 	# instalar_sddm_silent_theme 
 	ml4w_dotfiles_install
+	remover_pacotes
 else
 	command_hyprland
 	ml4w_dotfiles_install
+	remover_pacotes
 fi
 
 	echo "Instalação finalizada..."
 	echo "Reinicie o computador para que as configurações surtam efeito!"
 	exit 0
 
-
-# **Dock INFERIOR**
-# Se não quiser usar o Dock (Da parte inferior da tela), crie este arquivo:
-# touch $HOME/.config/ml4w/settings/dock-disabled
-# Se quiser que ele fique no modo auto-ocultar, crie este arquivo:
-# touch $HOME/.config/ml4w/settings/dock-autohide
-
-# **Utilitários Recomendados**
-# hyprutils: Ferramentas adicionais para configuração e uso do Hyprland, um gerenciador de janelas Wayland.
-# nwg-displays: Interface gráfica para gerenciar monitores no Wayland, facilitando ajustes em setups com múltiplas telas.
-# pinta: Editor de imagens simples escrito em Gtk# para desenho e pintura. Necessário para edição do ScreenShot
-
-# Teclado BR ABNT2
-# Hyprland
-
-# grep -i brazil /usr/share/X11/xkb/rules/base.lst
-#   abnt2           Brazilian ABNT2
-#   br              Portuguese (Brazil)
-#   nodeadkeys      br: Portuguese (Brazil, no dead keys)
-#   dvorak          br: Portuguese (Brazil, Dvorak)
-#   nativo          br: Portuguese (Brazil, Nativo)
-#   nativo-us       br: Portuguese (Brazil, Nativo for US keyboards)
-#   thinkpad        br: Portuguese (Brazil, IBM/Lenovo ThinkPad)
-#   nativo-epo      br: Esperanto (Brazil, Nativo)
-#   rus             br: Russian (Brazil, phonetic)
-
-# cat "$HOME"/dotfiles/.config/hypr/conf/keyboard.conf
-#     ...
-#     kb_layout = br
-#     kb_variant = abnt2
-#     kb_model = pc104
-#     kb_options =
-#     numlock_by_default = true
-#     mouse_refocus = false
-#     ...
-
-# **MONITOR*
-#
-# Após a instalação em VM QEMU, copiar o arquivo monitor.conf virtual o substituindo
-# Exemplo
-# cp -av "$HOME"/.config/hypr/monitors_qemu_Virtual-1.txt "$HOME"/.config/hypr/monitors.conf

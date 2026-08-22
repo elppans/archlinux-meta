@@ -89,6 +89,7 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.9 @DEFAUL
 -- -----------------------------------------------------
 -- Input
 -- ~/.config/hypr/input.lua
+-- grep -i brazil /usr/share/X11/xkb/rules/base.lst
 -- -----------------------------------------------------
 
 hl.config({
