@@ -127,6 +127,7 @@ xf86-video-intel                       # Driver gráfico para chips Intel
 ttf-liberation                         # Conjunto de fontes Liberation
 wqy-zenhei                             # Fonte chinesa de alta qualidade
 # lib32-systemd                        # Compatibilidade do systemd para arquitetura 32-bit
+fuse2                                  # Compatibilidade com AppImages mais antigos
 
 ### Utilitários - Ferramentas auxiliares e complementares
 
@@ -150,7 +151,7 @@ collision                              # Ferramenta para calcular e verificar so
 ### Navegadores 
 firefox-i18n-pt-br
 
-### Pacotes opcionais file-roller
+### Dependências Opcionais - Pacotes opcionais file-roller
 7zip
 arj
 binutils

@@ -238,7 +238,7 @@ exit 0
 # -- CONFIGURAÇÕES OPCIONAIS -- CASO TENHA PUXADO O LINK DIRETO, NÃO O REPOSITÓRIO COMPLETO
 
 # Ativar Chaotic AUR
-# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh') --install
+# tmp=$(mktemp) && wget -qO "$tmp" 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh' && sudo bash "$tmp" --install; rm -f "$tmp"
 
 # Instalar lista de pacotes pacman SEM Gnome
 # OBSERVAÇÃO: O pacman não acata os pacotes neste tipo de instalação, só dá certo via Helper. Deve utilizar o "yay" ou o "paru" no lugar de {HELPER}

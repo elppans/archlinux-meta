@@ -72,3 +72,5 @@ flathub com.github.tchx84.Flatseal                      # Gerencie as permissõe
 # flathub org.gnome.Showtime                            # Aplicativo de video Gnome
 # flathub org.gnome.Decibels                            # Aplicativo de música Gnome
 # flathub fr.handbrake.ghb                              # Aplicativo para conversão de Medias
+flathub it.mijorus.gearlever                          # Aplicativo para gerenciamento de AppImages local
+# flathub io.github.prateekmedia.appimagepool           # Aplicativo para gerenciamento de AppImages via Loja
