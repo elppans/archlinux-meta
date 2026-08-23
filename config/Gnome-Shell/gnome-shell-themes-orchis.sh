@@ -5,13 +5,13 @@ source /etc/os-release
 source "$HOME"/.config/user-dirs.dirs
 
 if [[ "$ID" == "arch" ]]; then
-    echo "Arch Linux"
+	echo "Arch Linux"
 	DISTRO="arch"
 elif [[ "$ID" =~ ^opensuse ]]; then
-    echo "openSUSE"
+	echo "openSUSE"
 	DISTRO="opensuse"
 else
-    echo "Outra distribuição ($ID)"
+	echo "Outra distribuição ($ID)"
 	exit 1
 fi
 export DISTRO
@@ -28,7 +28,7 @@ orchis_theme() {
 	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
 	echo "Para mudar algo no tema, masta usar o Script \"install.sh\"... "
 	sleep 5
-		sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
+	sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
 	rsync -ah /etc/skel/. "$HOME/"
 	cd "$HOME/.local/share/Orchis-theme" || exit 1
 	# Garantindo que não tenha sugeira no usuário
@@ -54,11 +54,15 @@ bibata-cursor-theme() {
 
 if [ "$(command -v pacman)" ]; then
 	# Gerenciamento de pacotes e manutenção do sistema
-	cd "$install"/helper/ || exit 1
-	source helper_install.sh # Wrappers do pacman (AUR Helper)
-	cd "$install" || exit 1
+	if [ -d "$install"/helper ]; then
+		cd "$install"/helper/ || exit 1
+		source helper_install.sh # Wrappers do pacman (AUR Helper)
+		cd "$install" || exit 1
+	else
+		bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh')
+	fi
 	# if ! pacman -Q yaru-sound-theme &>/dev/null; then
-		# "${HELPER}" --needed --noconfirm -S yaru-sound-theme
+	# "${HELPER}" --needed --noconfirm -S yaru-sound-theme
 	# fi
 	if ! pacman -Q kora-icon-theme &>/dev/null; then
 		kora_icons
