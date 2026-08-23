@@ -222,7 +222,7 @@ exit 0
 # ./pacotes/pacman.ini
 
 # Instalar lista de pacotes Flatpak SEM Gnome
-# sudo flatpak install ""$(grep -v -E '^#|^$|gnome' ./pacotes/flatpak.list | awk '{print $1}')""
+# cat ./pacotes/flatpak.list | grep -v -E '^#|^$|gnome' | awk '{print $1, $2}' | while read -r remote app; do sudo flatpak install -y "$remote" "$app"; done
 # ./pacotes/flatpak.ini
 
 # Executar Scripts custom
