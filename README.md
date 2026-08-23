@@ -15,6 +15,15 @@ O repositório contém diversos scripts para facilitar a configuração e manute
 - **`gnome-shell-custom.sh`**: Realiza ajustes e automações no GNOME Shell após sua instalação.
 >Ps.: Deve utilizar este Script apenas após a instalação do Gnome Shell (Meta).  
 >O Meta pode ser instalado tanto via `Archinstall` quanto via `gnome-shell-meta.sh`.  
+- **`hyprland-meta.sh`**: Instala e configura o Hyprland DE com seus componentes principais.  
+>Ps.: Script totalmente baseado na sessão Hyprland do Archinstall  
+- [**`hyprland-dot-ml4w.sh`**](https://github.com/mylinuxforwork/ml4w-dotfiles-installer): Instala e configura o Setup do [MyLinuxforWork (de `Stephan Raabe`)](https://www.ml4w.com/os) e adiciona algumas customizações próprias, incluindo teclado para pt_BR ABNT2.  
+>Ps.: Para usar via link direto, sem baixar o repositório, execute:  
+```bash
+bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/hyprland-dot-ml4w.sh')
+```
+- [**`hyprland-dot-hyde.sh`**](https://github.com/HyDE-Project/HyDE): Instala e configura o Setup do [HyDE](https://hydeproject.pages.dev/) e adiciona algumas customizações próprias.  
+>Ps.: Ainda não suporta instalação via link direto.  
 - **`archlinux_clean-to-base.sh`**: Um script especial que limpa completamente o Arch Linux, removendo pacotes extras e deixando apenas a instalação base, como se tivesse sido recém-instalada. **Use com extrema cautela, pois ele pode apagar dados importantes.**
 - **Scripts para gerenciadores de login** (como GDM, LightDM e SDDM): Automatizam a configuração de diferentes *display managers*.
 - **Instalação e configuração do GRUB**: Scripts para configurar o carregador de inicialização GRUB.

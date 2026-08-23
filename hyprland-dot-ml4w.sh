@@ -169,7 +169,6 @@ ml4w_dotfiles_install() {
 	sleep 5
 	# ml4w_lista_de_dependências_oficiais
 	ml4w_os_install
-	ml4w_configuracoes_customizadas
 }
 command_hyprland() {
 	if [ "$(command -v hyprland)" ]; then
@@ -206,6 +205,7 @@ if [ "$(command -v pacman)" ]; then
 	pacotes_recomendados
 	# instalar_sddm_silent_theme
 	ml4w_dotfiles_install
+	ml4w_configuracoes_customizadas
 	remover_pacotes
 else
 	command_hyprland
