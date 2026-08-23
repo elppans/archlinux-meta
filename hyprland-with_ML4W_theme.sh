@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2329,SC2016
+# shellcheck disable=SC2329,SC2016,SC2317,SC2027,SC2046
 
 # https://www.ml4w.com/
 # https://ml4w.com/os/
@@ -30,7 +30,7 @@ LOGFILEERROR="$LOGDIR/${BASECMD}_error.log"
 
 # separador + timestamp de início, útil pra achar cada execução no log
 {
-    printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
+	printf '\n==== %s | PID %s | %s ====\n' "$(date '+%F %T')" "$$" "$COMMAND"
 } | tee -a "$LOGFILE" "$LOGFILEERROR" >/dev/null
 
 # stdout COM timestamp por linha
@@ -72,34 +72,34 @@ verificar_repositorios() {
 
 }
 verificar_kernel_hooks() {
-if ! pacman -Qq kernel-modules-hook &>/dev/null; then
-    # Sincroniza a base de dados E atualiza o sistema para evitar parcial upgrade
-    sudo pacman -Syu --needed --noconfirm kernel-modules-hook
+	if ! pacman -Qq kernel-modules-hook &>/dev/null; then
+		# Sincroniza a base de dados E atualiza o sistema para evitar parcial upgrade
+		sudo pacman -Syu --needed --noconfirm kernel-modules-hook
 
-    # Ativa e inicia o serviço para limpar módulos antigos
-	# liberando espaço e evitando possíveis conflitos com módulos desnecessários.
-    sudo systemctl enable --now linux-modules-cleanup.service
-fi
+		# Ativa e inicia o serviço para limpar módulos antigos
+		# liberando espaço e evitando possíveis conflitos com módulos desnecessários.
+		sudo systemctl enable --now linux-modules-cleanup.service
+	fi
 }
 verificar_helper() {
 	# Verificando Helper e instalando, caso necessário
-# Gerenciamento de pacotes e manutenção do sistema
-cd "$install"/helper/ || exit 1
-chmod +x helper_install.sh
-# shellcheck disable=SC1091
-source helper_install.sh # Wrappers do pacman (AUR Helper)
-cd "$install" || exit 1
+	# Gerenciamento de pacotes e manutenção do sistema
+	cd "$install"/helper/ || exit 1
+	chmod +x helper_install.sh
+	# shellcheck disable=SC1091
+	source helper_install.sh # Wrappers do pacman (AUR Helper)
+	cd "$install" || exit 1
 }
 instalar_sddm_silent_theme() {
 	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
 	# Mais informações: https://github.com/uiriansan/SilentSDDM
 	echo "Instalando tema para SDDM..."
 	sleep 5
-# Ativação do Display manager (Gerenciador de Login)
-cd "$install"/display-manager/ || exit 1
-chmod +x display-manager-sddm_silent-theme.sh
-./display-manager-sddm_silent-theme.sh
-cd "$install" || exit 1
+	# Ativação do Display manager (Gerenciador de Login)
+	cd "$install"/display-manager/ || exit 1
+	chmod +x display-manager-sddm_silent-theme.sh
+	./display-manager-sddm_silent-theme.sh
+	cd "$install" || exit 1
 }
 pacotes_essenciais() {
 	# Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
@@ -111,9 +111,9 @@ pacotes_recomendados() {
 	# Utilitários Recomendados (Garantindo que estejam instalados)
 	echo "Garantindo que pacotes recomendados estejam instalados..."
 	sleep 5
-    local recomendados=(
-        # hyprutils
-        # nwg-displays
+	local recomendados=(
+		# hyprutils
+		# nwg-displays
 		# xdg-user-dirs
 		# swappy
 		pinta
@@ -123,15 +123,15 @@ pacotes_recomendados() {
 		ttf-font-awesome
 		ttf-nerd-fonts-symbols
 		noto-fonts-emoji
-    )
+	)
 
-    if command -v pacman &>/dev/null; then
-        sudo pacman --needed --noconfirm -S "${recomendados[@]}"
-    elif command -v dnf &>/dev/null; then
-        sudo dnf install -y "${recomendados[@]}"
-    elif command -v zypper &>/dev/null; then
-        sudo zypper install -y "${recomendados[@]}"
-    fi
+	if command -v pacman &>/dev/null; then
+		sudo pacman --needed --noconfirm -S "${recomendados[@]}"
+	elif command -v dnf &>/dev/null; then
+		sudo dnf install -y "${recomendados[@]}"
+	elif command -v zypper &>/dev/null; then
+		sudo zypper install -y "${recomendados[@]}"
+	fi
 }
 ml4w_lista_de_dependências_oficiais() {
 	# Baixa a lista de dependências oficiais e armazena em uma variá1vel
@@ -155,7 +155,7 @@ ml4w_configuracoes_customizadas() {
 	./ml4w_config_install.sh
 	cd "$install" || exit 1
 }
-ml4w_dotfiles_install(){
+ml4w_dotfiles_install() {
 	# **The ML4W Dotfiles for Hyprland**
 	echo "Iniciando instalação do ML4W Dotfiles para Hyprland..."
 	sleep 5
@@ -163,40 +163,40 @@ ml4w_dotfiles_install(){
 	ml4w_os_install
 	ml4w_configuracoes_customizadas
 }
-command_hyprland(){
-if [ "$(command -v hyprland)" ]; then
-	echo "Hyprland instalado, continuando operação..."
-	sleep 5
-else
-	echo "Deve instalar a base Hyprland primeiro!"
-	exit 1
-fi
+command_hyprland() {
+	if [ "$(command -v hyprland)" ]; then
+		echo "Hyprland instalado, continuando operação..."
+		sleep 5
+	else
+		echo "Deve instalar a base Hyprland primeiro!"
+		exit 1
+	fi
 }
 remover_pacotes() {
-    local pacotes=(
-        hyprsysteminfo
-        hyprsysteminfo-debug
-        python-screeninfo
+	local pacotes=(
+		hyprsysteminfo
+		hyprsysteminfo-debug
+		python-screeninfo
 		python-pywalfox
-    )
+	)
 
-    if command -v pacman &>/dev/null; then
-        sudo pacman -Rns --noconfirm "${pacotes[@]}"
-    elif command -v dnf &>/dev/null; then
-        sudo dnf remove -y "${pacotes[@]}"
-    elif command -v zypper &>/dev/null; then
-        sudo zypper remove -y "${pacotes[@]}"
-    fi
+	if command -v pacman &>/dev/null; then
+		sudo pacman -Rns --noconfirm "${pacotes[@]}"
+	elif command -v dnf &>/dev/null; then
+		sudo dnf remove -y "${pacotes[@]}"
+	elif command -v zypper &>/dev/null; then
+		sudo zypper remove -y "${pacotes[@]}"
+	fi
 }
 if [ "$(command -v pacman)" ]; then
 	command_hyprland
-	verificar_repositorios 
+	verificar_repositorios
 	pacotes_essenciais
 	verificar_kernel_hooks
-	verificar_helper 
-	detectar_vm 
+	verificar_helper
+	detectar_vm
 	pacotes_recomendados
-	# instalar_sddm_silent_theme 
+	# instalar_sddm_silent_theme
 	ml4w_dotfiles_install
 	remover_pacotes
 else
@@ -204,9 +204,26 @@ else
 	ml4w_dotfiles_install
 	remover_pacotes
 fi
-	fc-cache -f
+fc-cache -f
+cd "$install" || exit 1
 
-	echo "Instalação finalizada..."
-	echo "Reinicie o computador para que as configurações surtam efeito!"
-	exit 0
+echo "Instalação finalizada..."
+echo "Reinicie o computador para que as configurações surtam efeito!"
+exit 0
 
+# Instalar lista de pacotes pacman SEM Gnome
+# sudo pacman --needed --noconfirm -S $(grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}')
+# ./pacotes/pacman.ini
+
+# Instalar lista de pacotes Flatpak SEM Gnome
+# sudo flatpak install ""$(grep -v -E '^#|^$|gnome' ./pacotes/flatpak.list | awk '{print $1}')""
+# ./pacotes/flatpak.ini
+
+# Executar Scripts custom
+# chmod -x ./custom/shell-minimalista.sh
+# find ./custom -type f -name "*.sh" -executable -exec {} \;
+
+# Executar Scripts Gnome para configurar icones e temas
+# ./config/Gnome-Shell/gnome-shell-themes-kvantum.sh
+# ./config/Gnome-Shell/gnome-shell-themes-orchis.sh
+# ./config/Gnome-Shell/gnome-shell-themes.sh
