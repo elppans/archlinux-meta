@@ -256,3 +256,8 @@ exit 0
 # rm -f "$tmpdir/custom"/{shell-minimalista.sh,bin.sh}
 # find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \;
 # rm -rf "$tmpdir"
+
+# Executar Scripts para configuração do Gnome (Para uso com o Nautilus e outros Apps Gnome)
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-set.sh')
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-themes-orchis.sh')
+
