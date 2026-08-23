@@ -2,10 +2,10 @@
 
 # Verifica se o script está sendo executado como root
 if [ "$EUID" -eq 0 ]; then
-    echo "Erro: Este script não deve ser executado como superusuário (root)."
-    echo "Por favor, execute como um usuário normal."
+	echo "Erro: Este script não deve ser executado como superusuário (root)."
+	echo "Por favor, execute como um usuário normal."
 	echo "Quando necessário, será pedido a senha administrativa!"
-    exit 1
+	exit 1
 fi
 
 # Cores
@@ -22,16 +22,24 @@ read -r resposta
 resposta=${resposta:-n}
 
 if [[ $resposta == "y" || $resposta == "Y" ]]; then
-    echo -e "${VERDE}Ativando o repositório chaotic-aur...${PADRAO}"
-    # sudo curl -JLk -o /usr/local/bin/chaotic-aur https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Scripts/chaotic_aur.sh
-    # sudo chmod +x /usr/local/bin/chaotic-aur
-    # sudo /usr/local/bin/chaotic-aur --install
-	sudo ./chaotic-aur_hyde.sh --install
-	pacman -Qqs chaotic-mirrorlist && \
-    echo -e "${VERDE}Repositório instalado com sucesso!${PADRAO}" || exit 1
+	echo -e "${VERDE}Ativando o repositório chaotic-aur...${PADRAO}"
+	# sudo curl -JLk -o /usr/local/bin/chaotic-aur https://raw.githubusercontent.com/HyDE-Project/HyDE/refs/heads/master/Scripts/chaotic_aur.sh
+	# sudo chmod +x /usr/local/bin/chaotic-aur
+	# sudo /usr/local/bin/chaotic-aur --install
+	if [ -f chaotic-aur_hyde.sh ]; then
+		chmod +x chaotic-aur_hyde.sh
+		./chaotic-aur_hyde.sh
+	else
+		tmp=$(mktemp) &&
+			wget -qO "$tmp" 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh' &&
+			sudo bash "$tmp" --install
+		rm -f "$tmp"
+	fi
+	pacman -Qqs chaotic-mirrorlist &&
+		echo -e "${VERDE}Repositório instalado com sucesso!${PADRAO}" || exit 1
 elif [[ $resposta == "n" || $resposta == "N" ]]; then
-    echo -e "${AMARELO}O repositório chaotic-aur não foi ativado.${PADRAO}"
+	echo -e "${AMARELO}O repositório chaotic-aur não foi ativado.${PADRAO}"
 else
-    # echo -e "${VERMELHO}Opção inválida. Por favor, responda com 'y' ou 'n'.${PADRAO}"
-    echo -e "${VERMELHO}O repositório chaotic-aur não será ativado.${PADRAO}"
+	# echo -e "${VERMELHO}Opção inválida. Por favor, responda com 'y' ou 'n'.${PADRAO}"
+	echo -e "${VERMELHO}O repositório chaotic-aur não será ativado.${PADRAO}"
 fi
