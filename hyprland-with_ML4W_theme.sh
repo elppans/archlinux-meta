@@ -251,7 +251,7 @@ exit 0
 
 # Executar Scripts do diretório custom
 # tmpdir=$(mktemp -d)
-# curl -sSL https://github.com/elppans/archlinux-meta/archive/refs/heads/main.tar.gz | tar -xz --strip-components=2 archlinux-meta-main/custom -C "$tmpdir/custom"
+# curl -sSL https://github.com/elppans/archlinux-meta/archive/refs/heads/main.tar.gz | tar -xz -C "$tmpdir/custom" --strip-components=2 archlinux-meta-main/custom
 # rm -f "$tmpdir/custom/shell-minimalista.sh"
 # find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \;
 # rm -rf "$tmpdir"
