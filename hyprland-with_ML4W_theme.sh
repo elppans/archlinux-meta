@@ -211,9 +211,18 @@ echo "Instalação finalizada..."
 echo "Reinicie o computador para que as configurações surtam efeito!"
 exit 0
 
+# -- CONFIGURAÇÕES OPCIONAIS --
+
+# Ativar Chaotic AUR direto pelo link
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh') --install
+
 # Instalar lista de pacotes pacman SEM Gnome
-# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | sudo pacman --needed --noconfirm -S -
+# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | yay --needed --noconfirm -S -
 # ./pacotes/pacman.ini
+
+# Instalar lista de pacotes pacman SEM Gnome direto pelo link
+# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
 
 # Instalar lista de pacotes Flatpak SEM Gnome
 # sudo flatpak install ""$(grep -v -E '^#|^$|gnome' ./pacotes/flatpak.list | awk '{print $1}')""
