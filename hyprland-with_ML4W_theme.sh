@@ -225,7 +225,7 @@ exit 0
 # mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "./pacotes/flatpak.list" | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
 # ./pacotes/flatpak.ini
 
-# Executar Scripts custom
+# Executar Scripts do diretório custom
 # chmod -x ./custom/shell-minimalista.sh
 # find ./custom -type f -name "*.sh" -executable -exec {} \;
 
@@ -248,3 +248,10 @@ exit 0
 # Instalar lista de pacotes Flatpak
 # mapfile -t pacotes < <(curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.ini')
+
+# Executar Scripts do diretório custom - Dependência: pacote subversion
+# tmpdir=$(mktemp -d)
+# svn export -q 'https://github.com/elppans/archlinux-meta/trunk/custom' "$tmpdir/custom"
+# rm -f "$tmpdir/custom/shell-minimalista.sh"
+# find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \;
+# rm -rf "$tmpdir"
