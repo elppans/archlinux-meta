@@ -159,9 +159,21 @@ ml4w_configuracoes_customizadas() {
 
 	echo "Adicionando configurações customizadas..."
 	sleep 5
-	cd "$install/config" || exit 1
-	./ml4w_config_install.sh
-	cd "$install" || exit 1
+	if [ -d "$install"/config ]; then
+		cd "$install"/config/ || exit 1
+		./ml4w_config_install.sh
+		cd "$install" || exit 1
+	else
+        tmpdir=$(mktemp -d)
+        mkdir -p "$tmpdir/config/ML4W"
+        curl -sSL https://github.com/elppans/archlinux-meta/archive/refs/heads/main.tar.gz | tar -xz -C "$tmpdir/config" --strip-components=2 archlinux-meta-main/config/ML4W
+        wget -qO "$tmpdir/config/ml4w_config_install.sh" 'https://elppans.github.io/archlinux-meta/config/ml4w_config_install.sh'
+        chmod +x "$tmpdir/config/ml4w_config_install.sh"
+        cd "$tmpdir/config" || exit 1
+        ./ml4w_config_install.sh
+        cd - || exit 1
+        rm -rf "$tmpdir"
+	fi
 }
 ml4w_dotfiles_install() {
 	# **The ML4W Dotfiles for Hyprland**
