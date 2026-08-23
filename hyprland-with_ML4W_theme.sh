@@ -246,5 +246,5 @@ exit 0
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
 
 # Instalar lista de pacotes Flatpak SEM Gnome
-# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | grep -v -E '^#|^$|gnome' | awk '{print $1}' | xargs sudo flatpak install -y
+# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | grep -v -E '^#|^$|gnome' | awk '{print $1, $2}' | while read -r remote app; do sudo flatpak install -y "$remote" "$app"; done
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.ini')
