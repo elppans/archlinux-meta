@@ -55,21 +55,27 @@ detectar_vm() {
 	# Verificar se a máquina é virtual e instalar pacotes se necessário
 	echo "Verificando se o Host é real ou virtual..."
 	sleep 5
-	cd "$install"/pacotes/ || exit 1
-	./detect-vm.sh
-	cd "$install" || exit 1
+	if [ -d "$install"/pacotes ]; then
+		cd "$install"/pacotes/ || exit 1
+		./detect-vm.sh
+		cd "$install" || exit 1
+	else
+		bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/detect-vm.sh')
+	fi
 }
 verificar_repositorios() {
 	# Verificar repositórios
 	echo "Verificando repositórios existentes..."
 	sleep 5
-	# Verificação do repositório MULTILIB
-	cd "$install"/helper/ || exit 1
-	./multilib-check.sh
-	# Verificação do repositório CHAOTIC-AUR
-	pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh
-	cd "$install" || exit 1
-
+	if [ -d "$install"/helper ]; then
+		cd "$install"/helper/ || exit 1
+		./multilib-check.sh                                # Repositório MULTILIB
+		pacman -Qqs chaotic-mirrorlist || ./chaotic-aur.sh # Repositório CHAOTIC-AUR
+		cd "$install" || exit 1
+	else
+		bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/multilib-check.sh')
+		pacman -Qqs chaotic-mirrorlist || bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur.sh')
+	fi
 }
 verificar_kernel_hooks() {
 	if ! pacman -Qq kernel-modules-hook &>/dev/null; then
@@ -83,12 +89,14 @@ verificar_kernel_hooks() {
 }
 verificar_helper() {
 	# Verificando Helper e instalando, caso necessário
-	# Gerenciamento de pacotes e manutenção do sistema
-	cd "$install"/helper/ || exit 1
-	chmod +x helper_install.sh
-	# shellcheck disable=SC1091
-	source helper_install.sh # Wrappers do pacman (AUR Helper)
-	cd "$install" || exit 1
+	if [ -d "$install"/helper ]; then
+		cd "$install"/helper/ || exit 1
+		# shellcheck source=/dev/null
+		source helper_install.sh # Wrappers do pacman (AUR Helper)
+		cd "$install" || exit 1
+	else
+		bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh')
+	fi
 }
 instalar_sddm_silent_theme() {
 	# SDDM Customizado, "sddm-silent-theme" (Lembrar de sempre usar "Hyprland UWSM")
@@ -211,45 +219,152 @@ echo "Instalação finalizada..."
 echo "Reinicie o computador para que as configurações surtam efeito!"
 exit 0
 
-# -- CONFIGURAÇÕES OPCIONAIS --
+# ==============================================================================
+# CONFIGURAÇÕES OPCIONAIS — REPOSITÓRIO COMPLETO
+# ==============================================================================
+# Use esta seção caso o repositório tenha sido baixado/clonado por completo.
+#
+# Os comandos abaixo estão comentados de propósito. Descomente somente o que
+# deseja executar.
+# ==============================================================================
 
-# Ativar Chaotic AUR
+# ------------------------------------------------------------------------------
+# Ativar o Chaotic AUR
+# ------------------------------------------------------------------------------
+# Ativa o repositório Chaotic AUR
+#
+# OBSERVAÇÃO:
+# A execução do Script pergunta por padrão se quer ativar o repositório ou não.
+# Então não há necessidade de ativar a linha deste Script
+#
 # ./helper/chaotic-aur_hyde.sh --install
 
-# Instalar lista de pacotes pacman SEM Gnome
-# OBSERVAÇÃO: O pacman não acata os pacotes neste tipo de instalação, só dá certo via Helper. Deve utilizar o "yay" ou o "paru" no lugar de {HELPER}
-# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | {HELPER} --needed --noconfirm -S -
+
+# ------------------------------------------------------------------------------
+# Instalar a lista de pacotes Pacman — SEM pacotes GNOME
+# ------------------------------------------------------------------------------
+# Lê a lista em ./pacotes/pacman.list, ignora comentários, linhas vazias e
+# pacotes que começam com "gnome", e instala os pacotes restantes.
+#
+# IMPORTANTE:
+# O pacman não aceita este formato de instalação a partir da entrada padrão.
+# Para este tipo de instalação, é necessário utilizar um AUR Helper.
+#
+# Substitua "$HELPER" por "yay" ou "paru".
+#
+# Exemplos de Helper:
+#   yay
+#   paru
+#
+# ./pacotes/pacman.list
+# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | "$HELPER" --needed --noconfirm -S -
 # ./pacotes/pacman.ini
 
-# Instalar lista de pacotes Flatpak
+
+# ------------------------------------------------------------------------------
+# Instalar a lista de pacotes Flatpak
+# ------------------------------------------------------------------------------
+# Lê os IDs dos aplicativos no arquivo ./pacotes/flatpak.list e instala cada
+# pacote individualmente através do Flatpak.
+#
+# ./pacotes/flatpak.list
 # mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "./pacotes/flatpak.list" | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
 # ./pacotes/flatpak.ini
 
-# Executar Scripts do diretório custom
+
+# ------------------------------------------------------------------------------
+# Executar Scripts do diretório "custom"
+# ------------------------------------------------------------------------------
+# Executa todos os scripts .sh que possuem permissão de execução dentro de
+# ./custom.
+#
+# ATENÇÃO:
+# O comando abaixo com "chmod -x" remove a permissão de execução do script
+# shell-minimalista.sh. Mantenha-o comentado caso não queira alterar essa
+# permissão.
+#
 # chmod -x ./custom/shell-minimalista.sh
 # find ./custom -type f -name "*.sh" -executable -exec {} \;
 
-# Executar Scripts Gnome para configurar icones e temas
-# ./config/Gnome-Shell/gnome-shell-themes-kvantum.sh
+
+# ------------------------------------------------------------------------------
+# Executar Scripts do GNOME — Ícones e Temas
+# ------------------------------------------------------------------------------
+# Scripts opcionais para configurar temas, ícones e aparência relacionados
+# ao GNOME Shell.
+#
+# ./config/Gnome-Shell/gnome-shell-set.sh
 # ./config/Gnome-Shell/gnome-shell-themes-orchis.sh
-# ./config/Gnome-Shell/gnome-shell-themes.sh
 
 
-# -- CONFIGURAÇÕES OPCIONAIS -- CASO TENHA PUXADO O LINK DIRETO, NÃO O REPOSITÓRIO COMPLETO
+# ==============================================================================
+# CONFIGURAÇÕES OPCIONAIS — LINK DIRETO
+# ==============================================================================
+# Use esta seção caso você tenha executado o script sem baixar/clonar o
+# repositório completo.
+#
+# Os arquivos são baixados diretamente do GitHub conforme a necessidade,
+# portanto não é necessário ter o repositório presente no computador.
+#
+# Os comandos abaixo estão comentados de propósito. Descomente somente o que
+# deseja executar.
+# ==============================================================================
 
-# Ativar Chaotic AUR
+# ------------------------------------------------------------------------------
+# Ativar o Chaotic AUR
+# ------------------------------------------------------------------------------
+# Baixa o script diretamente do GitHub, executa a instalação e remove o arquivo
+# temporário utilizado durante o processo.
+#
+# OBSERVAÇÃO:
+# A execução do Script pergunta por padrão se quer ativar o repositório ou não.
+# Então não há necessidade de ativar a linha deste Script
+#
 # tmp=$(mktemp) && wget -qO "$tmp" 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh' && sudo bash "$tmp" --install; rm -f "$tmp"
 
-# Instalar lista de pacotes pacman SEM Gnome
-# OBSERVAÇÃO: O pacman não acata os pacotes neste tipo de instalação, só dá certo via Helper. Deve utilizar o "yay" ou o "paru" no lugar de {HELPER}
+
+# ------------------------------------------------------------------------------
+# Instalar a lista de pacotes Pacman — SEM pacotes GNOME
+# ------------------------------------------------------------------------------
+# Baixa a lista de pacotes diretamente do GitHub, ignora comentários, linhas
+# vazias e pacotes que começam com "gnome", e instala os demais pacotes.
+#
+# IMPORTANTE:
+# O pacman não aceita este formato de instalação a partir da entrada padrão.
+# É necessário utilizar um AUR Helper.
+#
+# Neste exemplo, o Helper utilizado é o "yay". Também é possível utilizar
+# o "paru" no lugar dele.
+#
+# Lista de pacotes:
 # curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
+#
+# Configuração adicional:
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
 
-# Instalar lista de pacotes Flatpak
+
+# ------------------------------------------------------------------------------
+# Instalar a lista de pacotes Flatpak
+# ------------------------------------------------------------------------------
+# Baixa a lista diretamente do GitHub, processa os IDs dos aplicativos e
+# instala cada pacote utilizando o Flatpak.
+#
+# Lista de pacotes:
 # mapfile -t pacotes < <(curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
+#
+# Configuração adicional:
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.ini')
 
-# Executar Scripts do diretório custom
+
+# ------------------------------------------------------------------------------
+# Executar Scripts do diretório "custom"
+# ------------------------------------------------------------------------------
+# Baixa somente o diretório "custom" do repositório para um diretório
+# temporário, remove os scripts que não devem ser executados e, em seguida,
+# executa todos os scripts .sh restantes que possuem permissão de execução.
+#
+# O diretório temporário é removido ao final do processo.
+#
 # tmpdir=$(mktemp -d)
 # mkdir -p "$tmpdir/custom"
 # curl -sSL https://github.com/elppans/archlinux-meta/archive/refs/heads/main.tar.gz | tar -xz -C "$tmpdir/custom" --strip-components=2 archlinux-meta-main/custom
@@ -257,7 +372,17 @@ exit 0
 # find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \;
 # rm -rf "$tmpdir"
 
-# Executar Scripts para configuração do Gnome (Para uso com o Nautilus e outros Apps Gnome)
-# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-set.sh')
-# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-themes-orchis.sh')
 
+# ------------------------------------------------------------------------------
+# Executar Scripts de configuração do GNOME
+# ------------------------------------------------------------------------------
+# Scripts opcionais para configurar o ambiente GNOME, principalmente para
+# utilização do Nautilus e de outros aplicativos baseados no GNOME.
+#
+# Os scripts são baixados e executados diretamente do GitHub.
+#
+# Configuração do GNOME:
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-set.sh')
+#
+# Tema Orchis (+ kora_icons + bibata-cursor-theme):
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/Gnome-Shell/gnome-shell-themes-orchis.sh')
