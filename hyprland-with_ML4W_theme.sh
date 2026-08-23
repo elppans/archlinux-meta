@@ -222,7 +222,7 @@ exit 0
 # ./pacotes/pacman.ini
 
 # Instalar lista de pacotes Flatpak
-# mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "./pacotes/flatpak.list") && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
+# mapfile -t pacotes < <(sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' "./pacotes/flatpak.list" | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
 # ./pacotes/flatpak.ini
 
 # Executar Scripts custom
