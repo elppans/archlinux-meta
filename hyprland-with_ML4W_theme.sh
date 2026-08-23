@@ -213,16 +213,13 @@ exit 0
 
 # -- CONFIGURAÇÕES OPCIONAIS --
 
-# Ativar Chaotic AUR direto pelo link
-# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh') --install
+# Ativar Chaotic AUR
+# ./helper/chaotic-aur_hyde.sh --install
 
 # Instalar lista de pacotes pacman SEM Gnome
-# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | yay --needed --noconfirm -S -
+# OBSERVAÇÃO: O pacman não acata os pacotes neste tipo de instalação, só dá certo via Helper. Deve utilizar o "yay" ou o "paru" no lugar de {HELPER}
+# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | {HELPER} --needed --noconfirm -S -
 # ./pacotes/pacman.ini
-
-# Instalar lista de pacotes pacman SEM Gnome direto pelo link
-# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
-# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
 
 # Instalar lista de pacotes Flatpak SEM Gnome
 # sudo flatpak install ""$(grep -v -E '^#|^$|gnome' ./pacotes/flatpak.list | awk '{print $1}')""
@@ -236,3 +233,18 @@ exit 0
 # ./config/Gnome-Shell/gnome-shell-themes-kvantum.sh
 # ./config/Gnome-Shell/gnome-shell-themes-orchis.sh
 # ./config/Gnome-Shell/gnome-shell-themes.sh
+
+
+# -- CONFIGURAÇÕES OPCIONAIS -- CASO TENHA PUXADO O LINK DIRETO, NÃO O REPOSITÓRIO COMPLETO
+
+# Ativar Chaotic AUR
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh') --install
+
+# Instalar lista de pacotes pacman SEM Gnome
+# OBSERVAÇÃO: O pacman não acata os pacotes neste tipo de instalação, só dá certo via Helper. Deve utilizar o "yay" ou o "paru" no lugar de {HELPER}
+# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
+
+# Instalar lista de pacotes Flatpak SEM Gnome
+# curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | grep -v -E '^#|^$|gnome' | awk '{print $1}' | xargs sudo flatpak install -y
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.ini')
