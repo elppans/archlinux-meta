@@ -212,7 +212,7 @@ echo "Reinicie o computador para que as configurações surtam efeito!"
 exit 0
 
 # Instalar lista de pacotes pacman SEM Gnome
-# sudo pacman --needed --noconfirm -S $(grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}')
+# grep -v -E '^#|^$|^gnome' ./pacotes/pacman.list | awk '{print $1}' | sudo pacman --needed --noconfirm -S -
 # ./pacotes/pacman.ini
 
 # Instalar lista de pacotes Flatpak SEM Gnome
