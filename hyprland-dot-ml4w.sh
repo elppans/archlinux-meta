@@ -152,7 +152,7 @@ ml4w_lista_de_dependências_oficiais() {
 ml4w_os_install() {
 	echo "Instalando ML4W..."
 	sleep 5
-	bash -c "$(curl -fsSL https://ml4w.com/os/stable)"
+	bash -c "$(curl -fsSL https://ml4w.com/os/stable)" </dev/tty
 }
 ml4w_configuracoes_customizadas() {
 	# **CUSTOMIZAÇÃO**
