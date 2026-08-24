@@ -20,6 +20,13 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 # LOG
+LOG="0" # Log ativo/inativo (LOG=1/0) - Deixar ativo somente se necessário (E para uso local)
+export LOG
+# Facilita depuração e auditoria, guardando todo histórico de execução em arquivo
+# Ps.: Redireciona stdout para um pipe, o que quebra a detecção de TTY do gum e impede a UI interativa de aparecer
+# Impedindo de aparecer a confirmação da instalação do ML4W
+
+if [ "$LOG" == "1" ]; then
 COMMAND="$0"
 BASECMD="$(basename "$COMMAND")"
 LOGDIR="$HOME/.$BASECMD"
@@ -45,6 +52,7 @@ exec 2> >(stdbuf -oL tee -a "$LOGFILEERROR" | tee -a "$LOGFILE" >&2)
 
 # garante que os subprocessos do tee/awk terminem de escrever antes do script sair
 trap 'wait' EXIT
+fi
 # LOG
 
 locdir="$(pwd)"
@@ -152,7 +160,7 @@ ml4w_lista_de_dependências_oficiais() {
 ml4w_os_install() {
 	echo "Instalando ML4W..."
 	sleep 5
-	curl -s https://ml4w.com/os/stable | bash -i
+	bash <(curl -s https://ml4w.com/os/stable) # Stable Release
 }
 ml4w_configuracoes_customizadas() {
 	# **CUSTOMIZAÇÃO**
