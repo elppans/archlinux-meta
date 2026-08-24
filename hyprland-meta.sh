@@ -134,6 +134,10 @@ PACOTES=(
 	git        # Sistema de controle de versão distribuído
 	expac      # Utilitário de extração de dados do banco de dados do pacman
 	pkgfile    # Ferramenta para buscar qual pacote provê determinado arquivo/binário
+
+	# Pacotes adicionais
+	dolphin    # KDE File Manager (Parte da lista de pacotes de instalação do Archinstall)
+	konsole	   # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
 )
 
 # Obtém a versão do kernel em execução
