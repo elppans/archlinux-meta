@@ -371,6 +371,8 @@ exit 0
 # Baixa a lista diretamente do GitHub, processa os IDs dos aplicativos e
 # instala cada pacote utilizando o Flatpak.
 #
+# Ps.: ZSH não suporta "mapfile" (não testeo o FISH), então se usa este Shell, faça o comadno "bash" primeiro para usar o Shell bash
+#
 # Lista de pacotes:
 # mapfile -t pacotes < <(curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.list' | sed 's/#.*//; s/^[[:space:]]*//; s/[[:space:]]*$//; /^$/d' | awk '{print $2}') && for pacote in "${pacotes[@]}"; do sudo flatpak install -y --noninteractive "$pacote"; done
 #
