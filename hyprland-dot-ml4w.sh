@@ -206,7 +206,8 @@ remover_pacotes() {
 		python-screeninfo
 		python-pywalfox
 	)
-
+	echo -e "Removendo pacotes desnecessários instalado pelo ML4W...\n"
+	sleep 5
 	if command -v pacman &>/dev/null; then
 		sudo pacman -Rns --noconfirm "${pacotes[@]}"
 	elif command -v dnf &>/dev/null; then
@@ -235,7 +236,8 @@ fi
 fc-cache -f
 cd "$install" || exit 1
 
-echo "Instalação finalizada..."
+sleep 5
+echo -e "\nInstalação finalizada..."
 echo "Reinicie o computador para que as configurações surtam efeito!"
 exit 0
 
