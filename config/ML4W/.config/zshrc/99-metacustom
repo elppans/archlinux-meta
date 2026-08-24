@@ -1,0 +1,8 @@
+# ------------------------------------------
+# ArchLinux Meta Custom
+# ------------------------------------------
+
+if [ -f "$HOME/.config/fastfetch/config_ml4w_custom.jsonc" ]; then
+        alias fastfetch="fastfetch -c $HOME/.config/fastfetch/config_ml4w_custom.jsonc"
+        alias ff="fastfetch -c $HOME/.config/fastfetch/config_ml4w_custom.jsonc"
+fi
