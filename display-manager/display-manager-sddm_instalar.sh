@@ -15,6 +15,7 @@ install_and_enable_sddm() {
     echo "[+] SDDM instalado e habilitado com sucesso."
 }
 
+current_dm_login() {
 if [ -n "$CURRENT_DM" ] && [ "$CURRENT_DM" != "sddm.service" ]; then
     echo "[-] Gerenciador de login detectado: $CURRENT_DM"
     read -rp "Deseja substituir pelo SDDM? [y/N]: " CONFIRM
@@ -22,12 +23,21 @@ if [ -n "$CURRENT_DM" ] && [ "$CURRENT_DM" != "sddm.service" ]; then
         [yY][eE][sS]|[yY])
             install_and_enable_sddm
             ;;
+        [nN][oO]|[nN])
+            echo "O SDDM não será instalado e o gerenciador de login $CURRENT_DM será mantido."
+			sleep 5
+            ;;
         *)
-            echo "[!] Operação cancelada pelo usuário."
-            exit 0
+            echo "Escolha uma das opções!"
+            sleep 5
+			current_dm_login
             ;;
     esac
 else
     # Nenhum Display Manager ativo ou o SDDM já é o atual
     install_and_enable_sddm
 fi
+}
+
+current_dm_login
+

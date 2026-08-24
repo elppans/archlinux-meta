@@ -177,10 +177,14 @@ sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
 sudo pkgfile -u
 
 # Ativação do Display manager (Gerenciador de Login)
-cd "$install"/display-manager/ || exit 1
-chmod +x display-manager-sddm_instalar.sh
-./display-manager-sddm_instalar.sh
-cd "$install" || exit 1
+	if [ -d "$install"/display-manager ]; then
+        cd "$install"/display-manager/ || exit 1
+        chmod +x display-manager-sddm_instalar.sh
+        ./display-manager-sddm_instalar.sh
+        cd "$install" || exit 1
+	else
+        bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/display-manager/display-manager-sddm_instalar.sh')
+	fi
 
 # Criação/Atualização dos Diretórios Padrões de Usuário
 xdg-user-dirs-update
