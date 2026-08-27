@@ -28,12 +28,12 @@ if [[ $resposta == "y" || $resposta == "Y" ]]; then
 	# sudo /usr/local/bin/chaotic-aur --install
 	if [ -f chaotic-aur_hyde.sh ]; then
 		chmod +x chaotic-aur_hyde.sh
-		./chaotic-aur_hyde.sh
+		./chaotic-aur_hyde.sh --install
 	else
 		tmp=$(mktemp) &&
-			wget -qO "$tmp" 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh' &&
-			sudo bash "$tmp" --install
-		rm -f "$tmp"
+			wget -qO "$tmp" 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/chaotic-aur_hyde.sh' && \
+			sudo bash "$tmp" --install && \
+			rm -f "$tmp"
 	fi
 	pacman -Qqs chaotic-mirrorlist &&
 		echo -e "${VERDE}Repositório instalado com sucesso!${PADRAO}" || exit 1
