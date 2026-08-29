@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# https://github.com/elppans/archlinux-meta
+#
+# ------------------------------------------------------------------------------
+# Instalar a lista de pacotes Pacman — SEM pacotes GNOME
+# ------------------------------------------------------------------------------
+# Baixa a lista de pacotes diretamente do GitHub, ignora comentários, linhas
+# vazias e pacotes que começam com "gnome", e instala os demais pacotes.
+#
+# IMPORTANTE:
+# O pacman não aceita este formato de instalação a partir da entrada padrão.
+# É necessário utilizar um AUR Helper.
+#
+# Neste exemplo, o Helper utilizado é o "yay". Também é possível utilizar
+# o "paru" no lugar dele.
+#
+# Lista de pacotes:
+curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
+#
+# Configuração adicional:
+bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
+
+if [ -f "$HOME/.local/bin/meta-pacman" ]; then
+    rm -rf "$HOME/.local/bin/meta-pacman"
+fi
+
