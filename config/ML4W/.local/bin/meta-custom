@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# https://github.com/elppans/archlinux-meta
+#
+# ------------------------------------------------------------------------------
+# Executar Scripts do diretório "custom"
+# ------------------------------------------------------------------------------
+# Baixa somente o diretório "custom" do repositório para um diretório
+# temporário, remove os scripts que não devem ser executados e, em seguida,
+# executa todos os scripts .sh restantes que possuem permissão de execução.
+#
+# O diretório temporário é removido ao final do processo.
+#
+tmpdir=$(mktemp -d) && \
+mkdir -p "$tmpdir/custom" && \
+curl -sSL https://github.com/elppans/archlinux-meta/archive/refs/heads/main.tar.gz | tar -xz -C "$tmpdir/custom" --strip-components=2 archlinux-meta-main/custom && \
+rm -f "$tmpdir/custom"/{shell-minimalista.sh,bin.sh} && \
+find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \; && \
+rm -rf "$tmpdir"
+
+if [ -f "$HOME/.local/bin/meta-custom" ]; then
+    rm -rf "$HOME/.local/bin/meta-custom"
+fi
+
