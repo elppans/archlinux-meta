@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if ! pacman -Qq vscodeum &>>/dev/null ;then
+	mkdir -p "$HOME/build/vscodeum"
+	cd "$HOME/build/vscodeum" || exit 1
+	wget -O PKGBUILD "https://raw.githubusercontent.com/elppans/vscodeum/refs/heads/main/pkgbuild/PKGBUILD" || { echo "Falha ao baixar PKGBUILD de vscodeum"; }
+	makepkg -Cris
+fi
+
 if pacman -Qq vscodeum; then
 	/usr/local/bin/vscodeum-extensions import vscodium "$HOME/.vscode-oss/vscodium_extensions.txt"
 else
