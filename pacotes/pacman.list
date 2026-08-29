@@ -32,7 +32,7 @@ nautilus-python                        # Python bindings for the Nautilus Extens
 
 # obsidian-icon-theme                  # Tema de ícones Obsidian baseado no Papirus
 # cutefish-icons                       # Conjunto de ícones do ambiente Cutefish
-orchis-theme                           # Tema moderno para GTK e GNOME Shell (A versão via git dá pra customizar - Reativado para completar a configuração de gsettings)
+# orchis-theme                           # Tema moderno para GTK e GNOME Shell (A versão via git dá pra customizar - Reativado para completar a configuração de gsettings)
 # tela-circle-icon-theme-black         # Variante preta do conjunto de ícones Tela Circle
 # bibata-cursor-theme                    # AUR. Tema de cursores Bibata
 # vimix-cursors                        # Tema de cursores Vimix
@@ -113,7 +113,7 @@ steam-devices                          # List of devices Steam and SteamVR will 
 jq                                     # Processador de JSON no terminal
 prettier                               # Formatador de código para várias linguagens
 ruby                                   # Uma linguagem orientada a objetos para programação rápida e fácil
-## shellcheck                          # AUR. Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
+shellcheck                             # Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
 shfmt                                  # Formatador para scripts shell
 # stylelint                            # AUR Linter para arquivos CSS e preprocessadores como SCSS > Portado para "vscodium_extensions"
 
@@ -143,7 +143,7 @@ fastfetch                              # Ferramenta de informação de sistema r
 mediainfo                              # Fornece informações técnicas e de tags sobre arquivos de mídia (interface CLI)
 aurm                                   # AUR. Auxiliar profissional de manutenção AUR com automação e sincronização no GitHub	
 pacod                                  # AUR. Lista dependências opcionais (optdepends) de pacotes e grupos pacman	
-starship                               # Prompt minimalista, rápido e personalizável para qualquer Shell
+# starship                             # Prompt minimalista, rápido e personalizável para qualquer Shell
 zenity                                 # Display graphical dialog boxes from shell scripts
 collision                              # Ferramenta para calcular e verificar somas de verificação de arquivos.
 # ripgrep                              # A search tool that combines the usability of ag with the raw speed of grep (Para VSCodium/Todo-Tree)
