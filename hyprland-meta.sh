@@ -138,6 +138,7 @@ PACOTES=(
 	# Pacotes adicionais
 	dolphin    # KDE File Manager (Parte da lista de pacotes de instalação do Archinstall)
 	konsole	   # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
+	zram-generator # Systemd unit generator for zram devices
 )
 
 # Obtém a versão do kernel em execução

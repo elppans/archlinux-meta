@@ -16,6 +16,7 @@ PACOTES=(
 	iwd            # Daemon moderno para gerenciamento de conexões Wi-Fi
 	wireless_tools # Ferramentas legadas para configuração de interfaces wireless (iwconfig)
 	wpa_supplicant # Daemon de autenticação para redes Wi-Fi com WPA/WPA2/WPA3
+	zram-generator # Systemd unit generator for zram devices
 
 	# Pacotes Dev
 	base-devel # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)

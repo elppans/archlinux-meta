@@ -87,7 +87,7 @@ read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para
 
 echo -e '\nAlterando o motivo da instalação para "como explicitamente" apenas os PACOTES ESSENCIAIS. Aqueles que você NÃO deseja remover'
 sleeping 5
-sudo pacman -D --asexplicit $(pacman -Qqs ucode) base linux linux-firmware btrfs-progs git nano networkmanager pipewire wpa_supplicant wireless_tools sudo wget
+sudo pacman -D --asexplicit $(pacman -Qqs ucode) base linux linux-firmware btrfs-progs git nano networkmanager pipewire wpa_supplicant wireless_tools sudo wget zram-generator
 
 read -t 15 -p "Espere 15 Segundos ou aperte ENTER para continuar, ou CTRL+C para cancelar" ;
 
