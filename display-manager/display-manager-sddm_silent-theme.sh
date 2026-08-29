@@ -19,23 +19,26 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 
 	if [ -f /etc/sddm.conf ]; then
 		cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
-		echo -e "# Make sure these options are correct:
-	[General]
+
+		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
+		# Make sure these options are correct:
+		[General]
     	InputMethod=qtvirtualkeyboard
     	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
     	[Theme]
     	Current=silent
-	" | sudo tee /etc/sddm.conf
+EOF
 	else
-		echo -e "# Make sure these options are correct:
-    	[General]
+		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
+		# Make sure these options are correct:
+		[General]
     	InputMethod=qtvirtualkeyboard
     	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
     	[Theme]
     	Current=silent
-	" | sudo tee /etc/sddm.conf &>>/dev/null
+EOF
 	fi
 
 	# shellcheck disable=SC2046
