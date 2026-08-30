@@ -26,9 +26,10 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- AUTOSTART (INICIALIZAÇÃO)
 -- ~/.config/hypr/conf/autostart.lua
 -- ----------------------------------------------------- 
+hl.on("hyprland.start", function ()
 
 -- Setar Wallpaper RANDOM
--- hl.exec_cmd(""$HOME/.config/ml4w/scripts/ml4w-wallpaper --random ~/Imagens/wallpaper")
+hl.exec_cmd("$HOME/.config/ml4w/scripts/ml4w-wallpaper --random ~/Imagens/wallpaper")
 
 -- Autostart do sistema
 -- hl.exec_cmd("/usr/local/bin/autostart.sh")
@@ -47,6 +48,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Telegram
 -- hl.exec_cmd("flatpak run --command=Telegram org.telegram.desktop -autostart")
+end)
 
 -- ----------------------------------------------------- 
 -- Key Bindings

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+. "$HOME/.config/user-dirs.dirs"
+
+if [ -d "$XDG_PICTURES_DIR/wallpaper/" ]; then
+	cd "$XDG_PICTURES_DIR/wallpaper/" || exit
+	git pull
+else
+	cd "$XDG_PICTURES_DIR" || exit # You can also choose a different location
+	git clone --depth=1 https://github.com/mylinuxforwork/wallpaper.git
+fi
