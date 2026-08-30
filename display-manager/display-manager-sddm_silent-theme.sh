@@ -10,34 +10,35 @@
 if pacman -Qs "^sddm$" &>/dev/null; then
 	echo "[+] SDDM detectado. Aplicando customizações..."
 	sleep 5
-	sudo pacman -Sy --needed --noconfirm sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg
-	mkdir -p "$HOME/build"
-	cd "$HOME/build" || exit 1
-	git clone https://aur.archlinux.org/sddm-silent-theme.git
-	cd sddm-silent-theme
-	makepkg -Cris
+	# sudo pacman -Sy --needed --noconfirm sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg qt6-imageformats
+	# mkdir -p "$HOME/build"
+	# cd "$HOME/build" || exit 1
+	# git clone https://aur.archlinux.org/sddm-silent-theme.git
+	# cd sddm-silent-theme
+	# makepkg -Cris
+	git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
 
 	if [ -f /etc/sddm.conf ]; then
-		cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
+		sudo cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
 
 		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
-		# Make sure these options are correct:
-		[General]
-    	InputMethod=qtvirtualkeyboard
-    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+# Make sure these options are correct:
+[General]
+InputMethod=qtvirtualkeyboard
+GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
-    	[Theme]
-    	Current=silent
+[Theme]
+Current=silent
 EOF
 	else
 		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
-		# Make sure these options are correct:
-		[General]
-    	InputMethod=qtvirtualkeyboard
-    	GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
+# Make sure these options are correct:
+[General]
+InputMethod=qtvirtualkeyboard
+GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT_IM_MODULE=qtvirtualkeyboard
 
-    	[Theme]
-    	Current=silent
+[Theme]
+Current=silent
 EOF
 	fi
 
