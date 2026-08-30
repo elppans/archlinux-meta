@@ -11,13 +11,23 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 	echo "[+] SDDM detectado. Aplicando customizações..."
 	sleep 5
 	# sudo pacman -Sy --needed --noconfirm sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg qt6-imageformats
-	mkdir -p "$HOME/build"
-	cd "$HOME/build" || exit 1
+	# mkdir -p "$HOME/build"
+	# cd "$HOME/build" || exit 1
 	# git clone https://aur.archlinux.org/sddm-silent-theme.git
 	# cd sddm-silent-theme
 	# makepkg -Cris
-	git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
 
+if [ -d "$HOME/build/SilentSDDM" ]; then
+	cd "$HOME/build/SilentSDDM" || exit 1
+	git fetch origin
+	git reset --hard origin/main
+	git clean -fd
+	./install.sh
+else
+	mkdir -p "$HOME/build"
+	cd "$HOME/build" || exit 1
+	git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
+fi
 	if [ -f /etc/sddm.conf ]; then
 		sudo cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
 
