@@ -48,7 +48,8 @@ EOF
 	systemctl is-enabled sddm.service || sudo systemctl enable sddm.service
 
 	# Script para usar com "SDDM-Silent-Theme"
-	if pacman -Qqs sddm-silent-theme; then
+	# if pacman -Qqs sddm-silent-theme; then
+	if [ -d /usr/share/sddm/themes/silent/ ];then 
 		mkdir -p "$HOME/build/sddm-silent-customizer"
 		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
 		cd "$HOME/build/sddm-silent-customizer" || exit 1
