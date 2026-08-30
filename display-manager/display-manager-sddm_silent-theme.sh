@@ -21,7 +21,7 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 	if [ -f /etc/sddm.conf ]; then
 		sudo cp -a /etc/sddm.conf /etc/sddm.conf.backup_"$(date +%Y%m%d%H%M%S)"
 
-		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
+		sudo tee /etc/sddm.conf &>>/dev/null <<'EOF'
 # Make sure these options are correct:
 [General]
 InputMethod=qtvirtualkeyboard
@@ -31,7 +31,7 @@ GreeterEnvironment=QML2_IMPORT_PATH=/usr/share/sddm/themes/silent/components/,QT
 Current=silent
 EOF
 	else
-		sudo tee /etc/sddm.conf  &>>/dev/null <<'EOF'
+		sudo tee /etc/sddm.conf &>>/dev/null <<'EOF'
 # Make sure these options are correct:
 [General]
 InputMethod=qtvirtualkeyboard
@@ -48,15 +48,16 @@ EOF
 	systemctl is-enabled sddm.service || sudo systemctl enable sddm.service
 
 	# Script para usar com "SDDM-Silent-Theme"
-	# if pacman -Qqs sddm-silent-theme; then
-	if [ -d /usr/share/sddm/themes/silent/ ];then 
+	if pacman -Qqs sddm-silent-theme; then
 		mkdir -p "$HOME/build/sddm-silent-customizer"
 		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
 		cd "$HOME/build/sddm-silent-customizer" || exit 1
 		makepkg -Cris || exit 1
+	else
+		if [ -d /usr/share/sddm/themes/silent/ ]; then
+			curl -JLk -o /etc/profile.d/silent-sddm-switch_theme.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
+		fi
 	fi
-
-	# curl -JLk -o /etc/profile.d/silent-sddm-switch_theme.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
 
 	# grep sddm /etc/group || sudo groupadd sddm
 	# groups $USER | grep -q '\bsddm\b' || sudo usermod -aG sddm $USER
