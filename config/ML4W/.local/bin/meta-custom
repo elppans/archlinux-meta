@@ -19,6 +19,6 @@ find "$tmpdir/custom" -type f -name "*.sh" -executable -exec {} \; && \
 rm -rf "$tmpdir"
 
 if [ -f "$HOME/.local/bin/meta-custom" ]; then
-    rm -rf "$HOME/.local/bin/meta-custom"
+    chmod -x "$HOME/.local/bin/meta-custom"
 fi
 

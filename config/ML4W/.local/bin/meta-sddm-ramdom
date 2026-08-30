@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# https://github.com/elppans/archlinux-meta
+#
+# ------------------------------------------------------------------------------
+# Instalar a pacote de Temas aleatórios ao SDDM
+# ------------------------------------------------------------------------------
+
+# Instalação:
+bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/display-manager/display-manager-sddm_silent-theme.sh')
+
+if [ -f "$HOME/.local/bin/meta-sddm-ramdom" ]; then
+    chmod -x "$HOME/.local/bin/meta-sddm-ramdom"
+fi
+

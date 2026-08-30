@@ -22,6 +22,6 @@ curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/
 bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
 
 if [ -f "$HOME/.local/bin/meta-pacman" ]; then
-    rm -rf "$HOME/.local/bin/meta-pacman"
+    chmod -x "$HOME/.local/bin/meta-pacman"
 fi
 

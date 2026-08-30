@@ -18,6 +18,6 @@ mapfile -t pacotes < <(curl -fsSL 'https://raw.githubusercontent.com/elppans/arc
 bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/flatpak.ini')
 
 if [ -f "$HOME/.local/bin/meta-flatpak" ]; then
-    rm -rf "$HOME/.local/bin/meta-flatpak"
+    chmod -x "$HOME/.local/bin/meta-flatpak"
 fi
 
