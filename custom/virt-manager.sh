@@ -16,15 +16,14 @@ sudo sed -i '/^firewall_backend/d' /etc/libvirt/network.conf
 echo 'firewall_backend = "iptables"' | sudo tee -a /etc/libvirt/network.conf >>/dev/null
 
 if [ -f /etc/qemu/bridge.conf ]; then
-	# Liberar o uso de qualquer rede/bridge para o Virt Manager/QEMU (sem restringir a interfaces específicas)
-	grep -q 'allow all' /etc/qemu/bridge.conf || echo 'allow all' | sudo tee -a /etc/qemu/bridge.conf &>>/dev/null
+	sudo touch /etc/qemu/bridge.conf
+fi
+
+# Liberar o uso de qualquer rede/bridge para o Virt Manager/QEMU (sem restringir a interfaces específicas)
+grep -q 'allow all' /etc/qemu/bridge.conf || echo 'allow all' | sudo tee -a /etc/qemu/bridge.conf &>>/dev/null
 
 # Liberar o uso apenas a "portas Fixas" (br0 até br9)
 # for i in {0..9}; do echo "allow br$i" | sudo tee -a /etc/qemu/bridge.conf ; done
-else
-	sudo touch /etc/qemu/bridge.conf
-	echo 'allow all' | sudo tee -a /etc/qemu/bridge.conf &>>/dev/null
-fi
 
 # Habilitar Encaminhamento de Pacotes IPv4
 grep -q 'net.ipv4.ip_forward=1' /etc/sysctl.d/99-sysctl.conf &>>/dev/null || echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.d/99-sysctl.conf >>/dev/null
