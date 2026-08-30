@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Instalar o Virt Manager e pacotes essenciais
-sudo pacman --needed --noconfirm -Syu virt-manager qemu-desktop swtpm dmidecode dnsmasq bridge-utils edk2-ovmf
+sudo pacman --needed --noconfirm -Syu virt-manager qemu-desktop swtpm dmidecode dnsmasq edk2-ovmf
+
+# Pacote legado, agora só existe no AUR
+# sudo pacman --needed --noconfirm -Syu bridge-utils
 
 # Define os grupos aos quais o usuário deve ser adicionado
 sudo usermod -aG kvm "$USER"
