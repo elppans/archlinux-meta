@@ -50,3 +50,7 @@ sudo virsh net-autostart default
 
 # Verificar a configuração da rede NAT
 sudo virsh net-list
+
+# Ativar conexão QEMU/KVM - O padrão é "libvirt-lxc"
+dconf write /org/virt-manager/virt-manager/connections/uris "['qemu:///system']"
+dconf write /org/virt-manager/virt-manager/connections/autoconnect "['qemu:///system']"
