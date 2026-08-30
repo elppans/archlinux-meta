@@ -55,7 +55,7 @@ EOF
 		makepkg -Cris || exit 1
 	else
 		if [ -d /usr/share/sddm/themes/silent/ ]; then
-			curl -JLk -o /etc/profile.d/silent-sddm-switch_theme.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
+			sudo curl -JLk -o /etc/profile.d/silent-sddm-switch_theme.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
 		fi
 	fi
 
