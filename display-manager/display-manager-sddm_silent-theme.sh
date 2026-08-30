@@ -55,7 +55,7 @@ EOF
 		makepkg -Cris || exit 1
 	else
 		if [ -d /usr/share/sddm/themes/silent/ ]; then
-			sudo curl -JLk -o /etc/profile.d/silent-sddm-switch_theme.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
+			sudo curl -JLk -o /etc/profile.d/sddm-silent-customizer.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
 		fi
 	fi
 
@@ -65,8 +65,8 @@ EOF
 	# sudo chmod 0755 /usr/share/sddm/themes/silent
 	# sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
 	# sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
-	# sudo chmod +x /etc/profile.d/silent-sddm-switch_theme.sh
-	# sudo ln -sf /etc/profile.d/silent-sddm-switch_theme.sh /usr/local/bin/silent-sddm-switch_theme
+	# sudo chmod +x /etc/profile.d/sddm-silent-customizer.sh
+	# sudo ln -sf /etc/profile.d/sddm-silent-customizer.sh /usr/local/bin/sddm-silent-customizer
 
 	sleep 5
 	echo "[+] Configuração customizada do SDDM aplicada com sucesso."
