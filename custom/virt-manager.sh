@@ -32,7 +32,7 @@ grep -q 'net.ipv4.ip_forward=1' /etc/sysctl.d/99-sysctl.conf &>>/dev/null || ech
 sudo sysctl -w net.ipv4.ip_forward=1
 
 # Recarrega/atualiza as informações do SystemD
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
 # Ativa/Inicia/Reinicia o serviço libvirtd
 if systemctl is-enabled libvirtd.service &>/dev/null; then
