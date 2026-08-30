@@ -11,8 +11,8 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 	echo "[+] SDDM detectado. Aplicando customizações..."
 	sleep 5
 	# sudo pacman -Sy --needed --noconfirm sddm qt6-svg qt6-virtualkeyboard qt6-multimedia-ffmpeg qt6-imageformats
-	# mkdir -p "$HOME/build"
-	# cd "$HOME/build" || exit 1
+	mkdir -p "$HOME/build"
+	cd "$HOME/build" || exit 1
 	# git clone https://aur.archlinux.org/sddm-silent-theme.git
 	# cd sddm-silent-theme
 	# makepkg -Cris
@@ -59,13 +59,13 @@ EOF
 		fi
 	fi
 
-	# grep sddm /etc/group || sudo groupadd sddm
-	# groups $USER | grep -q '\bsddm\b' || sudo usermod -aG sddm $USER
-	# sudo chgrp sddm /usr/share/sddm/themes/silent
-	# sudo chmod 0755 /usr/share/sddm/themes/silent
-	# sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
-	# sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
-	# sudo chmod +x /etc/profile.d/sddm-silent-customizer.sh
+	grep sddm /etc/group || sudo groupadd sddm
+	groups $USER | grep -q '\bsddm\b' || sudo usermod -aG sddm $USER
+	sudo chgrp sddm /usr/share/sddm/themes/silent
+	sudo chmod 0755 /usr/share/sddm/themes/silent
+	sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
+	sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
+	sudo chmod +x /etc/profile.d/sddm-silent-customizer.sh
 	# sudo ln -sf /etc/profile.d/sddm-silent-customizer.sh /usr/local/bin/sddm-silent-customizer
 
 	sleep 5
