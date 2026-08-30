@@ -49,13 +49,13 @@ EOF
 
 	# Script para usar com "SDDM-Silent-Theme"
 	if pacman -Qqs sddm-silent-theme; then
-		mkdir -p "$HOME/build/sddm-silent-customizer"
-		wget -O "$HOME/build/sddm-silent-customizer/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/PKGBUILD" || exit 1
-		cd "$HOME/build/sddm-silent-customizer" || exit 1
+		mkdir -p "$HOME/build/sddm-silent-random"
+		wget -O "$HOME/build/sddm-silent-random/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/PKGBUILD" || exit 1
+		cd "$HOME/build/sddm-silent-random" || exit 1
 		makepkg -Cris || exit 1
 	else
 		if [ -d /usr/share/sddm/themes/silent/ ]; then
-			sudo curl -JLk -o /etc/profile.d/sddm-silent-customizer.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-customizer/refs/heads/main/etc/profile.d/sddm-silent-customizer.sh'
+			sudo curl -JLk -o /etc/profile.d/sddm-silent-random.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/etc/profile.d/sddm-silent-random.sh'
 		fi
 	fi
 
@@ -65,8 +65,8 @@ EOF
 	sudo chmod 0755 /usr/share/sddm/themes/silent
 	sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
 	sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
-	sudo chmod +x /etc/profile.d/sddm-silent-customizer.sh
-	# sudo ln -sf /etc/profile.d/sddm-silent-customizer.sh /usr/local/bin/sddm-silent-customizer
+	sudo chmod +x /etc/profile.d/sddm-silent-random.sh
+	# sudo ln -sf /etc/profile.d/sddm-silent-random.sh /usr/local/bin/sddm-silent-random
 
 	sleep 5
 	echo "[+] Configuração customizada do SDDM aplicada com sucesso."
