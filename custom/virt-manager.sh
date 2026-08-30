@@ -15,11 +15,16 @@ sudo sed -i '/^firewall_backend/d' /etc/libvirt/network.conf
 # Define o firewall_backend como iptables
 echo 'firewall_backend = "iptables"' | sudo tee -a /etc/libvirt/network.conf >>/dev/null
 
-# Liberar o uso de qualquer rede/bridge para o Virt Manager/QEMU (sem restringir a interfaces específicas)
-grep -q 'allow all' /etc/qemu/bridge.conf || echo 'allow all' | tee -a /etc/qemu/bridge.conf &>>/dev/null
+if [ -f /etc/qemu/bridge.conf ]; then
+	# Liberar o uso de qualquer rede/bridge para o Virt Manager/QEMU (sem restringir a interfaces específicas)
+	grep -q 'allow all' /etc/qemu/bridge.conf || echo 'allow all' | sudo tee -a /etc/qemu/bridge.conf &>>/dev/null
 
 # Liberar o uso apenas a "portas Fixas" (br0 até br9)
 # for i in {0..9}; do echo "allow br$i" | sudo tee -a /etc/qemu/bridge.conf ; done
+else
+	sudo touch /etc/qemu/bridge.conf
+	echo 'allow all' | sudo tee -a /etc/qemu/bridge.conf &>>/dev/null
+fi
 
 # Habilitar Encaminhamento de Pacotes IPv4
 grep -q 'net.ipv4.ip_forward=1' /etc/sysctl.d/99-sysctl.conf &>>/dev/null || echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.d/99-sysctl.conf >>/dev/null
@@ -32,9 +37,9 @@ systemctl daemon-reload
 
 # Ativa/Inicia/Reinicia o serviço libvirtd
 if systemctl is-enabled libvirtd.service &>/dev/null; then
-	systemctl restart libvirtd.service
+	sudo systemctl restart libvirtd.service
 else
-	systemctl enable --now libvirtd.service
+	sudo systemctl enable --now libvirtd.service
 fi
 
 # Iniciar e configurar a rede NAT para iniciar de forma automatica:
