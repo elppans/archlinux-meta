@@ -55,7 +55,9 @@ EOF
 		makepkg -Cris || exit 1
 	else
 		if [ -d /usr/share/sddm/themes/silent/ ]; then
-			sudo curl -JLk -o /etc/profile.d/sddm-silent-random.sh 'https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/etc/profile.d/sddm-silent-random.sh'
+			sudo rm -rf /usr/local/bin/sddm-silent-random /etc/systemd/system/sddm-silent-random.service &>>/dev/null
+			sudo curl -JLk -o /usr/local/bin/sddm-silent-random 'https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/usr/local/bin/sddm-silent-random'
+			sudo curl -JLk -o /etc/systemd/system/sddm-silent-random.service 'https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/etc/systemd/system/sddm-silent-random.service'
 		fi
 	fi
 
@@ -65,8 +67,11 @@ EOF
 	sudo chmod 0755 /usr/share/sddm/themes/silent
 	sudo chgrp sddm /usr/share/sddm/themes/silent/metadata.desktop
 	sudo chmod 664 /usr/share/sddm/themes/silent/metadata.desktop
-	sudo chmod +x /etc/profile.d/sddm-silent-random.sh
+	# sudo chmod +x /etc/profile.d/sddm-silent-random.sh
 	# sudo ln -sf /etc/profile.d/sddm-silent-random.sh /usr/local/bin/sddm-silent-random
+	sudo chmod +x /usr/local/bin/sddm-silent-random
+	sudo systemctl daemon-reload
+	sudo systemctl enable sddm-silent-random.service
 
 	sleep 5
 	echo "[+] Configuração customizada do SDDM aplicada com sucesso."
