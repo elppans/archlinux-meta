@@ -84,3 +84,15 @@ dconf write /org/virt-manager/virt-manager/new-vm/storage-format "['qcow2']"
 # Neste caso, não precisa especificar tamanho e o parâmetro "sparse", pois já foi configurado pelo qemu-img
 # virt-install --name minha-vm --disk path=/caminho/disco.qcow2,format=qcow2 ...
 
+# Iniciar Virt Manager minimizado
+# Não existe nativamente
+
+# No Hyprland:
+# Configurar exec-once = virt-manager → inicia junto com a sessão
+# Configurar windowrulev2 = workspace special:silent, class:^(virt-manager)$ → nasce escondido
+# Ícone na bandeja → clique nele quando precisar abrir a janela
+
+# No Gnome:
+# precisaria de uma extensão tipo "Hide Window" ou "AutoMinimize" da extensions.gnome.org, 
+# já que no Wayland ferramentas como xdotool não funcionam para forçar minimização de outros apps.
+
