@@ -61,3 +61,26 @@ sudo virsh net-list
 # Ativar conexão QEMU/KVM - O padrão é "libvirt-lxc"
 dconf write /org/virt-manager/virt-manager/connections/uris "['qemu:///system']"
 dconf write /org/virt-manager/virt-manager/connections/autoconnect "['qemu:///system']"
+
+# Configurar padrão de novas VMs para UEFI - O padrão é BIOS
+dconf write /org/virt-manager/virt-manager/new-vm/firmware "['uefi']"
+
+# Configurar padrão de disco de novas VMs para QCOW2 - O padrão é QCOW2 mesmo
+dconf write /org/virt-manager/virt-manager/new-vm/storage-format "['qcow2']"
+
+# Criar disco grande com arquivo pequeno (O mesmo efeito que o Boxes)
+# qemu-img create -f qcow2 -o preallocation=off /caminho/disco.qcow2 40G
+
+# Em uma definição de XML gerada pelo GNOME Boxes, a tag do disco aparece como 
+# disk type='file' device='disk' com driver name='qemu' type='qcow2' cache='writeback'.
+# Fonte: https://tracker.pureos.net/T292
+
+# Disco no "virt-install":
+
+# sparse=yes (Já é o padrão - Quando usado --disk path)
+# virt-install --name minha-vm --disk path=/caminho/disco.qcow2,size=54,format=qcow2,sparse=yes ...
+
+# Usando o arquivo já criado:
+# Neste caso, não precisa especificar tamanho e o parâmetro "sparse", pois já foi configurado pelo qemu-img
+# virt-install --name minha-vm --disk path=/caminho/disco.qcow2,format=qcow2 ...
+
