@@ -6,6 +6,13 @@ sudo pacman --needed --noconfirm -Syu virt-manager qemu-desktop swtpm dmidecode 
 # Pacote legado, agora só existe no AUR
 # sudo pacman --needed --noconfirm -Syu bridge-utils
 
+# Habilitar "Instrospecção de VM via libguestfs"
+# Atenção — no Arch essa combinação é conhecida por dar dor de cabeça:
+# O libguestfs precisa montar um "appliance" (uma mini-VM interna) para inspecionar o disco, 
+# e isso costuma falhar no Arch com erros como "cannot find any suitable libguestfs supermin appliance", 
+# porque o Arch não gera o appliance da forma tradicional (via supermin) que outras distros usam.
+# sudo pacman --needed --noconfirm -Syu libguestfs python-libguestfs
+
 # Define os grupos aos quais o usuário deve ser adicionado
 sudo usermod -aG kvm "$USER"
 grep virt /etc/group | cut -d: -f1 | while IFS= read -r gvirt; do
