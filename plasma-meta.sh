@@ -35,13 +35,13 @@ PACOTES=(
 
 	# Portais & Integração XDG
 	xdg-utils                   # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
-	xdg-user-dirs               # Gerenciador de pastas padrão do usuário (Downloads, Documents, etc.)
+	# xdg-user-dirs               # Gerenciador de pastas padrão do usuário (Downloads, Documents, etc.)
 
 	# Toolkit & Autenticação
-	qt5-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt5
+	# qt5-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt5
 	qt6-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt6
-	polkit           # Toolkit para controle e gerenciamento de privilégios do sistema
-	polkit-kde-agent # Agente de autenticação gráfica do Polkit baseado em KDE
+	# polkit           # Toolkit para controle e gerenciamento de privilégios do sistema
+	# polkit-kde-agent # Agente de autenticação gráfica do Polkit baseado em KDE
 
 	# Áudio & Mídia (PipeWire)
 	pipewire       # Server de áudio/vídeo moderno de baixa latência
@@ -51,7 +51,7 @@ PACOTES=(
 	wireplumber    # Gerenciador de sessão e políticas padrão para o PipeWire
 
 	# Rede & Conectividade
-	iwd            # Daemon moderno da Intel para gerenciamento de conexões Wi-Fi
+	# iwd            # Daemon moderno da Intel para gerenciamento de conexões Wi-Fi
 	wireless_tools # Ferramentas legadas para configuração de redes sem fio (iwconfig)
 	wpa_supplicant # Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
 	openssh        # Cliente e servidor SSH para acesso e shell remoto seguro
@@ -73,7 +73,7 @@ PACOTES=(
 
 	# Pacotes adicionais
 	zram-generator # Systemd unit generator for zram devices
-	ufw 	       # Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+	# ufw 	       # Uncomplicated and easy to use CLI tool for managing a netfilter firewall
 	gufw		   # Uncomplicated way to manage your Linux firewall
 )
 
