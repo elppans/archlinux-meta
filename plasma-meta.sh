@@ -32,8 +32,9 @@ PACOTES=(
 	plasma-systemmonitor        # An interface for monitoring system sensors, process information and other system resources
 	plasma-nm				    # Network manager applet
 	plasma-pa                   # Audio volume applet
-	dolphin        # KDE File Manager (Não faz parte da lista)
-	konsole	       # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
+	dolphin                     # KDE File Manager (Não faz parte da lista)
+	konsole	                    # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
+	kscreen                     # KDE screen management software
 
 	# Portais & Integração XDG
 	xdg-utils                   # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
