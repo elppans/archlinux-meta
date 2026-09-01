@@ -26,6 +26,7 @@ base_install="$(basename $install)"
 export base_install
 
 PACOTES=(
+	# Ps.: Pacotes comentados são os que vi mais tarde que não são necessários, mas mantive nas linhas a fim de documentação
 	# Pacotes Meta / Compositor & Sessão
 	plasma-desktop
 	plasma-nm				    # Network manager applet
@@ -52,7 +53,7 @@ PACOTES=(
 
 	# Rede & Conectividade
 	# iwd            # Daemon moderno da Intel para gerenciamento de conexões Wi-Fi
-	wireless_tools # Ferramentas legadas para configuração de redes sem fio (iwconfig)
+	# wireless_tools # Ferramentas legadas para configuração de redes sem fio (iwconfig)
 	wpa_supplicant # Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
 	openssh        # Cliente e servidor SSH para acesso e shell remoto seguro
 	wget           # Utilitário para download de arquivos via HTTP, HTTPS e FTP
