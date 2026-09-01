@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+#
+# plasma-sync.sh
+# Backup/restore "bruto" das configurações do KDE Plasma (Arch Linux)
+#
+# Uso:
+#   ./plasma-sync.sh backup   [destino]   # padrão: ~/plasma-sync
+#   ./plasma-sync.sh restore  [origem]    # padrão: ~/plasma-sync
+#
+# O script copia (rsync) os arquivos/pastas de configuração relevantes
+# do Plasma a partir de ~/.config e ~/.local/share para o destino,
+# preservando a estrutura de diretórios. No restore, faz o caminho
+# inverso, sobrescrevendo os arquivos no HOME atual.
+
+set -euo pipefail
+
+ACTION="${1:-}"
+TARGET_DIR="${2:-"$HOME/.config/plasma-sync"}"
+
+# --- Lista de itens relevantes ao Plasma -----------------------------------
+# Caminhos relativos a $HOME. Podem ser arquivos ou diretórios.
+CONFIG_ITEMS=(
+    ".config/plasma-org.kde.plasma.desktop-appletsrc"
+    ".config/plasmarc"
+    ".config/plasmashellrc"
+    ".config/plasmanotifyrc"
+    ".config/kwinrc"
+    ".config/kwinrulesrc"
+    ".config/kdeglobals"
+    ".config/kglobalshortcutsrc"
+    ".config/khotkeysrc"
+    ".config/kscreenlockerrc"
+    ".config/powermanagementprofilesrc"
+    ".config/kcminputrc"
+    ".config/ksmserverrc"
+    ".config/kactivitymanagerdrc"
+    ".config/klipperrc"
+    ".config/krunnerrc"
+    ".config/kwalletrc"
+    ".config/kaccess"
+    ".config/dolphinrc"
+    ".config/konsolerc"
+    ".config/systemsettingsrc"
+    ".config/breezerc"
+    ".config/gtk-3.0"
+    ".config/gtk-4.0"
+    ".config/Kvantum"
+    ".config/latte"
+    ".config/autostart"
+    ".local/share/plasma"
+    ".local/share/plasmashell"
+    ".local/share/kwin"
+    ".local/share/kxmlgui5"
+    ".local/share/color-schemes"
+    ".local/share/aurorae"
+    ".local/share/plasma_looknfeel"
+    ".local/share/konsole"
+    ".local/share/icons"
+    ".local/share/wallpapers"
+    ".local/share/kservices5"
+    ".local/share/kwin"
+)
+
+log() { printf '\033[1;34m[plasma-sync]\033[0m %s\n' "$*"; }
+warn() { printf '\033[1;33m[aviso]\033[0m %s\n' "$*"; }
+
+usage() {
+    cat <<EOF
+Uso:
+  $0 backup   [destino]   (padrão: ~/plasma-sync)
+  $0 restore  [origem]    (padrão: ~/plasma-sync)
+EOF
+    exit 1
+}
+
+do_backup() {
+    log "Backup das configs do Plasma para: $TARGET_DIR"
+    mkdir -p "$TARGET_DIR"
+
+    for item in "${CONFIG_ITEMS[@]}"; do
+        src="$HOME/$item"
+        if [[ -e "$src" ]]; then
+            dest_parent="$TARGET_DIR/$(dirname "$item")"
+            mkdir -p "$dest_parent"
+            rsync -a --delete "$src" "$dest_parent/"
+            log "OK: $item"
+        else
+            warn "não encontrado, pulando: $item"
+        fi
+    done
+
+    log "Backup concluído em: $TARGET_DIR"
+    log "Dica: transforme $TARGET_DIR num repositório git para versionar."
+}
+
+do_restore() {
+    if [[ ! -d "$TARGET_DIR" ]]; then
+        echo "Diretório de origem não encontrado: $TARGET_DIR" >&2
+        exit 1
+    fi
+
+    log "Restaurando configs do Plasma a partir de: $TARGET_DIR"
+    read -r -p "Isso vai SOBRESCREVER arquivos de config atuais. Continuar? [s/N] " resp
+    [[ "$resp" =~ ^[sS]$ ]] || { log "Cancelado."; exit 0; }
+
+    for item in "${CONFIG_ITEMS[@]}"; do
+        src="$TARGET_DIR/$item"
+        if [[ -e "$src" ]]; then
+            dest_parent="$HOME/$(dirname "$item")"
+            mkdir -p "$dest_parent"
+            rsync -a --delete "$src" "$dest_parent/"
+            log "restaurado: $item"
+        fi
+    done
+
+    log "Restore concluído."
+    warn "Reinicie a sessão do Plasma (logout/login) para aplicar tudo."
+}
+
+case "$ACTION" in
+    backup)  do_backup ;;
+    restore) do_restore ;;
+    *) usage ;;
+esac
