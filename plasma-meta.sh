@@ -29,6 +29,7 @@ PACOTES=(
 	# Ps.: Pacotes comentados são os que vi mais tarde que não são necessários, mas mantive nas linhas a fim de documentação
 	# Pacotes Meta / Compositor & Sessão
 	plasma-desktop
+	plasma-systemmonitor        # An interface for monitoring system sensors, process information and other system resources
 	plasma-nm				    # Network manager applet
 	plasma-pa                   # Audio volume applet
 	dolphin        # KDE File Manager (Não faz parte da lista)
