@@ -5,7 +5,7 @@
 CURRENT_DM=$(systemctl status display-manager.service 2>/dev/null | head -n1 | awk '{print $2}')
 
 install_and_enable_sddm() {
-    sudo pacman -S --needed sddm sddm-kcm
+    sudo pacman -S --needed --noconfirm sddm sddm-kcm
     
     if [ -n "$CURRENT_DM" ] && [ "$CURRENT_DM" != "sddm.service" ]; then
         sudo systemctl disable "$CURRENT_DM"
