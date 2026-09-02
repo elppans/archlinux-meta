@@ -132,3 +132,8 @@ sudo pkgfile -u
 xdg-user-dirs-update
 
 # Seguir para instalação do tema ML4W ou HyDE
+
+# Sincronismo plasma minimal
+
+cd "$HOME/.config" || exit 1
+git clone https://github.com/elppans/plasma-sync-minimal.git
