@@ -33,6 +33,7 @@ PACOTES=(
 	plasma-nm				    # Network manager applet
 	plasma-pa                   # Audio volume applet
 	dolphin                     # KDE File Manager (Não faz parte da lista)
+	kate                        # Advanced text editor
 	konsole	                    # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
 	kscreen                     # KDE screen management software
 
