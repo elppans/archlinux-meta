@@ -138,14 +138,14 @@ xdg-user-dirs-update
 tmpdir=$(mktemp -d)
 mkdir -p "$tmpdir/build"
 cd "$tmpdir/build" || exit 1
-git clone https://github.com/elppans/plasma-sync.git
+git clone -b test https://github.com/elppans/plasma-sync.git
 cd "$tmpdir/build/plasma-sync" || exit 1
 sudo make install
 
 # Download sincronismo plasma minimo
 cd "$HOME/.config" || exit 1
 git clone https://github.com/elppans/plasma-sync-minimal.git
-/usr/local/bin/plasma-sync restore "$HOME/.config/plasma-sync-minimal"
+echo s | /usr/local/bin/plasma-sync restore "$HOME/.config/plasma-sync-minimal"
 
 echo "Configuração finalizada..."
 echo "Reinicie o sistema para que as configurações surtam efeito."
