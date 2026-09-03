@@ -15,6 +15,22 @@
 # Neste exemplo, o Helper utilizado é o "yay". Também é possível utilizar
 # o "paru" no lugar dele.
 #
+
+
+#!/usr/bin/env bash
+
+# Verifica se o KDE Plasma está instalado (Arch Linux / pacman)
+if pacman -Qi plasma-desktop &>/dev/null; then
+# Lista de pacotes:
+curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome|^nautilus|^dconf-editor|^file-roller|^meld|^collision' | awk '{print $1}' | yay --needed --noconfirm -S -
+#
+# Configuração adicional:
+bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
+
+if [ -f "$HOME/.local/bin/meta-pacman" ]; then
+    chmod -x "$HOME/.local/bin/meta-pacman"
+fi
+else
 # Lista de pacotes:
 curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome' | awk '{print $1}' | yay --needed --noconfirm -S -
 #
@@ -24,4 +40,4 @@ bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/
 if [ -f "$HOME/.local/bin/meta-pacman" ]; then
     chmod -x "$HOME/.local/bin/meta-pacman"
 fi
-
+fi
