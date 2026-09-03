@@ -28,7 +28,8 @@ export base_install
 PACOTES=(
 	# Ps.: Pacotes comentados são os que vi mais tarde que não são necessários, mas mantive nas linhas a fim de documentação
 	# Pacotes Meta / Compositor & Sessão
-	plasma-desktop
+	plasma-desktop				# Pacote minimal para a instalação usando Archinstall. Os outros pacotes abaixo são de escolha minha
+	plasma-disks
 	plasma-systemmonitor        # An interface for monitoring system sensors, process information and other system resources
 	plasma-nm				    # Network manager applet
 	plasma-pa                   # Audio volume applet
@@ -36,6 +37,12 @@ PACOTES=(
 	kate                        # Advanced text editor
 	konsole	                    # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
 	kscreen                     # KDE screen management software
+	kinfocenter
+	ark                         # Compressor de arquivos do Plasma
+	filelight                   # View disk usage information
+	flatpak-kcm
+	spectacle                   # KDE screenshot capture utility
+	gwenview                    # A fast and easy to use image viewer
 
 	# Portais & Integração XDG
 	xdg-utils                   # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
@@ -43,7 +50,7 @@ PACOTES=(
 
 	# Toolkit & Autenticação
 	# qt5-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt5
-	qt6-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt6
+	# qt6-wayland      # Módulo de suporte nativo ao Wayland para aplicações Qt6 - Quando necessário, será instalado como dependência de aplicativos Plasma
 	# polkit           # Toolkit para controle e gerenciamento de privilégios do sistema
 	# polkit-kde-agent # Agente de autenticação gráfica do Polkit baseado em KDE
 
@@ -78,7 +85,8 @@ PACOTES=(
 	# Pacotes adicionais
 	zram-generator # Systemd unit generator for zram devices
 	# ufw 	       # Uncomplicated and easy to use CLI tool for managing a netfilter firewall
-	gufw		   # Uncomplicated way to manage your Linux firewall
+	# gufw		   # Uncomplicated way to manage your Linux firewall
+	fwupd          # Dependência opcional para plasma-systemmonitor 
 )
 
 # Obtém a versão do kernel em execução
