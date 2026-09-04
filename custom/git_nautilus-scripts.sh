@@ -1,7 +1,5 @@
 #!/bin/bash
 
-mkdir -p "$HOME"/.local/share/nautilus/scripts
-
 nautilus-scripts() {
 ## Action Script, Ferramentas Nautilus
 mkdir -p "$HOME"/build/nautilus-scripts
@@ -26,7 +24,12 @@ bash ./install.sh
 }
 
 ###
+if [ "$(command -v nautilus)" ]; then
+	mkdir -p "$HOME"/.local/share/nautilus/scripts
+	nautilus-scripts
+	el-images
+else
+	echo "command \"nautilus\" does not exists on system..."
+fi
 
-nautilus-scripts
-el-images
 factions-shell

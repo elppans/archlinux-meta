@@ -7,6 +7,7 @@ mkdir -p "$HOME"/build
 grep -q 'build' "$HOME"/.hidden 2>/dev/null || echo -e 'build\nBuild' | tee -a "$HOME"/.hidden &>>/dev/null
 cd "$HOME/build" || exit 1
 
+if [ "$(command -v nautilus)" ]; then
 PACOTES_PKGBUILD=(
 	# bridge-nm
 	# virt-qmod
@@ -15,6 +16,15 @@ PACOTES_PKGBUILD=(
 	faceconv
 	nautilus-baobab
 )
+else
+PACOTES_PKGBUILD=(
+	# bridge-nm
+	# virt-qmod
+	# virt-gmod
+	vscodeum # Pacote está na sessão flatpak.ini
+	faceconv
+)
+fi
 
 for pacote in "${PACOTES_PKGBUILD[@]}"; do
 if ! pacman -Qq "$pacote" &>>/dev/null ;then
