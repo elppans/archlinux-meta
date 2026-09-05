@@ -175,6 +175,18 @@ echo "Reinicie o sistema para que as configurações surtam efeito."
 
 # -- Scripts opcionais --
 
+# ------------------------------------------------------------------------------
+# Ativar o Chaotic AUR
+# ------------------------------------------------------------------------------
+# Baixa o script diretamente do GitHub, executa a instalação e remove o arquivo
+# temporário utilizado durante o processo.
+#
+# OBSERVAÇÃO:
+# A execução do Script pergunta por padrão se quer ativar o repositório ou não.
+# Então não há necessidade de ativar a linha deste Script
+#
+# tmp=$(mktemp) && wget -qO "$tmp" 'https://elppans.github.io/archlinux-meta/helper/chaotic-aur_hyde.sh' && sudo bash "$tmp" --install; rm -f "$tmp"
+
 # bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/helper/pacote-helper-yay.sh')
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-pacman')
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-flatpak')
