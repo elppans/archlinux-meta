@@ -41,13 +41,18 @@ PACOTES=(
 	dolphin     # KDE File Manager (Não faz parte da lista)
 	kate        # Advanced text editor
 	konsole     # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
+	# korganizer  # Calendar and scheduling Program
+	merkuro     # Calendário, melhor que korganizer
+	kmail       # Cliente de e-mail
 	kscreen     # KDE screen management software
 	kinfocenter # A utility that provides information about a computer system
+	kompare     # Comparar diretórios e arquivos
 	ark         # Compressor de arquivos do Plasma
 	filelight   # View disk usage information
 	flatpak-kcm # Flatpak Permissions Management KCM
 	spectacle   # KDE screenshot capture utility
 	gwenview    # A fast and easy to use image viewer
+	okular      # Visualizador de documentos e PDF
 
 	# Portais & Integração XDG
 	xdg-utils # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
