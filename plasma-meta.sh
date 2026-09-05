@@ -176,7 +176,7 @@ echo "Reinicie o sistema para que as configurações surtam efeito."
 # -- Scripts opcionais --
 
 # bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/helper/pacote-helper-yay.sh')
-# bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/config/ML4W/.local/bin/meta-flatpak')
-# bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/config/ML4W/.local/bin/meta-pacman')
-# bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/config/ML4W/.local/bin/meta-custom')
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-pacman')
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-flatpak')
+# bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-custom')
 
