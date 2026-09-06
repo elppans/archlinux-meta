@@ -28,8 +28,8 @@ if [ "$(command -v nautilus)" ]; then
 	mkdir -p "$HOME"/.local/share/nautilus/scripts
 	nautilus-scripts
 	el-images
+	factions-shell
 else
 	echo "command \"nautilus\" does not exists on system..."
 fi
 
-factions-shell
