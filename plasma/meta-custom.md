@@ -1,4 +1,21 @@
 # Plasma Meta + Custom
+
+- **`plasma-meta.sh`**: Instala e configura o KDE Plasma com seus componentes principais.  
+>Ps.: Script baseado na sessão Plasma do Archinstall, utilizando plasma-desktop e aplicativos escolhidos manualmente para a instalação.  
+>-- Para instalar via link direto, sem baixar o repositório, execute:  
+```bash
+bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta.sh')
+```
+- **`plasma-meta-custom.sh`**: Realiza ajustes e automações no Plasma após sua instalação.  
+>Ps.: Deve utilizar este Script apenas após a instalação do Plasma (Meta).  
+>O Meta pode ser instalado tanto via `Archinstall` quanto via `plasma-meta.sh`.  
+>-- Para instalar via link direto, sem baixar o repositório, execute:  
+```bash
+bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta-custom.sh')
+```
+
+---
+
 Capturas de tela do ambiente KDE Plasma recém-instalado em uma VM Arch Linux (QEMU/KVM), usando o meta-pacote `plasma-meta-custom`.
 
 <img width="1920" height="1080" alt="Captura de tela de 2026-09-06 01-14-25" src="https://github.com/user-attachments/assets/2e138823-3c5e-4244-b49e-422224660f35" />
