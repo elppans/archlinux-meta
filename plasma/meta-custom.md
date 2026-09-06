@@ -16,7 +16,7 @@ bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta-custom.sh
 
 ---
 
-Capturas de tela do ambiente KDE Plasma recém-instalado em uma VM Arch Linux (QEMU/KVM), usando o meta-pacote `plasma-meta-custom`.
+**Capturas de tela** do ambiente **KDE Plasma** recém-instalado em uma VM **Arch Linux** (QEMU/KVM), usando o meta-pacote `plasma-meta-custom`.
 
 <img width="1920" height="1080" alt="Captura de tela de 2026-09-06 01-14-25" src="https://github.com/user-attachments/assets/2e138823-3c5e-4244-b49e-422224660f35" />
   
