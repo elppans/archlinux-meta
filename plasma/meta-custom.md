@@ -1,7 +1,8 @@
 # Plasma Meta + Custom
 Capturas de tela do ambiente KDE Plasma recém-instalado em uma VM Arch Linux (QEMU/KVM), usando o meta-pacote `plasma-meta-custom`.
 
-<img width="1920" height="1080" alt="Captura de tela de 2026-09-06 01-15-05" src="https://github.com/user-attachments/assets/02f50c88-a414-4c8c-8a7e-0cc09cac88d7" />  
+<img width="1920" height="1080" alt="Captura de tela de 2026-09-06 01-14-25" src="https://github.com/user-attachments/assets/2e138823-3c5e-4244-b49e-422224660f35" />
+  
 
 *Saída do `fastfetch` no Konsole mostrando as informações do sistema: Arch Linux, kernel 7.2.3, KDE Plasma 6.7.4 rodando sob KWin (Wayland), tema Breeze Dark e hardware da VM (AMD Ryzen 5 4500, 4 GiB de RAM).*
 ___
