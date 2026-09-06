@@ -20,6 +20,19 @@ bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/gnome-shell-meta.sh')
 >Ps.: Deve utilizar este Script apenas após a instalação do Gnome Shell (Meta).  
 >O Meta pode ser instalado tanto via `Archinstall` quanto via `gnome-shell-meta.sh`.  
 >-- **Não suporta instalação via link direto, deve baixar o repositório completo.**  NÃO vou adicionar suporte neste script!  
+- **`plasma-meta.sh`**: Instala e configura o KDE Plasma com seus componentes principais.  
+>Ps.: Script baseado na sessão Plasma do Archinstall, utilizando plasma-desktop e aplicativos escolhidos manualmente para a instalação.  
+>-- Para instalar via link direto, sem baixar o repositório, execute:  
+```bash
+bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta.sh')
+```
+- [**`plasma-meta-custom.sh`**](https://elppans.github.io/archlinux-meta/plasma/meta-custom.md): Realiza ajustes e automações no Plasma após sua instalação.  
+>Ps.: Deve utilizar este Script apenas após a instalação do Plasma (Meta).  
+>O Meta pode ser instalado tanto via `Archinstall` quanto via `plasma-meta.sh`.  
+>-- Para instalar via link direto, sem baixar o repositório, execute:  
+```bash
+bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta-custom.sh')
+```
 - **`hyprland-meta.sh`**: Instala e configura o Hyprland DE com seus componentes principais.  
 >Ps.: Script totalmente baseado na sessão Hyprland do Archinstall  
 >-- Para instalar via link direto, sem baixar o repositório, execute:  
