@@ -26,6 +26,7 @@ bash ./install.sh
 ###
 if [ "$(command -v nautilus)" ]; then
 	mkdir -p "$HOME"/.local/share/nautilus/scripts
+	nautilus -q
 	nautilus-scripts
 	el-images
 	factions-shell
