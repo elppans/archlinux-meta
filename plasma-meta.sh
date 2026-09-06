@@ -182,7 +182,7 @@ if pacman -Qs archlinux-wallpaper >/dev/null; then
 		sudo mkdir -p /usr/share/wallpapers
 		sudo ln -sf /usr/share/backgrounds/archlinux /usr/share/wallpapers/archlinux
 		if [ -d "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" ]; then
-			if grep -q conference.png "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"; then
+			if ! grep -q conference.png "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"; then
 				tee -a "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" <<'EOF'
 [Containments][1][Wallpaper][org.kde.image][General]
 Image=file:///usr/share/backgrounds/archlinux/conference.png
