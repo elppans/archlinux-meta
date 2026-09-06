@@ -193,6 +193,11 @@ EOF
 	fi
 fi
 
+# Ocultar diretório archlinux-meta
+if [ -d "$HOME/archlinux-meta" ]; then
+echo 'archlinux-meta' | tee -a "$HOME/.hidden" &>>/dev/null
+fi
+
 echo "Configuração finalizada..."
 echo "Reinicie o sistema para que as configurações surtam efeito."
 
