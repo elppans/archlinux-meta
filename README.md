@@ -26,7 +26,7 @@ bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/gnome-shell-meta.sh')
 ```bash
 bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/plasma-meta.sh')
 ```
-- [**`plasma-meta-custom.sh`**](https://elppans.github.io/archlinux-meta/plasma/meta-custom.md): Realiza ajustes e automações no Plasma após sua instalação.  
+- [**`plasma-meta-custom.sh`**](https://elppans.github.io/archlinux-meta/plasma/meta-custom): Realiza ajustes e automações no Plasma após sua instalação.  
 >Ps.: Deve utilizar este Script apenas após a instalação do Plasma (Meta).  
 >O Meta pode ser instalado tanto via `Archinstall` quanto via `plasma-meta.sh`.  
 >-- Para instalar via link direto, sem baixar o repositório, execute:  
