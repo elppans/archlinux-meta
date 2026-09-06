@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ "$(command -v nautilus)" ]; then
+	sudo pacman --needed --noconfirm -S nautilus-python
+fi
+
 if ! pacman -Qq vscodeum &>>/dev/null ;then
 	mkdir -p "$HOME/build/vscodeum"
 	cd "$HOME/build/vscodeum" || exit 1
