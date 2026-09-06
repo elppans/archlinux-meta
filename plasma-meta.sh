@@ -176,6 +176,7 @@ cd "$HOME/.config" || exit 1
 git clone https://github.com/elppans/plasma-sync-minimal.git
 echo s | /usr/local/bin/plasma-sync restore "$HOME/.config/plasma-sync-minimal"
 
+# Configuração do Wallpaper "Conference"
 if pacman -Qs archlinux-wallpaper >/dev/null; then
 	if [ -d "/usr/share/backgrounds/archlinux" ]; then
 		sudo mkdir -p /usr/share/wallpapers
