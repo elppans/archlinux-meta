@@ -34,28 +34,28 @@ PACOTES=(
 	plasma-firewall            # Control Panel for your system firewall
 	plasma-integration         # Qt Platform Theme integration plugins for the Plasma workspaces
 	# plasma-keyboard          # teclado virtual na tela, feito para telas touch/tablets conversíveis. (Necessário apenas para que usa touch)
-	plasma-nm                  # Network manager applet
-	plasma-pa                  # Audio volume applet
-	plasma-systemmonitor       # An interface for monitoring system sensors, process information and other system resources
+	plasma-nm            # Network manager applet
+	plasma-pa            # Audio volume applet
+	plasma-systemmonitor # An interface for monitoring system sensors, process information and other system resources
 	# plasma-vault             # Valido apenas se pretende criptografar pastas sob demanda. Se não é um caso de uso ativo, é peso morto
-	dolphin                    # KDE File Manager (Não faz parte da lista)
-	kate                       # Advanced text editor
-	konsole                    # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
+	dolphin # KDE File Manager (Não faz parte da lista)
+	kate    # Advanced text editor
+	konsole # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
 	# korganizer               # Calendar and scheduling Program
-	merkuro                    # Calendário, melhor que korganizer
-	kmail                      # Cliente de e-mail
-	kscreen                    # KDE screen management software
-	kinfocenter                # A utility that provides information about a computer system
-	kompare                    # Comparar diretórios e arquivos
-	ark                        # Compressor de arquivos do Plasma
-	filelight                  # View disk usage information
-	flatpak-kcm                # Flatpak Permissions Management KCM
-	spectacle                  # KDE screenshot capture utility
-	gwenview                   # A fast and easy to use image viewer
-	okular                     # Visualizador de documentos e PDF
+	merkuro     # Calendário, melhor que korganizer
+	kmail       # Cliente de e-mail
+	kscreen     # KDE screen management software
+	kinfocenter # A utility that provides information about a computer system
+	kompare     # Comparar diretórios e arquivos
+	ark         # Compressor de arquivos do Plasma
+	filelight   # View disk usage information
+	flatpak-kcm # Flatpak Permissions Management KCM
+	spectacle   # KDE screenshot capture utility
+	gwenview    # A fast and easy to use image viewer
+	okular      # Visualizador de documentos e PDF
 
 	# Portais & Integração XDG
-	xdg-utils                  # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
+	xdg-utils # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
 	# xdg-user-dirs            # Gerenciador de pastas padrão do usuário (Downloads, Documents, etc.)
 
 	# Toolkit & Autenticação
@@ -65,40 +65,40 @@ PACOTES=(
 	# polkit-kde-agent         # Agente de autenticação gráfica do Polkit baseado em KDE
 
 	# Áudio & Mídia (PipeWire)
-	pipewire                   # Server de áudio/vídeo moderno de baixa latência
-	pipewire-pulse             # Emulação da API/daemon do PulseAudio sobre o PipeWire
-	pipewire-alsa              # Plugin de redirecionamento do ALSA para o PipeWire
-	pipewire-jack              # Emulação da API/cliente do JACK sobre o PipeWire
-	wireplumber                # Gerenciador de sessão e políticas padrão para o PipeWire
+	pipewire       # Server de áudio/vídeo moderno de baixa latência
+	pipewire-pulse # Emulação da API/daemon do PulseAudio sobre o PipeWire
+	pipewire-alsa  # Plugin de redirecionamento do ALSA para o PipeWire
+	pipewire-jack  # Emulação da API/cliente do JACK sobre o PipeWire
+	wireplumber    # Gerenciador de sessão e políticas padrão para o PipeWire
 
 	# Rede & Conectividade
 	# iwd                      # Daemon moderno da Intel para gerenciamento de conexões Wi-Fi
 	# wireless_tools           # Ferramentas legadas para configuração de redes sem fio (iwconfig)
-	wpa_supplicant             # Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
-	openssh                    # Cliente e servidor SSH para acesso e shell remoto seguro
-	wget                       # Utilitário para download de arquivos via HTTP, HTTPS e FTP
+	wpa_supplicant # Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
+	openssh        # Cliente e servidor SSH para acesso e shell remoto seguro
+	wget           # Utilitário para download de arquivos via HTTP, HTTPS e FTP
 
 	# Monitoramento & Edição de Texto
-	btop                       # Monitor de recursos interativo com interface TUI moderna
-	htop                       # Visualizador de processos e monitor de sistema em modo texto
+	btop # Monitor de recursos interativo com interface TUI moderna
+	htop # Visualizador de processos e monitor de sistema em modo texto
 	# smartmontools            # Ferramentas de monitoramento de integridade de HDs/SSDs via S.M.A.R.T. - Dependência para "plasma-disks"
-	vim                        # Editor de texto avançado e altamente customizável
-	nano                       # Editor de texto simples para terminal
+	vim  # Editor de texto avançado e altamente customizável
+	nano # Editor de texto simples para terminal
 
 	# Pacotes Dev
-	base-devel                 # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
-	curl                       # Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
-	git                        # Sistema de controle de versão distribuído
-	expac                      # Utilitário de extração de dados do banco de dados do pacman
-	pkgfile                    # Ferramenta para buscar qual pacote provê determinado arquivo/binário
+	base-devel # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
+	curl       # Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
+	git        # Sistema de controle de versão distribuído
+	expac      # Utilitário de extração de dados do banco de dados do pacman
+	pkgfile    # Ferramenta para buscar qual pacote provê determinado arquivo/binário
 
 	# Pacotes adicionais
-	zram-generator             # Systemd unit generator for zram devices
-	ufw                        # Uncomplicated and easy to use CLI tool for managing a netfilter firewall. - Para uso com "plasma-firewall"
+	zram-generator # Systemd unit generator for zram devices
+	ufw            # Uncomplicated and easy to use CLI tool for managing a netfilter firewall. - Para uso com "plasma-firewall"
 	# gufw		               # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
-	fwupd                      # Simple daemon to allow session software to update firmware - Dependência opcional para "plasma-systemmonitor "
-	iproute2                   # IP Routing Utilities. - Para uso com "plasma-firewall"
-	archlinux-wallpaper        # Papéis de parede oficiais do Arch Linux
+	fwupd               # Simple daemon to allow session software to update firmware - Dependência opcional para "plasma-systemmonitor "
+	iproute2            # IP Routing Utilities. - Para uso com "plasma-firewall"
+	archlinux-wallpaper # Papéis de parede oficiais do Arch Linux
 )
 
 # Obtém a versão do kernel em execução
@@ -176,9 +176,20 @@ cd "$HOME/.config" || exit 1
 git clone https://github.com/elppans/plasma-sync-minimal.git
 echo s | /usr/local/bin/plasma-sync restore "$HOME/.config/plasma-sync-minimal"
 
-if [ -d "/usr/share/backgrounds/archlinux" ]; then
-	sudo mkdir -p /usr/share/wallpapers
-	sudo ln -sf /usr/share/backgrounds/archlinux /usr/share/wallpapers/archlinux
+if pacman -Qs archlinux-wallpaper >/dev/null; then
+	if [ -d "/usr/share/backgrounds/archlinux" ]; then
+		sudo mkdir -p /usr/share/wallpapers
+		sudo ln -sf /usr/share/backgrounds/archlinux /usr/share/wallpapers/archlinux
+		if [ -d "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" ]; then
+			if grep -q conference.png "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc"; then
+				tee -a "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" <<'EOF'
+[Containments][1][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/backgrounds/archlinux/conference.png
+SlidePaths=/usr/share/wallpapers/
+EOF
+			fi
+		fi
+	fi
 fi
 
 echo "Configuração finalizada..."
@@ -202,4 +213,3 @@ echo "Reinicie o sistema para que as configurações surtam efeito."
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-pacman')
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-flatpak')
 # bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/config/ML4W/.local/bin/meta-custom')
-
