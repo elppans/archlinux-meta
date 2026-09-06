@@ -79,7 +79,7 @@ if command -v flatpak &>/dev/null; then
     # Permissão para ler temas globais do SO
     flatpak override --user --filesystem=/usr/share/themes:ro
     flatpak override --user --filesystem=/usr/share/icons:ro
-    flatpak override --user --filesystem=$HOME/.themes:ro
+    flatpak override --user --filesystem="$HOME"/.themes:ro
     
     # Variável de ambiente para o Flatpak respeitar o tema
     flatpak override --user --env=GTK_THEME=$GTK_THEME_NAME
