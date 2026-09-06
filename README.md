@@ -20,6 +20,7 @@ bash <(wget -qO- 'https://elppans.github.io/archlinux-meta/gnome-shell-meta.sh')
 >Ps.: Deve utilizar este Script apenas após a instalação do Gnome Shell (Meta).  
 >O Meta pode ser instalado tanto via `Archinstall` quanto via `gnome-shell-meta.sh`.  
 >-- **Não suporta instalação via link direto, deve baixar o repositório completo.**  NÃO vou adicionar suporte neste script!  
+
 - **`plasma-meta.sh`**: Instala e configura o KDE Plasma com seus componentes principais.  
 >Ps.: Script baseado na sessão Plasma do Archinstall, utilizando plasma-desktop e aplicativos escolhidos manualmente para a instalação.  
 >-- Para instalar via link direto, sem baixar o repositório, execute:  
