@@ -29,7 +29,7 @@ if [ "$(command -v nautilus)" ]; then
 	# nautilus -q &
 	# sleep 5
 	# pkill -9 nautilus
-	# nautilus-scripts
+	nautilus-scripts
 	el-images
 	factions-shell
 else

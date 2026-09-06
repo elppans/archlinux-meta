@@ -114,7 +114,7 @@ find "$install"/config/Gnome-Shell -type f -name "*.sh" -executable -exec {} \; 
 # Customizações do sistema com Scripts
 echo "Efetuando execução de Customizações do sistema via Scripts"
 sleeping 6
-find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
+# find "$install"/custom -type f -name "*.sh" -executable -exec {} \; # Executa todos os Scripts do diretório "custom", desde que tenham permissão de execução
 
 # Sincroniza estrutura de meta-dir para a raiz do sistema
 echo "Efetuando sincronização da Sessão Meta-dir..."
