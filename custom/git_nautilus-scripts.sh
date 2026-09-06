@@ -26,10 +26,10 @@ bash ./install.sh
 ###
 if [ "$(command -v nautilus)" ]; then
 	mkdir -p "$HOME"/.local/share/nautilus/scripts
-	nautilus -q &
-	sleep 5
-	pkill -9 nautilus
-	nautilus-scripts
+	# nautilus -q &
+	# sleep 5
+	# pkill -9 nautilus
+	# nautilus-scripts
 	el-images
 	factions-shell
 else
