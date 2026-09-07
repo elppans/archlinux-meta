@@ -74,7 +74,7 @@ PACOTES=(
 	wireplumber     # Gerenciador de sessão e políticas padrão para o PipeWire
 	smplayer        # Media player with built-in codecs that can play virtually all video and audio formats
 	smplayer-themes # smplayer-themes
-	haruna          # Video player built with Qt/QML on top of libmpv
+	# haruna          # Video player built with Qt/QML on top of libmpv
 	strawberry      # A music player aimed at audio enthusiasts and music collectors
 
 	# Rede & Conectividade
