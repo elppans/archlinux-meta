@@ -31,9 +31,9 @@ PACOTES=(
 	plasma-desktop             # Pacote minimal para a instalação usando Archinstall. Os outros pacotes abaixo são de escolha minha
 	plasma-browser-integration # Components necessary to integrate browsers into the Plasma Desktop
 	plasma-disks               # Monitors S.M.A.R.T. capable devices for imminent failure
-	plasma-firewall            # Control Panel for your system firewall
+	# plasma-firewall            # Control Panel for your system firewall
 	plasma-integration         # Qt Platform Theme integration plugins for the Plasma workspaces
-	# plasma-keyboard          # teclado virtual na tela, feito para telas touch/tablets conversíveis. (Necessário apenas para que usa touch)
+	plasma-keyboard          # teclado virtual na tela, feito para telas touch/tablets conversíveis. (Necessário apenas para quem usa touch)
 	plasma-nm            # Network manager applet
 	plasma-pa            # Audio volume applet
 	plasma-systemmonitor # An interface for monitoring system sensors, process information and other system resources
@@ -42,8 +42,8 @@ PACOTES=(
 	kate    # Advanced text editor
 	konsole # KDE terminal emulator (Não faz parte da lista, mas é bom para ativar o Terminal no Dolphin. Para mais opções, consulte Dep. Opcionais)
 	# korganizer               # Calendar and scheduling Program
-	merkuro     # Calendário, melhor que korganizer
-	kmail       # Cliente de e-mail
+	# merkuro     # Calendário, melhor que korganizer
+	# kmail       # Cliente de e-mail
 	kscreen     # KDE screen management software
 	kinfocenter # A utility that provides information about a computer system
 	kompare     # Comparar diretórios e arquivos
@@ -56,20 +56,26 @@ PACOTES=(
 
 	# Portais & Integração XDG
 	xdg-utils # Conjunto de ferramentas de integração de desktop (ex: xdg-open)
-	# xdg-user-dirs            # Gerenciador de pastas padrão do usuário (Downloads, Documents, etc.)
+	xdg-user-dirs            # Gerenciador de pastas padrão do usuário (Downloads, Documents, etc.)
 
 	# Toolkit & Autenticação
 	# qt5-wayland              # Módulo de suporte nativo ao Wayland para aplicações Qt5
 	# qt6-wayland              # Módulo de suporte nativo ao Wayland para aplicações Qt6 - Quando necessário, será instalado como dependência de aplicativos Plasma
-	# polkit                   # Toolkit para controle e gerenciamento de privilégios do sistema
-	# polkit-kde-agent         # Agente de autenticação gráfica do Polkit baseado em KDE
+	polkit                   # Toolkit para controle e gerenciamento de privilégios do sistema
+	polkit-kde-agent         # Agente de autenticação gráfica do Polkit baseado em KDE
+	kvantum             # SVG-based theme engine for Qt6 (including config tool and extra themes)
+	kvantum-qt5         # SVG-based theme engine for Qt5
 
 	# Áudio & Mídia (PipeWire)
-	pipewire       # Server de áudio/vídeo moderno de baixa latência
-	pipewire-pulse # Emulação da API/daemon do PulseAudio sobre o PipeWire
-	pipewire-alsa  # Plugin de redirecionamento do ALSA para o PipeWire
-	pipewire-jack  # Emulação da API/cliente do JACK sobre o PipeWire
-	wireplumber    # Gerenciador de sessão e políticas padrão para o PipeWire
+	pipewire        # Server de áudio/vídeo moderno de baixa latência
+	pipewire-pulse  # Emulação da API/daemon do PulseAudio sobre o PipeWire
+	pipewire-alsa   # Plugin de redirecionamento do ALSA para o PipeWire
+	pipewire-jack   # Emulação da API/cliente do JACK sobre o PipeWire
+	wireplumber     # Gerenciador de sessão e políticas padrão para o PipeWire
+	smplayer        # Media player with built-in codecs that can play virtually all video and audio formats
+	smplayer-themes # smplayer-themes
+	haruna          # Video player built with Qt/QML on top of libmpv
+	strawberry      # A music player aimed at audio enthusiasts and music collectors
 
 	# Rede & Conectividade
 	# iwd                      # Daemon moderno da Intel para gerenciamento de conexões Wi-Fi
@@ -81,7 +87,7 @@ PACOTES=(
 	# Monitoramento & Edição de Texto
 	btop # Monitor de recursos interativo com interface TUI moderna
 	htop # Visualizador de processos e monitor de sistema em modo texto
-	# smartmontools            # Ferramentas de monitoramento de integridade de HDs/SSDs via S.M.A.R.T. - Dependência para "plasma-disks"
+	smartmontools            # Ferramentas de monitoramento de integridade de HDs/SSDs via S.M.A.R.T. - Dependência para "plasma-disks"
 	vim  # Editor de texto avançado e altamente customizável
 	nano # Editor de texto simples para terminal
 
@@ -95,7 +101,7 @@ PACOTES=(
 	# Pacotes adicionais
 	zram-generator # Systemd unit generator for zram devices
 	ufw            # Uncomplicated and easy to use CLI tool for managing a netfilter firewall. - Para uso com "plasma-firewall"
-	# gufw		               # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
+	gufw		               # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
 	fwupd               # Simple daemon to allow session software to update firmware - Dependência opcional para "plasma-systemmonitor "
 	iproute2            # IP Routing Utilities. - Para uso com "plasma-firewall"
 	archlinux-wallpaper # Papéis de parede oficiais do Arch Linux
