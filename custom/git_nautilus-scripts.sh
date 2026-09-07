@@ -31,8 +31,8 @@ if [ "$(command -v nautilus)" ]; then
 	# pkill -9 nautilus
 	nautilus-scripts
 	el-images
-	factions-shell
 else
 	echo "command \"nautilus\" does not exists on system..."
 fi
 
+	factions-shell
