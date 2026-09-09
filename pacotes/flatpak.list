@@ -41,7 +41,7 @@ flathub org.flameshot.Flameshot                         # Take and annotate scre
 
 ### **Banco de Dados e Ferramentas de Desenvolvimento**
 
-flathub io.dbeaver.DBeaverCommunity                     # DBeaver: Gerenciamento de banco de dados multi-plataforma
+# flathub io.dbeaver.DBeaverCommunity                    # DBeaver: Gerenciamento de banco de dados multi-plataforma
 
 ### **Comunicação e Mensagens**
 

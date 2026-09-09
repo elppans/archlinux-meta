@@ -116,6 +116,7 @@ ruby                                   # Uma linguagem orientada a objetos para 
 shellcheck                             # Analisador estático para scripts shell > Portado para instalação sem dependências via GitHub
 shfmt                                  # Formatador para scripts shell
 # stylelint                            # AUR Linter para arquivos CSS e preprocessadores como SCSS > Portado para "vscodium_extensions"
+dbeaver                                # Free universal SQL Client for developers and database administrators (community edition)
 
 ### Sistema - Kernel, drivers e compatibilidade
 
