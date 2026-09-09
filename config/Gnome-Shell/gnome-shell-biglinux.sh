@@ -26,8 +26,8 @@ git clone https://github.com/biglinux/big-hardware-info
 cd big-hardware-info/pkgbuild || exit 1
 makebuild
 git clone https://github.com/big-comm/gnome-shell-big-shot
-cd big-hardware-info/pkgbuild || exit 1
+cd gnome-shell-big-shot/pkgbuild || exit 1
 makebuild
 git clone https://github.com/big-comm/big-gnome-center
-cd big-hardware-info/pkgbuild || exit 1
+cd big-gnome-center/pkgbuild || exit 1
 makebuild
