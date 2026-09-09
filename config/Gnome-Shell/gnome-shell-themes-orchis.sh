@@ -26,7 +26,7 @@ orchis_theme() {
 	echo "Configurando tema Orchis..."
 	sleep 5
 	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
-	echo "Para mudar algo no tema, masta usar o Script \"install.sh\"... "
+	echo "Para mudar algo no tema, basta usar o Script \"install.sh\"... "
 	sleep 5
 	sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
 	rsync -ah /etc/skel/. "$HOME/"
