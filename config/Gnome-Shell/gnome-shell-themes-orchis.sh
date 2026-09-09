@@ -23,6 +23,10 @@ kora_icons() {
 	# cp -a /tmp/kora/{kora,kora-pgrey} "$HOME/.local/share/icons/"
 }
 orchis_theme() {
+	local THEME_CSS
+	# THEME_CSS="$HOME/.themes/Orchis-Dark-Compact/gnome-shell/gnome-shell.css"
+	THEME_CSS="$HOME/.themes/Orchis-Dark-Compact/gnome-shell/gnome-shell.css"
+
 	echo "Configurando tema Orchis..."
 	sleep 5
 	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
@@ -43,6 +47,17 @@ orchis_theme() {
 	./install.sh --theme all --color dark --icon "$DISTRO" --libadwaita --fixed --tweaks primary submenu compact dock
 	# Fix for Flatpak
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
+	gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
+	gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
+
+	if [[ -f "$THEME_CSS" ]]; then
+		perl -0777 -pi -e 's/(#panel\s*\{[^}]*?)height:\s*30px;/${1}height: 1.76em;/s' "$THEME_CSS"
+		echo "Ajuste de altura do #panel aplicado em: $THEME_CSS"
+	else
+		echo "Aviso: arquivo de tema não encontrado em $THEME_CSS" >&2
+	fi
+
+	sudo cp -a "$HOME/.themes" /etc/skel/
 }
 bibata-cursor-theme() {
 	mkdir -p /tmp/bibata-cursor-theme && cd /tmp/bibata-cursor-theme || exit 1
