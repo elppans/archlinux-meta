@@ -20,7 +20,8 @@ else
 fi
 }
 
-mkdir -p "$HOME/build" || exit 1
+mkdir -p "$HOME/build"
+cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-hardware-info
 cd big-hardware-info/pkgbuild || exit 1
 makebuild
