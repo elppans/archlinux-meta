@@ -37,6 +37,6 @@ cd gnome-shell-big-shot/pkgbuild || exit 1
 makebuild
 
 mkdir -p "$HOME/build"
-git clone https://github.com/big-comm/big-gnome-center
+git clone -b arch https://github.com/big-comm/big-gnome-center
 cd big-gnome-center/pkgbuild || exit 1
 makebuild
