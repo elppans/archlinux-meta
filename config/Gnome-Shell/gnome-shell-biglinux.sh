@@ -23,7 +23,7 @@ fi
 # Dependências
 
 sudo pacman --needed --noconfirm -S pnpm
-# gnome-shell-extension-copyous-bin 
+yay --needed --noconfirm --removemake --sudoloop gnome-shell-extension-copyous-bin 
 
 mkdir -p "$HOME/build"
 
