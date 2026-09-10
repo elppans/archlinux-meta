@@ -26,17 +26,18 @@ sudo pacman -S pnpm
 # gnome-shell-extension-copyous-bin 
 
 mkdir -p "$HOME/build"
+
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-hardware-info
 cd big-hardware-info/pkgbuild || exit 1
 makebuild
 
-mkdir -p "$HOME/build"
+cd "$HOME/build" || exit 1
 git clone https://github.com/big-comm/gnome-shell-big-shot
 cd gnome-shell-big-shot/pkgbuild || exit 1
 makebuild
 
-mkdir -p "$HOME/build"
+cd "$HOME/build" || exit 1
 git clone -b arch https://github.com/big-comm/big-gnome-center
 cd big-gnome-center/pkgbuild || exit 1
 makebuild
