@@ -39,5 +39,7 @@ makebuild
 
 cd "$HOME/build" || exit 1
 git clone -b arch https://github.com/elppans/big-gnome-center
+# grep -iE '(fill|stroke)=' distributor-logo-blackarch.svg
+# sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
 cd big-gnome-center/pkgbuild || exit 1
 makebuild
