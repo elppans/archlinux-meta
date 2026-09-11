@@ -23,9 +23,14 @@ fi
 # Dependências
 
 sudo pacman --needed --noconfirm -S pnpm
-yay --needed --noconfirm --removemake --sudoloop gnome-shell-extension-copyous-bin 
+# echo '^4' | yay --needed --noconfirm --removemake --sudoloop gnome-shell-extension-copyous-bin
 
 mkdir -p "$HOME/build"
+
+cd "$HOME/build" || exit 1
+https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+cd gnome-shell-extension-copyous-bin || exit 1
+echo '^4' | makebuild
 
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-hardware-info
