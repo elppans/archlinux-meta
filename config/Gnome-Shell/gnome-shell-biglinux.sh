@@ -28,7 +28,7 @@ sudo pacman --needed --noconfirm -S pnpm
 mkdir -p "$HOME/build"
 
 cd "$HOME/build" || exit 1
-https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
 cd gnome-shell-extension-copyous-bin || exit 1
 echo '^4' | makebuild
 
