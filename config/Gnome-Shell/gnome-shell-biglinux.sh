@@ -48,3 +48,9 @@ git clone -b arch https://github.com/elppans/big-gnome-center
 # sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
 cd big-gnome-center/pkgbuild || exit 1
 makebuild
+
+cd "$HOME/build" || exit 1
+git clone https://github.com/big-comm/comm-wallpapers-gnome.git
+cd comm-wallpapers-gnome/pkgbuild || exit 1
+makebuild
+
