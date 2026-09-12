@@ -54,3 +54,7 @@ git clone https://github.com/big-comm/comm-wallpapers-gnome.git
 cd comm-wallpapers-gnome/pkgbuild || exit 1
 makebuild
 
+cd "$HOME/build" || exit 1
+git clone https://github.com/biglinux/bigicons-papient.git
+cd bigicons-papient/pkgbuild || exit 1
+makebuild
