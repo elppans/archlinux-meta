@@ -43,6 +43,11 @@ cd gnome-shell-big-shot/pkgbuild || exit 1
 makebuild
 
 cd "$HOME/build" || exit 1
+git clone https://github.com/big-comm/biglinux-settings.git
+cd biglinux-settings/pkgbuild || exit 1
+makebuild
+
+cd "$HOME/build" || exit 1
 git clone -b main https://github.com/elppans/big-gnome-center
 # grep -iE '(fill|stroke)=' distributor-logo-blackarch.svg
 # sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
@@ -57,4 +62,14 @@ makebuild
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/bigicons-papient.git
 cd bigicons-papient/pkgbuild || exit 1
+makebuild
+
+cd "$HOME/build" || exit 1
+git clone https://github.com/biglinux/biglinux-driver-manager.git
+cd biglinux-driver-manager/pkgbuild || exit 1
+makebuild
+
+cd "$HOME/build" || exit 1
+git clone https://github.com/biglinux/big-kernel-manager.git
+cd big-kernel-manager/pkgbuild || exit 1
 makebuild
