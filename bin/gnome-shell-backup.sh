@@ -153,11 +153,13 @@ import_gnome() {
 	if [[ "${XDG_SESSION_TYPE:-}" == "x11" ]]; then
 		busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'meta_restart()' &>/dev/null || true
 		log_success "GNOME Shell restarted (X11)."
+		exit 0
 	else
 		log_warn "Wayland session detected. Re-login or restart the system for all extension binaries and dconf keys to apply fully."
 	fi
 
 	log_success "Import complete."
+	exit 0
 }
 
 main() {
