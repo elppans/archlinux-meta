@@ -44,23 +44,22 @@ gsettings set org.gnome.mutter center-new-windows true # Centralizar janelas nov
 # gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer', 'variable-refresh-rate']" # Ativar escala fracionada e VRR no Wayland
 
 # Temas e Configurações GDM
-sudo chown -R gdm:gdm /var/lib/gdm
+# sudo chown -R gdm:gdm /var/lib/gdm
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Yaru-blue-dark""
 # sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface icon-theme "Orchis-Dark-Compact""
 # shellcheck disable=SC2140
-sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"" # "Vimix-cursors"
-sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true"
-sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true"
-sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true"
-sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true"
+# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"" # "Vimix-cursors"
+# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-weekday true"
+# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface clock-show-seconds true"
+# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface show-battery-percentage true"
+# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true"
 # sudo systemctl restart gdm
 
 # Configurações do Menú Gnome
-
 # Para verificar qual o nome da categoria, verificar os arquivos .directory em "/usr/share/desktop-directories/"
 
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Console.desktop']"
-gsettings set org.gnome.desktop.app-folders folder-children "['Games', 'Graphics', 'Multimedia', 'Network', 'Office', 'System', 'Utilities', 'Development']"
+gsettings set org.gnome.desktop.app-folders folder-children "['Games', 'Graphics', 'Multimedia', 'Network', 'Office', 'System', 'Utilities', 'Development', 'WebApps']"
 
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ name 'Game.directory'
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ categories "['Game']"
@@ -94,7 +93,13 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ categories "['Development']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ translate true
 
-sudo tee /usr/local/bin/gnome-shell-app-reload > /dev/null <<'EOF'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ name 'WebApps'
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ categories "['WebApps']"
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/WebApps/ translate false
+
+# Organização menu dock
+mkdir -p "$HOME/.local/bin"
+sudo tee "$HOME/.local/bin/gnome-shell-app-reload" > /dev/null <<'EOF'
 #!/usr/bin/env bash
 
 # Restaura o layout padrão do menu de aplicativos (app-picker) do GNOME.
@@ -103,17 +108,16 @@ update-desktop-database "$HOME/.local/share/applications"
 gsettings reset org.gnome.shell app-picker-layout
 EOF
 
-sudo chmod +x /usr/local/bin/gnome-shell-app-reload
+chmod +x "$HOME/.local/bin/gnome-shell-app-reload"
 
-
-# Configurações diretas
+# Outras configurações
 
 # Trocar o ícone do Gnome Text Editor e padronizando em "skel" (O ícone do TextEditor é MUITO FEIO)
-sudo sed -i 's/^Icon=.*/Icon=gedit/' "/usr/share/applications/org.gnome.TextEditor.desktop"
-sudo mkdir -p "/etc/skel/.local/share/applications"
-mkdir -p "$HOME/.local/share/applications"
-sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local/share/applications"
-cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
+# sudo sed -i 's/^Icon=.*/Icon=gedit/' "/usr/share/applications/org.gnome.TextEditor.desktop"
+# sudo mkdir -p "/etc/skel/.local/share/applications"
+# mkdir -p "$HOME/.local/share/applications"
+# sudo cp "/usr/share/applications/org.gnome.TextEditor.desktop" "/etc/skel/.local/share/applications"
+# cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/applications"
 
 # Trocar o ícone do actions-for-nautilus-configurator e padronizando em "skel" (O ícone padrão TAMBÉM é MUITO FEIO)
 # sudo sed -i 's/^Icon=.*/Icon=applications-interfacedesign/' "/usr/share/applications/actions-for-nautilus-configurator.desktop"
@@ -141,5 +145,5 @@ cp "/usr/share/applications/org.gnome.TextEditor.desktop" "$HOME/.local/share/ap
 # EOF
 
 # 4. Atualize a base dconf
-sudo dconf update
-/usr/local/bin/gnome-shell-app-reload
+# sudo dconf update
+"$HOME/.local/bin/gnome-shell-app-reload"
