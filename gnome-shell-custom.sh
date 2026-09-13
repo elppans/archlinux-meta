@@ -3,12 +3,34 @@
 #
 # Script "gnome-shell-extensions_manager.sh" está dando erro em tty, então foi desativado.
 
-# Verifica se o script está sendo executado como root
+# 1. Trava contra execução direta como root
 if [ "$EUID" -eq 0 ]; then
-	echo "Erro: Este script não deve ser executado como superusuário (root)."
-	echo "Por favor, execute como um usuário normal."
-	exit 1
+    echo "Erro: Este script não deve ser executado como superusuário (root)." >&2
+    echo "Por favor, execute como um usuário normal." >&2
+    exit 1
 fi
+
+# 2. Verifica se o usuário tem permissão para usar o sudo
+if ! sudo -l &>/dev/null; then
+    echo "Erro: O usuário '$USER' não tem permissão para executar comandos via sudo." >&2
+    echo "Adicione o usuário ao grupo correto (ex: wheel/sudo) ou configure o /etc/sudoers." >&2
+    exit 1
+fi
+
+# 3. Solicita a senha e valida a sessão
+echo "Será solicitada a senha do sudo para continuar com a instalação."
+sudo -v || exit 1
+
+# Mantém o timestamp do sudo atualizado enquanto o script estiver rodando
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" 2>/dev/null || exit
+done &
+SUDO_KEEP_ALIVE_PID=$!
+
+# Garante a finalização do loop em background ao sair do script
+trap 'kill "${SUDO_KEEP_ALIVE_PID}" 2>/dev/null' EXIT INT TERM
 
 locdir="$(pwd)"
 install="$locdir"
