@@ -27,9 +27,16 @@ sudo pacman --needed --noconfirm -S pnpm
 
 mkdir -p "$HOME/build"
 
+# Copyous AUR
+# cd "$HOME/build" || exit 1
+# git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+# cd gnome-shell-extension-copyous-bin || exit 1
+# echo '^4' | makebuild
+
+# Copyous BIG Community
 cd "$HOME/build" || exit 1
-git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
-cd gnome-shell-extension-copyous-bin || exit 1
+git clone https://github.com/big-comm/gnome-shell-extension-copyous.git
+cd big-hardware-info/pkgbuild || exit 1
 echo '^4' | makebuild
 
 cd "$HOME/build" || exit 1
@@ -42,10 +49,11 @@ git clone https://github.com/big-comm/gnome-shell-big-shot
 cd gnome-shell-big-shot/pkgbuild || exit 1
 makebuild
 
-cd "$HOME/build" || exit 1
-git clone https://github.com/big-comm/biglinux-settings.git
-cd biglinux-settings/pkgbuild || exit 1
-makebuild
+# O aplicativo funciona, mas para fazer algumas alterações, é necessário a instalação de outros pacotes do BIGLinux
+# cd "$HOME/build" || exit 1
+# git clone https://github.com/big-comm/biglinux-settings.git
+# cd biglinux-settings/pkgbuild || exit 1
+# makebuild
 
 cd "$HOME/build" || exit 1
 git clone -b main https://github.com/elppans/big-gnome-center
