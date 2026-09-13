@@ -101,8 +101,10 @@ export_gnome() {
 		mkdir -p "$(dirname "$target_path")"
 		tar -czf "$target_path" -C "$work_dir" .
 		log_success "Export complete: $target_path"
+		exit 0
 	else
 		log_success "Export complete (uncompressed): $work_dir"
+		exit 0
 	fi
 }
 
