@@ -36,7 +36,7 @@ mkdir -p "$HOME/build"
 # Copyous BIG Community
 cd "$HOME/build" || exit 1
 git clone https://github.com/big-comm/gnome-shell-extension-copyous.git
-cd big-hardware-info/pkgbuild || exit 1
+cd gnome-shell-extension-copyous/pkgbuild || exit 1
 echo '^4' | makebuild
 
 cd "$HOME/build" || exit 1
