@@ -6,21 +6,22 @@
 set -euo pipefail
 
 # Visual/Formatting setup
-readonly BOLD="\033[1m"
-readonly RED="\033[31m"
-readonly GREEN="\033[32m"
-readonly YELLOW="\033[33m"
-readonly BLUE="\033[34m"
-readonly RESET="\033[0m"
+# Definindo as variáveis com a sintaxe ANSI-C do Bash
+readonly BOLD=$'\033[1m'
+readonly RED=$'\033[31m'
+readonly GREEN=$'\033[32m'
+readonly YELLOW=$'\033[33m'
+readonly BLUE=$'\033[34m'
+readonly RESET=$'\033[0m'
 
 # Default directories and file paths
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 DEFAULT_BACKUP_DIR="${HOME}/gnome-backup-${TIMESTAMP}"
 
-log_info() { echo -e "${BLUE}[INFO]${RESET} $1"; }
-log_success() { echo -e "${GREEN}[OK]${RESET} $1"; }
-log_warn() { echo -e "${YELLOW}[WARN]${RESET} $1"; }
-log_error() { echo -e "${RED}[ERROR]${RESET} $1"; }
+log_info()    { printf "%s[INFO]%s %s\n" "${BLUE}" "${RESET}" "$1"; }
+log_success() { printf "%s[OK]%s %s\n"   "${GREEN}" "${RESET}" "$1"; }
+log_warn()    { printf "%s[WARN]%s %s\n" "${YELLOW}" "${RESET}" "$1"; }
+log_error()   { printf "%s[ERROR]%s %s\n" "${RED}" "${RESET}" "$1"; }
 
 show_help() {
 	cat <<EOF
