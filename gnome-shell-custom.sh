@@ -128,7 +128,8 @@ pacotes_essenciais() {
 	# Pacotes essenciais para desenvolvimento (Garantindo que estejam instalados)
 	# Atualização completa do sistema e instalação de pacotes excenciais para a base e gerenciador de pacotes
 	echo "Garantindo que pacotes essenciais estejam instalados..."
-	sleep 5sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
+	sleep 5
+	sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
 	sudo pkgfile -u
 }
 
