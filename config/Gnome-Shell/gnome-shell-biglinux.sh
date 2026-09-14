@@ -27,17 +27,17 @@ sudo pacman --needed --noconfirm -S pnpm
 
 mkdir -p "$HOME/build"
 
-# Copyous AUR
-# cd "$HOME/build" || exit 1
-# git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
-# cd gnome-shell-extension-copyous-bin || exit 1
-# echo '^4' | makebuild
-
-# Copyous BIG Community
+# Copyous AUR - Esta versão funciona perfeitamente
 cd "$HOME/build" || exit 1
-git clone https://github.com/big-comm/gnome-shell-extension-copyous.git
-cd gnome-shell-extension-copyous/pkgbuild || exit 1
+git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+cd gnome-shell-extension-copyous-bin || exit 1
 echo '^4' | makebuild
+
+# Copyous BIG Community - Esta versão dá erro ao instalar (Muito trabalho, não vou resolver)
+# cd "$HOME/build" || exit 1
+# git clone https://github.com/big-comm/gnome-shell-extension-copyous.git
+# cd gnome-shell-extension-copyous/pkgbuild || exit 1
+# echo '^4' | makebuild
 
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-hardware-info
