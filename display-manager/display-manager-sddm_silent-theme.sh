@@ -5,6 +5,25 @@
 
 # Para testar temas do pacote SilentSDDM, deve ir no diretório "/usr/share/sddm/themes/silent/" e executar o Script "test.sh"
 # Para mudar o tema, deve editar o arquivo "metadata.desktop", escolher a linha com "ConfigFile=", descomentar e comentar o atual.
+makebuild() {
+# --[no]removemake       Remove dependências de compilação após instalação
+# --[no]sudoloop         Repete chamadas sudo em segundo plano para evitar esgotar o tempo
+# --[no]keepsrc          Mantém diretórios src/ e pkg/ após compilar pacotes
+# yay/paru {-B --build}       [diretório(s)]
+
+# -C, --cleanbuild Remove o diretório $srcdir/ antes de compilar o pacote
+# -r, --rmdeps     Remove dependências instaladas após uma compilação bem-sucedida
+# -i, --install    Instala pacote após empacotamento bem-sucedido
+# -s, --syncdeps   Instala dependências em falta com pacman
+
+if [ "$(command -v yay)" ]; then
+	yay --needed --noconfirm --removemake --sudoloop --build "$(pwd)"
+elif [ "$(command -v paru)" ]; then
+	paru --needed --noconfirm --removemake --sudoloop --nokeepsrc --build "$(pwd)"
+else
+	makepkg --needed --noconfirm -Cris
+fi
+}
 
 # Verifica se o pacote 'sddm' está instalado no sistema via pacman
 if pacman -Qs "^sddm$" &>/dev/null; then
@@ -15,7 +34,7 @@ if pacman -Qs "^sddm$" &>/dev/null; then
 	# cd "$HOME/build" || exit 1
 	# git clone https://aur.archlinux.org/sddm-silent-theme.git
 	# cd sddm-silent-theme
-	# makepkg -Cris
+	# makebuild
 
 if [ -d "$HOME/build/SilentSDDM" ]; then
 	cd "$HOME/build/SilentSDDM" || exit 1
@@ -62,7 +81,7 @@ EOF
 		mkdir -p "$HOME/build/sddm-silent-random"
 		wget -O "$HOME/build/sddm-silent-random/PKGBUILD" "https://raw.githubusercontent.com/elppans/sddm-silent-random/refs/heads/main/PKGBUILD" || exit 1
 		cd "$HOME/build/sddm-silent-random" || exit 1
-		makepkg -Cris || exit 1
+		makebuild || exit 1
 	else
 		if [ -d /usr/share/sddm/themes/silent/ ]; then
 			sudo rm -rf /usr/local/bin/sddm-silent-random /etc/systemd/system/sddm-silent-random.service &>>/dev/null

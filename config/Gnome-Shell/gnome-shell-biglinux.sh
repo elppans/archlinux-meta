@@ -27,11 +27,11 @@ sudo pacman --needed --noconfirm -S pnpm
 
 mkdir -p "$HOME/build"
 
-# Copyous AUR - Esta versão funciona perfeitamente
-cd "$HOME/build" || exit 1
-git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
-cd gnome-shell-extension-copyous-bin || exit 1
-echo '^4' | makebuild
+# Copyous AUR - Esta versão funciona perfeitamente - Necessário para BIG Gnome Center
+# cd "$HOME/build" || exit 1
+# git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+# cd gnome-shell-extension-copyous-bin || exit 1
+# echo '^4' | makebuild
 
 # Copyous BIG Community - Esta versão dá erro ao instalar (Muito trabalho, não vou resolver)
 # cd "$HOME/build" || exit 1
@@ -55,27 +55,31 @@ makebuild
 # cd biglinux-settings/pkgbuild || exit 1
 # makebuild
 
-cd "$HOME/build" || exit 1
-git clone -b main https://github.com/elppans/big-gnome-center
+# Aplicativo de temas, ele é muito bom
+# cd "$HOME/build" || exit 1
+# git clone -b main https://github.com/elppans/big-gnome-center
 # grep -iE '(fill|stroke)=' distributor-logo-blackarch.svg
 # sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
-cd big-gnome-center/pkgbuild || exit 1
-makebuild
+# cd big-gnome-center/pkgbuild || exit 1
+# makebuild
 
-cd "$HOME/build" || exit 1
-git clone https://github.com/big-comm/comm-wallpapers-gnome.git
-cd comm-wallpapers-gnome/pkgbuild || exit 1
-makebuild
+# Wallpapers para acompanhar o Big Gnome Center
+# cd "$HOME/build" || exit 1
+# git clone https://github.com/big-comm/comm-wallpapers-gnome.git
+# cd comm-wallpapers-gnome/pkgbuild || exit 1
+# makebuild
 
-cd "$HOME/build" || exit 1
-git clone https://github.com/biglinux/bigicons-papient.git
-cd bigicons-papient/pkgbuild || exit 1
-makebuild
+# Icones necessário para  o Big Gnome Center
+# cd "$HOME/build" || exit 1
+# git clone https://github.com/biglinux/bigicons-papient.git
+# cd bigicons-papient/pkgbuild || exit 1
+# makebuild
 
-cd "$HOME/build" || exit 1
-git clone https://github.com/biglinux/biglinux-driver-manager.git
-cd biglinux-driver-manager/pkgbuild || exit 1
-makebuild
+# O aplicativo funciona, mas para fazer algumas alterações, é necessário a instalação de outros pacotes do BIGLinux/Manjaro
+# cd "$HOME/build" || exit 1
+# git clone https://github.com/biglinux/biglinux-driver-manager.git
+# cd biglinux-driver-manager/pkgbuild || exit 1
+# makebuild
 
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-kernel-manager.git
