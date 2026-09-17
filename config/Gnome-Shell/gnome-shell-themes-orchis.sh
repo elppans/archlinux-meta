@@ -44,7 +44,7 @@ orchis_theme() {
 	# --color dark = Usar com "-l". Com o tema usando a esta opção, a configuração entre dark e light só funciona através do comando e esta opção.
 	# Então para usar o tema branco, deve usar --color light
 	# O tema padrão (Sem a opção -l) funciona normalmente, sem recorrer à opção "--color"
-	./install.sh --theme all --color dark --icon "$DISTRO" --libadwaita --fixed --tweaks primary submenu compact dock
+	./install.sh --theme all --color dark --icon "$DISTRO" --fixed --tweaks primary submenu compact dock
 	# Fix for Flatpak
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 	gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
