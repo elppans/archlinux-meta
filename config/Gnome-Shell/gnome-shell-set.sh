@@ -108,7 +108,8 @@ update-desktop-database "$HOME/.local/share/applications"
 gsettings reset org.gnome.shell app-picker-layout
 EOF
 
-chmod +x "$HOME/.local/bin/gnome-shell-app-reload"
+sudo chown "$USER":"$USER" "$HOME/.local/bin/gnome-shell-app-reload"
+sudo chmod +x "$HOME/.local/bin/gnome-shell-app-reload"
 
 # Outras configurações
 
@@ -146,4 +147,4 @@ chmod +x "$HOME/.local/bin/gnome-shell-app-reload"
 
 # 4. Atualize a base dconf
 # sudo dconf update
-"$HOME/.local/bin/gnome-shell-app-reload"
+sh "$HOME/.local/bin/gnome-shell-app-reload"
