@@ -55,6 +55,12 @@ makebuild
 # cd biglinux-settings/pkgbuild || exit 1
 # makebuild
 
+# big-bibata-cursor-theme - Dependência para "big-gnome-center"
+cd "$HOME/build" || exit 1
+git clone -b dev-talesam https://github.com/big-comm/Bibata_Cursor.git
+cd Bibata_Cursor/pkgbuild || exit 1
+makebuild
+
 # Aplicativo de temas, ele \C3\A9 muito bom
 cd "$HOME/build" || exit 1
 git clone -b dev-talesam https://github.com/big-comm/big-gnome-center.git
@@ -69,7 +75,7 @@ git clone https://github.com/big-comm/comm-wallpapers-gnome.git
 cd comm-wallpapers-gnome/pkgbuild || exit 1
 makebuild
 
-# Icones necess\C3\A1rio para  o Big Gnome Center
+# Icones necessario para  o Big Gnome Center
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/bigicons-papient.git
 cd bigicons-papient/pkgbuild || exit 1
