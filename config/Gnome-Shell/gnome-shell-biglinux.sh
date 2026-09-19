@@ -57,18 +57,16 @@ makebuild
 
 # big-bibata-cursor-theme - Dependência para "big-gnome-center"
 cd "$HOME/build" || exit 1
-git clone -b dev-talesam https://github.com/big-comm/Bibata_Cursor.git
+git clone -b dev-talesam https://github.com/elppans/Bibata_Cursor.git
 cd Bibata_Cursor/pkgbuild || exit 1
-sed -i 's|source=("${pkgname}::git+${url}.git")|source=("${pkgname}::git+${url}.git#branch=dev-talesam")|' PKGBUILD
 makebuild
 
 # Aplicativo de temas, ele \C3\A9 muito bom
 cd "$HOME/build" || exit 1
-git clone -b dev-talesam https://github.com/big-comm/big-gnome-center.git
+git clone -b dev-talesam https://github.com/elppans/big-gnome-center.git
 #grep -iE '(fill|stroke)=' distributor-logo-blackarch.svg
 #sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
 cd big-gnome-center/pkgbuild || exit 1
-sed -i 's|source=("${pkgname}::git+${url}.git")|source=("${pkgname}::git+${url}.git#branch=dev-talesam")|' PKGBUILD
 makebuild
 
 # Wallpapers para acompanhar o Big Gnome Center
