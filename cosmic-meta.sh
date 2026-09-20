@@ -43,7 +43,7 @@ PACOTES=(
 	ufw
 
 	# Configuração de rede
-	network-manager
+	networkmanager
 
 	# Pacotes Dev
 	base-devel 				# Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
