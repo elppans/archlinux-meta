@@ -45,6 +45,20 @@ PACOTES=(
 	# Configuração de rede
 	networkmanager
 
+	# Pacotes Requeridos - Verificado após instalar com Archinstall
+	gst-plugin-pipewire 	# Multimedia graph framework - pipewire plugin[cite: 1]
+	libpipewire         	# Low-latency audio/video router and processor - client library[cite: 1]
+	libwireplumber      	# Session / policy manager implementation for PipeWire - client library[cite: 1]
+	pipewire            	# Low-latency audio/video router and processor[cite: 1]
+	pipewire-alsa       	# Low-latency audio/video router and processor - ALSA configuration[cite: 1]
+	pipewire-audio      	# Low-latency audio/video router and processor - Audio support[cite: 1]
+	pipewire-jack       	# Low-latency audio/video router and processor - JACK replacement[cite: 1]
+	pipewire-pulse      	# Low-latency audio/video router and processor - PulseAudio replacement[cite: 1]
+	wireplumber         	# Session / policy manager implementation for PipeWire[cite: 1]
+	wpa_supplicant 			# Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
+	zram-generator 			# Systemd unit generator for zram devices
+	power-profiles-daemon	# Makes power profiles handling available over D-Bus
+
 	# Pacotes Dev
 	base-devel 				# Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
 	curl       				# Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
@@ -52,22 +66,32 @@ PACOTES=(
 	expac      				# Utilitário de extração de dados do banco de dados do pacman
 	pkgfile    				# Ferramenta para buscar qual pacote provê determinado arquivo/binário
 
-	# Pacotes adicionais
-	pipewire-pulse  		# Emulação da API/daemon do PulseAudio sobre o PipeWire
-	pipewire-alsa   		# Plugin de redirecionamento do ALSA para o PipeWire
-	pipewire-jack   		# Emulação da API/cliente do JACK sobre o PipeWire
-	wireplumber     		# Gerenciador de sessão e políticas padrão para o PipeWire
-	# smplayer        		# Media player with built-in codecs that can play virtually all video and audio formats
-	# smplayer-themes 		# smplayer-themes
-	wpa_supplicant 			# Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
-	zram-generator 			# Systemd unit generator for zram devices
-	gufw		            # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
-	archlinux-wallpaper 	# Papéis de parede oficiais do Arch Linux
-	gst-plugins-base		# Multimedia graph framework - base plugins
-	gst-plugins-good		# Multimedia graph framework - good plugins
-	gst-plugins-bad			# Multimedia graph framework - bad plugins
+	# Ações de rede em Arquivos COSMIC
+	# https://wiki.archlinux.org/title/COSMIC
+	gvfs
+	gvfs-nfs
+	gvfs-smb
+	gvfs-dnssd
+	gnome-keyring
 
-	# Pacote com base no PopOS
+	### Dependências Opcionais - file-roller
+	7zip 					# File archiver for extremely high compression
+	arj 					# Free and portable clone of the ARJ archiver
+	binutils 				# A set of programs to assemble and manipulate binary and object files
+	bzip3 					# A better and stronger spiritual successor to BZip2
+	cdrtools 				# Highly portable CD/DVD/BluRay command line recording software
+	cpio 					# A tool to copy files into or out of a cpio or tar archive
+	dpkg 					# The Debian Package Manager tools
+	lhasa 					# Free LZH/LHA archive tool
+	lrzip 					# Multi-threaded compression with rzip/lzma, lzo, and zpaq
+	rpmextract 				# Script to convert or extract RPM archives (contains rpm2cpio)
+	squashfs-tools 			# Tools for squashfs, a highly compressed read-only filesystem for Linux
+	unace 					# An extraction tool for the proprietary ace archive format
+	unrar 					# The RAR uncompression program
+	unzip 					# For extracting and viewing files in .zip archives
+	zip 					# Compressor/archiver for creating and modifying zipfiles
+
+	# Pacotes com base no PopOS
 	gnome-disk-utility		# Disk Management Utility
 	baobab					# Disk Usage Analyzer
 	simple-scan				# Document Scanner
@@ -77,6 +101,13 @@ PACOTES=(
 	loupe					# Image Viewer. (No PopOS: eog)
 	thunderbird-i18n-pt-br	# Gerenciador de e-mails da Mozilla
 	firefox-i18n-pt-br		# Navegador Web
+
+	# Pacotes adicionais
+	gufw		            # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
+	archlinux-wallpaper 	# Papéis de parede oficiais do Arch Linux
+	gst-plugins-base		# Multimedia graph framework - base plugins
+	gst-plugins-good		# Multimedia graph framework - good plugins
+	gst-plugins-bad			# Multimedia graph framework - bad plugins
 )
 
 # Obtém a versão do kernel em execução
@@ -111,10 +142,11 @@ if ! pacman -Qq kernel-modules-hook &>/dev/null; then
 	sudo systemctl enable --now linux-modules-cleanup.service
 fi
 
-# Instalando Hyprland (Meta)
+# Instalando Cosmic (Meta)
 sudo pacman --needed --noconfirm -Syu "${PACOTES[@]}"
 sudo pkgfile -u
 
+# Instalando ZRAM
 if [ -f "$install"/custom/zram-generator.sh ]; then
 	cd "$install"/custom/ || exit 1
 	chmod +x zram-generator.sh
@@ -170,8 +202,16 @@ if [ -d "$HOME/archlinux-meta" ]; then
 echo 'archlinux-meta' | tee -a "$HOME/.hidden" &>>/dev/null
 fi
 
+
+sudo systemctl -q enable cosmic-greeter.service
+sudo systemctl -q enable sshd.service
+sudo ufw allow ssh &>/dev/null
+
 echo "Configuração finalizada..."
-echo "Reinicie o sistema para que as configurações surtam efeito."
+# echo "Reinicie o sistema para que as configurações surtam efeito."
+echo "O sistema será reiniciado agora para aplicar as mudanças."
+sleep 6
+sudo systemctl reboot -i
 
 # -- Scripts opcionais --
 

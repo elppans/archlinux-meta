@@ -103,6 +103,6 @@ O sistema será reiniciado agora para aplicar as mudanças.
 Após a reinicialização, faça login normalmente e execute o script \"gnome-shell-custom.sh\" no terminal para finalizar a configuração do GNOME.
 "
 sleeping 15
-sudo systemctl reboot
+sudo systemctl reboot -i
 
 # Seguir para "META Pós Install"
