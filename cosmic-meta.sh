@@ -154,13 +154,14 @@ sudo cp -rf "/usr/share/applications/qt6ct.desktop" "/etc/skel/.local/share/appl
 sudo cp -rf "/usr/share/applications/qv4l2.desktop" "/etc/skel/.local/share/applications/qv4l2.desktop"
 sudo cp -rf "/usr/share/applications/qvidcap.desktop" "/etc/skel/.local/share/applications/qvidcap.desktop"
 
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/bssh.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/bssh.desktop"
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/bvnc.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/bvnc.desktop"
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/lstopo.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/lstopo.desktop"
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qt6ct.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qt6ct.desktop"
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qv4l2.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qv4l2.desktop"
-grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qvidcap.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qvidcap.desktop"
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/bssh.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/bssh.desktop" &>/dev/null
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/bvnc.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/bvnc.desktop" &>/dev/null
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/lstopo.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/lstopo.desktop" &>/dev/null
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qt6ct.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qt6ct.desktop" &>/dev/null
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qv4l2.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qv4l2.desktop" &>/dev/null
+grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qvidcap.desktop" || echo -e 'NoDisplay=true' | sudo tee -a "/etc/skel/.local/share/applications/qvidcap.desktop" &>/dev/null
 
+sleep 6
 tar -c -C /etc/skel . | tar -x --skip-old-files -f - -C "$HOME"
 sudo chown -Rf "$USER":"$USER" "$HOME"
 
