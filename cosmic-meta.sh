@@ -45,9 +45,11 @@ PACOTES=(
 	# Bluetooth
 	# https://wiki.archlinux.org/title/Bluetooth
 	bluez
+	bluez-libs # Deprecated libraries for the bluetooth protocol stack. Necessário para pipewire-audio
+	bluez-obex # Object Exchange daemon for sharing content. Necessário para "transferir arquivos por Bluetooth"
 
 	# Firewall
-	# ufw 					# Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+	# ufw 					# Uncomplicated and easy to use CLI tool for managing a netfilter firewall (gufw não funciona no Cosmic)
 	firewalld # Firewall daemon with D-Bus interface
 
 	# Pacotes Requeridos - Verificado após instalar com Archinstall
@@ -220,6 +222,7 @@ fi
 
 sudo systemctl -q enable cosmic-greeter.service
 sudo systemctl -q enable bluetooth.service
+sudo systemctl -q enable obex.service
 sudo systemctl -q enable sshd.service
 sudo systemctl -q enable --now firewalld.service
 sudo firewall-cmd --permanent --add-service=ssh &>/dev/null && sudo firewall-cmd --reload &>/dev/null
