@@ -72,8 +72,7 @@ PACOTES=(
 	gvfs-nfs
 	gvfs-smb
 	gvfs-dnssd
-	gnome-keyring
-
+	
 	### Dependências Opcionais - file-roller
 	7zip 					# File archiver for extremely high compression
 	arj 					# Free and portable clone of the ARJ archiver
@@ -196,6 +195,10 @@ grep -q 'NoDisplay=true' "/etc/skel/.local/share/applications/qvidcap.desktop" |
 sleep 6
 tar -c -C /etc/skel . | tar -x --skip-old-files -f - -C "$HOME"
 sudo chown -Rf "$USER":"$USER" "$HOME"
+
+cd "/etc/profile.d" || exit 1
+sudo curl -sJOLk 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/meta-dir/etc/profile.d/homebin.sh'
+sudo curl -sJOLk 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/meta-dir/etc/profile.d/ssh-auth-sock.sh'
 
 # Ocultar diretório archlinux-meta
 if [ -d "$HOME/archlinux-meta" ]; then
