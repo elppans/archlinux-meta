@@ -32,20 +32,26 @@ PACOTES=(
 	wget
 	xdg-user-dirs
 	xdg-utils
+
 	# Greeter
 	cosmic-greeter
+
 	# Audio
 	pipewire
+
 	# Firewall
 	ufw
+
 	# Configuração de rede
 	network-manager
+
 	# Pacotes Dev
 	base-devel 				# Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
 	curl       				# Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
 	git        				# Sistema de controle de versão distribuído
 	expac      				# Utilitário de extração de dados do banco de dados do pacman
 	pkgfile    				# Ferramenta para buscar qual pacote provê determinado arquivo/binário
+
 	# Pacotes adicionais
 	pipewire-pulse  		# Emulação da API/daemon do PulseAudio sobre o PipeWire
 	pipewire-alsa   		# Plugin de redirecionamento do ALSA para o PipeWire
@@ -60,6 +66,17 @@ PACOTES=(
 	gst-plugins-base		# Multimedia graph framework - base plugins
 	gst-plugins-good		# Multimedia graph framework - good plugins
 	gst-plugins-bad			# Multimedia graph framework - bad plugins
+
+	# Pacote com base no PopOS
+	gnome-disk-utility		# Disk Management Utility
+	baobab					# Disk Usage Analyzer
+	simple-scan				# Document Scanner
+	papers					# Document Viewer. (No PopOS: evince)
+	file-roller				# Gerenciador de arquivos compactados
+	gnome-characters		# Mapa de caracters. (No PopOS: gucharmap)
+	loupe					# Image Viewer. (No PopOS: eog)
+	thunderbird-i18n-pt-br	# Gerenciador de e-mails da Mozilla
+	firefox-i18n-pt-br		# Navegador Web
 )
 
 # Obtém a versão do kernel em execução
