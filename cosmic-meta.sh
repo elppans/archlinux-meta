@@ -40,17 +40,26 @@ PACOTES=(
 	ufw
 	# Configuração de rede
 	network-manager
+	# Pacotes Dev
+	base-devel 				# Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
+	curl       				# Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
+	git        				# Sistema de controle de versão distribuído
+	expac      				# Utilitário de extração de dados do banco de dados do pacman
+	pkgfile    				# Ferramenta para buscar qual pacote provê determinado arquivo/binário
 	# Pacotes adicionais
 	pipewire-pulse  		# Emulação da API/daemon do PulseAudio sobre o PipeWire
 	pipewire-alsa   		# Plugin de redirecionamento do ALSA para o PipeWire
 	pipewire-jack   		# Emulação da API/cliente do JACK sobre o PipeWire
 	wireplumber     		# Gerenciador de sessão e políticas padrão para o PipeWire
-	smplayer        		# Media player with built-in codecs that can play virtually all video and audio formats
-	smplayer-themes 		# smplayer-themes
+	# smplayer        		# Media player with built-in codecs that can play virtually all video and audio formats
+	# smplayer-themes 		# smplayer-themes
 	wpa_supplicant 			# Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
 	zram-generator 			# Systemd unit generator for zram devices
 	gufw		            # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
 	archlinux-wallpaper 	# Papéis de parede oficiais do Arch Linux
+	gst-plugins-base		# Multimedia graph framework - base plugins
+	gst-plugins-good		# Multimedia graph framework - good plugins
+	gst-plugins-bad			# Multimedia graph framework - bad plugins
 )
 
 # Obtém a versão do kernel em execução
