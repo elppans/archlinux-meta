@@ -40,7 +40,8 @@ PACOTES=(
 	pipewire
 
 	# Firewall
-	ufw
+	# ufw 					# Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+	firewalld 				# Firewall daemon with D-Bus interface
 
 	# Configuração de rede
 	networkmanager
@@ -102,7 +103,8 @@ PACOTES=(
 	firefox-i18n-pt-br		# Navegador Web
 
 	# Pacotes adicionais
-	gufw		            # Uncomplicated way to manage your Linux firewall. - Com "plasma-firewall" instalado, este não tem utilidade
+	# gufw		            # Uncomplicated way to manage your Linux firewall. - GUI não funciona no Cosmic
+	firewall-config			# Graphical user interface for firewallD configuration
 	archlinux-wallpaper 	# Papéis de parede oficiais do Arch Linux
 	gst-plugins-base		# Multimedia graph framework - base plugins
 	gst-plugins-good		# Multimedia graph framework - good plugins
@@ -208,7 +210,10 @@ fi
 
 sudo systemctl -q enable cosmic-greeter.service
 sudo systemctl -q enable sshd.service
-sudo ufw allow ssh &>/dev/null
+sudo systemctl -q enable --now firewalld.service
+sudo firewall-cmd --permanent --add-service=ssh &>/dev/null && sudo firewall-cmd --reload &>/dev/null
+# sudo ufw allow ssh &>/dev/null
+
 
 echo "Configuração finalizada..."
 # echo "Reinicie o sistema para que as configurações surtam efeito."
