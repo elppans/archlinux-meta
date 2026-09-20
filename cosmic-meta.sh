@@ -39,33 +39,37 @@ PACOTES=(
 	# Audio
 	pipewire
 
-	# Firewall
-	# ufw 					# Uncomplicated and easy to use CLI tool for managing a netfilter firewall
-	firewalld 				# Firewall daemon with D-Bus interface
-
 	# Configuração de rede
 	networkmanager
 
+	# Bluetooth
+	# https://wiki.archlinux.org/title/Bluetooth
+	bluez
+
+	# Firewall
+	# ufw 					# Uncomplicated and easy to use CLI tool for managing a netfilter firewall
+	firewalld # Firewall daemon with D-Bus interface
+
 	# Pacotes Requeridos - Verificado após instalar com Archinstall
-	gst-plugin-pipewire 	# Multimedia graph framework - pipewire plugin[cite: 1]
-	libpipewire         	# Low-latency audio/video router and processor - client library[cite: 1]
-	libwireplumber      	# Session / policy manager implementation for PipeWire - client library[cite: 1]
-	pipewire            	# Low-latency audio/video router and processor[cite: 1]
-	pipewire-alsa       	# Low-latency audio/video router and processor - ALSA configuration[cite: 1]
-	pipewire-audio      	# Low-latency audio/video router and processor - Audio support[cite: 1]
-	pipewire-jack       	# Low-latency audio/video router and processor - JACK replacement[cite: 1]
-	pipewire-pulse      	# Low-latency audio/video router and processor - PulseAudio replacement[cite: 1]
-	wireplumber         	# Session / policy manager implementation for PipeWire[cite: 1]
-	wpa_supplicant 			# Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
-	zram-generator 			# Systemd unit generator for zram devices
-	power-profiles-daemon	# Makes power profiles handling available over D-Bus
+	gst-plugin-pipewire   # Multimedia graph framework - pipewire plugin[cite: 1]
+	libpipewire           # Low-latency audio/video router and processor - client library[cite: 1]
+	libwireplumber        # Session / policy manager implementation for PipeWire - client library[cite: 1]
+	pipewire              # Low-latency audio/video router and processor[cite: 1]
+	pipewire-alsa         # Low-latency audio/video router and processor - ALSA configuration[cite: 1]
+	pipewire-audio        # Low-latency audio/video router and processor - Audio support[cite: 1]
+	pipewire-jack         # Low-latency audio/video router and processor - JACK replacement[cite: 1]
+	pipewire-pulse        # Low-latency audio/video router and processor - PulseAudio replacement[cite: 1]
+	wireplumber           # Session / policy manager implementation for PipeWire[cite: 1]
+	wpa_supplicant        # Daemon de autenticação para redes Wi-Fi (WPA/WPA2/WPA3)
+	zram-generator        # Systemd unit generator for zram devices
+	power-profiles-daemon # Makes power profiles handling available over D-Bus
 
 	# Pacotes Dev
-	base-devel 				# Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
-	curl       				# Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
-	git        				# Sistema de controle de versão distribuído
-	expac      				# Utilitário de extração de dados do banco de dados do pacman
-	pkgfile    				# Ferramenta para buscar qual pacote provê determinado arquivo/binário
+	base-devel # Meta-pacote com ferramentas essenciais de compilação (gcc, make, autoconf, etc.)
+	curl       # Ferramenta para transferência de dados via URLs com suporte a múltiplos protocolos
+	git        # Sistema de controle de versão distribuído
+	expac      # Utilitário de extração de dados do banco de dados do pacman
+	pkgfile    # Ferramenta para buscar qual pacote provê determinado arquivo/binário
 
 	# Ações de rede em Arquivos COSMIC
 	# https://wiki.archlinux.org/title/COSMIC
@@ -73,42 +77,42 @@ PACOTES=(
 	gvfs-nfs
 	gvfs-smb
 	gvfs-dnssd
-	
+
 	### Dependências Opcionais - file-roller
-	7zip 					# File archiver for extremely high compression
-	arj 					# Free and portable clone of the ARJ archiver
-	binutils 				# A set of programs to assemble and manipulate binary and object files
-	bzip3 					# A better and stronger spiritual successor to BZip2
-	cdrtools 				# Highly portable CD/DVD/BluRay command line recording software
-	cpio 					# A tool to copy files into or out of a cpio or tar archive
-	dpkg 					# The Debian Package Manager tools
-	lhasa 					# Free LZH/LHA archive tool
-	lrzip 					# Multi-threaded compression with rzip/lzma, lzo, and zpaq
-	rpmextract 				# Script to convert or extract RPM archives (contains rpm2cpio)
-	squashfs-tools 			# Tools for squashfs, a highly compressed read-only filesystem for Linux
-	unace 					# An extraction tool for the proprietary ace archive format
-	unrar 					# The RAR uncompression program
-	unzip 					# For extracting and viewing files in .zip archives
-	zip 					# Compressor/archiver for creating and modifying zipfiles
+	7zip           # File archiver for extremely high compression
+	arj            # Free and portable clone of the ARJ archiver
+	binutils       # A set of programs to assemble and manipulate binary and object files
+	bzip3          # A better and stronger spiritual successor to BZip2
+	cdrtools       # Highly portable CD/DVD/BluRay command line recording software
+	cpio           # A tool to copy files into or out of a cpio or tar archive
+	dpkg           # The Debian Package Manager tools
+	lhasa          # Free LZH/LHA archive tool
+	lrzip          # Multi-threaded compression with rzip/lzma, lzo, and zpaq
+	rpmextract     # Script to convert or extract RPM archives (contains rpm2cpio)
+	squashfs-tools # Tools for squashfs, a highly compressed read-only filesystem for Linux
+	unace          # An extraction tool for the proprietary ace archive format
+	unrar          # The RAR uncompression program
+	unzip          # For extracting and viewing files in .zip archives
+	zip            # Compressor/archiver for creating and modifying zipfiles
 
 	# Pacotes com base no PopOS
-	gnome-disk-utility		# Disk Management Utility
-	baobab					# Disk Usage Analyzer
-	simple-scan				# Document Scanner
-	papers					# Document Viewer. (No PopOS: evince)
-	file-roller				# Gerenciador de arquivos compactados
-	gnome-characters		# Mapa de caracters. (No PopOS: gucharmap)
-	loupe					# Image Viewer. (No PopOS: eog)
-	thunderbird-i18n-pt-br	# Gerenciador de e-mails da Mozilla
-	firefox-i18n-pt-br		# Navegador Web
+	gnome-disk-utility     # Disk Management Utility
+	baobab                 # Disk Usage Analyzer
+	simple-scan            # Document Scanner
+	papers                 # Document Viewer. (No PopOS: evince)
+	file-roller            # Gerenciador de arquivos compactados
+	gnome-characters       # Mapa de caracters. (No PopOS: gucharmap)
+	loupe                  # Image Viewer. (No PopOS: eog)
+	thunderbird-i18n-pt-br # Gerenciador de e-mails da Mozilla
+	firefox-i18n-pt-br     # Navegador Web
 
 	# Pacotes adicionais
 	# gufw		            # Uncomplicated way to manage your Linux firewall. - GUI não funciona no Cosmic
-	firewall-config			# Graphical user interface for firewallD configuration
-	archlinux-wallpaper 	# Papéis de parede oficiais do Arch Linux
-	gst-plugins-base		# Multimedia graph framework - base plugins
-	gst-plugins-good		# Multimedia graph framework - good plugins
-	gst-plugins-bad			# Multimedia graph framework - bad plugins
+	firewall-config     # Graphical user interface for firewallD configuration
+	archlinux-wallpaper # Papéis de parede oficiais do Arch Linux
+	gst-plugins-base    # Multimedia graph framework - base plugins
+	gst-plugins-good    # Multimedia graph framework - good plugins
+	gst-plugins-bad     # Multimedia graph framework - bad plugins
 )
 
 # Obtém a versão do kernel em execução
@@ -204,16 +208,22 @@ sudo curl -sJOLk 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/
 
 # Ocultar diretório archlinux-meta
 if [ -d "$HOME/archlinux-meta" ]; then
-echo 'archlinux-meta' | tee -a "$HOME/.hidden" &>>/dev/null
+	echo 'archlinux-meta' | tee -a "$HOME/.hidden" &>>/dev/null
 fi
 
+if [ -f /etc/modules-load.d/bluetooth.conf ]; then
+	grep -q 'btusb' /etc/modules-load.d/bluetooth.conf || echo "btusb" | sudo tee /etc/modules-load.d/bluetooth.conf &>/dev/null
+else
+	sudo touch /etc/modules-load.d/bluetooth.conf
+	grep -q 'btusb' /etc/modules-load.d/bluetooth.conf || echo "btusb" | sudo tee /etc/modules-load.d/bluetooth.conf &>/dev/null
+fi
 
 sudo systemctl -q enable cosmic-greeter.service
+sudo systemctl -q enable bluetooth.service
 sudo systemctl -q enable sshd.service
 sudo systemctl -q enable --now firewalld.service
 sudo firewall-cmd --permanent --add-service=ssh &>/dev/null && sudo firewall-cmd --reload &>/dev/null
 # sudo ufw allow ssh &>/dev/null
-
 
 echo "Configuração finalizada..."
 # echo "Reinicie o sistema para que as configurações surtam efeito."
