@@ -22,7 +22,7 @@
 # Verifica se o KDE Plasma está instalado (Arch Linux / pacman)
 if pacman -Qi plasma-desktop &>/dev/null; then
 # Lista de pacotes:
-curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome|^nautilus|^dconf-editor|^file-roller|^meld|^collision' | awk '{print $1}' | yay --needed --noconfirm -S -
+curl -fsSL 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.list' | grep -v -E '^#|^$|^gnome|^nautilus|^dconf-editor|^file-roller|^meld|^collision|^power-profiles-daemon' | awk '{print $1}' | yay --needed --noconfirm -S -
 #
 # Configuração adicional:
 bash <(wget -qO- 'https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/pacotes/pacman.ini')
