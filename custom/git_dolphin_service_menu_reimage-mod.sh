@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
-makebuild() {
-# --[no]removemake       Remove dependências de compilação após instalação
-# --[no]sudoloop         Repete chamadas sudo em segundo plano para evitar esgotar o tempo
-# --[no]keepsrc          Mantém diretórios src/ e pkg/ após compilar pacotes
-# yay/paru {-B --build}       [diretório(s)]
-
-# -C, --cleanbuild Remove o diretório $srcdir/ antes de compilar o pacote
-# -r, --rmdeps     Remove dependências instaladas após uma compilação bem-sucedida
-# -i, --install    Instala pacote após empacotamento bem-sucedido
-# -s, --syncdeps   Instala dependências em falta com pacman
-
-if [ "$(command -v yay)" ]; then
-	yay --needed --noconfirm --removemake --sudoloop --build "$(pwd)"
-elif [ "$(command -v paru)" ]; then
-	paru --needed --noconfirm --removemake --sudoloop --nokeepsrc --build "$(pwd)"
-else
-	makepkg --needed --noconfirm -Cris
+make_timestamp(){
+if grep -q '^pkgrel=.*date' PKGBUILD; then
+    sed -i "s/^pkgrel=.*date.*/pkgrel=1/" PKGBUILD
+    echo "pkgrel baseado em timestamp detectado — fixado em 1"
 fi
+}
+makebuild() {
+# -C, --cleanbuild Remove o diret\C3\B3rio $srcdir/ antes de compilar o pacote
+# -r, --rmdeps     Remove depend\C3\AAncias instaladas ap\C3\B3s uma compila\C3\A7\C3\A3o bem-sucedida
+# -i, --install    Instala pacote ap\C3\B3s empacotamento bem-sucedido
+# -s, --syncdeps   Instala depend\C3\AAncias em falta com pacman
+    git pull 2>/dev/null
+    make_timestamp
+    makepkg --needed --noconfirm -Cris
 }
 
 if [ "$(command -v dolphin)" ]; then

@@ -11,16 +11,20 @@ makebuild() {
 # -r, --rmdeps     Remove depend\C3\AAncias instaladas ap\C3\B3s uma compila\C3\A7\C3\A3o bem-sucedida
 # -i, --install    Instala pacote ap\C3\B3s empacotamento bem-sucedido
 # -s, --syncdeps   Instala depend\C3\AAncias em falta com pacman
-    sudo -v
     git pull 2>/dev/null
     make_timestamp
     makepkg --needed --noconfirm -Cris
 }
 
 # Depend\C3\AAncias
+dependencias=(
+	pnpm
+	gnome-shell-extension-copyous-bin
+	gnome-shell-extension-gtk4-desktop-icons-ng
+)
 
-sudo pacman --needed --noconfirm -S pnpm
-# echo '^4' | yay --needed --noconfirm --removemake --sudoloop gnome-shell-extension-copyous-bin
+echo '^4' | yay --needed --noconfirm --removemake --sudoloop "${dependencias[@]}"
+
 
 mkdir -p "$HOME/build"
 
@@ -31,10 +35,10 @@ mkdir -p "$HOME/build"
 # echo '^4' | makebuild
 
 # Copyous AUR - Esta vers\C3\A3o funciona perfeitamente - Necess\C3\A1rio para BIG Gnome Center
-cd "$HOME/build" || exit 1
-git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
-cd gnome-shell-extension-copyous-bin || exit 1
-echo '^4' | makebuild
+# cd "$HOME/build" || exit 1
+# git clone https://aur.archlinux.org/gnome-shell-extension-copyous-bin.git
+# cd gnome-shell-extension-copyous-bin || exit 1
+# echo '^4' | makebuild
 
 cd "$HOME/build" || exit 1
 git clone https://github.com/biglinux/big-hardware-info
