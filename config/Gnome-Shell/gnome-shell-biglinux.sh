@@ -7,7 +7,6 @@ if grep -q '^pkgrel=.*date' PKGBUILD; then
 fi
 }
 makebuild() {
-make_timestamp
 # -C, --cleanbuild Remove o diret\C3\B3rio $srcdir/ antes de compilar o pacote
 # -r, --rmdeps     Remove depend\C3\AAncias instaladas ap\C3\B3s uma compila\C3\A7\C3\A3o bem-sucedida
 # -i, --install    Instala pacote ap\C3\B3s empacotamento bem-sucedido
