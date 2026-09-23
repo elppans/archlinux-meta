@@ -8,23 +8,14 @@ fi
 }
 makebuild() {
 make_timestamp
-# --[no]removemake       Remove depend\C3\AAncias de compila\C3\A7\C3\A3o ap\C3\B3s instala\C3\A7\C3\A3o
-# --[no]sudoloop         Repete chamadas sudo em segundo plano para evitar esgotar o tempo
-# --[no]keepsrc          Mant\C3\A9m diret\C3\B3rios src/ e pkg/ ap\C3\B3s compilar pacotes
-# yay/paru {-B --build}       [diret\C3\B3rio(s)]
-
 # -C, --cleanbuild Remove o diret\C3\B3rio $srcdir/ antes de compilar o pacote
 # -r, --rmdeps     Remove depend\C3\AAncias instaladas ap\C3\B3s uma compila\C3\A7\C3\A3o bem-sucedida
 # -i, --install    Instala pacote ap\C3\B3s empacotamento bem-sucedido
 # -s, --syncdeps   Instala depend\C3\AAncias em falta com pacman
-
-if [ "$(command -v yay)" ]; then
-	yay --needed --noconfirm --removemake --sudoloop --build "$(pwd)"
-elif [ "$(command -v paru)" ]; then
-	paru --needed --noconfirm --removemake --sudoloop --nokeepsrc --build "$(pwd)"
-else
-	makepkg --needed --noconfirm -Cris
-fi
+    sudo -v
+    git pull 2>/dev/null
+    make_timestamp
+    makepkg --needed --noconfirm -Cris
 }
 
 # Depend\C3\AAncias
