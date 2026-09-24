@@ -18,7 +18,8 @@ export DISTRO
 
 kora_icons() {
 	cd /tmp
-	git clone https://github.com/bikass/kora.git
+	# git clone https://github.com/bikass/kora.git
+	git clone https://github.com/elppans/kora.git
 	sudo cp -a /tmp/kora/{kora,kora-pgrey} /usr/share/icons/
 	# cp -a /tmp/kora/{kora,kora-pgrey} "$HOME/.local/share/icons/"
 	gtk-update-icon-cache -f -t /usr/share/icons/kora 2>/dev/null || true # Atualizar o cache do diretório exato
@@ -55,7 +56,8 @@ orchis_theme() {
 	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
 	echo "Para mudar algo no tema, basta usar o Script \"install.sh\"... "
 	sleep 5
-	sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
+	# sudo git clone https://github.com/vinceliuice/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
+	sudo git clone https://github.com/elppans/Orchis-theme.git /etc/skel/.local/share/Orchis-theme
 	rsync -ah /etc/skel/. "$HOME/"
 	cd "$HOME/.local/share/Orchis-theme" || exit 1
 	# Garantindo que não tenha sugeira no usuário
