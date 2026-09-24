@@ -21,12 +21,35 @@ kora_icons() {
 	git clone https://github.com/bikass/kora.git
 	sudo cp -a /tmp/kora/{kora,kora-pgrey} /usr/share/icons/
 	# cp -a /tmp/kora/{kora,kora-pgrey} "$HOME/.local/share/icons/"
+	gtk-update-icon-cache -f -t /usr/share/icons/kora 2>/dev/null || true # Atualizar o cache do diretório exato
+	gsettings set org.gnome.desktop.interface icon-theme 'kora'
+	dconf write /org/gnome/desktop/interface/icon-theme "'kora'"
+	# Trancar icon-theme
+	# 1. Certifique-se de criar o diretório de locks
+	sudo mkdir -p /etc/dconf/db/local.d/locks
+
+	# 2. Defina o valor padrão
+	sudo mkdir -p /etc/dconf/db/local.d
+	cat <<'EOF' | sudo tee /etc/dconf/db/local.d/00-icon-theme
+[org/gnome/desktop/interface]
+icon-theme='kora'
+EOF
+
+	# 3. Bloqueie a alteração por outros processos
+	cat <<'EOF' | sudo tee /etc/dconf/db/local.d/locks/icon-theme
+/org/gnome/desktop/interface/icon-theme
+EOF
+}
+compact_themes_set() {
+	find "$HOME/.themes" -type f -path '*/gnome-shell/gnome-shell.css' |
+		while IFS= read -r THEME_CSS; do
+			[[ "$THEME_CSS" == *Compact* ]] || continue
+
+			perl -0777 -pi -e 's/(#panel\s*\{[^}]*?)height:\s*30px;/${1}height: 1.76em;/s' "$THEME_CSS"
+			echo "Ajuste de altura do #panel aplicado em: $THEME_CSS"
+		done
 }
 orchis_theme() {
-	local THEME_CSS
-	# THEME_CSS="$HOME/.themes/Orchis-Dark-Compact/gnome-shell/gnome-shell.css"
-	THEME_CSS="$HOME/.themes/Orchis-Dark-Compact/gnome-shell/gnome-shell.css"
-
 	echo "Configurando tema Orchis..."
 	sleep 5
 	echo "O tema será salvo em \"$HOME/.local/share/Orchis-theme\","
@@ -49,14 +72,8 @@ orchis_theme() {
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 	gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 	gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
-
-	if [[ -f "$THEME_CSS" ]]; then
-		perl -0777 -pi -e 's/(#panel\s*\{[^}]*?)height:\s*30px;/${1}height: 1.76em;/s' "$THEME_CSS"
-		echo "Ajuste de altura do #panel aplicado em: $THEME_CSS"
-	else
-		echo "Aviso: arquivo de tema não encontrado em $THEME_CSS" >&2
-	fi
-
+	sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact""
+	compact_themes_set
 	sudo cp -a "$HOME/.themes" /etc/skel/
 }
 bibata-cursor-theme() {
@@ -65,6 +82,8 @@ bibata-cursor-theme() {
 	sudo mkdir -p /etc/skel/.local/share/icons/
 	sudo tar -xJf Bibata.tar.xz -C /etc/skel/.local/share/icons/
 	rsync -ah /etc/skel/. "$HOME/"
+	gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
+	sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice""
 }
 
 if [ "$(command -v pacman)" ]; then
