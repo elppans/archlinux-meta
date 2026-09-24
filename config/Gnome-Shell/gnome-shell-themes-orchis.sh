@@ -72,7 +72,7 @@ orchis_theme() {
 	sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 	gsettings set org.gnome.shell.extensions.user-theme name "Orchis-Dark-Compact"
 	gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact"
-	sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact""
+	# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface gtk-theme "Orchis-Dark-Compact""
 	compact_themes_set
 	sudo cp -a "$HOME/.themes" /etc/skel/
 }
@@ -83,7 +83,7 @@ bibata-cursor-theme() {
 	sudo tar -xJf Bibata.tar.xz -C /etc/skel/.local/share/icons/
 	rsync -ah /etc/skel/. "$HOME/"
 	gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
-	sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice""
+	# sudo su -s /bin/bash gdm -c "dbus-launch gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice""
 }
 
 if [ "$(command -v pacman)" ]; then
