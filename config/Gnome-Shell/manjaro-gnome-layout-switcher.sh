@@ -72,6 +72,6 @@ MIRROR_URI="https://linorg.usp.br/manjaro/stable/extra/x86_64"
 PACKAGE_NAME="gnome-layout-switcher-0.8.40-2-any.pkg.tar.zst"
 
 curl -sSLO "${MIRROR_URI}/${PACKAGE_NAME}"
-helper --assume-installed pamac-gtk -U "${PACKAGE_NAME}"
+yay --assume-installed pamac-gtk -U "${PACKAGE_NAME}"
 
 echo "==> Instalação concluída com sucesso!"
