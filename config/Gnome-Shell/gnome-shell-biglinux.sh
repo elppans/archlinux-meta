@@ -18,9 +18,9 @@ makebuild() {
 
 # Depend\C3\AAncias
 
-	sudo pacman --needed --noconfirm pnpm
-	echo '^4' | yay --needed --noconfirm --removemake --sudoloop 	gnome-shell-extension-copyous-bin
-	yay --needed --noconfirm --removemake --sudoloop gnome-shell-extension-gtk4-desktop-icons-ng
+	sudo pacman --needed --noconfirm -S pnpm
+	echo '^4' | yay --needed --noconfirm --removemake --sudoloop -S gnome-shell-extension-copyous-bin
+	yay --needed --noconfirm --removemake --sudoloop -S gnome-shell-extension-gtk4-desktop-icons-ng
 
 mkdir -p "$HOME/build"
 
