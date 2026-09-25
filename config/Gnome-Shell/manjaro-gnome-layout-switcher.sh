@@ -49,7 +49,7 @@ DEPENDENCY=(
 
 # 1. Instalar dependências disponíveis via Arch/AUR
 echo "==> [1/3] Instalando dependências do sistema via Helper..."
-helper -S "${DEPENDENCY[@]}"
+yay -S "${DEPENDENCY[@]}"
 
 # 2. Compilar accent-color-change se não estiver presente
 if ! pacman -Qi accent-color-change &>/dev/null; then
