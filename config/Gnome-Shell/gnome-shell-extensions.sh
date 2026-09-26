@@ -27,11 +27,11 @@ gnome_enable_ext() {
     gsettings set org.gnome.shell enabled-extensions "$updated"
     echo "Extensão $uuid habilitada com sucesso."
 }
-
 gnome-shell-extension-appindicator() {
+	# https://github.com/ubuntu/gnome-shell-extension-appindicator
 	local uuid="appindicatorsupport@rgcjonas.gmail.com"
 	if gnome-extensions list --enabled | grep -qx "$uuid"; then
-		echo "✔ $uuid já está instalada e ativada."
+		echo "Extensão $uuid já está instalada e ativada."
 		return 0
 	fi
 	mkdir -p /tmp/gnome-shell-extension-appindicator && cd /tmp/gnome-shell-extension-appindicator || exit 1
@@ -44,7 +44,7 @@ gnome-shell-extension-caffeine() {
 	# https://github.com/eonpatapon/gnome-shell-extension-caffeine
 	local uuid="caffeine@patapon.info"
 	if gnome-extensions list --enabled | grep -qx "$uuid"; then
-		echo "✔ $uuid já está instalada e ativada."
+		echo "Extensão $uuid já está instalada e ativada."
 		return 0
 	fi
 	mkdir -p /tmp/gnome-shell-extension-caffeine && cd /tmp/gnome-shell-extension-caffeine || exit 1
@@ -57,7 +57,7 @@ dash-to-dock() {
 	# https://github.com/micheleg/dash-to-dock
 	local uuid="dash-to-dock@micxgx.gmail.com"
 	if gnome-extensions list --enabled | grep -qx "$uuid"; then
-		echo "✔ $uuid já está instalada e ativada."
+		echo "Extensão $uuid já está instalada e ativada."
 		return 0
 	fi
 	mkdir -p /tmp/dash-to-dock && cd /tmp/dash-to-dock || exit 1
@@ -69,14 +69,13 @@ dash-to-dock() {
 quick-sound-switcher() {
 	# https://github.com/dustin-hawkins/quick-sound-switcher
 	local uuid="quick-sound-switcher@dustin-hawkins"
-	local uuidpac="$uuid-v1.0.1.shell-extension.zip"
 	if gnome-extensions list --enabled | grep -qx "$uuid"; then
-		echo "✔ $uuid já está instalada e ativada."
+		echo "Extensão $uuid já está instalada e ativada."
 		return 0
 	fi
 	mkdir -p /tmp/quick-sound-switcher && cd /tmp/quick-sound-switcher || exit 1
-	curl -JOLk "https://github.com/dustin-hawkins/quick-sound-switcher/releases/download/v1.0.1/$uuidpac"
-	gnome-extensions install --force "$uuidpac"
+	curl -JOLk "https://github.com/dustin-hawkins/quick-sound-switcher/releases/download/v1.0.1/quick-sound-switcher@dustin-hawkins-v1.0.1.shell-extension.zip"
+	gnome-extensions install --force "$uuid-v1.0.1.shell-extension.zip"
 	gnome-extensions enable "$uuid"
 }
 enable-extensions() {
@@ -90,6 +89,7 @@ enable-extensions() {
 helper(){
 	bash <(curl -fsSL https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh)
 }
+install_enable() {
 if [ "$(command -v pacman)" ]; then
 	# Gerenciamento de pacotes e manutenção do sistema
 	helper
@@ -111,3 +111,6 @@ else
 	quick-sound-switcher
 	enable-extensions
 fi
+}
+
+install_enable
