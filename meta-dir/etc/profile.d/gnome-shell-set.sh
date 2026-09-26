@@ -27,9 +27,9 @@ dconf write /org/gnome/desktop/interface/icon-theme "'kora'"
 
 # Configurações gerais do Gnome
 gsettings set org.gnome.Console transparency true
-gsettings set org.gnome.desktop.background picture-options 'spanned'
-gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/archlinux/conference.png'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/archlinux/conference.png'
+# gsettings set org.gnome.desktop.background picture-options 'spanned'
+# gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/archlinux/conference.png'
+# gsettings set org.gnome.desktop.background picture-uri-dark 'file:///usr/share/backgrounds/archlinux/conference.png'
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
