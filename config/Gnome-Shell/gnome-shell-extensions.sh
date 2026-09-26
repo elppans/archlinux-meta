@@ -39,7 +39,6 @@ gnome-shell-extension-appindicator() {
 	gnome-extensions install --force "$uuid.zip"
 	gnome-extensions enable "$uuid"
 }
-
 gnome-shell-extension-caffeine() {
 	# https://github.com/eonpatapon/gnome-shell-extension-caffeine
 	local uuid="caffeine@patapon.info"
@@ -52,7 +51,6 @@ gnome-shell-extension-caffeine() {
 	gnome-extensions install --force "$uuid.zip"
 	gnome-extensions enable "$uuid"
 }
-
 dash-to-dock() {
 	# https://github.com/micheleg/dash-to-dock
 	local uuid="dash-to-dock@micxgx.gmail.com"
@@ -65,7 +63,6 @@ dash-to-dock() {
 	gnome-extensions install --force "$uuid.zip"
 	gnome-extensions enable "$uuid"
 }
-
 quick-sound-switcher() {
 	# https://github.com/dustin-hawkins/quick-sound-switcher
 	local uuid="quick-sound-switcher@dustin-hawkins"
@@ -79,7 +76,8 @@ quick-sound-switcher() {
 	gnome-extensions enable "$uuid"
 }
 enable-extensions() {
-	# Ativar as 3 extensões instaladas
+	# Ativar as extensões instaladas
+	gnome_enable_ext "user-theme@gnome-shell-extensions.gcampax.github.com"
 	gnome_enable_ext "appindicatorsupport@rgcjonas.gmail.com"
 	gnome_enable_ext "caffeine@patapon.info"
 	gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
