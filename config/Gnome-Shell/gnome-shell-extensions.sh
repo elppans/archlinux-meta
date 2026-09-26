@@ -115,6 +115,7 @@ gnome_extensions_guard() {
 	command -v gnome-shell &>/dev/null || return 0
 
 	# 2) Verifica se a sessão logada atual é do GNOME
+	# shellcheck disable=SC2034
 	local session="${XDG_CURRENT_DESKTOP:-}${DESKTOP_SESSION:-}"
 	[[ "${XDG_CURRENT_DESKTOP,,}" == *gnome* ]] || [[ "${DESKTOP_SESSION,,}" == *gnome* ]] || return 0
 
