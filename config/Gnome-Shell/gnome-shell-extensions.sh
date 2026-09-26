@@ -110,5 +110,25 @@ else
 	enable-extensions
 fi
 }
+gnome_extensions_guard() {
+	# 1) Verifica se o GNOME está instalado (procura pelo gnome-shell)
+	command -v gnome-shell &>/dev/null || return 0
 
-install_enable
+	# 2) Verifica se a sessão logada atual é do GNOME
+	local session="${XDG_CURRENT_DESKTOP:-}${DESKTOP_SESSION:-}"
+	[[ "${XDG_CURRENT_DESKTOP,,}" == *gnome* ]] || [[ "${DESKTOP_SESSION,,}" == *gnome* ]] || return 0
+
+	# 3) Verifica se o comando gnome-extensions existe
+	command -v gnome-extensions &>/dev/null || return 0
+
+	# 4) Verifica se o comando gsettings existe
+	command -v gsettings &>/dev/null || return 0
+
+	# 5) Verifica se o comando curl existe
+	command -v curl &>/dev/null || return 0
+
+	# 6) Tudo OK, executa a função principal
+	install_enable
+}
+
+gnome_extensions_guard
