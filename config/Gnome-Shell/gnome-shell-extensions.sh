@@ -68,14 +68,15 @@ dash-to-dock() {
 
 quick-sound-switcher() {
 	# https://github.com/dustin-hawkins/quick-sound-switcher
-	local uuid="quick-sound-switcher@dustin-hawkins-v1.0.1.shell-extension"
+	local uuid="quick-sound-switcher@dustin-hawkins"
+	local uuidpac="$uuid-v1.0.1.shell-extension.zip"
 	if gnome-extensions list --enabled | grep -qx "$uuid"; then
 		echo "✔ $uuid já está instalada e ativada."
 		return 0
 	fi
 	mkdir -p /tmp/quick-sound-switcher && cd /tmp/quick-sound-switcher || exit 1
-	curl -JOLk "https://github.com/dustin-hawkins/quick-sound-switcher/releases/download/v1.0.1/quick-sound-switcher@dustin-hawkins-v1.0.1.shell-extension.zip"
-	gnome-extensions install --force "$uuid.zip"
+	curl -JOLk "https://github.com/dustin-hawkins/quick-sound-switcher/releases/download/v1.0.1/$uuidpac"
+	gnome-extensions install --force "$uuidpac"
 	gnome-extensions enable "$uuid"
 }
 enable-extensions() {
