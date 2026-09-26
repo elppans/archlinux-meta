@@ -5,27 +5,27 @@ GSEPWD="$(pwd)"
 export GSEPWD
 
 gnome_enable_ext() {
-    local uuid="$1"
-    
-    # Lê as extensões ativas no formato array do GSettings
-    local current=$(gsettings get org.gnome.shell enabled-extensions)
-    
-    # Verifica se já está na lista
-    if [[ "$current" == *"$uuid"* ]]; then
-        echo "Extensão $uuid já está habilitada."
-        return 0
-    fi
+	local uuid="$1"
 
-    # Formata a nova string de array injetando o novo UUID
-    if [[ "$current" == "[]" ]]; then
-        local updated="['$uuid']"
-    else
-        local updated=$(echo "$current" | sed "s/]/, '$uuid']/")
-    fi
+	# Lê as extensões ativas no formato array do GSettings
+	local current=$(gsettings get org.gnome.shell enabled-extensions)
 
-    # Escreve de volta no DConf
-    gsettings set org.gnome.shell enabled-extensions "$updated"
-    echo "Extensão $uuid habilitada com sucesso."
+	# Verifica se já está na lista
+	if [[ "$current" == *"$uuid"* ]]; then
+		echo "Extensão $uuid já está habilitada."
+		return 0
+	fi
+
+	# Formata a nova string de array injetando o novo UUID
+	if [[ "$current" == "[]" ]]; then
+		local updated="['$uuid']"
+	else
+		local updated=$(echo "$current" | sed "s/]/, '$uuid']/")
+	fi
+
+	# Escreve de volta no DConf
+	gsettings set org.gnome.shell enabled-extensions "$updated"
+	echo "Extensão $uuid habilitada com sucesso."
 }
 gnome-shell-extension-appindicator() {
 	# https://github.com/ubuntu/gnome-shell-extension-appindicator
@@ -80,35 +80,37 @@ enable-extensions() {
 	gnome_enable_ext "user-theme@gnome-shell-extensions.gcampax.github.com"
 	gnome_enable_ext "appindicatorsupport@rgcjonas.gmail.com"
 	gnome_enable_ext "caffeine@patapon.info"
-	gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
 	gnome_enable_ext "quick-sound-switcher@dustin-hawkins"
+	if ! command -v big-gnome-center &>/dev/null; then
+		gnome_enable_ext "dash-to-dock@micxgx.gmail.com"
+	fi
 	# gsettings set org.gnome.shell enabled-extensions "['user-theme@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'appindicatorsupport@rgcjonas.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'quick-sound-switcher@dustin-hawkins']"
 }
-helper(){
+helper() {
 	bash <(curl -fsSL https://raw.githubusercontent.com/elppans/archlinux-meta/refs/heads/main/helper/helper_install.sh)
 }
 install_enable() {
-if [ "$(command -v pacman)" ]; then
-	# Gerenciamento de pacotes e manutenção do sistema
-	helper
-	if ! pacman -Q gnome-shell-extension-appindicator &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S gnome-shell-extension-appindicator
+	if [ "$(command -v pacman)" ]; then
+		# Gerenciamento de pacotes e manutenção do sistema
+		helper
+		if ! pacman -Q gnome-shell-extension-appindicator &>/dev/null; then
+			"${HELPER}" --needed --noconfirm -S gnome-shell-extension-appindicator
+		fi
+		if ! pacman -Q gnome-shell-extension-caffeine &>/dev/null; then
+			"${HELPER}" --needed --noconfirm -S gnome-shell-extension-caffeine
+		fi
+		if ! pacman -Q gnome-shell-extension-dash-to-dock &>/dev/null; then
+			"${HELPER}" --needed --noconfirm -S gnome-shell-extension-dash-to-dock
+		fi
+		quick-sound-switcher
+		enable-extensions
+	else
+		gnome-shell-extension-appindicator
+		gnome-shell-extension-caffeine
+		dash-to-dock
+		quick-sound-switcher
+		enable-extensions
 	fi
-	if ! pacman -Q gnome-shell-extension-caffeine &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S gnome-shell-extension-caffeine
-	fi
-	if ! pacman -Q gnome-shell-extension-dash-to-dock &>/dev/null; then
-		"${HELPER}" --needed --noconfirm -S gnome-shell-extension-dash-to-dock
-	fi
-	quick-sound-switcher
-	enable-extensions
-else
-	gnome-shell-extension-appindicator
-	gnome-shell-extension-caffeine
-	dash-to-dock
-	quick-sound-switcher
-	enable-extensions
-fi
 }
 gnome_extensions_guard() {
 	# 1) Verifica se o GNOME está instalado (procura pelo gnome-shell)
@@ -143,7 +145,7 @@ fi
 if [ ! -f "$HOME/.config/systemd/user/gnome-shell-extensions.service" ]; then
 	mkdir -p "$HOME/.config/systemd/user"
 	chmod +x "$HOME/.local/bin/gnome-shell-extensions.sh"
-	tee "$HOME/.config/systemd/user/gnome-shell-extensions.service" &> /dev/null <<'EOF'
+	tee "$HOME/.config/systemd/user/gnome-shell-extensions.service" &>/dev/null <<'EOF'
 # ~/.config/systemd/user/gnome-shell-extensions.service
 [Unit]
 Description=GNOME Shell Extensions Setup
