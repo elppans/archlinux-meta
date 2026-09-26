@@ -132,4 +132,4 @@ gnome_extensions_guard() {
 	install_enable
 }
 
-gnome_extensions_guard
+gnome_extensions_guard &>/dev/null

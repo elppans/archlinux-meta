@@ -1,5 +1,6 @@
 #!/bin/bash
 
+gnome_shel_set() {
 # Ajustes de configurações via dconf
 
 # Configurações do Nautilus
@@ -152,3 +153,27 @@ fi
 # 4. Atualize a base dconf
 # sudo dconf update
 sh "$HOME/.local/bin/gnome-shell-app-reload"
+}
+
+gnome_shell_set_guard() {
+	# 1) Verifica se o GNOME está instalado (procura pelo gnome-shell)
+	command -v gnome-shell &>/dev/null || return 0
+
+	# 2) Verifica se a sessão logada atual é do GNOME
+	# shellcheck disable=SC2034
+	local session="${XDG_CURRENT_DESKTOP:-}${DESKTOP_SESSION:-}"
+	[[ "${XDG_CURRENT_DESKTOP,,}" == *gnome* ]] || [[ "${DESKTOP_SESSION,,}" == *gnome* ]] || return 0
+
+	# 3) Verifica se o comando gnome-extensions existe
+	command -v gnome-extensions &>/dev/null || return 0
+
+	# 4) Verifica se o comando gsettings existe
+	command -v gsettings &>/dev/null || return 0
+
+	# 5) Verifica se o comando curl existe
+	command -v dconf &>/dev/null || return 0
+
+	# 6) Tudo OK, executa a função principal
+	gnome_shel_set
+}
+gnome_shell_set_guard &>/dev/null
