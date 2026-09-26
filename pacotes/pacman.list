@@ -148,6 +148,8 @@ pacod                                  # AUR. Lista dependências opcionais (opt
 zenity                                 # Display graphical dialog boxes from shell scripts
 collision                              # Ferramenta para calcular e verificar somas de verificação de arquivos.
 # ripgrep                              # A search tool that combines the usability of ag with the raw speed of grep (Para VSCodium/Todo-Tree)
+libreoffice-fresh                      # LibreOffice branch which contains new features and program enhancements
+libreoffice-fresh-pt-br                # Portuguese (Brasil) language pack for LibreOffice Fresh
 
 ### Navegadores 
 firefox-i18n-pt-br
