@@ -60,7 +60,7 @@ makebuild
 
 # Aplicativo de temas, ele \C3\A9 muito bom
 cd "$HOME/build" || exit 1
-# git clone -b dev-talesam https://github.com/elppans/big-gnome-center.git
+# git clone https://github.com/elppans/big-gnome-center.git
 git clone -b dev-talesam https://github.com/big-comm/big-gnome-center.git
 #grep -iE '(fill|stroke)=' distributor-logo-blackarch.svg
 #sed -i 's/fill="rgb(30.196078%, 30.196078%, 30.196078%)"/fill="#808080"/g' distributor-logo-blackarch.svg
