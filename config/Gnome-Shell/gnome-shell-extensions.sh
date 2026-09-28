@@ -4,6 +4,38 @@
 GSEPWD="$(pwd)"
 export GSEPWD
 
+gnome_extensions_service() {
+if [ ! -f "$HOME/.local/bin/gnome-shell-extensions.sh" ]; then
+	mkdir -p "$HOME/.local/bin"
+	cp "$(readlink -f "${BASH_SOURCE[0]}")" "$HOME/.local/bin/gnome-shell-extensions.sh"
+	chmod +x "$HOME/.local/bin/gnome-shell-extensions.sh"
+fi
+
+if [ ! -f "$HOME/.config/systemd/user/gnome-shell-extensions.service" ]; then
+	mkdir -p "$HOME/.config/systemd/user"
+	chmod +x "$HOME/.local/bin/gnome-shell-extensions.sh"
+	tee "$HOME/.config/systemd/user/gnome-shell-extensions.service" &>/dev/null <<'EOF'
+# ~/.config/systemd/user/gnome-shell-extensions.service
+[Unit]
+Description=GNOME Shell Extensions Setup
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=%h/.local/bin/gnome-shell-extensions.sh
+
+[Install]
+WantedBy=graphical-session.target
+EOF
+	systemctl --user daemon-reload
+	systemctl --user enable gnome-shell-extensions.service
+	# Para verificar se rodou corretamente:
+	# systemctl --user status gnome-shell-extensions.service
+	# journalctl --user -u gnome-shell-extensions.service
+fi
+}
+
 gnome_enable_ext() {
 	local uuid="$1"
 
@@ -135,33 +167,4 @@ gnome_extensions_guard() {
 }
 
 gnome_extensions_guard
-
-if [ ! -f "$HOME/.local/bin/gnome-shell-extensions.sh" ]; then
-	mkdir -p "$HOME/.local/bin"
-	cp "$(readlink -f "${BASH_SOURCE[0]}")" "$HOME/.local/bin/gnome-shell-extensions.sh"
-	chmod +x "$HOME/.local/bin/gnome-shell-extensions.sh"
-fi
-
-if [ ! -f "$HOME/.config/systemd/user/gnome-shell-extensions.service" ]; then
-	mkdir -p "$HOME/.config/systemd/user"
-	chmod +x "$HOME/.local/bin/gnome-shell-extensions.sh"
-	tee "$HOME/.config/systemd/user/gnome-shell-extensions.service" &>/dev/null <<'EOF'
-# ~/.config/systemd/user/gnome-shell-extensions.service
-[Unit]
-Description=GNOME Shell Extensions Setup
-After=graphical-session.target
-
-[Service]
-Type=oneshot
-ExecStartPre=/usr/bin/sleep 5
-ExecStart=%h/.local/bin/gnome-shell-extensions.sh
-
-[Install]
-WantedBy=graphical-session.target
-EOF
-	systemctl --user daemon-reload
-	systemctl --user enable gnome-shell-extensions.service
-	# Para verificar se rodou corretamente:
-	# systemctl --user status gnome-shell-extensions.service
-	# journalctl --user -u gnome-shell-extensions.service
-fi
+# gnome_extensions_service
