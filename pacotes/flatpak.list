@@ -36,8 +36,8 @@ flathub com.vscodium.codium                             # VSCodium: Versão open
 ### **Imagens e Personalização**
 
 # flathub org.kde.gwenview                                # Gwenview: Visualizador de imagens do KDE
-# flathub com.github.maoschanz.DynamicWallpaperEditor   # Editor de papel de parede dinâmico
-flathub org.flameshot.Flameshot                         # Take and annotate screenshots
+# flathub com.github.maoschanz.DynamicWallpaperEditor     # Editor de papel de parede dinâmico
+# flathub org.flameshot.Flameshot                         # Take and annotate screenshots
 
 ### **Banco de Dados e Ferramentas de Desenvolvimento**
 
