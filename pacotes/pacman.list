@@ -79,6 +79,7 @@ nautilus-python                        # Python bindings for the Nautilus Extens
 ### Pacotes - Gerenciadores alternativos
 
 flatpak                                # Gerenciador de pacotes Flatpak
+flatseal                               # Gerencie as permissões de Flatpaks
 # snapd                                # AUR. Gerenciador de pacotes Snapd
 
 ### Sistema - Segurança e controle de acesso
@@ -89,15 +90,17 @@ flatpak                                # Gerenciador de pacotes Flatpak
 
 gamemode                               # Otimização de desempenho para jogos
 lib32-gamemode                         # Versão 32-bit do Gamemode para compatibilidade
-# lutris                               # Plataforma de gerenciamento de jogos
+lutris                                 # Plataforma de gerenciamento de jogos
 # wine-staging                         # Versão avançada do Wine para rodar jogos Windows
 # winetricks                           # Ferramenta auxiliar para configurações no Wine
 # lib32-libpulse                       # Um servidor de som completo e de uso geral (bibliotecas de cliente de 32 bits)
 # lib32-libsndfile                     # Uma biblioteca C para leitura e gravação de arquivos contendo dados de áudio amostrados (32 bits)
 # lib32-libasyncns                     # Uma biblioteca C para executar consultas de serviço de nomes de forma assíncrona (32 bits)
 # game-devices-udev                    # Regras udev para dispositivos de jogo (controle, joystick, etc.) - Para Steam
-# steam-native-runtime                 # Steam em modo nativo
+steam                                  # Valve's digital software delivery system
 steam-devices                          # List of devices Steam and SteamVR will want read/write permissions on
+protontricks                           # Configuração de jogos Steam com Proton
+mangohud                               # Overlay para monitoramento de desempenho (FPS, CPU, GPU)
 
 ### Utilitários - Ferramentas de captura e imagem
 
@@ -105,7 +108,8 @@ steam-devices                          # List of devices Steam and SteamVR will 
 
 ### Aplicativos - Mensageiros e comunicação
 
-# telegram-desktop                     # Aplicativo de mensagens Telegram
+discord                                # Comunicação para texto, voz e vídeo
+telegram-desktop                       # Aplicativo de mensagens Telegram
 # zapzap                               # AUR. Aplicativo de desktop WhatsApp escrito em Pyqt6 + PyQt6-WebEngine
 
 ### Dev - Ferramentas de análise e formatação
@@ -129,6 +133,8 @@ ttf-liberation                         # Conjunto de fontes Liberation
 wqy-zenhei                             # Fonte chinesa de alta qualidade
 # lib32-systemd                        # Compatibilidade do systemd para arquitetura 32-bit
 fuse2                                  # Compatibilidade com AppImages mais antigos
+vulkan-radeon
+lib32-vulkan-radeon 
 
 ### Utilitários - Ferramentas auxiliares e complementares
 

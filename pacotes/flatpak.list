@@ -20,11 +20,11 @@
 ### **Jogos e Ferramentas para Games**
 
 flathub com.heroicgameslauncher.hgl                     # Heroic Games Launcher: Cliente para Epic Games e GOG
-flathub net.lutris.Lutris                               # Lutris: Plataforma de jogos
-flathub com.valvesoftware.Steam                         # Steam: Plataforma de jogos
-flathub com.github.Matoking.protontricks                # Protontricks: Configuração de jogos Steam com Proton
+# flathub net.lutris.Lutris                               # Lutris: Plataforma de jogos
+# flathub com.valvesoftware.Steam                         # Steam: Plataforma de jogos
+# flathub com.github.Matoking.protontricks                # Protontricks: Configuração de jogos Steam com Proton
 flathub com.vysp3r.ProtonPlus                           # ProtonPlus: Gerenciador de ferramentas de compatibilidade moderno
-flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08 # MangoHud: # Overlay para monitoramento de desempenho (FPS, CPU, GPU)
+# flathub org.freedesktop.Platform.VulkanLayer.MangoHud//25.08 # MangoHud: # Overlay para monitoramento de desempenho (FPS, CPU, GPU)
 
 ### **Edição de Texto e Markdown**
 
@@ -45,8 +45,8 @@ flathub com.vscodium.codium                             # VSCodium: Versão open
 
 ### **Comunicação e Mensagens**
 
-flathub com.discordapp.Discord                          # Discord: Comunicação para texto, voz e vídeo
-flathub org.telegram.desktop                            # Telegram Desktop: Mensagens rápidas e seguras
+# flathub com.discordapp.Discord                          # Discord: Comunicação para texto, voz e vídeo
+# flathub org.telegram.desktop                            # Telegram Desktop: Mensagens rápidas e seguras
 flathub com.rtosta.zapzap                               # ZapZap: Cliente de WhatsApp para Linux
 
 ### **Personalização do Sistema**
@@ -68,7 +68,7 @@ flathub com.rtosta.zapzap                               # ZapZap: Cliente de Wha
 # flathub org.gnome.Rhythmbox3                          # Reproduza e organize toda a sua música
 # flathub de.haeckerfelix.Fragments                     # Cliente BitTorrent simples para o GNOME
 # flathub org.remmina.Remmina                           # Cliente de acesso remoto compatível com RDP, VNC e outros protocolos
-flathub com.github.tchx84.Flatseal                      # Gerencie as permissões de Flatpaks
+# flathub com.github.tchx84.Flatseal                      # Gerencie as permissões de Flatpaks
 # flathub org.gnome.Showtime                            # Aplicativo de video Gnome
 # flathub org.gnome.Decibels                            # Aplicativo de música Gnome
 # flathub fr.handbrake.ghb                              # Aplicativo para conversão de Medias

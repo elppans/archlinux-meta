@@ -186,7 +186,7 @@ sincronizacao_diretorios() {
 # Executando as funções
 verificar_repositorios
 pacotes_essenciais
-verificar_kernel_hooks
+# verificar_kernel_hooks
 verificar_helper
 detectar_vm
 pacotes_pacman
