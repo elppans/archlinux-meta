@@ -83,5 +83,6 @@ temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
 cd "$temp_dir" || exit 1
 git clone https://github.com/elppans/big-gnome-center.git
 cd big-gnome-center/pkgbuild || exit 1
+yay --noconfirm --removemake --sudoloop -S comm-gnome-config --overwrite \*
 sed -i 's/big-comm/elppans/' PKGBUILD
 makepkg -Cris
