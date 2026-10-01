@@ -78,11 +78,15 @@ pipewire-biglinux-config
 
 yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite \*
 
-# Aplicativo de temas
+# # Aplicativo de temas
 temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
 cd "$temp_dir" || exit 1
-git clone https://github.com/elppans/big-gnome-center.git
-cd big-gnome-center/pkgbuild || exit 1
-yay --noconfirm --removemake --sudoloop -S comm-gnome-config --overwrite \*
-sed -i 's/big-comm/elppans/' PKGBUILD
-makepkg -Cris
+# git clone https://github.com/elppans/big-gnome-center.git
+# cd big-gnome-center/pkgbuild || exit 1
+# yay --noconfirm --removemake --sudoloop -S comm-gnome-config --overwrite \*
+# sed -i 's/big-comm/elppans/' PKGBUILD
+# makepkg -Cris
+wget -q https://github.com/elppans/big-gnome-center/releases/download/26.09.30-2326/big-gnome-center-26.09.30-2326-any.pkg.tar.zst
+sudo pacman -U big-gnome-center-26.09.30-2326-any.pkg.tar.zst
+cd - || exit 1
+rm -rf "$temp_dir"
