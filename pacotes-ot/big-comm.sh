@@ -76,8 +76,7 @@ bigsudo
 pipewire-biglinux-config
 )
 
-yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" \
---overwrite \*
+yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite \*
 
 # Aplicativo de temas
 temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
