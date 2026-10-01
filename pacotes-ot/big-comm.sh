@@ -56,6 +56,7 @@ bigicons-papient
 biglinux-driver-manager
 biglinux-settings
 comm-wallpapers-gnome
+comm-gnome-config
 gnome-shell-big-shot
 gnome-shell-extension-copyous
 gnome-shell-extension-gtk4-desktop-icons-ng
