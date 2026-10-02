@@ -34,7 +34,6 @@ pacotes=(
 # biglinux-systemd-swap
 # biglinux-vaapi
 # comm-improve-compatibility
-# comm-skel # testando
 # community-release
 # ghc-libs
 # grub-theme-community
@@ -47,8 +46,6 @@ pacotes=(
 # plymouth-theme-community
 # power-profiles-daemon-biglinux
 # rhvoice-brazilian-portuguese-complementary-dict-biglinux
-# ttf-nerd-fonts-symbols-with-biglinux
-# tts-biglinux
 
 # Principais pacotes
 big-bibata-cursor-theme
@@ -76,6 +73,8 @@ bigocrpdf
 bigrecorder
 bigsudo
 pipewire-biglinux-config
+ttf-nerd-fonts-symbols-with-biglinux
+tts-biglinux
 )
 
 yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite \*
@@ -95,3 +94,8 @@ yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite 
 # cd - || exit 1
 # rm -rf "$temp_dir"
 yay --needed --noconfirm --removemake --sudoloop -S big-gnome-center
+
+if pacman -Qq comm-skel &>/dev/null; then
+	tar -c -C /etc/skel . | tar -x --skip-old-files -f - -C "$HOME"
+	sudo chown -Rf "$USER":"$USER" "$HOME"
+fi
