@@ -57,7 +57,6 @@ bigicons-papient
 biglinux-driver-manager
 biglinux-settings
 comm-wallpapers-gnome
-big-gnome-center
 comm-gnome-config
 gnome-shell-big-shot
 gnome-shell-extension-big-clipboard
@@ -95,3 +94,4 @@ yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite 
 # sudo pacman -U big-gnome-center-26.09.30-2326-any.pkg.tar.zst
 # cd - || exit 1
 # rm -rf "$temp_dir"
+yay --needed --noconfirm --removemake --sudoloop -S big-gnome-center
