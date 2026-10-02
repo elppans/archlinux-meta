@@ -23,6 +23,7 @@ pacotes=(
 # biglinux-apps-rename
 # biglinux-base-icons
 # biglinux-bash-config # Depende de: ttf-meslo-nerd-font-powerlevel10k (instalar primeiro)
+# gnome-shell-extension-copyous # Substituido pelo "...big-clipboard"
 # biglinux-hibernate-in-swapfile-btrfs
 # biglinux-improve-compatibility
 # biglinux-keyring
@@ -33,7 +34,7 @@ pacotes=(
 # biglinux-systemd-swap
 # biglinux-vaapi
 # comm-improve-compatibility
-# comm-skel
+# comm-skel # testando
 # community-release
 # ghc-libs
 # grub-theme-community
@@ -56,14 +57,16 @@ bigicons-papient
 biglinux-driver-manager
 biglinux-settings
 comm-wallpapers-gnome
+big-gnome-center
 comm-gnome-config
 gnome-shell-big-shot
-gnome-shell-extension-copyous
+gnome-shell-extension-big-clipboard
 gnome-shell-extension-gtk4-desktop-icons-ng
 numlockx
 pnpm
 
 # Pacotes adicionais
+comm-skel
 big-audio-converter
 big-network-info
 big-video-converter
@@ -79,14 +82,16 @@ pipewire-biglinux-config
 yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite \*
 
 # # Aplicativo de temas
-temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
-cd "$temp_dir" || exit 1
+# temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
+# cd "$temp_dir" || exit 1
+# SOURCE
 # git clone https://github.com/elppans/big-gnome-center.git
 # cd big-gnome-center/pkgbuild || exit 1
 # yay --noconfirm --removemake --sudoloop -S comm-gnome-config --overwrite \*
 # sed -i 's/big-comm/elppans/' PKGBUILD
 # makepkg -Cris
-wget -q https://github.com/elppans/big-gnome-center/releases/download/26.09.30-2326/big-gnome-center-26.09.30-2326-any.pkg.tar.zst
-sudo pacman -U big-gnome-center-26.09.30-2326-any.pkg.tar.zst
-cd - || exit 1
-rm -rf "$temp_dir"
+# PACOTE
+# wget -q https://github.com/elppans/big-gnome-center/releases/download/26.09.30-2326/big-gnome-center-26.09.30-2326-any.pkg.tar.zst
+# sudo pacman -U big-gnome-center-26.09.30-2326-any.pkg.tar.zst
+# cd - || exit 1
+# rm -rf "$temp_dir"
