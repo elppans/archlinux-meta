@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Instalar o Virt Manager e pacotes essenciais
-sudo pacman --needed --noconfirm -Syu virt-manager qemu-desktop swtpm dmidecode dnsmasq edk2-ovmf
+sudo pacman --noconfirm -R rpmextract #  libguestfs depende de "rpm-tools", que conflita com rpmextract
+sudo pacman --needed --noconfirm -Syu virt-manager qemu-desktop swtpm dmidecode dnsmasq edk2-ovmf libappindicator libguestfs
 
 # Pacote legado, agora só existe no AUR
 # sudo pacman --needed --noconfirm -Syu bridge-utils
