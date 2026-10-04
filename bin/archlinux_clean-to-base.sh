@@ -121,6 +121,7 @@ sudo rm -rf /etc/profile.d/gnome-shell-keyboard.sh* \
 /etc/profile.d/ssh-auth-sock.sh*  \
 /etc/profile.d/wayland-env.sh*  \
 /etc/profile.d/gnome-shell-keyboard.sh*  \
+/etc/profile.d/gnome-shell-menu.sh*  \
 /etc/profile.d/gnome-shell-set.sh*
 sudo unlink /usr/local/bin/silent-sddm-switch_theme
 }  &>>/dev/null
