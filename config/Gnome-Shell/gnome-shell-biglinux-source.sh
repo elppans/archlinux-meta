@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Script desartivado por não ser mais necessário
+# Novos Scripts estão em "pacotes-ot"
+
 make_timestamp(){
 if grep -q '^pkgrel=.*date' PKGBUILD; then
     sed -i "s/^pkgrel=.*date.*/pkgrel=1/" PKGBUILD
