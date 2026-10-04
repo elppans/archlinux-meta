@@ -12,40 +12,41 @@ sudo pacman -Syyu
 
 pacotes=(
 # Pacotes retirados
-# bigbashview
-# bigblocks
-# bigcommunity-name
-# big-kernel-manager # Não há pacote
-# big-mount
-# big-parental-controls
-# big-preload
-# big-theme-colloided-adwaita
-# biglinux-apps-rename
-# biglinux-base-icons
-# biglinux-bash-config # Depende de: ttf-meslo-nerd-font-powerlevel10k (instalar primeiro)
-# gnome-shell-extension-copyous # Substituido pelo "...big-clipboard"
-# biglinux-hibernate-in-swapfile-btrfs
-# biglinux-improve-compatibility
-# biglinux-keyring
-# biglinux-l18n
-# biglinux-metapackage
-# biglinux-mime # Este pacote depende de pamac
-# biglinux-nano-config
-# biglinux-systemd-swap
-# biglinux-vaapi
-# comm-improve-compatibility
-# community-release
-# ghc-libs
-# grub-theme-community
-# jbig2dec
-# jbig2enc
-# jbigkit
-# libbytesize
-# mhwd-biglinux
-# perl
-# plymouth-theme-community
-# power-profiles-daemon-biglinux
-# rhvoice-brazilian-portuguese-complementary-dict-biglinux
+bigbashview
+bigblocks
+bigcommunity-name
+big-kernel-manager # Não há pacote
+big-mount
+big-parental-controls
+big-preload
+big-theme-colloided-adwaita
+biglinux-apps-rename
+biglinux-base-icons
+biglinux-bash-config # Depende de: ttf-meslo-nerd-font-powerlevel10k (instalar primeiro)
+gnome-shell-extension-copyous # Substituido pelo "...big-clipboard"
+biglinux-hibernate-in-swapfile-btrfs
+biglinux-improve-compatibility
+biglinux-keyring
+biglinux-l18n
+biglinux-metapackage
+biglinux-mime # Este pacote depende de pamac
+biglinux-nano-config
+biglinux-systemd-swap
+biglinux-vaapi
+comm-improve-compatibility
+community-release
+ghc-libs
+grub-theme-community
+jbig2dec
+jbig2enc
+jbigkit
+libbytesize
+mhwd-biglinux
+perl
+plymouth-theme-community
+power-profiles-daemon-biglinux
+rhvoice-brazilian-portuguese-complementary-dict-biglinux
+ttf-meslo-nerd-font-powerlevel10k
 
 # Principais pacotes
 big-bibata-cursor-theme
@@ -68,7 +69,7 @@ big-network-info
 big-video-converter
 biglinux-meta-audio-config
 biglinux-noise-reduction-pipewire
-# biglinux-webapps
+biglinux-webapps
 bigocrpdf
 bigrecorder
 bigsudo
