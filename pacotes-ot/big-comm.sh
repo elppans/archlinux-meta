@@ -99,3 +99,11 @@ if pacman -Qq comm-skel &>/dev/null; then
 	tar -c -C /etc/skel . | tar -x --skip-old-files -f - -C "$HOME"
 	sudo chown -Rf "$USER":"$USER" "$HOME"
 fi
+
+if [ "$(command -v gsettings &>/dev/null)" ]; then
+gsettings set org.gnome.desktop.interface accent-color 'blue'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
+gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
+gsettings set org.gnome.desktop.interface icon-theme 'bigicons-papient-dark'
+fi
