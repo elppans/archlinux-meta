@@ -23,7 +23,7 @@ big-theme-colloided-adwaita
 biglinux-apps-rename
 biglinux-base-icons
 biglinux-bash-config # Depende de: ttf-meslo-nerd-font-powerlevel10k (instalar primeiro)
-gnome-shell-extension-copyous # Substituido pelo "...big-clipboard"
+# gnome-shell-extension-copyous # Substituido pelo "...big-clipboard"
 biglinux-hibernate-in-swapfile-btrfs
 biglinux-improve-compatibility
 biglinux-keyring
