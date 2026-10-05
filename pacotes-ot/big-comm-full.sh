@@ -29,7 +29,7 @@ biglinux-improve-compatibility
 biglinux-keyring
 biglinux-l18n
 biglinux-metapackage
-biglinux-mime # Este pacote depende de pamac
+# biglinux-mime # Este pacote depende de pamac
 biglinux-nano-config
 biglinux-systemd-swap
 biglinux-vaapi
@@ -41,7 +41,7 @@ jbig2dec
 jbig2enc
 jbigkit
 libbytesize
-mhwd-biglinux
+# mhwd-biglinux
 perl
 plymouth-theme-community
 power-profiles-daemon-biglinux
