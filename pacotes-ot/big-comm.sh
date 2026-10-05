@@ -33,7 +33,6 @@ pacotes=(
 # biglinux-nano-config
 # biglinux-systemd-swap
 # biglinux-vaapi
-# comm-improve-compatibility
 # community-release
 # ghc-libs
 # grub-theme-community
@@ -63,6 +62,8 @@ pnpm
 
 # Pacotes adicionais
 comm-skel
+comm-improve-compatibility # Este pacote faz o desenho no fastfech ficar OK
+biglinux-bash-config
 big-audio-converter
 big-network-info
 big-video-converter
