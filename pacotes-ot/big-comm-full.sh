@@ -109,3 +109,8 @@ gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
 gsettings set org.gnome.desktop.interface icon-theme 'bigicons-papient-dark'
 fi
 
+if [ -f "/etc/profile.d/gnome-shell-menu.sh" ]; then
+sudo ln -sf /etc/profile.d/gnome-shell-menu.sh /usr/local/bin/update-menu-gnome
+sudo chmod +x /etc/profile.d/gnome-shell-menu.sh
+fi
+
