@@ -88,7 +88,8 @@ fi
 
 # 3. Instalar o pacote binário do gnome-layout-switcher
 echo "==> [3/3] Baixando e instalando gnome-layout-switcher (bypassing pamac-gtk)..."
-MIRROR_URI="https://linorg.usp.br/manjaro/stable/extra/x86_64"
+# MIRROR_URI="https://linorg.usp.br/manjaro/stable/extra/x86_64"
+MIRROR_URI="https://github.com/elppans/gnome-layout-switcher/releases/download/0.8.40-2"
 PACKAGE_NAME="gnome-layout-switcher-0.8.40-2-any.pkg.tar.zst"
 
 curl -sSLO "${MIRROR_URI}/${PACKAGE_NAME}"
