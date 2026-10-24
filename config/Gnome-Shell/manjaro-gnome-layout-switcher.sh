@@ -95,4 +95,13 @@ PACKAGE_NAME="gnome-layout-switcher-0.8.40-2-any.pkg.tar.zst"
 curl -sSLO "${MIRROR_URI}/${PACKAGE_NAME}"
 yay --assume-installed pamac-gtk -U "${PACKAGE_NAME}"
 
+sleep 5
+if [ -f "/usr/lib/python3.14/site-packages/layoutswitcherlib/layoutsbox.py" ]; then
+	# Troca do ícone Manjaro pelo ícone Arch para o menú "Tradicional" do Layout Switcher
+	# gsettings set org.gnome.shell.extensions.arcmenu menu-button-icon "resource:///org/gnome/shell/extensions/arcmenu/icons/scalable/actions/distro-manjaro-symbolic.svg"
+	# gsettings set org.gnome.shell.extensions.arcmenu menu-button-icon 'resource:///org/gnome/shell/extensions/arcmenu/icons/scalable/actions/distro-arch.svg'
+	sudo cp -a /usr/lib/python3.14/site-packages/layoutswitcherlib/layoutsbox.py /usr/lib/python3.14/site-packages/layoutswitcherlib/layoutsbox.py.backup_"$(date +%Y%m%d%H%M)"
+	sudo sed -i 's/distro-manjaro-symbolic.svg/distro-arch.svg/g' /usr/lib/python3.14/site-packages/layoutswitcherlib/layoutsbox.py
+fi
+
 echo "==> Instalação concluída com sucesso!"
