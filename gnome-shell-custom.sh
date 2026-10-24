@@ -206,3 +206,14 @@ sleeping 6
 echo -e "\nReiniciando o sistema para aplicar as mudanças..."
 sleeping 15
 sudo systemctl reboot -i
+
+# -- Completar a configuração (Sequência, na ordem) --
+#
+# cd "$install"/config/Gnome-Shell || exit 1
+# bash gnome-shell-cursor-theme.sh
+# bash gnome-shell-icon-theme.sh
+# bash gnome-shell-set.sh
+# bash gnome-shell-themes-orchis.sh
+# bash gnome-shell-themes.sh
+# bash manjaro-gnome-layout-switcher.sh
+# bash gnome-shell-extensions.sh
