@@ -21,6 +21,23 @@ helper() {
 	fi
 }
 
+gnome-shell-extension-gnome-ui-tune_aur() {
+if ! pacman -Qi gnome-shell-extension-gnome-ui-tune-git &>/dev/null; then
+	echo "==> [2/3] Compilando accent-color-change do Manjaro PKGBUILDS..."
+	BUILD_DIR="$(mktemp -d)"
+	trap 'rm -rf "${BUILD_DIR}"' EXIT
+	cd "${BUILD_DIR}" || exit 1
+	# https://github.com/elppans/gnome-shell-extension-gnome-ui-tune.git
+	RAW_URI="https://raw.githubusercontent.com/elppans/gnome-shell-extension-gnome-ui-tune/refs/heads/main"
+	curl -sSLO "${RAW_URI}/PKGBUILD"
+	curl -sSLO "${RAW_URI}/LICENSE"
+	makepkg --needed --noconfirm -Cris
+	cd -  || exit 1
+else
+	echo "==> [2/3] gnome-shell-extension-gnome-ui-tune-git já está instalado. Pulando build."
+fi
+}
+
 DEPENDENCY=(
 	# Dependências para "accent-color-change"
 	adw-gtk-theme
@@ -37,7 +54,7 @@ DEPENDENCY=(
 	gnome-shell-extension-dash-to-dock
 	gnome-shell-extension-dash-to-panel
 	gnome-shell-extension-forge
-	gnome-shell-extension-gnome-ui-tune
+	# gnome-shell-extension-gnome-ui-tune
 	gnome-shell-extension-gtk4-desktop-icons-ng
 	gnome-shell-extension-space-bar
 	gnome-tweaks
@@ -46,6 +63,9 @@ DEPENDENCY=(
 	python-click
 	python-gobject
 )
+
+# Instalar extensão gnome-ui-tune
+gnome-shell-extension-gnome-ui-tune_aur
 
 # 1. Instalar dependências disponíveis via Arch/AUR
 echo "==> [1/3] Instalando dependências do sistema via Helper..."
