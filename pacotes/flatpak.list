@@ -31,7 +31,7 @@ flathub com.vysp3r.ProtonPlus                           # ProtonPlus: Gerenciado
 # flathub org.kde.kate                                  # Kate: Editor de texto avançado
 flathub com.github.marktext.marktext                  # MarkText: Editor de texto Markdown simples e poderoso
 # flathub org.gnome.gitlab.somas.Apostrophe             # MarkText: Editor de texto Markdown simples e poderoso (Parte de aplicativos Gnome, Integrado)
-flathub com.vscodium.codium                             # VSCodium: Versão open-source do VS Code (sem rastreamento)
+# flathub com.vscodium.codium                           # VSCodium: Versão open-source do VS Code (sem rastreamento) - Versao AUR é mellhor
 
 ### **Imagens e Personalização**
 

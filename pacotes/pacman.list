@@ -121,6 +121,7 @@ shellcheck                             # Analisador estático para scripts shell
 shfmt                                  # Formatador para scripts shell
 # stylelint                            # AUR Linter para arquivos CSS e preprocessadores como SCSS > Portado para "vscodium_extensions"
 dbeaver                                # Free universal SQL Client for developers and database administrators (community edition)
+vscodium-bin                           # Binary releases of VS Code without MS branding/telemetry/licensing
 
 ### Sistema - Kernel, drivers e compatibilidade
 
