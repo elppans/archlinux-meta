@@ -7,7 +7,7 @@
 pacotes=(
     # libva-mesa-driver   # Aceleração de decodificação/codificação de vídeo por hardware (VA-API) na GPU AMD; usado por navegadores, mpv, VLC, etc.
     mesa                  # Implementação open source de OpenGL (e base dos drivers de GPU); essencial para qualquer desktop gráfico
-	lib32-mesa
+	lib32-mesa            # OpenGL de 32 bits (e base dos drivers Mesa 32 bits); necessário para Steam, Wine/Proton e jogos 32 bits antigos (requer o repositório multilib)
     vulkan-radeon         # Driver Vulkan (RADV) para GPUs AMD Radeon; necessário para jogos via Proton/DXVK/VKD3D
     lib32-vulkan-radeon   # Driver Vulkan (RADV) de 32 bits para AMD; necessário para jogos 32 bits no Steam/Proton/Wine (requer o repositório multilib ativo)
     opencl-mesa           # Implementação OpenCL (Rusticl) do Mesa; permite usar a GPU AMD para computação em Blender, GIMP, Darktable, etc.
