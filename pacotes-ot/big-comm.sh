@@ -62,7 +62,7 @@ pnpm
 
 # Pacotes adicionais
 comm-skel
-comm-improve-compatibility # Este pacote faz o desenho no fastfech ficar OK
+# comm-improve-compatibility # Este pacote faz o desenho no fastfech ficar OK depende de install-grub que não é encontrado
 biglinux-bash-config
 big-audio-converter
 big-network-info
@@ -79,6 +79,7 @@ tts-biglinux
 )
 
 yay --needed --noconfirm --removemake --sudoloop -S "${pacotes[@]}" --overwrite \*
+sudo pacman --assume-installed install-grub -S comm-improve-compatibility
 
 # # Aplicativo de temas
 # temp_dir="$(mktemp -d big-gnome-center.XXXXXXXXXX)"
